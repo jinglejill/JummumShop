@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>CFBundleExecutable</key>
+	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleIdentifier</key>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>$(PRODUCT_NAME)</string>
+	<key>CFBundlePackageType</key>
+	<string>BNDL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Kanit-Black.otf</string>
+        <string>Kanit-BlackItalic.otf</string>
+        <string>Kanit-Bold.otf</string>
+        <string>Kanit-BoldItalic.otf</string>
+        <string>Kanit-ExtraBold.otf</string>
+        <string>Kanit-ExtraBoldItalic.otf</string>
+        <string>Kanit-ExtraLight.otf</string>
+        <string>Kanit-ExtraLightItalic.otf</string>
+        <string>Kanit-Italic.otf</string>
+        <string>Kanit-Light.otf</string>
+        <string>Kanit-LightItalic.otf</string>
+        <string>Kanit-Medium.otf</string>
+        <string>Kanit-MediumItalic.otf</string>
+        <string>Kanit-Regular.otf</string>
+        <string>Kanit-SemiBold.otf</string>
+        <string>Kanit-SemiBoldItalic.otf</string>
+        <string>Kanit-Thin.otf</string>
+        <string>Kanit-ThinItalic.otf</string>
+	</array>
+	<key>CFBundleVersion</key>
+	<string>1</string>
+</dict>
+</plist>
