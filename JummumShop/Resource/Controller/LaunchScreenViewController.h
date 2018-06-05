@@ -7,7 +7,9 @@
 //
 
 #import "CustomViewController.h"
+#import "HomeModel.h"
 
-@interface LaunchScreenViewController : CustomViewController
+
+@interface LaunchScreenViewController : CustomViewController<HomeModelProtocol,UITextFieldDelegate,UIAlertViewDelegate>
 @property (strong, nonatomic) UIProgressView *progressBar;
 @end

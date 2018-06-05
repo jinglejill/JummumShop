@@ -8,6 +8,7 @@
 
 #import "CustomViewController.h"
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
+#import "CredentialsDb.h"
 
 
 @interface LogInViewController : CustomViewController<FBSDKLoginButtonDelegate>
@@ -18,6 +19,7 @@
 @property (strong, nonatomic) IBOutlet UIButton *btnLogIn;
 @property (strong, nonatomic) IBOutlet UIButton *btnRegisterNow;
 @property (strong, nonatomic) IBOutlet UIButton *btnForgotPassword;
+@property (strong, nonatomic) CredentialsDb *credentialsDb;
 - (IBAction)rememberMe:(id)sender;
 - (IBAction)logIn:(id)sender;
 - (IBAction)registerNow:(id)sender;

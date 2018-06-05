@@ -115,7 +115,7 @@
     // Do any additional setup after loading the view.
     
 
-//    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"tosAgree"];
+    [self setButtonDesign:btnLogIn];
     if([[NSUserDefaults standardUserDefaults] integerForKey:@"rememberMe"])
     {
         [btnRememberMe setTitle:@"■ จำฉันไว้ในระบบ" forState:UIControlStateNormal];
@@ -145,28 +145,28 @@
     
     
     
-    //facebook
-    _loginButton = [[FBSDKLoginButton alloc] init];
-    _loginButton.delegate = self;
-    _loginButton.readPermissions = @[@"public_profile", @"email",@"user_friends",@"user_birthday",@"user_likes",];
-//    _loginButton.readPermissions = @[@"public_profile", @"email",@"user_friends",@"user_birthday",@"user_about_me",@"user_likes",@"user_work_history"];
-    _loginButton.center = self.view.center;
-    CGRect frame = _loginButton.frame;
-    frame.origin.y = frame.origin.y + 33;
-    _loginButton.frame = frame;
-    
-
-    // Optional: Place the button in the center of your view.
-    [self.view addSubview:_loginButton];
-    if ([FBSDKAccessToken currentAccessToken])
-    {
-        // User is logged in, do work such as go to next view controller.
-        _faceBookLogIn = YES;
-    }
-    else if([[NSUserDefaults standardUserDefaults] integerForKey:@"logInSession"])
-    {
-        _appLogIn = YES;
-    }
+//    //facebook
+//    _loginButton = [[FBSDKLoginButton alloc] init];
+//    _loginButton.delegate = self;
+//    _loginButton.readPermissions = @[@"public_profile", @"email",@"user_friends",@"user_birthday",@"user_likes",];
+////    _loginButton.readPermissions = @[@"public_profile", @"email",@"user_friends",@"user_birthday",@"user_about_me",@"user_likes",@"user_work_history"];
+//    _loginButton.center = self.view.center;
+//    CGRect frame = _loginButton.frame;
+//    frame.origin.y = frame.origin.y + 33;
+//    _loginButton.frame = frame;
+//    
+//
+//    // Optional: Place the button in the center of your view.
+//    [self.view addSubview:_loginButton];
+//    if ([FBSDKAccessToken currentAccessToken])
+//    {
+//        // User is logged in, do work such as go to next view controller.
+//        _faceBookLogIn = YES;
+//    }
+//    else if([[NSUserDefaults standardUserDefaults] integerForKey:@"logInSession"])
+//    {
+//        _appLogIn = YES;
+//    }
 }
 
 - (void)loginButton:(FBSDKLoginButton *)loginButton didCompleteWithResult:(FBSDKLoginManagerLoginResult *)result error:(NSError *)error
@@ -276,7 +276,7 @@
                     }
                     else
                     {
-                        [self performSegueWithIdentifier:@"segQrCodeScanTable" sender:self];
+                        [self performSegueWithIdentifier:@"segCustomerKitchen" sender:self];
                     }
                 }
             }

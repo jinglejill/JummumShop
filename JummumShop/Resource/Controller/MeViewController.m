@@ -9,6 +9,7 @@
 #import "MeViewController.h"
 #import "TosAndPrivacyPolicyViewController.h"
 #import "CustomTableViewCellImageText.h"
+#import "CustomTableViewCellProfile.h"
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 
 
@@ -24,6 +25,7 @@
 
 @implementation MeViewController
 static NSString * const reuseIdentifierImageText = @"CustomTableViewCellImageText";
+static NSString * const reuseIdentifierProfile = @"CustomTableViewCellProfile";
 
 
 @synthesize tbvMe;
@@ -37,8 +39,9 @@ static NSString * const reuseIdentifierImageText = @"CustomTableViewCellImageTex
 -(void)loadView
 {
     [super loadView];
-    _meList = @[@"ประวัติการสั่งอาหาร",@"ข้อมูลส่วนตัว",@"แต้มสะสม/แลกของรางวัล",@"บัตรเครดิต/เดบิต"];
-    _meImageList = @[@"history.jpg",@"personalData.png",@"gift.png",@"creditCard.png"];
+    
+    _meList = @[@"ประวัติการสั่งอาหาร",@"แต้มสะสม/แลกของรางวัล",@"บัตรเครดิต/เดบิต"];//,@"ข้อมูลส่วนตัว"
+    _meImageList = @[@"history.jpg",@"gift.png",@"creditCard.png"];//,@"personalData.png"
     _aboutUsList = @[@"ข้อกำหนดและเงื่อนไข",@"นโยบายความเป็นส่วนตัว",@"Log out"];
     _aboutUsImageList = @[@"termsOfService.png",@"privacyPolicy.png",@"logOut.png"];
     tbvMe.delegate = self;
@@ -55,13 +58,17 @@ static NSString * const reuseIdentifierImageText = @"CustomTableViewCellImageTex
         UINib *nib = [UINib nibWithNibName:reuseIdentifierImageText bundle:nil];
         [tbvMe registerNib:nib forCellReuseIdentifier:reuseIdentifierImageText];
     }
+    {
+        UINib *nib = [UINib nibWithNibName:reuseIdentifierProfile bundle:nil];
+        [tbvMe registerNib:nib forCellReuseIdentifier:reuseIdentifierProfile];
+    }
 }
 
 ///tableview section
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
     
-    return 2;
+    return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -69,7 +76,11 @@ static NSString * const reuseIdentifierImageText = @"CustomTableViewCellImageTex
     
     if([tableView isEqual:tbvMe])
     {
-        if (section == 0)
+        if(section == 0)
+        {
+            return 1;
+        }
+        else if (section == 1)
         {
             return [_meList count];
         }
@@ -89,26 +100,43 @@ static NSString * const reuseIdentifierImageText = @"CustomTableViewCellImageTex
     
     if([tableView isEqual:tbvMe])
     {
-        CustomTableViewCellImageText *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifierImageText];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
         
         
-        if (section == 0)
+        if(section == 0)
         {
+            CustomTableViewCellProfile *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifierProfile];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            
+            cell.imgValue.layer.cornerRadius = 35;
+            cell.imgValue.layer.masksToBounds = YES;
+            cell.imgValue.layer.borderWidth = 0;
+            
+            return cell;
+        }
+        else if (section == 1)
+        {
+            CustomTableViewCellImageText *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifierImageText];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            
+            
             cell.imgVwIcon.image = [UIImage imageNamed:_meImageList[item]];
             cell.lblText.text = _meList[item];
+            cell.lblText.textColor = cSystem4;
+            return cell;
         }
         else
         {
+            CustomTableViewCellImageText *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifierImageText];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            
+            
             cell.imgVwIcon.image = [UIImage imageNamed:_aboutUsImageList[item]];
             cell.lblText.text = _aboutUsList[item];
-        }
-        
-        
-
-
-        return cell;
+            cell.lblText.textColor = cSystem4;
+            return cell;
+        }   
     }
     
     return nil;
@@ -118,7 +146,14 @@ static NSString * const reuseIdentifierImageText = @"CustomTableViewCellImageTex
 {
     if([tableView isEqual:tbvMe])
     {
-        return 44;
+        if(indexPath.section == 0)
+        {
+            return 90;
+        }
+        else
+        {
+            return 44;
+        }
     }
     
     return 0;
@@ -137,6 +172,10 @@ static NSString * const reuseIdentifierImageText = @"CustomTableViewCellImageTex
     {
         if(indexPath.section == 0)
         {
+            [self performSegueWithIdentifier:@"segPersonalData" sender:self];
+        }
+        else if(indexPath.section == 1)
+        {
             switch (indexPath.item)
             {
                 //                _meList = @[@"ประวัติการสั่งอาหาร",@"ข้อมูลส่วนตัว",@"แต้มสะสม",@"My Credit Cards"];
@@ -149,17 +188,13 @@ static NSString * const reuseIdentifierImageText = @"CustomTableViewCellImageTex
                     
                 }
                     break;
+                
                 case 1:
-                {
-                    [self performSegueWithIdentifier:@"segPersonalData" sender:self];
-                }
-                    break;
-                case 2:
                 {
                     [self performSegueWithIdentifier:@"segReward" sender:self];
                 }
                     break;
-                case 3:
+                case 2:
                 {
                     [self performSegueWithIdentifier:@"segCreditCard" sender:self];
                 }
@@ -198,6 +233,13 @@ static NSString * const reuseIdentifierImageText = @"CustomTableViewCellImageTex
             }
         }
     }
+}
+
+- (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    if (section == 0)
+        return CGFLOAT_MIN;
+    return tableView.sectionHeaderHeight;
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

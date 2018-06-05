@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "HomeModel.h"
 @import UserNotifications;
+#import <StarIO_Extension/StarIoExt.h>//printer part
 
 
 #define SYSTEM_VERSION_EQUAL_TO(ver)                 ([[[UIDevice currentDevice] systemVersion] compare:ver options:NSNumericSearch] == NSOrderedSame)
@@ -49,6 +50,47 @@ typedef NS_ENUM(NSInteger, PaperSizeIndex) {
 @property (nonatomic, strong) UINavigationController *navController;
 @property (nonatomic, strong) UIViewController *vc;
 
+
+//printer part
++ (NSString *)getPortName;
+
++ (void)setPortName:(NSString *)portName;
+
++ (NSString *)getPortSettings;
+
++ (void)setPortSettings:(NSString *)portSettings;
+
++ (NSString *)getModelName;
+
++ (void)setModelName:(NSString *)modelName;
+
++ (NSString *)getMacAddress;
+
++ (void)setMacAddress:(NSString *)macAddress;
+
++ (StarIoExtEmulation)getEmulation;
+
++ (void)setEmulation:(StarIoExtEmulation)emulation;
+
++ (BOOL)getCashDrawerOpenActiveHigh;
+
++ (void)setCashDrawerOpenActiveHigh:(BOOL)activeHigh;
+
++ (NSInteger)getAllReceiptsSettings;
+
++ (void)setAllReceiptsSettings:(NSInteger)allReceiptsSettings;
+
++ (NSInteger)getSelectedIndex;
+
++ (void)setSelectedIndex:(NSInteger)index;
+
++ (LanguageIndex)getSelectedLanguage;
+
++ (void)setSelectedLanguage:(LanguageIndex)index;
+
++ (PaperSizeIndex)getSelectedPaperSize;
+
++ (void)setSelectedPaperSize:(PaperSizeIndex)index;
 
 @end
 

@@ -310,6 +310,72 @@
 		EFB87CC720C3ECF00011AF78 /* jummumLogoCrop2.png in Resources */ = {isa = PBXBuildFile; fileRef = EFB87CC220C3ECF00011AF78 /* jummumLogoCrop2.png */; };
 		EFB87CC820C3ECF00011AF78 /* jummumLogoCrop.png in Resources */ = {isa = PBXBuildFile; fileRef = EFB87CC320C3ECF00011AF78 /* jummumLogoCrop.png */; };
 		EFB87CC920C3ECF00011AF78 /* jummumTypeWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = EFB87CC420C3ECF00011AF78 /* jummumTypeWhite.png */; };
+		EFB87ED720C472450011AF78 /* CustomerKitchenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB87ED520C472440011AF78 /* CustomerKitchenViewController.m */; };
+		EFB87EDA20C475BE0011AF78 /* CredentialsDb.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB87ED920C475BE0011AF78 /* CredentialsDb.m */; };
+		EFB87EDD20C476400011AF78 /* OrderKitchen.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB87EDC20C4763F0011AF78 /* OrderKitchen.m */; };
+		EFB87EE020C4766D0011AF78 /* Printer.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB87EDE20C4766D0011AF78 /* Printer.m */; };
+		EFB87EE320C4769E0011AF78 /* ReceiptPrint.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB87EE220C4769E0011AF78 /* ReceiptPrint.m */; };
+		EFB87FBF20C477B20011AF78 /* InvoiceComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB87FBE20C477B20011AF78 /* InvoiceComposer.m */; };
+		EFB8802F20C4781E0011AF78 /* SwitchTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB87FC420C4781D0011AF78 /* SwitchTableViewCell.m */; };
+		EFB8803020C4781E0011AF78 /* PrinterExtViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB87FC520C4781D0011AF78 /* PrinterExtViewController.m */; };
+		EFB8803120C4781E0011AF78 /* LaunchScreen.strings in Resources */ = {isa = PBXBuildFile; fileRef = EFB87FC620C4781D0011AF78 /* LaunchScreen.strings */; };
+		EFB8803220C4781E0011AF78 /* Main.strings in Resources */ = {isa = PBXBuildFile; fileRef = EFB87FC820C4781D0011AF78 /* Main.strings */; };
+		EFB8803320C4781E0011AF78 /* ScaleExtViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB87FCA20C4781D0011AF78 /* ScaleExtViewController.m */; };
+		EFB8803420C4781E0011AF78 /* AllReceiptsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB87FCB20C4781D0011AF78 /* AllReceiptsViewController.m */; };
+		EFB8803620C4781E0011AF78 /* DeviceStatusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB87FCE20C4781D0011AF78 /* DeviceStatusViewController.m */; };
+		EFB8803720C4781E0011AF78 /* CommonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB87FCF20C4781D0011AF78 /* CommonViewController.m */; };
+		EFB8803820C4781E0011AF78 /* DisplayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB87FD020C4781D0011AF78 /* DisplayViewController.m */; };
+		EFB8803920C4781E0011AF78 /* ScaleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB87FD220C4781D0011AF78 /* ScaleViewController.m */; };
+		EFB8803A20C4781E0011AF78 /* DisplayExtViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB87FD320C4781D0011AF78 /* DisplayExtViewController.m */; };
+		EFB8803B20C4781E0011AF78 /* SearchPortViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB87FD420C4781D0011AF78 /* SearchPortViewController.m */; };
+		EFB8803C20C4781E0011AF78 /* ApiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB87FD720C4781D0011AF78 /* ApiViewController.m */; };
+		EFB8803D20C4781E0011AF78 /* CashDrawerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB87FDA20C4781D0011AF78 /* CashDrawerViewController.m */; };
+		EFB8804020C4781E0011AF78 /* ModelCapability.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB87FDF20C4781D0011AF78 /* ModelCapability.m */; };
+		EFB8804120C4781E0011AF78 /* SpanishReceiptsImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB87FE220C4781D0011AF78 /* SpanishReceiptsImpl.m */; };
+		EFB8804220C4781E0011AF78 /* ILocalizeReceipts.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB87FE520C4781D0011AF78 /* ILocalizeReceipts.m */; };
+		EFB8804320C4781E0011AF78 /* RussianReceiptsImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB87FE620C4781D0011AF78 /* RussianReceiptsImpl.m */; };
+		EFB8804420C4781E0011AF78 /* FrenchReceiptsImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB87FE920C4781D0011AF78 /* FrenchReceiptsImpl.m */; };
+		EFB8804520C4781E0011AF78 /* EnglishReceiptsImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB87FEA20C4781D0011AF78 /* EnglishReceiptsImpl.m */; };
+		EFB8804620C4781E0011AF78 /* JapaneseReceiptsImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB87FEB20C4781D0011AF78 /* JapaneseReceiptsImpl.m */; };
+		EFB8804720C4781E0011AF78 /* TraditionalChineseReceiptsImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB87FED20C4781D0011AF78 /* TraditionalChineseReceiptsImpl.m */; };
+		EFB8804820C4781E0011AF78 /* GermanReceiptsImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB87FEE20C4781D0011AF78 /* GermanReceiptsImpl.m */; };
+		EFB8804920C4781E0011AF78 /* SimplifiedChineseReceiptsImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB87FF220C4781D0011AF78 /* SimplifiedChineseReceiptsImpl.m */; };
+		EFB8804A20C4781E0011AF78 /* PortugueseReceiptsImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB87FF320C4781D0011AF78 /* PortugueseReceiptsImpl.m */; };
+		EFB8804B20C4781E0011AF78 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB87FF520C4781D0011AF78 /* MainViewController.m */; };
+		EFB8804C20C4781E0011AF78 /* CashDrawerExtViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB87FF620C4781D0011AF78 /* CashDrawerExtViewController.m */; };
+		EFB8804F20C4781E0011AF78 /* PrinterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB87FFB20C4781D0011AF78 /* PrinterViewController.m */; };
+		EFB8805020C4781E0011AF78 /* SSCPCBBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB8800220C4781D0011AF78 /* SSCPCBBuilder.m */; };
+		EFB8805120C4781E0011AF78 /* PrinterFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB8800320C4781D0011AF78 /* PrinterFunctions.m */; };
+		EFB8805220C4781E0011AF78 /* SCDCBBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB8800520C4781D0011AF78 /* SCDCBBuilder.m */; };
+		EFB8805320C4781E0011AF78 /* ApiFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB8800620C4781D0011AF78 /* ApiFunctions.m */; };
+		EFB8805420C4781E0011AF78 /* DisplayFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB8800920C4781D0011AF78 /* DisplayFunctions.m */; };
+		EFB8805520C4781E0011AF78 /* IStarIoExtDisplayedWeightFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB8800A20C4781D0011AF78 /* IStarIoExtDisplayedWeightFunction.m */; };
+		EFB8805620C4781E0011AF78 /* CashDrawerFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB8800B20C4781D0011AF78 /* CashDrawerFunctions.m */; };
+		EFB8805720C4781E0011AF78 /* IStarIoExtFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB8800E20C4781D0011AF78 /* IStarIoExtFunction.m */; };
+		EFB8805820C4781E0011AF78 /* CombinationFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB8801120C4781D0011AF78 /* CombinationFunctions.m */; };
+		EFB8805920C4781E0011AF78 /* AllReceiptsFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB8801220C4781D0011AF78 /* AllReceiptsFunctions.m */; };
+		EFB8805A20C4781E0011AF78 /* ScaleFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB8801620C4781D0011AF78 /* ScaleFunctions.m */; };
+		EFB8805B20C4781E0011AF78 /* CombinationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB8801920C4781D0011AF78 /* CombinationViewController.m */; };
+		EFB8805C20C4781E0011AF78 /* BarcodeReaderExtViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB8801E20C4781D0011AF78 /* BarcodeReaderExtViewController.m */; };
+		EFB8805D20C4781E0011AF78 /* CombinationExtViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB8802020C4781D0011AF78 /* CombinationExtViewController.m */; };
+		EFB8805F20C4781E0011AF78 /* AllReceiptsExtViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB8802220C4781D0011AF78 /* AllReceiptsExtViewController.m */; };
+		EFB8806020C4781E0011AF78 /* ScaleCommunication.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB8802620C4781D0011AF78 /* ScaleCommunication.m */; };
+		EFB8806120C4781E0011AF78 /* Communication.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB8802720C4781D0011AF78 /* Communication.m */; };
+		EFB8806220C4781E0011AF78 /* DisplayCommunication.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB8802820C4781D0011AF78 /* DisplayCommunication.m */; };
+		EFB8806C20C47FE90011AF78 /* SharedPrinter.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB8806720C47FE80011AF78 /* SharedPrinter.m */; };
+		EFB8806D20C47FE90011AF78 /* SharedReceiptPrint.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB8806820C47FE80011AF78 /* SharedReceiptPrint.m */; };
+		EFB8806E20C47FE90011AF78 /* SharedOrderKitchen.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB8806920C47FE90011AF78 /* SharedOrderKitchen.m */; };
+		EFB8807420C48F770011AF78 /* SMCloudServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFB8802C20C4781D0011AF78 /* SMCloudServices.framework */; };
+		EFB8807520C48F980011AF78 /* StarIO_Extension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFB8802D20C4781D0011AF78 /* StarIO_Extension.framework */; };
+		EFB8807820C490150011AF78 /* StarIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFB8807720C490140011AF78 /* StarIO.framework */; };
+		EFB8807A20C490AA0011AF78 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFB8807920C490AA0011AF78 /* CoreBluetooth.framework */; };
+		EFB880C520C56A270011AF78 /* list.png in Resources */ = {isa = PBXBuildFile; fileRef = EFB880C420C56A270011AF78 /* list.png */; };
+		EFB880C820C5B1550011AF78 /* BranchSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB880C720C5B1550011AF78 /* BranchSelectViewController.m */; };
+		EFB8811C20C621180011AF78 /* Credentials.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB8811A20C621180011AF78 /* Credentials.m */; };
+		EFB8811F20C6220E0011AF78 /* Device.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB8811D20C6220E0011AF78 /* Device.m */; };
+		EFB8812B20C6F43C0011AF78 /* CustomTableViewCellProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB8812920C6F43C0011AF78 /* CustomTableViewCellProfile.m */; };
+		EFB8812C20C6F43C0011AF78 /* CustomTableViewCellProfile.xib in Resources */ = {isa = PBXBuildFile; fileRef = EFB8812A20C6F43C0011AF78 /* CustomTableViewCellProfile.xib */; };
+		EFB8812E20C6F61F0011AF78 /* profilePic.png in Resources */ = {isa = PBXBuildFile; fileRef = EFB8812D20C6F61F0011AF78 /* profilePic.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -783,6 +849,130 @@
 		EFB87CC220C3ECF00011AF78 /* jummumLogoCrop2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = jummumLogoCrop2.png; sourceTree = "<group>"; };
 		EFB87CC320C3ECF00011AF78 /* jummumLogoCrop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = jummumLogoCrop.png; sourceTree = "<group>"; };
 		EFB87CC420C3ECF00011AF78 /* jummumTypeWhite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = jummumTypeWhite.png; sourceTree = "<group>"; };
+		EFB87ED520C472440011AF78 /* CustomerKitchenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomerKitchenViewController.m; sourceTree = "<group>"; };
+		EFB87ED620C472450011AF78 /* CustomerKitchenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomerKitchenViewController.h; sourceTree = "<group>"; };
+		EFB87ED820C475BD0011AF78 /* CredentialsDb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CredentialsDb.h; sourceTree = "<group>"; };
+		EFB87ED920C475BE0011AF78 /* CredentialsDb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CredentialsDb.m; sourceTree = "<group>"; };
+		EFB87EDB20C4763F0011AF78 /* OrderKitchen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderKitchen.h; sourceTree = "<group>"; };
+		EFB87EDC20C4763F0011AF78 /* OrderKitchen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderKitchen.m; sourceTree = "<group>"; };
+		EFB87EDE20C4766D0011AF78 /* Printer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Printer.m; sourceTree = "<group>"; };
+		EFB87EDF20C4766D0011AF78 /* Printer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Printer.h; sourceTree = "<group>"; };
+		EFB87EE120C4769D0011AF78 /* ReceiptPrint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReceiptPrint.h; sourceTree = "<group>"; };
+		EFB87EE220C4769E0011AF78 /* ReceiptPrint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReceiptPrint.m; sourceTree = "<group>"; };
+		EFB87FBD20C477B10011AF78 /* InvoiceComposer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InvoiceComposer.h; sourceTree = "<group>"; };
+		EFB87FBE20C477B20011AF78 /* InvoiceComposer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InvoiceComposer.m; sourceTree = "<group>"; };
+		EFB87FC120C4781D0011AF78 /* StarIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = StarIO.framework; sourceTree = "<group>"; };
+		EFB87FC320C4781D0011AF78 /* PrinterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrinterViewController.h; sourceTree = "<group>"; };
+		EFB87FC420C4781D0011AF78 /* SwitchTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwitchTableViewCell.m; sourceTree = "<group>"; };
+		EFB87FC520C4781D0011AF78 /* PrinterExtViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrinterExtViewController.m; sourceTree = "<group>"; };
+		EFB87FC720C4781D0011AF78 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		EFB87FC920C4781D0011AF78 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
+		EFB87FCA20C4781D0011AF78 /* ScaleExtViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScaleExtViewController.m; sourceTree = "<group>"; };
+		EFB87FCB20C4781D0011AF78 /* AllReceiptsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllReceiptsViewController.m; sourceTree = "<group>"; };
+		EFB87FCC20C4781D0011AF78 /* CashDrawerExtViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CashDrawerExtViewController.h; sourceTree = "<group>"; };
+		EFB87FCE20C4781D0011AF78 /* DeviceStatusViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceStatusViewController.m; sourceTree = "<group>"; };
+		EFB87FCF20C4781D0011AF78 /* CommonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonViewController.m; sourceTree = "<group>"; };
+		EFB87FD020C4781D0011AF78 /* DisplayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DisplayViewController.m; sourceTree = "<group>"; };
+		EFB87FD120C4781D0011AF78 /* CombinationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CombinationViewController.h; sourceTree = "<group>"; };
+		EFB87FD220C4781D0011AF78 /* ScaleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScaleViewController.m; sourceTree = "<group>"; };
+		EFB87FD320C4781D0011AF78 /* DisplayExtViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DisplayExtViewController.m; sourceTree = "<group>"; };
+		EFB87FD420C4781D0011AF78 /* SearchPortViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchPortViewController.m; sourceTree = "<group>"; };
+		EFB87FD620C4781D0011AF78 /* AllReceiptsExtViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllReceiptsExtViewController.h; sourceTree = "<group>"; };
+		EFB87FD720C4781D0011AF78 /* ApiViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApiViewController.m; sourceTree = "<group>"; };
+		EFB87FD820C4781D0011AF78 /* CombinationExtViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CombinationExtViewController.h; sourceTree = "<group>"; };
+		EFB87FD920C4781D0011AF78 /* BarcodeReaderExtViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarcodeReaderExtViewController.h; sourceTree = "<group>"; };
+		EFB87FDA20C4781D0011AF78 /* CashDrawerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CashDrawerViewController.m; sourceTree = "<group>"; };
+		EFB87FDF20C4781D0011AF78 /* ModelCapability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelCapability.m; sourceTree = "<group>"; };
+		EFB87FE120C4781D0011AF78 /* GermanReceiptsImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GermanReceiptsImpl.h; sourceTree = "<group>"; };
+		EFB87FE220C4781D0011AF78 /* SpanishReceiptsImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpanishReceiptsImpl.m; sourceTree = "<group>"; };
+		EFB87FE320C4781D0011AF78 /* TraditionalChineseReceiptsImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TraditionalChineseReceiptsImpl.h; sourceTree = "<group>"; };
+		EFB87FE420C4781D0011AF78 /* JapaneseReceiptsImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JapaneseReceiptsImpl.h; sourceTree = "<group>"; };
+		EFB87FE520C4781D0011AF78 /* ILocalizeReceipts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ILocalizeReceipts.m; sourceTree = "<group>"; };
+		EFB87FE620C4781D0011AF78 /* RussianReceiptsImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RussianReceiptsImpl.m; sourceTree = "<group>"; };
+		EFB87FE720C4781D0011AF78 /* PortugueseReceiptsImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PortugueseReceiptsImpl.h; sourceTree = "<group>"; };
+		EFB87FE820C4781D0011AF78 /* SimplifiedChineseReceiptsImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimplifiedChineseReceiptsImpl.h; sourceTree = "<group>"; };
+		EFB87FE920C4781D0011AF78 /* FrenchReceiptsImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FrenchReceiptsImpl.m; sourceTree = "<group>"; };
+		EFB87FEA20C4781D0011AF78 /* EnglishReceiptsImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnglishReceiptsImpl.m; sourceTree = "<group>"; };
+		EFB87FEB20C4781D0011AF78 /* JapaneseReceiptsImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JapaneseReceiptsImpl.m; sourceTree = "<group>"; };
+		EFB87FEC20C4781D0011AF78 /* SpanishReceiptsImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpanishReceiptsImpl.h; sourceTree = "<group>"; };
+		EFB87FED20C4781D0011AF78 /* TraditionalChineseReceiptsImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TraditionalChineseReceiptsImpl.m; sourceTree = "<group>"; };
+		EFB87FEE20C4781D0011AF78 /* GermanReceiptsImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GermanReceiptsImpl.m; sourceTree = "<group>"; };
+		EFB87FEF20C4781D0011AF78 /* RussianReceiptsImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RussianReceiptsImpl.h; sourceTree = "<group>"; };
+		EFB87FF020C4781D0011AF78 /* ILocalizeReceipts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ILocalizeReceipts.h; sourceTree = "<group>"; };
+		EFB87FF120C4781D0011AF78 /* FrenchReceiptsImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrenchReceiptsImpl.h; sourceTree = "<group>"; };
+		EFB87FF220C4781D0011AF78 /* SimplifiedChineseReceiptsImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimplifiedChineseReceiptsImpl.m; sourceTree = "<group>"; };
+		EFB87FF320C4781D0011AF78 /* PortugueseReceiptsImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PortugueseReceiptsImpl.m; sourceTree = "<group>"; };
+		EFB87FF420C4781D0011AF78 /* EnglishReceiptsImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnglishReceiptsImpl.h; sourceTree = "<group>"; };
+		EFB87FF520C4781D0011AF78 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		EFB87FF620C4781D0011AF78 /* CashDrawerExtViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CashDrawerExtViewController.m; sourceTree = "<group>"; };
+		EFB87FF720C4781D0011AF78 /* AllReceiptsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllReceiptsViewController.h; sourceTree = "<group>"; };
+		EFB87FF920C4781D0011AF78 /* ScaleExtViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScaleExtViewController.h; sourceTree = "<group>"; };
+		EFB87FFB20C4781D0011AF78 /* PrinterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrinterViewController.m; sourceTree = "<group>"; };
+		EFB87FFC20C4781D0011AF78 /* SwitchTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchTableViewCell.h; sourceTree = "<group>"; };
+		EFB87FFD20C4781D0011AF78 /* PrinterExtViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrinterExtViewController.h; sourceTree = "<group>"; };
+		EFB87FFE20C4781D0011AF78 /* CommonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonViewController.h; sourceTree = "<group>"; };
+		EFB87FFF20C4781D0011AF78 /* DeviceStatusViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceStatusViewController.h; sourceTree = "<group>"; };
+		EFB8800120C4781D0011AF78 /* IStarIoExtFunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IStarIoExtFunction.h; sourceTree = "<group>"; };
+		EFB8800220C4781D0011AF78 /* SSCPCBBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSCPCBBuilder.m; sourceTree = "<group>"; };
+		EFB8800320C4781D0011AF78 /* PrinterFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrinterFunctions.m; sourceTree = "<group>"; };
+		EFB8800420C4781D0011AF78 /* CombinationFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CombinationFunctions.h; sourceTree = "<group>"; };
+		EFB8800520C4781D0011AF78 /* SCDCBBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCDCBBuilder.m; sourceTree = "<group>"; };
+		EFB8800620C4781D0011AF78 /* ApiFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApiFunctions.m; sourceTree = "<group>"; };
+		EFB8800720C4781D0011AF78 /* AllReceiptsFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllReceiptsFunctions.h; sourceTree = "<group>"; };
+		EFB8800820C4781D0011AF78 /* ScaleFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScaleFunctions.h; sourceTree = "<group>"; };
+		EFB8800920C4781D0011AF78 /* DisplayFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DisplayFunctions.m; sourceTree = "<group>"; };
+		EFB8800A20C4781D0011AF78 /* IStarIoExtDisplayedWeightFunction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IStarIoExtDisplayedWeightFunction.m; sourceTree = "<group>"; };
+		EFB8800B20C4781D0011AF78 /* CashDrawerFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CashDrawerFunctions.m; sourceTree = "<group>"; };
+		EFB8800C20C4781D0011AF78 /* PrinterFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrinterFunctions.h; sourceTree = "<group>"; };
+		EFB8800D20C4781D0011AF78 /* SSCPCBBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSCPCBBuilder.h; sourceTree = "<group>"; };
+		EFB8800E20C4781D0011AF78 /* IStarIoExtFunction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IStarIoExtFunction.m; sourceTree = "<group>"; };
+		EFB8800F20C4781D0011AF78 /* ApiFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApiFunctions.h; sourceTree = "<group>"; };
+		EFB8801020C4781D0011AF78 /* SCDCBBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCDCBBuilder.h; sourceTree = "<group>"; };
+		EFB8801120C4781D0011AF78 /* CombinationFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CombinationFunctions.m; sourceTree = "<group>"; };
+		EFB8801220C4781D0011AF78 /* AllReceiptsFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllReceiptsFunctions.m; sourceTree = "<group>"; };
+		EFB8801320C4781D0011AF78 /* CashDrawerFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CashDrawerFunctions.h; sourceTree = "<group>"; };
+		EFB8801420C4781D0011AF78 /* IStarIoExtDisplayedWeightFunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IStarIoExtDisplayedWeightFunction.h; sourceTree = "<group>"; };
+		EFB8801520C4781D0011AF78 /* DisplayFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DisplayFunctions.h; sourceTree = "<group>"; };
+		EFB8801620C4781D0011AF78 /* ScaleFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScaleFunctions.m; sourceTree = "<group>"; };
+		EFB8801720C4781D0011AF78 /* DisplayExtViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DisplayExtViewController.h; sourceTree = "<group>"; };
+		EFB8801820C4781D0011AF78 /* ScaleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScaleViewController.h; sourceTree = "<group>"; };
+		EFB8801920C4781D0011AF78 /* CombinationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CombinationViewController.m; sourceTree = "<group>"; };
+		EFB8801A20C4781D0011AF78 /* DisplayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DisplayViewController.h; sourceTree = "<group>"; };
+		EFB8801B20C4781D0011AF78 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		EFB8801C20C4781D0011AF78 /* ModelCapability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelCapability.h; sourceTree = "<group>"; };
+		EFB8801D20C4781D0011AF78 /* CashDrawerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CashDrawerViewController.h; sourceTree = "<group>"; };
+		EFB8801E20C4781D0011AF78 /* BarcodeReaderExtViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarcodeReaderExtViewController.m; sourceTree = "<group>"; };
+		EFB8801F20C4781D0011AF78 /* ApiViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApiViewController.h; sourceTree = "<group>"; };
+		EFB8802020C4781D0011AF78 /* CombinationExtViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CombinationExtViewController.m; sourceTree = "<group>"; };
+		EFB8802220C4781D0011AF78 /* AllReceiptsExtViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllReceiptsExtViewController.m; sourceTree = "<group>"; };
+		EFB8802420C4781D0011AF78 /* DisplayCommunication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DisplayCommunication.h; sourceTree = "<group>"; };
+		EFB8802520C4781D0011AF78 /* Communication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Communication.h; sourceTree = "<group>"; };
+		EFB8802620C4781D0011AF78 /* ScaleCommunication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScaleCommunication.m; sourceTree = "<group>"; };
+		EFB8802720C4781D0011AF78 /* Communication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Communication.m; sourceTree = "<group>"; };
+		EFB8802820C4781D0011AF78 /* DisplayCommunication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DisplayCommunication.m; sourceTree = "<group>"; };
+		EFB8802920C4781D0011AF78 /* ScaleCommunication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScaleCommunication.h; sourceTree = "<group>"; };
+		EFB8802A20C4781D0011AF78 /* SearchPortViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchPortViewController.h; sourceTree = "<group>"; };
+		EFB8802C20C4781D0011AF78 /* SMCloudServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SMCloudServices.framework; sourceTree = "<group>"; };
+		EFB8802D20C4781D0011AF78 /* StarIO_Extension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = StarIO_Extension.framework; sourceTree = "<group>"; };
+		EFB8806620C47FE80011AF78 /* SharedReceiptPrint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SharedReceiptPrint.h; sourceTree = "<group>"; };
+		EFB8806720C47FE80011AF78 /* SharedPrinter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SharedPrinter.m; sourceTree = "<group>"; };
+		EFB8806820C47FE80011AF78 /* SharedReceiptPrint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SharedReceiptPrint.m; sourceTree = "<group>"; };
+		EFB8806920C47FE90011AF78 /* SharedOrderKitchen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SharedOrderKitchen.m; sourceTree = "<group>"; };
+		EFB8806A20C47FE90011AF78 /* SharedPrinter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SharedPrinter.h; sourceTree = "<group>"; };
+		EFB8806B20C47FE90011AF78 /* SharedOrderKitchen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SharedOrderKitchen.h; sourceTree = "<group>"; };
+		EFB8807720C490140011AF78 /* StarIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StarIO.framework; path = "../../Downloads/StarPRNT_iOS_SDK_V5_5_0/Software/ObjectiveC SDK/StarIO.framework"; sourceTree = "<group>"; };
+		EFB8807920C490AA0011AF78 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		EFB880C420C56A270011AF78 /* list.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = list.png; sourceTree = "<group>"; };
+		EFB880C620C5B1550011AF78 /* BranchSelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BranchSelectViewController.h; sourceTree = "<group>"; };
+		EFB880C720C5B1550011AF78 /* BranchSelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BranchSelectViewController.m; sourceTree = "<group>"; };
+		EFB8811A20C621180011AF78 /* Credentials.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Credentials.m; sourceTree = "<group>"; };
+		EFB8811B20C621180011AF78 /* Credentials.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Credentials.h; sourceTree = "<group>"; };
+		EFB8811D20C6220E0011AF78 /* Device.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Device.m; sourceTree = "<group>"; };
+		EFB8811E20C6220E0011AF78 /* Device.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Device.h; sourceTree = "<group>"; };
+		EFB8812820C6F43C0011AF78 /* CustomTableViewCellProfile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomTableViewCellProfile.h; sourceTree = "<group>"; };
+		EFB8812920C6F43C0011AF78 /* CustomTableViewCellProfile.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomTableViewCellProfile.m; sourceTree = "<group>"; };
+		EFB8812A20C6F43C0011AF78 /* CustomTableViewCellProfile.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomTableViewCellProfile.xib; sourceTree = "<group>"; };
+		EFB8812D20C6F61F0011AF78 /* profilePic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profilePic.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -790,6 +980,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EFB8807A20C490AA0011AF78 /* CoreBluetooth.framework in Frameworks */,
+				EFB8807820C490150011AF78 /* StarIO.framework in Frameworks */,
+				EFB8807520C48F980011AF78 /* StarIO_Extension.framework in Frameworks */,
+				EFB8807420C48F770011AF78 /* SMCloudServices.framework in Frameworks */,
 				072E08ECBEB7BE7F846009DA /* libPods-JummumShop.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -829,6 +1023,8 @@
 		A8AD8EF6CD4ED3B8117CE524 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EFB8807920C490AA0011AF78 /* CoreBluetooth.framework */,
+				EFB8807720C490140011AF78 /* StarIO.framework */,
 				2BBAA38109C3523745AB9DB7 /* libPods-JummumShop.a */,
 				C6EA2A59802FF4370F3B3A45 /* libPods-JummumShopTests.a */,
 				C6C0B623B4EECFC7C8F7CBDF /* libPods-JummumShopUITests.a */,
@@ -894,13 +1090,14 @@
 			isa = PBXGroup;
 			children = (
 				EFB8796720C386ED0011AF78 /* BaseObject */,
-				EFB8797120C386ED0011AF78 /* Library */,
-				EFB8799C20C386ED0011AF78 /* Image */,
 				EFB879EE20C386ED0011AF78 /* Controller */,
-				EFB87A2720C386ED0011AF78 /* Voice */,
-				EFB87A2920C386ED0011AF78 /* Model */,
 				EFB87AAE20C386ED0011AF78 /* CustomView */,
 				EFB87B1120C386ED0011AF78 /* font */,
+				EFB8799C20C386ED0011AF78 /* Image */,
+				EFB8797120C386ED0011AF78 /* Library */,
+				EFB87A2920C386ED0011AF78 /* Model */,
+				EFB87FC020C4781D0011AF78 /* StarMicronics */,
+				EFB87A2720C386ED0011AF78 /* Voice */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -908,15 +1105,15 @@
 		EFB8796720C386ED0011AF78 /* BaseObject */ = {
 			isa = PBXGroup;
 			children = (
-				EFB8796820C386ED0011AF78 /* HomeModel.h */,
 				EFB8796920C386ED0011AF78 /* AppDelegate.h */,
-				EFB8796A20C386ED0011AF78 /* Utility.m */,
+				EFB8796E20C386ED0011AF78 /* AppDelegate.m */,
+				EFB8796820C386ED0011AF78 /* HomeModel.h */,
+				EFB8796D20C386ED0011AF78 /* HomeModel.m */,
 				EFB8796B20C386ED0011AF78 /* iOSDeviceModelMapping.plist */,
 				EFB8796C20C386ED0011AF78 /* Main.storyboard */,
-				EFB8796D20C386ED0011AF78 /* HomeModel.m */,
-				EFB8796E20C386ED0011AF78 /* AppDelegate.m */,
 				EFB8796F20C386ED0011AF78 /* Property List.plist */,
 				EFB8797020C386ED0011AF78 /* Utility.h */,
+				EFB8796A20C386ED0011AF78 /* Utility.m */,
 			);
 			path = BaseObject;
 			sourceTree = "<group>";
@@ -975,6 +1172,8 @@
 		EFB8799C20C386ED0011AF78 /* Image */ = {
 			isa = PBXGroup;
 			children = (
+				EFB8812D20C6F61F0011AF78 /* profilePic.png */,
+				EFB880C420C56A270011AF78 /* list.png */,
 				EFB87CC320C3ECF00011AF78 /* jummumLogoCrop.png */,
 				EFB87CC220C3ECF00011AF78 /* jummumLogoCrop2.png */,
 				EFB87CC020C3ECEF0011AF78 /* jummumLogoWithType.png */,
@@ -1061,6 +1260,10 @@
 		EFB879EE20C386ED0011AF78 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				EFB880C620C5B1550011AF78 /* BranchSelectViewController.h */,
+				EFB880C720C5B1550011AF78 /* BranchSelectViewController.m */,
+				EFB87ED620C472450011AF78 /* CustomerKitchenViewController.h */,
+				EFB87ED520C472440011AF78 /* CustomerKitchenViewController.m */,
 				EFB879EF20C386ED0011AF78 /* BasketViewController.h */,
 				EFB87A1220C386ED0011AF78 /* BasketViewController.m */,
 				EFB87A2520C386ED0011AF78 /* BranchSearchViewController.h */,
@@ -1132,138 +1335,158 @@
 		EFB87A2920C386ED0011AF78 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				EFB87A2A20C386ED0011AF78 /* Pic.m */,
-				EFB87A2B20C386ED0011AF78 /* SharedPromoCode.h */,
-				EFB87A2C20C386ED0011AF78 /* UserRewardRedemptionUsed.m */,
-				EFB87A2D20C386ED0011AF78 /* FacebookComment.m */,
-				EFB87A2E20C386ED0011AF78 /* Receipt.m */,
-				EFB87A2F20C386ED0011AF78 /* SharedBranch.h */,
-				EFB87A3020C386ED0011AF78 /* SharedSubMenuType.m */,
-				EFB87A3120C386ED0011AF78 /* SharedPic.h */,
-				EFB87A3220C386ED0011AF78 /* SharedMenu.m */,
-				EFB87A3320C386ED0011AF78 /* OrderTaking.h */,
-				EFB87A3420C386ED0011AF78 /* SharedNoteType.h */,
-				EFB87A3520C386ED0011AF78 /* MenuType.m */,
-				EFB87A3620C386ED0011AF78 /* SharedRewardPoint.m */,
-				EFB87A3720C386ED0011AF78 /* PushSync.h */,
-				EFB87A3820C386ED0011AF78 /* SharedCustomerTable.h */,
-				EFB87A3920C386ED0011AF78 /* PromoCode.h */,
-				EFB87A3A20C386ED0011AF78 /* SharedPromotionMenu.m */,
-				EFB87A3B20C386ED0011AF78 /* PromotionMenu.m */,
-				EFB87A3C20C386ED0011AF78 /* SharedUserRewardRedemptionUsed.m */,
-				EFB87A3D20C386ED0011AF78 /* Menu.m */,
-				EFB87A3E20C386ED0011AF78 /* SharedReceipt.m */,
-				EFB87A3F20C386ED0011AF78 /* CustomerTable.h */,
-				EFB87A4020C386ED0011AF78 /* MenuTypeNote.h */,
-				EFB87A4120C386ED0011AF78 /* SharedUserAccount.h */,
-				EFB87A4220C386ED0011AF78 /* SharedCurrentUserAccount.h */,
+				EFB8811E20C6220E0011AF78 /* Device.h */,
+				EFB8811D20C6220E0011AF78 /* Device.m */,
+				EFB8811B20C621180011AF78 /* Credentials.h */,
+				EFB8811A20C621180011AF78 /* Credentials.m */,
+				EFB8806B20C47FE90011AF78 /* SharedOrderKitchen.h */,
+				EFB8806920C47FE90011AF78 /* SharedOrderKitchen.m */,
+				EFB8806A20C47FE90011AF78 /* SharedPrinter.h */,
+				EFB8806720C47FE80011AF78 /* SharedPrinter.m */,
+				EFB8806620C47FE80011AF78 /* SharedReceiptPrint.h */,
+				EFB8806820C47FE80011AF78 /* SharedReceiptPrint.m */,
+				EFB87FBD20C477B10011AF78 /* InvoiceComposer.h */,
+				EFB87FBE20C477B20011AF78 /* InvoiceComposer.m */,
+				EFB87EE120C4769D0011AF78 /* ReceiptPrint.h */,
+				EFB87EE220C4769E0011AF78 /* ReceiptPrint.m */,
+				EFB87EDF20C4766D0011AF78 /* Printer.h */,
+				EFB87EDE20C4766D0011AF78 /* Printer.m */,
+				EFB87EDB20C4763F0011AF78 /* OrderKitchen.h */,
+				EFB87EDC20C4763F0011AF78 /* OrderKitchen.m */,
+				EFB87ED820C475BD0011AF78 /* CredentialsDb.h */,
+				EFB87ED920C475BE0011AF78 /* CredentialsDb.m */,
 				EFB87A4320C386ED0011AF78 /* Branch.h */,
-				EFB87A4420C386ED0011AF78 /* SharedUserPromotionUsed.m */,
-				EFB87A4520C386ED0011AF78 /* SharedNote.m */,
-				EFB87A4620C386ED0011AF78 /* SharedSpecialPriceProgram.h */,
-				EFB87A4720C386ED0011AF78 /* SharedDisputeReason.h */,
-				EFB87A4820C386ED0011AF78 /* SharedSetting.m */,
-				EFB87A4920C386ED0011AF78 /* SharedTableNo.m */,
-				EFB87A4A20C386ED0011AF78 /* OrderNote.m */,
-				EFB87A4B20C386ED0011AF78 /* SharedMenuTypeNote.h */,
-				EFB87A4C20C386ED0011AF78 /* SharedDispute.m */,
-				EFB87A4D20C386ED0011AF78 /* SharedPromotion.h */,
-				EFB87A4E20C386ED0011AF78 /* Shop.m */,
-				EFB87A4F20C386ED0011AF78 /* SubMenuType.h */,
-				EFB87A5020C386ED0011AF78 /* SharedMenuPic.m */,
-				EFB87A5120C386ED0011AF78 /* DisputeReason.h */,
-				EFB87A5220C386ED0011AF78 /* SharedMenuType.h */,
-				EFB87A5320C386ED0011AF78 /* SharedOrderTaking.m */,
-				EFB87A5420C386ED0011AF78 /* HotDeal.m */,
-				EFB87A5520C386ED0011AF78 /* SharedCurrentOrderTaking.m */,
-				EFB87A5620C386ED0011AF78 /* SharedPushSync.m */,
-				EFB87A5720C386ED0011AF78 /* Message.h */,
-				EFB87A5820C386ED0011AF78 /* SharedHotDeal.m */,
-				EFB87A5920C386ED0011AF78 /* RewardPoint.h */,
-				EFB87A5A20C386ED0011AF78 /* NoteType.m */,
-				EFB87A5B20C386ED0011AF78 /* SharedOrderNote.m */,
-				EFB87A5C20C386ED0011AF78 /* SpecialPriceProgram.m */,
-				EFB87A5D20C386ED0011AF78 /* LogIn.m */,
-				EFB87A5E20C386ED0011AF78 /* SharedCurrentMenu.m */,
-				EFB87A5F20C386ED0011AF78 /* MenuPic.m */,
-				EFB87A6020C386ED0011AF78 /* UserPromotionUsed.m */,
-				EFB87A6120C386ED0011AF78 /* Note.m */,
-				EFB87A6220C386ED0011AF78 /* SharedLogIn.m */,
-				EFB87A6320C386ED0011AF78 /* RewardRedemption.h */,
-				EFB87A6420C386ED0011AF78 /* Setting.m */,
-				EFB87A6520C386ED0011AF78 /* TableNo.m */,
-				EFB87A6620C386ED0011AF78 /* Dispute.m */,
-				EFB87A6720C386ED0011AF78 /* CreditCard.h */,
-				EFB87A6820C386ED0011AF78 /* SharedRewardRedemption.m */,
-				EFB87A6920C386ED0011AF78 /* UserAccount.m */,
-				EFB87A6A20C386ED0011AF78 /* SharedShop.m */,
-				EFB87A6B20C386ED0011AF78 /* Promotion.h */,
-				EFB87A6C20C386ED0011AF78 /* SharedNoteType.m */,
-				EFB87A6D20C386ED0011AF78 /* OrderTaking.m */,
-				EFB87A6E20C386ED0011AF78 /* SharedMenu.h */,
-				EFB87A6F20C386ED0011AF78 /* SharedPic.m */,
-				EFB87A7020C386ED0011AF78 /* SharedSubMenuType.h */,
-				EFB87A7120C386ED0011AF78 /* SharedBranch.m */,
-				EFB87A7220C386ED0011AF78 /* Receipt.h */,
-				EFB87A7320C386ED0011AF78 /* FacebookComment.h */,
-				EFB87A7420C386ED0011AF78 /* UserRewardRedemptionUsed.h */,
-				EFB87A7520C386ED0011AF78 /* SharedPromoCode.m */,
-				EFB87A7620C386ED0011AF78 /* Pic.h */,
-				EFB87A7720C386ED0011AF78 /* SharedUserPromotionUsed.h */,
 				EFB87A7820C386ED0011AF78 /* Branch.m */,
-				EFB87A7920C386ED0011AF78 /* SharedCurrentUserAccount.m */,
-				EFB87A7A20C386ED0011AF78 /* MenuTypeNote.m */,
-				EFB87A7B20C386ED0011AF78 /* SharedUserAccount.m */,
-				EFB87A7C20C386ED0011AF78 /* CustomerTable.m */,
-				EFB87A7D20C386ED0011AF78 /* Menu.h */,
-				EFB87A7E20C386ED0011AF78 /* SharedUserRewardRedemptionUsed.h */,
-				EFB87A7F20C386ED0011AF78 /* SharedReceipt.h */,
-				EFB87A8020C386ED0011AF78 /* PromotionMenu.h */,
-				EFB87A8120C386ED0011AF78 /* SharedPromotionMenu.h */,
-				EFB87A8220C386ED0011AF78 /* PromoCode.m */,
-				EFB87A8320C386ED0011AF78 /* SharedCustomerTable.m */,
-				EFB87A8420C386ED0011AF78 /* PushSync.m */,
-				EFB87A8520C386ED0011AF78 /* MenuType.h */,
-				EFB87A8620C386ED0011AF78 /* SharedRewardPoint.h */,
-				EFB87A8720C386ED0011AF78 /* SharedPushSync.h */,
-				EFB87A8820C386ED0011AF78 /* HotDeal.h */,
-				EFB87A8920C386ED0011AF78 /* SharedCurrentOrderTaking.h */,
-				EFB87A8A20C386ED0011AF78 /* SharedMenuType.m */,
-				EFB87A8B20C386ED0011AF78 /* SharedOrderTaking.h */,
-				EFB87A8C20C386ED0011AF78 /* DisputeReason.m */,
-				EFB87A8D20C386ED0011AF78 /* SubMenuType.m */,
-				EFB87A8E20C386ED0011AF78 /* SharedMenuPic.h */,
-				EFB87A8F20C386ED0011AF78 /* Shop.h */,
-				EFB87A9020C386ED0011AF78 /* SharedPromotion.m */,
-				EFB87A9120C386ED0011AF78 /* SharedDispute.h */,
-				EFB87A9220C386ED0011AF78 /* SharedMenuTypeNote.m */,
-				EFB87A9320C386ED0011AF78 /* SharedSetting.h */,
-				EFB87A9420C386ED0011AF78 /* SharedTableNo.h */,
-				EFB87A9520C386ED0011AF78 /* OrderNote.h */,
-				EFB87A9620C386ED0011AF78 /* SharedDisputeReason.m */,
-				EFB87A9720C386ED0011AF78 /* SharedSpecialPriceProgram.m */,
-				EFB87A9820C386ED0011AF78 /* SharedNote.h */,
-				EFB87A9920C386ED0011AF78 /* UserAccount.h */,
-				EFB87A9A20C386ED0011AF78 /* Promotion.m */,
-				EFB87A9B20C386ED0011AF78 /* SharedShop.h */,
-				EFB87A9C20C386ED0011AF78 /* SharedRewardRedemption.h */,
-				EFB87A9D20C386ED0011AF78 /* Dispute.h */,
+				EFB87A6720C386ED0011AF78 /* CreditCard.h */,
 				EFB87A9E20C386ED0011AF78 /* CreditCard.m */,
-				EFB87A9F20C386ED0011AF78 /* Setting.h */,
-				EFB87AA020C386ED0011AF78 /* TableNo.h */,
-				EFB87AA120C386ED0011AF78 /* SharedLogIn.h */,
-				EFB87AA220C386ED0011AF78 /* RewardRedemption.m */,
-				EFB87AA320C386ED0011AF78 /* UserPromotionUsed.h */,
-				EFB87AA420C386ED0011AF78 /* Note.h */,
-				EFB87AA520C386ED0011AF78 /* MenuPic.h */,
-				EFB87AA620C386ED0011AF78 /* SharedCurrentMenu.h */,
-				EFB87AA720C386ED0011AF78 /* NoteType.h */,
-				EFB87AA820C386ED0011AF78 /* SpecialPriceProgram.h */,
-				EFB87AA920C386ED0011AF78 /* SharedOrderNote.h */,
+				EFB87A3F20C386ED0011AF78 /* CustomerTable.h */,
+				EFB87A7C20C386ED0011AF78 /* CustomerTable.m */,
+				EFB87A9D20C386ED0011AF78 /* Dispute.h */,
+				EFB87A6620C386ED0011AF78 /* Dispute.m */,
+				EFB87A5120C386ED0011AF78 /* DisputeReason.h */,
+				EFB87A8C20C386ED0011AF78 /* DisputeReason.m */,
+				EFB87A7320C386ED0011AF78 /* FacebookComment.h */,
+				EFB87A2D20C386ED0011AF78 /* FacebookComment.m */,
+				EFB87A8820C386ED0011AF78 /* HotDeal.h */,
+				EFB87A5420C386ED0011AF78 /* HotDeal.m */,
 				EFB87AAA20C386ED0011AF78 /* LogIn.h */,
-				EFB87AAB20C386ED0011AF78 /* RewardPoint.m */,
+				EFB87A5D20C386ED0011AF78 /* LogIn.m */,
+				EFB87A7D20C386ED0011AF78 /* Menu.h */,
+				EFB87A3D20C386ED0011AF78 /* Menu.m */,
+				EFB87AA520C386ED0011AF78 /* MenuPic.h */,
+				EFB87A5F20C386ED0011AF78 /* MenuPic.m */,
+				EFB87A8520C386ED0011AF78 /* MenuType.h */,
+				EFB87A3520C386ED0011AF78 /* MenuType.m */,
+				EFB87A4020C386ED0011AF78 /* MenuTypeNote.h */,
+				EFB87A7A20C386ED0011AF78 /* MenuTypeNote.m */,
+				EFB87A5720C386ED0011AF78 /* Message.h */,
 				EFB87AAC20C386ED0011AF78 /* Message.m */,
+				EFB87AA420C386ED0011AF78 /* Note.h */,
+				EFB87A6120C386ED0011AF78 /* Note.m */,
+				EFB87AA720C386ED0011AF78 /* NoteType.h */,
+				EFB87A5A20C386ED0011AF78 /* NoteType.m */,
+				EFB87A9520C386ED0011AF78 /* OrderNote.h */,
+				EFB87A4A20C386ED0011AF78 /* OrderNote.m */,
+				EFB87A3320C386ED0011AF78 /* OrderTaking.h */,
+				EFB87A6D20C386ED0011AF78 /* OrderTaking.m */,
+				EFB87A7620C386ED0011AF78 /* Pic.h */,
+				EFB87A2A20C386ED0011AF78 /* Pic.m */,
+				EFB87A3920C386ED0011AF78 /* PromoCode.h */,
+				EFB87A8220C386ED0011AF78 /* PromoCode.m */,
+				EFB87A6B20C386ED0011AF78 /* Promotion.h */,
+				EFB87A9A20C386ED0011AF78 /* Promotion.m */,
+				EFB87A8020C386ED0011AF78 /* PromotionMenu.h */,
+				EFB87A3B20C386ED0011AF78 /* PromotionMenu.m */,
+				EFB87A3720C386ED0011AF78 /* PushSync.h */,
+				EFB87A8420C386ED0011AF78 /* PushSync.m */,
+				EFB87A7220C386ED0011AF78 /* Receipt.h */,
+				EFB87A2E20C386ED0011AF78 /* Receipt.m */,
+				EFB87A5920C386ED0011AF78 /* RewardPoint.h */,
+				EFB87AAB20C386ED0011AF78 /* RewardPoint.m */,
+				EFB87A6320C386ED0011AF78 /* RewardRedemption.h */,
+				EFB87AA220C386ED0011AF78 /* RewardRedemption.m */,
+				EFB87A9F20C386ED0011AF78 /* Setting.h */,
+				EFB87A6420C386ED0011AF78 /* Setting.m */,
+				EFB87A2F20C386ED0011AF78 /* SharedBranch.h */,
+				EFB87A7120C386ED0011AF78 /* SharedBranch.m */,
+				EFB87AA620C386ED0011AF78 /* SharedCurrentMenu.h */,
+				EFB87A5E20C386ED0011AF78 /* SharedCurrentMenu.m */,
+				EFB87A8920C386ED0011AF78 /* SharedCurrentOrderTaking.h */,
+				EFB87A5520C386ED0011AF78 /* SharedCurrentOrderTaking.m */,
+				EFB87A4220C386ED0011AF78 /* SharedCurrentUserAccount.h */,
+				EFB87A7920C386ED0011AF78 /* SharedCurrentUserAccount.m */,
+				EFB87A3820C386ED0011AF78 /* SharedCustomerTable.h */,
+				EFB87A8320C386ED0011AF78 /* SharedCustomerTable.m */,
+				EFB87A9120C386ED0011AF78 /* SharedDispute.h */,
+				EFB87A4C20C386ED0011AF78 /* SharedDispute.m */,
+				EFB87A4720C386ED0011AF78 /* SharedDisputeReason.h */,
+				EFB87A9620C386ED0011AF78 /* SharedDisputeReason.m */,
 				EFB87AAD20C386ED0011AF78 /* SharedHotDeal.h */,
+				EFB87A5820C386ED0011AF78 /* SharedHotDeal.m */,
+				EFB87AA120C386ED0011AF78 /* SharedLogIn.h */,
+				EFB87A6220C386ED0011AF78 /* SharedLogIn.m */,
+				EFB87A6E20C386ED0011AF78 /* SharedMenu.h */,
+				EFB87A3220C386ED0011AF78 /* SharedMenu.m */,
+				EFB87A8E20C386ED0011AF78 /* SharedMenuPic.h */,
+				EFB87A5020C386ED0011AF78 /* SharedMenuPic.m */,
+				EFB87A5220C386ED0011AF78 /* SharedMenuType.h */,
+				EFB87A8A20C386ED0011AF78 /* SharedMenuType.m */,
+				EFB87A4B20C386ED0011AF78 /* SharedMenuTypeNote.h */,
+				EFB87A9220C386ED0011AF78 /* SharedMenuTypeNote.m */,
+				EFB87A9820C386ED0011AF78 /* SharedNote.h */,
+				EFB87A4520C386ED0011AF78 /* SharedNote.m */,
+				EFB87A3420C386ED0011AF78 /* SharedNoteType.h */,
+				EFB87A6C20C386ED0011AF78 /* SharedNoteType.m */,
+				EFB87AA920C386ED0011AF78 /* SharedOrderNote.h */,
+				EFB87A5B20C386ED0011AF78 /* SharedOrderNote.m */,
+				EFB87A8B20C386ED0011AF78 /* SharedOrderTaking.h */,
+				EFB87A5320C386ED0011AF78 /* SharedOrderTaking.m */,
+				EFB87A3120C386ED0011AF78 /* SharedPic.h */,
+				EFB87A6F20C386ED0011AF78 /* SharedPic.m */,
+				EFB87A2B20C386ED0011AF78 /* SharedPromoCode.h */,
+				EFB87A7520C386ED0011AF78 /* SharedPromoCode.m */,
+				EFB87A4D20C386ED0011AF78 /* SharedPromotion.h */,
+				EFB87A9020C386ED0011AF78 /* SharedPromotion.m */,
+				EFB87A8120C386ED0011AF78 /* SharedPromotionMenu.h */,
+				EFB87A3A20C386ED0011AF78 /* SharedPromotionMenu.m */,
+				EFB87A8720C386ED0011AF78 /* SharedPushSync.h */,
+				EFB87A5620C386ED0011AF78 /* SharedPushSync.m */,
+				EFB87A7F20C386ED0011AF78 /* SharedReceipt.h */,
+				EFB87A3E20C386ED0011AF78 /* SharedReceipt.m */,
+				EFB87A8620C386ED0011AF78 /* SharedRewardPoint.h */,
+				EFB87A3620C386ED0011AF78 /* SharedRewardPoint.m */,
+				EFB87A9C20C386ED0011AF78 /* SharedRewardRedemption.h */,
+				EFB87A6820C386ED0011AF78 /* SharedRewardRedemption.m */,
+				EFB87A9320C386ED0011AF78 /* SharedSetting.h */,
+				EFB87A4820C386ED0011AF78 /* SharedSetting.m */,
+				EFB87A9B20C386ED0011AF78 /* SharedShop.h */,
+				EFB87A6A20C386ED0011AF78 /* SharedShop.m */,
+				EFB87A4620C386ED0011AF78 /* SharedSpecialPriceProgram.h */,
+				EFB87A9720C386ED0011AF78 /* SharedSpecialPriceProgram.m */,
+				EFB87A7020C386ED0011AF78 /* SharedSubMenuType.h */,
+				EFB87A3020C386ED0011AF78 /* SharedSubMenuType.m */,
+				EFB87A9420C386ED0011AF78 /* SharedTableNo.h */,
+				EFB87A4920C386ED0011AF78 /* SharedTableNo.m */,
+				EFB87A4120C386ED0011AF78 /* SharedUserAccount.h */,
+				EFB87A7B20C386ED0011AF78 /* SharedUserAccount.m */,
+				EFB87A7720C386ED0011AF78 /* SharedUserPromotionUsed.h */,
+				EFB87A4420C386ED0011AF78 /* SharedUserPromotionUsed.m */,
+				EFB87A7E20C386ED0011AF78 /* SharedUserRewardRedemptionUsed.h */,
+				EFB87A3C20C386ED0011AF78 /* SharedUserRewardRedemptionUsed.m */,
+				EFB87A8F20C386ED0011AF78 /* Shop.h */,
+				EFB87A4E20C386ED0011AF78 /* Shop.m */,
+				EFB87AA820C386ED0011AF78 /* SpecialPriceProgram.h */,
+				EFB87A5C20C386ED0011AF78 /* SpecialPriceProgram.m */,
+				EFB87A4F20C386ED0011AF78 /* SubMenuType.h */,
+				EFB87A8D20C386ED0011AF78 /* SubMenuType.m */,
+				EFB87AA020C386ED0011AF78 /* TableNo.h */,
+				EFB87A6520C386ED0011AF78 /* TableNo.m */,
+				EFB87A9920C386ED0011AF78 /* UserAccount.h */,
+				EFB87A6920C386ED0011AF78 /* UserAccount.m */,
+				EFB87AA320C386ED0011AF78 /* UserPromotionUsed.h */,
+				EFB87A6020C386ED0011AF78 /* UserPromotionUsed.m */,
+				EFB87A7420C386ED0011AF78 /* UserRewardRedemptionUsed.h */,
+				EFB87A2C20C386ED0011AF78 /* UserRewardRedemptionUsed.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1271,104 +1494,107 @@
 		EFB87AAE20C386ED0011AF78 /* CustomView */ = {
 			isa = PBXGroup;
 			children = (
-				EFB87AAF20C386ED0011AF78 /* CustomTableViewHeaderFooterButton.m */,
-				EFB87AB020C386ED0011AF78 /* CustomTableViewCellCreditCard.m */,
-				EFB87AB120C386ED0011AF78 /* CustomTableViewCellReceiptSummary.h */,
-				EFB87AB220C386ED0011AF78 /* CustomTableViewCellRedemption.h */,
-				EFB87AB320C386ED0011AF78 /* CustomTableViewCellMenu.xib */,
-				EFB87AB420C386ED0011AF78 /* CustomTableViewHeaderFooterButton.xib */,
-				EFB87AB520C386ED0011AF78 /* CustomViewVoucher.h */,
-				EFB87AB620C386ED0011AF78 /* CustomTableViewCellOrderSummary.h */,
-				EFB87AB720C386ED0011AF78 /* CustomTableViewCellNote.h */,
-				EFB87AB820C386ED0011AF78 /* CustomTableViewCellLabel.h */,
-				EFB87AB920C386ED0011AF78 /* CustomCollectionViewCellNote.xib */,
-				EFB87ABA20C386ED0011AF78 /* CustomTableViewCellReward.xib */,
-				EFB87ABB20C386ED0011AF78 /* CustomTableViewCellRewardDetail.h */,
-				EFB87ABC20C386ED0011AF78 /* CustomTableViewHeaderButton.m */,
-				EFB87ABD20C386ED0011AF78 /* CustomViewController.m */,
-				EFB87ABE20C386ED0011AF78 /* CustomTableViewCellDisputeDetail.xib */,
-				EFB87ABF20C386ED0011AF78 /* CustomTableViewCellPromoBanner.xib */,
-				EFB87AC020C386ED0011AF78 /* CustomTableViewCellCreditCard.xib */,
-				EFB87AC120C386ED0011AF78 /* CustomTableViewCellTotal.m */,
-				EFB87AC220C386ED0011AF78 /* CustomTableViewCellOrder.m */,
-				EFB87AC320C386ED0011AF78 /* CustomTableViewCellLabelLabel.h */,
-				EFB87AC420C386ED0011AF78 /* CustomTableViewCellLabelText.h */,
-				EFB87AC520C386ED0011AF78 /* CustomTableViewCellLabelText.xib */,
-				EFB87AC620C386ED0011AF78 /* CustomTableViewCellButton.xib */,
-				EFB87AC720C386ED0011AF78 /* CustomTableViewCellButton.h */,
-				EFB87AC820C386ED0011AF78 /* CustomTableViewCellImageLabelRemove.xib */,
-				EFB87AC920C386ED0011AF78 /* CustomTableViewCellMenu.h */,
-				EFB87ACA20C386ED0011AF78 /* CustomTableViewCellQuantity.m */,
-				EFB87ACB20C386ED0011AF78 /* CustomCollectionViewCellNote.m */,
-				EFB87ACC20C386ED0011AF78 /* CustomTableViewCellRewardDetail.xib */,
-				EFB87ACD20C386ED0011AF78 /* CustomTableViewCellPromoBanner.h */,
-				EFB87ACE20C386ED0011AF78 /* CustomTableViewHeaderFooterOkCancel.m */,
 				EFB87ACF20C386ED0011AF78 /* CustomCollectionReusableView.h */,
-				EFB87AD020C386ED0011AF78 /* CustomTableViewCellVoucherCode.m */,
-				EFB87AD120C386ED0011AF78 /* CustomTableViewCellPromoThumbNail.m */,
-				EFB87AD220C386ED0011AF78 /* CustomTableViewCellText.m */,
-				EFB87AD320C386ED0011AF78 /* CustomTableViewHeaderLabel.m */,
-				EFB87AD420C386ED0011AF78 /* CustomTableViewCellImageText.h */,
-				EFB87AD520C386ED0011AF78 /* CustomTableViewCellSearchBar.xib */,
-				EFB87AD620C386ED0011AF78 /* CustomTableViewCellImageTextButtonHalf.m */,
-				EFB87AD720C386ED0011AF78 /* CustomTableViewCellReward.h */,
-				EFB87AD820C386ED0011AF78 /* CustomTableViewCellDisputeDetail.m */,
+				EFB87AFD20C386ED0011AF78 /* CustomCollectionReusableView.m */,
 				EFB87AD920C386ED0011AF78 /* CustomCollectionReusableView.xib */,
-				EFB87ADA20C386ED0011AF78 /* CustomTableViewCellText.xib */,
-				EFB87ADB20C386ED0011AF78 /* CustomTableViewCellPromoThumbNail.xib */,
-				EFB87ADC20C386ED0011AF78 /* CustomTableViewCellLabelTextView.xib */,
-				EFB87ADD20C386ED0011AF78 /* CustomTableViewCellTotal.xib */,
+				EFB87B0420C386ED0011AF78 /* CustomCollectionViewCellNote.h */,
+				EFB87ACB20C386ED0011AF78 /* CustomCollectionViewCellNote.m */,
+				EFB87AB920C386ED0011AF78 /* CustomCollectionViewCellNote.xib */,
+				EFB87AC720C386ED0011AF78 /* CustomTableViewCellButton.h */,
+				EFB87B0720C386ED0011AF78 /* CustomTableViewCellButton.m */,
+				EFB87AC620C386ED0011AF78 /* CustomTableViewCellButton.xib */,
+				EFB87AEC20C386ED0011AF78 /* CustomTableViewCellCreditCard.h */,
+				EFB87AB020C386ED0011AF78 /* CustomTableViewCellCreditCard.m */,
+				EFB87AC020C386ED0011AF78 /* CustomTableViewCellCreditCard.xib */,
+				EFB87B0D20C386ED0011AF78 /* CustomTableViewCellDisputeDetail.h */,
+				EFB87AD820C386ED0011AF78 /* CustomTableViewCellDisputeDetail.m */,
+				EFB87ABE20C386ED0011AF78 /* CustomTableViewCellDisputeDetail.xib */,
 				EFB87ADE20C386ED0011AF78 /* CustomTableViewCellImageLabelRemove.h */,
+				EFB87B0B20C386ED0011AF78 /* CustomTableViewCellImageLabelRemove.m */,
+				EFB87AC820C386ED0011AF78 /* CustomTableViewCellImageLabelRemove.xib */,
+				EFB87AD420C386ED0011AF78 /* CustomTableViewCellImageText.h */,
+				EFB87AF920C386ED0011AF78 /* CustomTableViewCellImageText.m */,
+				EFB87B0120C386ED0011AF78 /* CustomTableViewCellImageText.xib */,
+				EFB87B0E20C386ED0011AF78 /* CustomTableViewCellImageTextButtonHalf.h */,
+				EFB87AD620C386ED0011AF78 /* CustomTableViewCellImageTextButtonHalf.m */,
+				EFB87B0A20C386ED0011AF78 /* CustomTableViewCellImageTextButtonHalf.xib */,
+				EFB87AB820C386ED0011AF78 /* CustomTableViewCellLabel.h */,
+				EFB87AF620C386ED0011AF78 /* CustomTableViewCellLabel.m */,
+				EFB87AF220C386ED0011AF78 /* CustomTableViewCellLabel.xib */,
+				EFB87AC320C386ED0011AF78 /* CustomTableViewCellLabelLabel.h */,
+				EFB87AF020C386ED0011AF78 /* CustomTableViewCellLabelLabel.m */,
+				EFB87AF820C386ED0011AF78 /* CustomTableViewCellLabelLabel.xib */,
+				EFB87AC420C386ED0011AF78 /* CustomTableViewCellLabelText.h */,
+				EFB87AEE20C386ED0011AF78 /* CustomTableViewCellLabelText.m */,
+				EFB87AC520C386ED0011AF78 /* CustomTableViewCellLabelText.xib */,
+				EFB87B0920C386ED0011AF78 /* CustomTableViewCellLabelTextView.h */,
 				EFB87ADF20C386ED0011AF78 /* CustomTableViewCellLabelTextView.m */,
-				EFB87AE020C386ED0011AF78 /* CustomTableViewCellSearchBar.m */,
-				EFB87AE120C386ED0011AF78 /* CustomTableViewCellVoucherCode.xib */,
+				EFB87ADC20C386ED0011AF78 /* CustomTableViewCellLabelTextView.xib */,
+				EFB87AC920C386ED0011AF78 /* CustomTableViewCellMenu.h */,
+				EFB87B0520C386ED0011AF78 /* CustomTableViewCellMenu.m */,
+				EFB87AB320C386ED0011AF78 /* CustomTableViewCellMenu.xib */,
+				EFB8812820C6F43C0011AF78 /* CustomTableViewCellProfile.h */,
+				EFB8812920C6F43C0011AF78 /* CustomTableViewCellProfile.m */,
+				EFB8812A20C6F43C0011AF78 /* CustomTableViewCellProfile.xib */,
+				EFB87AB720C386ED0011AF78 /* CustomTableViewCellNote.h */,
 				EFB87AE220C386ED0011AF78 /* CustomTableViewCellNote.m */,
-				EFB87AE320C386ED0011AF78 /* CustomTableViewCellQuantity.xib */,
+				EFB87AF720C386ED0011AF78 /* CustomTableViewCellNote.xib */,
+				EFB87AEF20C386ED0011AF78 /* CustomTableViewCellOrder.h */,
+				EFB87AC220C386ED0011AF78 /* CustomTableViewCellOrder.m */,
+				EFB87B0320C386ED0011AF78 /* CustomTableViewCellOrder.xib */,
+				EFB87AB620C386ED0011AF78 /* CustomTableViewCellOrderSummary.h */,
 				EFB87AE420C386ED0011AF78 /* CustomTableViewCellOrderSummary.m */,
 				EFB87AE520C386ED0011AF78 /* CustomTableViewCellOrderSummary.xib */,
-				EFB87AE620C386ED0011AF78 /* CustomViewVoucher.m */,
-				EFB87AE720C386ED0011AF78 /* CustomTableViewCellRedemption.m */,
-				EFB87AE820C386ED0011AF78 /* CustomViewVoucher.xib */,
+				EFB87ACD20C386ED0011AF78 /* CustomTableViewCellPromoBanner.h */,
+				EFB87B0220C386ED0011AF78 /* CustomTableViewCellPromoBanner.m */,
+				EFB87ABF20C386ED0011AF78 /* CustomTableViewCellPromoBanner.xib */,
+				EFB87AFC20C386ED0011AF78 /* CustomTableViewCellPromoThumbNail.h */,
+				EFB87AD120C386ED0011AF78 /* CustomTableViewCellPromoThumbNail.m */,
+				EFB87ADB20C386ED0011AF78 /* CustomTableViewCellPromoThumbNail.xib */,
+				EFB87B0620C386ED0011AF78 /* CustomTableViewCellQuantity.h */,
+				EFB87ACA20C386ED0011AF78 /* CustomTableViewCellQuantity.m */,
+				EFB87AE320C386ED0011AF78 /* CustomTableViewCellQuantity.xib */,
+				EFB87AB120C386ED0011AF78 /* CustomTableViewCellReceiptSummary.h */,
 				EFB87AE920C386ED0011AF78 /* CustomTableViewCellReceiptSummary.m */,
 				EFB87AEA20C386ED0011AF78 /* CustomTableViewCellReceiptSummary.xib */,
-				EFB87AEB20C386ED0011AF78 /* CustomTableViewHeaderFooterOkCancel.xib */,
-				EFB87AEC20C386ED0011AF78 /* CustomTableViewCellCreditCard.h */,
-				EFB87AED20C386ED0011AF78 /* CustomTableViewHeaderFooterButton.h */,
-				EFB87AEE20C386ED0011AF78 /* CustomTableViewCellLabelText.m */,
-				EFB87AEF20C386ED0011AF78 /* CustomTableViewCellOrder.h */,
-				EFB87AF020C386ED0011AF78 /* CustomTableViewCellLabelLabel.m */,
-				EFB87AF120C386ED0011AF78 /* CustomTableViewCellTotal.h */,
-				EFB87AF220C386ED0011AF78 /* CustomTableViewCellLabel.xib */,
-				EFB87AF320C386ED0011AF78 /* CustomViewController.h */,
-				EFB87AF420C386ED0011AF78 /* CustomTableViewHeaderButton.h */,
-				EFB87AF520C386ED0011AF78 /* CustomTableViewCellRewardDetail.m */,
-				EFB87AF620C386ED0011AF78 /* CustomTableViewCellLabel.m */,
-				EFB87AF720C386ED0011AF78 /* CustomTableViewCellNote.xib */,
-				EFB87AF820C386ED0011AF78 /* CustomTableViewCellLabelLabel.xib */,
-				EFB87AF920C386ED0011AF78 /* CustomTableViewCellImageText.m */,
-				EFB87AFA20C386ED0011AF78 /* CustomTableViewHeaderLabel.h */,
-				EFB87AFB20C386ED0011AF78 /* CustomTableViewCellText.h */,
-				EFB87AFC20C386ED0011AF78 /* CustomTableViewCellPromoThumbNail.h */,
-				EFB87AFD20C386ED0011AF78 /* CustomCollectionReusableView.m */,
-				EFB87AFE20C386ED0011AF78 /* CustomTableViewCellVoucherCode.h */,
-				EFB87AFF20C386ED0011AF78 /* CustomTableViewHeaderFooterOkCancel.h */,
-				EFB87B0020C386ED0011AF78 /* CustomTableViewHeaderButton.xib */,
-				EFB87B0120C386ED0011AF78 /* CustomTableViewCellImageText.xib */,
-				EFB87B0220C386ED0011AF78 /* CustomTableViewCellPromoBanner.m */,
-				EFB87B0320C386ED0011AF78 /* CustomTableViewCellOrder.xib */,
-				EFB87B0420C386ED0011AF78 /* CustomCollectionViewCellNote.h */,
-				EFB87B0520C386ED0011AF78 /* CustomTableViewCellMenu.m */,
-				EFB87B0620C386ED0011AF78 /* CustomTableViewCellQuantity.h */,
-				EFB87B0720C386ED0011AF78 /* CustomTableViewCellButton.m */,
-				EFB87B0820C386ED0011AF78 /* CustomTableViewCellSearchBar.h */,
-				EFB87B0920C386ED0011AF78 /* CustomTableViewCellLabelTextView.h */,
-				EFB87B0A20C386ED0011AF78 /* CustomTableViewCellImageTextButtonHalf.xib */,
-				EFB87B0B20C386ED0011AF78 /* CustomTableViewCellImageLabelRemove.m */,
-				EFB87B0C20C386ED0011AF78 /* CustomTableViewCellReward.m */,
-				EFB87B0D20C386ED0011AF78 /* CustomTableViewCellDisputeDetail.h */,
-				EFB87B0E20C386ED0011AF78 /* CustomTableViewCellImageTextButtonHalf.h */,
-				EFB87B0F20C386ED0011AF78 /* CustomTableViewHeaderLabel.xib */,
+				EFB87AB220C386ED0011AF78 /* CustomTableViewCellRedemption.h */,
+				EFB87AE720C386ED0011AF78 /* CustomTableViewCellRedemption.m */,
 				EFB87B1020C386ED0011AF78 /* CustomTableViewCellRedemption.xib */,
+				EFB87AD720C386ED0011AF78 /* CustomTableViewCellReward.h */,
+				EFB87B0C20C386ED0011AF78 /* CustomTableViewCellReward.m */,
+				EFB87ABA20C386ED0011AF78 /* CustomTableViewCellReward.xib */,
+				EFB87ABB20C386ED0011AF78 /* CustomTableViewCellRewardDetail.h */,
+				EFB87AF520C386ED0011AF78 /* CustomTableViewCellRewardDetail.m */,
+				EFB87ACC20C386ED0011AF78 /* CustomTableViewCellRewardDetail.xib */,
+				EFB87B0820C386ED0011AF78 /* CustomTableViewCellSearchBar.h */,
+				EFB87AE020C386ED0011AF78 /* CustomTableViewCellSearchBar.m */,
+				EFB87AD520C386ED0011AF78 /* CustomTableViewCellSearchBar.xib */,
+				EFB87AFB20C386ED0011AF78 /* CustomTableViewCellText.h */,
+				EFB87AD220C386ED0011AF78 /* CustomTableViewCellText.m */,
+				EFB87ADA20C386ED0011AF78 /* CustomTableViewCellText.xib */,
+				EFB87AF120C386ED0011AF78 /* CustomTableViewCellTotal.h */,
+				EFB87AC120C386ED0011AF78 /* CustomTableViewCellTotal.m */,
+				EFB87ADD20C386ED0011AF78 /* CustomTableViewCellTotal.xib */,
+				EFB87AFE20C386ED0011AF78 /* CustomTableViewCellVoucherCode.h */,
+				EFB87AD020C386ED0011AF78 /* CustomTableViewCellVoucherCode.m */,
+				EFB87AE120C386ED0011AF78 /* CustomTableViewCellVoucherCode.xib */,
+				EFB87AF420C386ED0011AF78 /* CustomTableViewHeaderButton.h */,
+				EFB87ABC20C386ED0011AF78 /* CustomTableViewHeaderButton.m */,
+				EFB87B0020C386ED0011AF78 /* CustomTableViewHeaderButton.xib */,
+				EFB87AED20C386ED0011AF78 /* CustomTableViewHeaderFooterButton.h */,
+				EFB87AAF20C386ED0011AF78 /* CustomTableViewHeaderFooterButton.m */,
+				EFB87AB420C386ED0011AF78 /* CustomTableViewHeaderFooterButton.xib */,
+				EFB87AFF20C386ED0011AF78 /* CustomTableViewHeaderFooterOkCancel.h */,
+				EFB87ACE20C386ED0011AF78 /* CustomTableViewHeaderFooterOkCancel.m */,
+				EFB87AEB20C386ED0011AF78 /* CustomTableViewHeaderFooterOkCancel.xib */,
+				EFB87AFA20C386ED0011AF78 /* CustomTableViewHeaderLabel.h */,
+				EFB87AD320C386ED0011AF78 /* CustomTableViewHeaderLabel.m */,
+				EFB87B0F20C386ED0011AF78 /* CustomTableViewHeaderLabel.xib */,
+				EFB87AF320C386ED0011AF78 /* CustomViewController.h */,
+				EFB87ABD20C386ED0011AF78 /* CustomViewController.m */,
+				EFB87AB520C386ED0011AF78 /* CustomViewVoucher.h */,
+				EFB87AE620C386ED0011AF78 /* CustomViewVoucher.m */,
+				EFB87AE820C386ED0011AF78 /* CustomViewVoucher.xib */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -1414,6 +1640,138 @@
 				EFB87B3520C386ED0011AF78 /* Kanit-SemiBoldItalic.otf */,
 			);
 			path = font;
+			sourceTree = "<group>";
+		};
+		EFB87FC020C4781D0011AF78 /* StarMicronics */ = {
+			isa = PBXGroup;
+			children = (
+				EFB87FC220C4781D0011AF78 /* ObjectiveC SDK */,
+				EFB8802C20C4781D0011AF78 /* SMCloudServices.framework */,
+				EFB8802D20C4781D0011AF78 /* StarIO_Extension.framework */,
+				EFB87FC120C4781D0011AF78 /* StarIO.framework */,
+			);
+			path = StarMicronics;
+			sourceTree = "<group>";
+		};
+		EFB87FC220C4781D0011AF78 /* ObjectiveC SDK */ = {
+			isa = PBXGroup;
+			children = (
+				EFB87FD620C4781D0011AF78 /* AllReceiptsExtViewController.h */,
+				EFB8802220C4781D0011AF78 /* AllReceiptsExtViewController.m */,
+				EFB87FF720C4781D0011AF78 /* AllReceiptsViewController.h */,
+				EFB87FCB20C4781D0011AF78 /* AllReceiptsViewController.m */,
+				EFB8801F20C4781D0011AF78 /* ApiViewController.h */,
+				EFB87FD720C4781D0011AF78 /* ApiViewController.m */,
+				EFB87FD920C4781D0011AF78 /* BarcodeReaderExtViewController.h */,
+				EFB8801E20C4781D0011AF78 /* BarcodeReaderExtViewController.m */,
+				EFB87FCC20C4781D0011AF78 /* CashDrawerExtViewController.h */,
+				EFB87FF620C4781D0011AF78 /* CashDrawerExtViewController.m */,
+				EFB8801D20C4781D0011AF78 /* CashDrawerViewController.h */,
+				EFB87FDA20C4781D0011AF78 /* CashDrawerViewController.m */,
+				EFB87FD820C4781D0011AF78 /* CombinationExtViewController.h */,
+				EFB8802020C4781D0011AF78 /* CombinationExtViewController.m */,
+				EFB87FD120C4781D0011AF78 /* CombinationViewController.h */,
+				EFB8801920C4781D0011AF78 /* CombinationViewController.m */,
+				EFB87FFE20C4781D0011AF78 /* CommonViewController.h */,
+				EFB87FCF20C4781D0011AF78 /* CommonViewController.m */,
+				EFB8802320C4781D0011AF78 /* Communications */,
+				EFB87FFF20C4781D0011AF78 /* DeviceStatusViewController.h */,
+				EFB87FCE20C4781D0011AF78 /* DeviceStatusViewController.m */,
+				EFB8801720C4781D0011AF78 /* DisplayExtViewController.h */,
+				EFB87FD320C4781D0011AF78 /* DisplayExtViewController.m */,
+				EFB8801A20C4781D0011AF78 /* DisplayViewController.h */,
+				EFB87FD020C4781D0011AF78 /* DisplayViewController.m */,
+				EFB8800020C4781D0011AF78 /* Functions */,
+				EFB87FC620C4781D0011AF78 /* LaunchScreen.strings */,
+				EFB87FE020C4781D0011AF78 /* LocalizeReceipts */,
+				EFB87FC820C4781D0011AF78 /* Main.strings */,
+				EFB8801B20C4781D0011AF78 /* MainViewController.h */,
+				EFB87FF520C4781D0011AF78 /* MainViewController.m */,
+				EFB8801C20C4781D0011AF78 /* ModelCapability.h */,
+				EFB87FDF20C4781D0011AF78 /* ModelCapability.m */,
+				EFB87FFD20C4781D0011AF78 /* PrinterExtViewController.h */,
+				EFB87FC520C4781D0011AF78 /* PrinterExtViewController.m */,
+				EFB87FC320C4781D0011AF78 /* PrinterViewController.h */,
+				EFB87FFB20C4781D0011AF78 /* PrinterViewController.m */,
+				EFB87FF920C4781D0011AF78 /* ScaleExtViewController.h */,
+				EFB87FCA20C4781D0011AF78 /* ScaleExtViewController.m */,
+				EFB8801820C4781D0011AF78 /* ScaleViewController.h */,
+				EFB87FD220C4781D0011AF78 /* ScaleViewController.m */,
+				EFB8802A20C4781D0011AF78 /* SearchPortViewController.h */,
+				EFB87FD420C4781D0011AF78 /* SearchPortViewController.m */,
+				EFB87FFC20C4781D0011AF78 /* SwitchTableViewCell.h */,
+				EFB87FC420C4781D0011AF78 /* SwitchTableViewCell.m */,
+			);
+			path = "ObjectiveC SDK";
+			sourceTree = "<group>";
+		};
+		EFB87FE020C4781D0011AF78 /* LocalizeReceipts */ = {
+			isa = PBXGroup;
+			children = (
+				EFB87FE120C4781D0011AF78 /* GermanReceiptsImpl.h */,
+				EFB87FE220C4781D0011AF78 /* SpanishReceiptsImpl.m */,
+				EFB87FE320C4781D0011AF78 /* TraditionalChineseReceiptsImpl.h */,
+				EFB87FE420C4781D0011AF78 /* JapaneseReceiptsImpl.h */,
+				EFB87FE520C4781D0011AF78 /* ILocalizeReceipts.m */,
+				EFB87FE620C4781D0011AF78 /* RussianReceiptsImpl.m */,
+				EFB87FE720C4781D0011AF78 /* PortugueseReceiptsImpl.h */,
+				EFB87FE820C4781D0011AF78 /* SimplifiedChineseReceiptsImpl.h */,
+				EFB87FE920C4781D0011AF78 /* FrenchReceiptsImpl.m */,
+				EFB87FEA20C4781D0011AF78 /* EnglishReceiptsImpl.m */,
+				EFB87FEB20C4781D0011AF78 /* JapaneseReceiptsImpl.m */,
+				EFB87FEC20C4781D0011AF78 /* SpanishReceiptsImpl.h */,
+				EFB87FED20C4781D0011AF78 /* TraditionalChineseReceiptsImpl.m */,
+				EFB87FEE20C4781D0011AF78 /* GermanReceiptsImpl.m */,
+				EFB87FEF20C4781D0011AF78 /* RussianReceiptsImpl.h */,
+				EFB87FF020C4781D0011AF78 /* ILocalizeReceipts.h */,
+				EFB87FF120C4781D0011AF78 /* FrenchReceiptsImpl.h */,
+				EFB87FF220C4781D0011AF78 /* SimplifiedChineseReceiptsImpl.m */,
+				EFB87FF320C4781D0011AF78 /* PortugueseReceiptsImpl.m */,
+				EFB87FF420C4781D0011AF78 /* EnglishReceiptsImpl.h */,
+			);
+			path = LocalizeReceipts;
+			sourceTree = "<group>";
+		};
+		EFB8800020C4781D0011AF78 /* Functions */ = {
+			isa = PBXGroup;
+			children = (
+				EFB8800120C4781D0011AF78 /* IStarIoExtFunction.h */,
+				EFB8800220C4781D0011AF78 /* SSCPCBBuilder.m */,
+				EFB8800320C4781D0011AF78 /* PrinterFunctions.m */,
+				EFB8800420C4781D0011AF78 /* CombinationFunctions.h */,
+				EFB8800520C4781D0011AF78 /* SCDCBBuilder.m */,
+				EFB8800620C4781D0011AF78 /* ApiFunctions.m */,
+				EFB8800720C4781D0011AF78 /* AllReceiptsFunctions.h */,
+				EFB8800820C4781D0011AF78 /* ScaleFunctions.h */,
+				EFB8800920C4781D0011AF78 /* DisplayFunctions.m */,
+				EFB8800A20C4781D0011AF78 /* IStarIoExtDisplayedWeightFunction.m */,
+				EFB8800B20C4781D0011AF78 /* CashDrawerFunctions.m */,
+				EFB8800C20C4781D0011AF78 /* PrinterFunctions.h */,
+				EFB8800D20C4781D0011AF78 /* SSCPCBBuilder.h */,
+				EFB8800E20C4781D0011AF78 /* IStarIoExtFunction.m */,
+				EFB8800F20C4781D0011AF78 /* ApiFunctions.h */,
+				EFB8801020C4781D0011AF78 /* SCDCBBuilder.h */,
+				EFB8801120C4781D0011AF78 /* CombinationFunctions.m */,
+				EFB8801220C4781D0011AF78 /* AllReceiptsFunctions.m */,
+				EFB8801320C4781D0011AF78 /* CashDrawerFunctions.h */,
+				EFB8801420C4781D0011AF78 /* IStarIoExtDisplayedWeightFunction.h */,
+				EFB8801520C4781D0011AF78 /* DisplayFunctions.h */,
+				EFB8801620C4781D0011AF78 /* ScaleFunctions.m */,
+			);
+			path = Functions;
+			sourceTree = "<group>";
+		};
+		EFB8802320C4781D0011AF78 /* Communications */ = {
+			isa = PBXGroup;
+			children = (
+				EFB8802420C4781D0011AF78 /* DisplayCommunication.h */,
+				EFB8802520C4781D0011AF78 /* Communication.h */,
+				EFB8802620C4781D0011AF78 /* ScaleCommunication.m */,
+				EFB8802720C4781D0011AF78 /* Communication.m */,
+				EFB8802820C4781D0011AF78 /* DisplayCommunication.m */,
+				EFB8802920C4781D0011AF78 /* ScaleCommunication.h */,
+			);
+			path = Communications;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1533,6 +1891,8 @@
 				EFB87C9B20C386EE0011AF78 /* Kanit-SemiBoldItalic.otf in Resources */,
 				EFB87B8720C386ED0011AF78 /* takeAway2.png in Resources */,
 				EFB87C9720C386EE0011AF78 /* Kanit-BlackItalic.otf in Resources */,
+				EFB8812C20C6F43C0011AF78 /* CustomTableViewCellProfile.xib in Resources */,
+				EFB8803220C4781E0011AF78 /* Main.strings in Resources */,
 				EFB87BB020C386EE0011AF78 /* search.png in Resources */,
 				EFB87BA520C386EE0011AF78 /* visa.png in Resources */,
 				EFB87C9120C386EE0011AF78 /* Kanit-Medium.otf in Resources */,
@@ -1566,6 +1926,7 @@
 				EFB87BB420C386EE0011AF78 /* basket.png in Resources */,
 				EFB87BBE20C386EE0011AF78 /* gift.png in Resources */,
 				EFB87BAF20C386EE0011AF78 /* Icon-60@2x.png in Resources */,
+				EFB8812E20C6F61F0011AF78 /* profilePic.png in Resources */,
 				EFB87BB820C386EE0011AF78 /* added.png in Resources */,
 				EFB87C8B20C386EE0011AF78 /* Kanit-ExtraBold.ttf in Resources */,
 				EFB87BCF20C386EE0011AF78 /* paste light color.png in Resources */,
@@ -1591,6 +1952,7 @@
 				EFB87BB520C386EE0011AF78 /* takeAwayGrayOut.png in Resources */,
 				EFB87BCA20C386EE0011AF78 /* security_code_back-512.png in Resources */,
 				EFB87B9B20C386ED0011AF78 /* home_icon.png in Resources */,
+				EFB8803120C4781E0011AF78 /* LaunchScreen.strings in Resources */,
 				EFB87C9820C386EE0011AF78 /* Kanit-LightItalic.ttf in Resources */,
 				EFB87BAB20C386EE0011AF78 /* triangle.png in Resources */,
 				EFB87C7E20C386EE0011AF78 /* Kanit-Thin.otf in Resources */,
@@ -1617,6 +1979,7 @@
 				EFB87BCB20C386EE0011AF78 /* paste.png in Resources */,
 				EFB87C3F20C386EE0011AF78 /* CustomTableViewCellDisputeDetail.xib in Resources */,
 				EFB87C6920C386EE0011AF78 /* CustomTableViewCellNote.xib in Resources */,
+				EFB880C520C56A270011AF78 /* list.png in Resources */,
 				EFB87C5420C386EE0011AF78 /* CustomTableViewCellPromoThumbNail.xib in Resources */,
 				EFB87CC820C3ECF00011AF78 /* jummumLogoCrop.png in Resources */,
 				EFB87C8920C386EE0011AF78 /* Kanit-Regular.otf in Resources */,
@@ -1759,22 +2122,35 @@
 			buildActionMask = 2147483647;
 			files = (
 				EFB87C0320C386EE0011AF78 /* SharedNote.m in Sources */,
+				EFB8805F20C4781E0011AF78 /* AllReceiptsExtViewController.m in Sources */,
+				EFB87EE020C4766D0011AF78 /* Printer.m in Sources */,
 				EFB87C4820C386EE0011AF78 /* CustomCollectionViewCellNote.m in Sources */,
 				EFB87C1920C386EE0011AF78 /* TableNo.m in Sources */,
 				EFB87BEA20C386EE0011AF78 /* MeViewController.m in Sources */,
+				EFB8804220C4781E0011AF78 /* ILocalizeReceipts.m in Sources */,
+				EFB8804820C4781E0011AF78 /* GermanReceiptsImpl.m in Sources */,
+				EFB8804320C4781E0011AF78 /* RussianReceiptsImpl.m in Sources */,
 				EFB87C1620C386EE0011AF78 /* Note.m in Sources */,
 				EFB87BEF20C386EE0011AF78 /* CustomerTableSearchViewController.m in Sources */,
+				EFB8804120C4781E0011AF78 /* SpanishReceiptsImpl.m in Sources */,
 				EFB87BDE20C386EE0011AF78 /* CreditCardAndOrderSummaryViewController.m in Sources */,
+				EFB8806C20C47FE90011AF78 /* SharedPrinter.m in Sources */,
+				EFB8805B20C4781E0011AF78 /* CombinationViewController.m in Sources */,
 				EFB87C6720C386EE0011AF78 /* CustomTableViewCellRewardDetail.m in Sources */,
+				EFB8804920C4781E0011AF78 /* SimplifiedChineseReceiptsImpl.m in Sources */,
 				EFB87C3D20C386EE0011AF78 /* CustomTableViewHeaderButton.m in Sources */,
 				EFB87BDA20C386EE0011AF78 /* LaunchScreenViewController.m in Sources */,
 				EFB87BED20C386EE0011AF78 /* RegisterNowViewController.m in Sources */,
 				EFB87C0720C386EE0011AF78 /* SharedDispute.m in Sources */,
+				EFB87FBF20C477B20011AF78 /* InvoiceComposer.m in Sources */,
+				EFB8805420C4781E0011AF78 /* DisplayFunctions.m in Sources */,
 				EFB87BFF20C386EE0011AF78 /* SharedUserRewardRedemptionUsed.m in Sources */,
 				EFB87BF020C386EE0011AF78 /* MenuSelectionViewController.m in Sources */,
+				EFB8804620C4781E0011AF78 /* JapaneseReceiptsImpl.m in Sources */,
 				EFB87C2C20C386EE0011AF78 /* DisputeReason.m in Sources */,
 				EFB87C5720C386EE0011AF78 /* CustomTableViewCellLabelTextView.m in Sources */,
 				EFB87B6A20C386ED0011AF78 /* NSData+AES.m in Sources */,
+				EFB8805C20C4781E0011AF78 /* BarcodeReaderExtViewController.m in Sources */,
 				EFB87C5E20C386EE0011AF78 /* CustomViewVoucher.m in Sources */,
 				EFB87BE420C386EE0011AF78 /* PersonalDataViewController.m in Sources */,
 				EFB87BF220C386EE0011AF78 /* CreditCardViewController.m in Sources */,
@@ -1782,24 +2158,32 @@
 				EFB87C2720C386EE0011AF78 /* CustomerTable.m in Sources */,
 				EFB87BE720C386EE0011AF78 /* RewardDetailViewController.m in Sources */,
 				EFB87C0F20C386EE0011AF78 /* NoteType.m in Sources */,
+				EFB8805920C4781E0011AF78 /* AllReceiptsFunctions.m in Sources */,
+				EFB8806D20C47FE90011AF78 /* SharedReceiptPrint.m in Sources */,
 				EFB87C7120C386EE0011AF78 /* CustomTableViewCellMenu.m in Sources */,
 				EFB87C3E20C386EE0011AF78 /* CustomViewController.m in Sources */,
 				EFB87BFA20C386EE0011AF78 /* SharedMenu.m in Sources */,
 				EFB87C4A20C386EE0011AF78 /* CustomTableViewHeaderFooterOkCancel.m in Sources */,
 				EFB87C3520C386EE0011AF78 /* RewardPoint.m in Sources */,
+				EFB8805D20C4781E0011AF78 /* CombinationExtViewController.m in Sources */,
+				EFB8806E20C47FE90011AF78 /* SharedOrderKitchen.m in Sources */,
 				EFB87B8620C386ED0011AF78 /* KeychainWrapper.m in Sources */,
 				EFB87BE320C386EE0011AF78 /* BranchSearchViewController.m in Sources */,
+				EFB8804720C4781E0011AF78 /* TraditionalChineseReceiptsImpl.m in Sources */,
 				EFB87BEC20C386EE0011AF78 /* TosAndPrivacyPolicyViewController.m in Sources */,
 				EFB87C0820C386EE0011AF78 /* Shop.m in Sources */,
 				EFB87C1F20C386EE0011AF78 /* OrderTaking.m in Sources */,
+				EFB8803D20C4781E0011AF78 /* CashDrawerViewController.m in Sources */,
 				EFB87C1220C386EE0011AF78 /* LogIn.m in Sources */,
 				EFB87BE020C386EE0011AF78 /* SelectPaymentMethodViewController.m in Sources */,
+				EFB87EDA20C475BE0011AF78 /* CredentialsDb.m in Sources */,
 				EFB87C3320C386EE0011AF78 /* CreditCard.m in Sources */,
 				EFB87C0A20C386EE0011AF78 /* SharedOrderTaking.m in Sources */,
 				EFB87B7820C386ED0011AF78 /* Globals.swift in Sources */,
 				EFB87BFB20C386EE0011AF78 /* MenuType.m in Sources */,
 				EFB87B6B20C386ED0011AF78 /* OmiseTokenRequest.swift in Sources */,
 				EFB87C5120C386EE0011AF78 /* CustomTableViewCellDisputeDetail.m in Sources */,
+				EFB8804B20C4781E0011AF78 /* MainViewController.m in Sources */,
 				EFB87C1320C386EE0011AF78 /* SharedCurrentMenu.m in Sources */,
 				EFB87C0D20C386EE0011AF78 /* SharedPushSync.m in Sources */,
 				EFB87BF120C386EE0011AF78 /* NoteViewController.m in Sources */,
@@ -1816,28 +2200,36 @@
 				EFB87C2D20C386EE0011AF78 /* SubMenuType.m in Sources */,
 				EFB87C4E20C386EE0011AF78 /* CustomTableViewHeaderLabel.m in Sources */,
 				EFB87C1120C386EE0011AF78 /* SpecialPriceProgram.m in Sources */,
+				EFB8803820C4781E0011AF78 /* DisplayViewController.m in Sources */,
 				EFB87BF620C386EE0011AF78 /* UserRewardRedemptionUsed.m in Sources */,
+				EFB8805320C4781E0011AF78 /* ApiFunctions.m in Sources */,
 				EFB87C0C20C386EE0011AF78 /* SharedCurrentOrderTaking.m in Sources */,
 				EFB87C5020C386EE0011AF78 /* CustomTableViewCellImageTextButtonHalf.m in Sources */,
+				EFB8805620C4781E0011AF78 /* CashDrawerFunctions.m in Sources */,
 				EFB87C0020C386EE0011AF78 /* Menu.m in Sources */,
 				EFB87C1A20C386EE0011AF78 /* Dispute.m in Sources */,
 				EFB87C3720C386EE0011AF78 /* CustomTableViewHeaderFooterButton.m in Sources */,
 				EFB87C2B20C386EE0011AF78 /* SharedMenuType.m in Sources */,
 				EFB87B6920C386ED0011AF78 /* NSData+Encryption.m in Sources */,
 				EFB87C0520C386EE0011AF78 /* SharedTableNo.m in Sources */,
+				EFB8803620C4781E0011AF78 /* DeviceStatusViewController.m in Sources */,
 				EFB87C4C20C386EE0011AF78 /* CustomTableViewCellPromoThumbNail.m in Sources */,
 				EFB87C2A20C386EE0011AF78 /* PushSync.m in Sources */,
 				EFB87C2820C386EE0011AF78 /* PromoCode.m in Sources */,
 				EFB87C0120C386EE0011AF78 /* SharedReceipt.m in Sources */,
+				EFB8806220C4781E0011AF78 /* DisplayCommunication.m in Sources */,
 				EFB87B7B20C386ED0011AF78 /* CardBrand.swift in Sources */,
 				EFB87BFE20C386EE0011AF78 /* PromotionMenu.m in Sources */,
+				EFB8805120C4781E0011AF78 /* PrinterFunctions.m in Sources */,
 				EFB87C2E20C386EE0011AF78 /* SharedPromotion.m in Sources */,
 				EFB87C6C20C386EE0011AF78 /* CustomCollectionReusableView.m in Sources */,
 				EFB87C1D20C386EE0011AF78 /* SharedShop.m in Sources */,
 				EFB87BDB20C386EE0011AF78 /* MyRewardViewController.m in Sources */,
 				EFB87C6420C386EE0011AF78 /* CustomTableViewCellLabelText.m in Sources */,
+				EFB8803C20C4781E0011AF78 /* ApiViewController.m in Sources */,
 				EFB87C2620C386EE0011AF78 /* SharedUserAccount.m in Sources */,
 				EFB87B7420C386ED0011AF78 /* OmiseToken.swift in Sources */,
+				EFB8804020C4781E0011AF78 /* ModelCapability.m in Sources */,
 				EFB872FE20C218BF0011AF78 /* ViewController.m in Sources */,
 				EFB87B8520C386ED0011AF78 /* OmiseError.swift in Sources */,
 				EFB87C3220C386EE0011AF78 /* Promotion.m in Sources */,
@@ -1845,22 +2237,36 @@
 				EFB87C3820C386EE0011AF78 /* CustomTableViewCellCreditCard.m in Sources */,
 				EFB87BDD20C386EE0011AF78 /* OrderDetailViewController.m in Sources */,
 				EFB87BD820C386EE0011AF78 /* ForgotPasswordViewController.m in Sources */,
+				EFB8805520C4781E0011AF78 /* IStarIoExtDisplayedWeightFunction.m in Sources */,
 				EFB87C1820C386EE0011AF78 /* Setting.m in Sources */,
 				EFB87BE820C386EE0011AF78 /* TermsOfServiceViewController.m in Sources */,
 				EFB87C0920C386EE0011AF78 /* SharedMenuPic.m in Sources */,
+				EFB8802F20C4781E0011AF78 /* SwitchTableViewCell.m in Sources */,
+				EFB880C820C5B1550011AF78 /* BranchSelectViewController.m in Sources */,
+				EFB8812B20C6F43C0011AF78 /* CustomTableViewCellProfile.m in Sources */,
+				EFB8806020C4781E0011AF78 /* ScaleCommunication.m in Sources */,
 				EFB87C2220C386EE0011AF78 /* SharedPromoCode.m in Sources */,
 				EFB87C5A20C386EE0011AF78 /* CustomTableViewCellNote.m in Sources */,
+				EFB8805020C4781E0011AF78 /* SSCPCBBuilder.m in Sources */,
+				EFB8805820C4781E0011AF78 /* CombinationFunctions.m in Sources */,
+				EFB8803720C4781E0011AF78 /* CommonViewController.m in Sources */,
 				EFB87C5820C386EE0011AF78 /* CustomTableViewCellSearchBar.m in Sources */,
 				EFB87C6820C386EE0011AF78 /* CustomTableViewCellLabel.m in Sources */,
+				EFB87EDD20C476400011AF78 /* OrderKitchen.m in Sources */,
 				EFB87B7520C386ED0011AF78 /* OmiseAuthorizingPaymentViewController.swift in Sources */,
+				EFB87ED720C472450011AF78 /* CustomerKitchenViewController.m in Sources */,
 				EFB87B6320C386ED0011AF78 /* Utility.m in Sources */,
 				EFB87BFC20C386EE0011AF78 /* SharedRewardPoint.m in Sources */,
 				EFB87C3120C386EE0011AF78 /* SharedSpecialPriceProgram.m in Sources */,
+				EFB8804520C4781E0011AF78 /* EnglishReceiptsImpl.m in Sources */,
 				EFB87C2120C386EE0011AF78 /* SharedBranch.m in Sources */,
+				EFB8805720C4781E0011AF78 /* IStarIoExtFunction.m in Sources */,
 				EFB87C2020C386EE0011AF78 /* SharedPic.m in Sources */,
 				EFB87BF320C386EE0011AF78 /* ConfirmDisputeViewController.m in Sources */,
 				EFB87C4B20C386EE0011AF78 /* CustomTableViewCellVoucherCode.m in Sources */,
 				EFB87C6F20C386EE0011AF78 /* CustomTableViewCellPromoBanner.m in Sources */,
+				EFB8804420C4781E0011AF78 /* FrenchReceiptsImpl.m in Sources */,
+				EFB8803020C4781E0011AF78 /* PrinterExtViewController.m in Sources */,
 				EFB87C0420C386EE0011AF78 /* SharedSetting.m in Sources */,
 				EFB87BD920C386EE0011AF78 /* HotDealViewController.m in Sources */,
 				EFB87BDF20C386EE0011AF78 /* LogInViewController.m in Sources */,
@@ -1870,36 +2276,50 @@
 				EFB87BE520C386EE0011AF78 /* DisputeFormViewController.m in Sources */,
 				EFB87C6120C386EE0011AF78 /* CustomTableViewCellReceiptSummary.m in Sources */,
 				EFB87C2520C386EE0011AF78 /* MenuTypeNote.m in Sources */,
+				EFB8805A20C4781E0011AF78 /* ScaleFunctions.m in Sources */,
 				EFB87C6B20C386EE0011AF78 /* CustomTableViewCellImageText.m in Sources */,
+				EFB8803A20C4781E0011AF78 /* DisplayExtViewController.m in Sources */,
 				EFB87C2420C386EE0011AF78 /* SharedCurrentUserAccount.m in Sources */,
 				EFB87BF820C386EE0011AF78 /* Receipt.m in Sources */,
 				EFB87BEE20C386EE0011AF78 /* RewardViewController.m in Sources */,
 				EFB87C5F20C386EE0011AF78 /* CustomTableViewCellRedemption.m in Sources */,
 				EFB87C0220C386EE0011AF78 /* SharedUserPromotionUsed.m in Sources */,
 				EFB87C1020C386EE0011AF78 /* SharedOrderNote.m in Sources */,
+				EFB8806120C4781E0011AF78 /* Communication.m in Sources */,
 				EFB87BDC20C386EE0011AF78 /* ReceiptSummaryViewController.m in Sources */,
 				EFB87C7420C386EE0011AF78 /* CustomTableViewCellImageLabelRemove.m in Sources */,
 				EFB87C1720C386EE0011AF78 /* SharedLogIn.m in Sources */,
+				EFB87EE320C4769E0011AF78 /* ReceiptPrint.m in Sources */,
 				EFB87BE620C386EE0011AF78 /* LogOutViewController.m in Sources */,
 				EFB87C0B20C386EE0011AF78 /* HotDeal.m in Sources */,
 				EFB87BE120C386EE0011AF78 /* RewardRedemptionViewController.m in Sources */,
+				EFB8803320C4781E0011AF78 /* ScaleExtViewController.m in Sources */,
 				EFB87BF720C386EE0011AF78 /* FacebookComment.m in Sources */,
 				EFB87BE220C386EE0011AF78 /* QRCodeScanTableViewController.m in Sources */,
+				EFB8811C20C621180011AF78 /* Credentials.m in Sources */,
+				EFB8803920C4781E0011AF78 /* ScaleViewController.m in Sources */,
 				EFB87C3420C386EE0011AF78 /* RewardRedemption.m in Sources */,
 				EFB87C1420C386EE0011AF78 /* MenuPic.m in Sources */,
 				EFB87C4D20C386EE0011AF78 /* CustomTableViewCellText.m in Sources */,
 				EFB87C5C20C386EE0011AF78 /* CustomTableViewCellOrderSummary.m in Sources */,
 				EFB87C7220C386EE0011AF78 /* CustomTableViewCellButton.m in Sources */,
 				EFB87B7620C386ED0011AF78 /* OmiseJsonParser.swift in Sources */,
+				EFB8803B20C4781E0011AF78 /* SearchPortViewController.m in Sources */,
 				EFB87B6720C386ED0011AF78 /* AppDelegate.m in Sources */,
 				EFB87C2920C386EE0011AF78 /* SharedCustomerTable.m in Sources */,
 				EFB87C1C20C386EE0011AF78 /* UserAccount.m in Sources */,
 				EFB87C1B20C386EE0011AF78 /* SharedRewardRedemption.m in Sources */,
 				EFB87BF520C386EE0011AF78 /* Pic.m in Sources */,
+				EFB8804A20C4781E0011AF78 /* PortugueseReceiptsImpl.m in Sources */,
+				EFB8804F20C4781E0011AF78 /* PrinterViewController.m in Sources */,
+				EFB8803420C4781E0011AF78 /* AllReceiptsViewController.m in Sources */,
 				EFB87BFD20C386EE0011AF78 /* SharedPromotionMenu.m in Sources */,
+				EFB8811F20C6220E0011AF78 /* Device.m in Sources */,
 				EFB87B8220C386ED0011AF78 /* OmiseCard.swift in Sources */,
 				EFB87C2320C386EE0011AF78 /* Branch.m in Sources */,
 				EFB87C4220C386EE0011AF78 /* CustomTableViewCellTotal.m in Sources */,
+				EFB8805220C4781E0011AF78 /* SCDCBBuilder.m in Sources */,
+				EFB8804C20C4781E0011AF78 /* CashDrawerExtViewController.m in Sources */,
 				EFB87C4720C386EE0011AF78 /* CustomTableViewCellQuantity.m in Sources */,
 				EFB87BF920C386EE0011AF78 /* SharedSubMenuType.m in Sources */,
 				EFB87BEB20C386EE0011AF78 /* SaveToCameraRollViewController.m in Sources */,
@@ -1946,6 +2366,22 @@
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
+		EFB87FC620C4781D0011AF78 /* LaunchScreen.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EFB87FC720C4781D0011AF78 /* ja */,
+			);
+			name = LaunchScreen.strings;
+			sourceTree = "<group>";
+		};
+		EFB87FC820C4781D0011AF78 /* Main.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EFB87FC920C4781D0011AF78 /* ja */,
+			);
+			name = Main.strings;
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -1957,10 +2393,11 @@
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_CODE_COVERAGE = NO;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = NO;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
@@ -2016,10 +2453,11 @@
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_CODE_COVERAGE = NO;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = NO;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
@@ -2066,12 +2504,23 @@
 			baseConfigurationReference = DEA6E2877BD5ADDF8367F315 /* Pods-JummumShop.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_CODE_COVERAGE = NO;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DF8AZLDC5D;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/JummumShop/Resource/StarMicronics",
+				);
 				INFOPLIST_FILE = JummumShop/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Bolts\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/FBSDKCoreKit\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/FBSDKLoginKit\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.appxelent.JummumShop;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2085,12 +2534,24 @@
 			baseConfigurationReference = 2B737EE1CBDB6FE8135FA694 /* Pods-JummumShop.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_CODE_COVERAGE = NO;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DF8AZLDC5D;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/JummumShop/Resource/StarMicronics",
+				);
 				INFOPLIST_FILE = JummumShop/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Bolts\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/FBSDKCoreKit\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/FBSDKLoginKit\"",
+					"$(PROJECT_DIR)/JummumShop/Resource/Lib",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.appxelent.JummumShop;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2191,7 +2652,7 @@
 				EFB8732120C218C00011AF78 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		EFB8732220C218C00011AF78 /* Build configuration list for PBXNativeTarget "JummumShop" */ = {
 			isa = XCConfigurationList;
@@ -2200,7 +2661,7 @@
 				EFB8732420C218C00011AF78 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		EFB8732520C218C00011AF78 /* Build configuration list for PBXNativeTarget "JummumShopTests" */ = {
 			isa = XCConfigurationList;
@@ -2209,7 +2670,7 @@
 				EFB8732720C218C00011AF78 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		EFB8732820C218C00011AF78 /* Build configuration list for PBXNativeTarget "JummumShopUITests" */ = {
 			isa = XCConfigurationList;
@@ -2218,7 +2679,7 @@
 				EFB8732A20C218C00011AF78 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};

@@ -35,6 +35,7 @@
 
 
 
+
 -(OrderTaking *)initWithBranchID:(NSInteger)branchID customerTableID:(NSInteger)customerTableID menuID:(NSInteger)menuID quantity:(float)quantity specialPrice:(float)specialPrice price:(float)price takeAway:(NSInteger)takeAway noteIDListInText:(NSString *)noteIDListInText orderNo:(NSInteger)orderNo status:(NSInteger)status receiptID:(NSInteger)receiptID;
 +(NSInteger)getNextID;
 +(void)addObject:(OrderTaking *)orderTaking;
@@ -79,4 +80,5 @@
 +(float)getSumSpecialPrice:(NSMutableArray *)orderTakingList;
 +(NSMutableArray *)updateStatus:(NSInteger)status orderTakingList:(NSMutableArray *)orderTakingList;
 +(void)removeAllObjects;
++(NSMutableArray *)getOrderTakingListWithReceiptID:(NSInteger)receiptID branchID:(NSInteger)branchID;
 @end

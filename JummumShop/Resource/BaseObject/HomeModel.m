@@ -173,6 +173,11 @@
             arrClassName = @[@"Dispute"];
         }
         break;
+        case dbCredentialsDb:
+        {
+            arrClassName = @[@"CredentialsDb"];
+        }
+            break;
         default:
             break;
     }
@@ -525,6 +530,14 @@
             url = [NSURL URLWithString:[Utility appendRandomParam:[Utility url:urlDisputeGetList]]];
         }
             break;
+        case dbCredentialsDb:
+        {
+            NSString *username = (NSString *)data;
+            noteDataString = [NSString stringWithFormat:@"username=%@",username];
+            url = [NSURL URLWithString:[Utility appendRandomParam:[Utility url:urlCredentialsDbGet]]];
+            
+        }
+            break;
         default:
             break;
     }
@@ -563,6 +576,7 @@
             noteDataString = [Utility getNoteDataString:data];
             url = [NSURL URLWithString:[Utility url:urlDeviceInsert]];
         }
+            break;
         case dbLogIn:
         {
             noteDataString = [Utility getNoteDataString:data];
@@ -878,22 +892,12 @@
             url = [NSURL URLWithString:[Utility url:urlDisputeInsertList]];
         }
             break;
-//        case dbTestPasswordList:
-//        {
-//            NSMutableArray *testPasswordList = (NSMutableArray *)data;
-//            NSInteger countTestPassword = 0;
-//
-//            noteDataString = [NSString stringWithFormat:@"countTestPassword=%ld",[testPasswordList count]];
-//            for(TestPassword *item in testPasswordList)
-//            {
-//                noteDataString = [NSString stringWithFormat:@"%@&%@",noteDataString,[Utility getNoteDataString:item withRunningNo:countTestPassword]];
-//                countTestPassword++;
-//            }
-//
-//            url = [NSURL URLWithString:[Utility url:urlTestPasswordInsertList]];
-//        }
-//
-//            break;
+        case dbCredentials:
+        {
+            noteDataString = [Utility getNoteDataString:data];
+            url = [NSURL URLWithString:[Utility url:urlCredentialsValidate]];
+        }
+            break;
         default:
             break;
     }

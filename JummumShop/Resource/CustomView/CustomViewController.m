@@ -16,13 +16,38 @@
 #import <AudioToolbox/AudioToolbox.h>
 #import <sys/utsname.h>
 #import "Receipt.h"
+#import "ReceiptPrint.h"
 #import "OrderTaking.h"
 #import "OrderNote.h"
+#import "OrderKitchen.h"
+#import "Printer.h"
+#import "Menu.h"
+#import "MenuType.h"
+#import "CustomerTable.h"
+#import "InvoiceComposer.h"
+
+
+//part printer
+#import "AppDelegate.h"
+#import "Communication.h"
+#import "PrinterFunctions.h"
+#import "ILocalizeReceipts.h"
 
 
 @interface CustomViewController ()
 {
     UILabel *_lblStatus;
+    
+    //print kitchen
+    NSMutableArray *_webViewList;
+    UIView *_backgroundView;
+    NSMutableArray *_arrOfHtmlContentList;
+    NSInteger _countPrint;
+    NSInteger _countingPrint;
+    NSMutableDictionary *_printBillWithPortName;
+    NSMutableArray *_statusCellArray;
+    NSMutableArray *_firmwareInfoCellArray;
+    ///------
 }
 @end
 
@@ -39,6 +64,8 @@ CGFloat animatedDistance;
 @synthesize removedNotiView;
 @synthesize lblAlertMsg;
 @synthesize lblWaiting;
+@synthesize receiptKitchenBill;
+@synthesize homeModelPrintKitchenBill;
 
 
 -(void)setCurrentVc
@@ -751,10 +778,10 @@ CGFloat animatedDistance;
 -(void)setButtonDesign:(UIView *)view
 {
     UIButton *button = (UIButton *)view;
-    button.backgroundColor = [UIColor groupTableViewBackgroundColor];
-    [button setTitleColor:mBlueColor forState:UIControlStateNormal];
-    [button setTitleColor:[UIColor grayColor] forState:UIControlStateDisabled];
-    button.layer.cornerRadius = 4;
+//    button.backgroundColor = [UIColor groupTableViewBackgroundColor];
+//    [button setTitleColor:mBlueColor forState:UIControlStateNormal];
+//    [button setTitleColor:[UIColor grayColor] forState:UIControlStateDisabled];
+    button.layer.cornerRadius = 14;
     
 }
 
@@ -1235,6 +1262,455 @@ CGFloat animatedDistance;
     [attrString appendAttributedString:attrString2];
     
     return attrString;
+}
+
+
+///print kitchen bill-----------------------------
+-(void)printReceiptKitchenBill:(NSMutableArray *)receiptList
+{
+    //print customer kitchen ต่างจาก print kitchen FFD 2 จุด คือ 1.print ทีเดียวหลายโต๊ะ 2.ordertaking จาก jummum จะเป็น order ละ 1 รายการ(FFD จะตามจำนวนรายการที่สั่งพร้อมกัน)
+    //    if(![self checkPrinterStatus])
+    //    {
+    //        return;
+    //    }
+    
+    receiptKitchenBill = 1;
+    NSMutableArray *receiptPrintList = [[NSMutableArray alloc]init];
+    for(Receipt *item in receiptList)
+    {
+        item.status = 5;
+        item.modifiedUser = [Utility modifiedUser];
+        item.modifiedDate = [Utility currentDateTime];
+        
+        ReceiptPrint *receiptPrint = [[ReceiptPrint alloc]initWithReceiptID:item.receiptID];
+        [ReceiptPrint addObject:receiptPrint];
+        [receiptPrintList addObject:receiptPrint];
+    }
+    
+    [homeModelPrintKitchenBill insertItems:dbReceiptPrintList withData:receiptPrintList actionScreen:@"insert receiptPrintList in customerKitchen screen"];
+    
+    
+    
+    _countPrint = 0;
+    _countingPrint = 0;
+    _arrOfHtmlContentList = [[NSMutableArray alloc]init];
+    _printBillWithPortName = [[NSMutableDictionary alloc]init];
+    NSMutableArray *arrPrintDic = [[NSMutableArray alloc]init];
+    NSInteger printOrderKitchenByItem = [[Setting getSettingValueWithKeyName:@"printOrderKitchenByItem"] integerValue];
+    
+    
+    
+    
+    
+    for(Receipt *item in receiptList)
+    {
+        NSMutableArray *orderTakingList = [OrderTaking getOrderTakingListWithReceiptID:item.receiptID branchID:[Utility branchID]];
+        orderTakingList = [OrderTaking createSumUpOrderTakingWithTheSameMenuAndNote:orderTakingList];
+        NSMutableArray *orderKitchenList = [[NSMutableArray alloc]init];
+        for(OrderTaking *orderTaking in orderTakingList)
+        {
+            OrderKitchen *orderKitchen = [[OrderKitchen alloc]initWithCustomerTableID:orderTaking.customerTableID orderTakingID:orderTaking.orderTakingID sequenceNo:1 customerTableIDOrder:0];
+            orderKitchen.quantity = orderTaking.quantity;
+            [orderKitchenList addObject:orderKitchen];
+        }
+        
+        
+        
+        //foodCheckList
+        NSInteger printFoodCheckList = [[Setting getSettingValueWithKeyName:@"printFoodCheckList"] integerValue];
+        NSInteger printerID = [[Setting getSettingValueWithKeyName:@"foodCheckList"] integerValue];
+        if(printFoodCheckList && printerID)
+        {
+            NSMutableArray *printOrderKitchenList = [[NSMutableArray alloc]init];
+            {
+                if([orderKitchenList count]>0)
+                {
+                    [printOrderKitchenList addObject:orderKitchenList];
+                }
+            }
+            if([printOrderKitchenList count]>0)
+            {
+                _countPrint = _countPrint+[printOrderKitchenList count];
+                Printer *printer = [Printer getPrinter:printerID];
+                NSMutableDictionary *printDic = [[NSMutableDictionary alloc]init];
+                [printDic setValue:printOrderKitchenList forKey:printer.portName];
+                [arrPrintDic addObject:printDic];
+            }
+        }
+        
+        
+        
+        //printerKitchenMenuTypeID
+        NSMutableArray *printerList = [Printer getPrinterList];
+        for(int i=0; i<[printerList count]; i++)
+        {
+            Printer *printer = printerList[i];
+            NSMutableArray *printOrderKitchenList = [[NSMutableArray alloc]init];
+            NSString *printerKitchenMenuTypeID = printer.menuTypeIDListInText;
+            NSArray* menuTypeIDList = [printerKitchenMenuTypeID componentsSeparatedByString: @","];
+            for(NSString *item in menuTypeIDList)
+            {
+                NSMutableArray *orderKitchenMenuTypeIDList = [OrderKitchen getOrderKitchenListWithMenuTypeID:[item integerValue] orderKitchenList:orderKitchenList];
+                
+                if(printOrderKitchenByItem)
+                {
+                    for(OrderKitchen *orderKitchen in orderKitchenMenuTypeIDList)
+                    {
+                        
+                        OrderTaking *orderTaking = [OrderTaking getOrderTaking:orderKitchen.orderTakingID];
+                        NSInteger quantity = orderKitchen.quantity == 0?orderTaking.quantity:orderKitchen.quantity;
+                        for(int i=0; i<quantity; i++)
+                        {
+                            NSMutableArray *orderKitchenList = [[NSMutableArray alloc]init];
+                            [orderKitchenList addObject:orderKitchen];
+                            [printOrderKitchenList addObject:orderKitchenList];
+                        }
+                    }
+                }
+                else if(!printOrderKitchenByItem && [orderKitchenMenuTypeIDList count]>0)
+                {
+                    [printOrderKitchenList addObject:orderKitchenMenuTypeIDList];
+                }
+            }
+            if([printOrderKitchenList count]>0)
+            {
+                _countPrint = _countPrint+[printOrderKitchenList count];
+                NSMutableDictionary *printDic = [[NSMutableDictionary alloc]init];
+                [printDic setValue:printOrderKitchenList forKey:printer.portName];
+                [arrPrintDic addObject:printDic];
+            }
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    //port with bill and order
+    for(int i=0; i<_countPrint; i++)
+    {
+        UIWebView *webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 0, 580,100)];
+        webView.delegate = self;
+        [self.view insertSubview:webView atIndex:0];
+        [_webViewList addObject:webView];
+    }
+    int i=0;
+    for(NSMutableDictionary *printDic in arrPrintDic)
+    {
+        for(NSString *key in printDic)//printDic คือตัวเครื่องพิมพ์
+        {
+            NSMutableArray *printOrderKitchenList = [printDic objectForKey:key];
+            for(NSMutableArray *orderKitchenMenuTypeIDList in printOrderKitchenList)
+            {
+                [_printBillWithPortName setValue:key forKey:[NSString stringWithFormat:@"%d",i]];
+                if([key isEqualToString:@"foodCheckList"])//foodCheckList คือรวมทุกรายการในบิลเดียว หัวบิลแสดงคำว่าทั้งหมด, ถ้าไม่ใช่คือพิมพ์ 1 ที่ต่อ 1 บิล หัวบิลแสดงหมวดอาหารรายการนั้น
+                {
+                    [self printKitchenBillInCustomView:orderKitchenMenuTypeIDList orderNo:i foodCheckList:YES];
+                }
+                else
+                {
+                    [self printKitchenBillInCustomView:orderKitchenMenuTypeIDList orderNo:i foodCheckList:NO];
+                }
+                i++;
+            }
+        }
+    }
+}
+
+-(void)printKitchenBillInCustomView:(NSMutableArray *)orderKitchenList orderNo:(NSInteger)orderNo foodCheckList:(BOOL)foodCheckList
+{
+    //prepare data to print
+    NSInteger printOrderKitchenByItem = [[Setting getSettingValueWithKeyName:@"printOrderKitchenByItem"] integerValue];
+    OrderKitchen *orderKitchen = orderKitchenList[0];
+    OrderTaking *orderTaking = [OrderTaking getOrderTaking:orderKitchen.orderTakingID];
+    Menu *menu = [Menu getMenu:orderTaking.menuID];
+    MenuType *menuType = [MenuType getMenuType:menu.menuTypeID];
+    CustomerTable *customerTable = [CustomerTable getCustomerTable:orderKitchen.customerTableID];
+    NSString *restaurantName = [Setting getSettingValueWithKeyName:@"restaurantName"];
+    NSString *customerType = customerTable.tableName;
+    NSString *waiterName = [UserAccount getFirstNameWithFullName:[UserAccount getCurrentUserAccount].fullName];
+    NSString *strMenuType = foodCheckList?@"ทั้งหมด":menuType.name;
+    NSString *sequenceNo = [NSString stringWithFormat:@"%ld",orderKitchen.sequenceNo];
+    NSString *sendToKitchenTime = [Utility dateToString:orderKitchen.modifiedDate toFormat:@"yyyy-MM-dd HH:mm"];
+    
+    
+    
+    
+    //items
+    float sumQuantity = 0;
+    float quantity = 0;
+    NSMutableArray *items = [[NSMutableArray alloc]init];
+    for(OrderKitchen *item in orderKitchenList)
+    {
+        NSMutableDictionary *dicItem = [[NSMutableDictionary alloc]init];
+        
+        OrderTaking *orderTaking = [OrderTaking getOrderTaking:item.orderTakingID];
+        quantity = orderKitchen.quantity == 0?orderTaking.quantity:orderKitchen.quantity;
+        NSString *strQuantity = [Utility formatDecimal:quantity withMinFraction:0 andMaxFraction:0];
+        Menu *menu = [Menu getMenu:orderTaking.menuID];
+        NSString *removeTypeNote = [OrderNote getNoteNameListInTextWithOrderTakingID:item.orderTakingID noteType:-1];
+        NSString *addTypeNote = [OrderNote getNoteNameListInTextWithOrderTakingID:item.orderTakingID noteType:1];
+        
+        
+        if(printOrderKitchenByItem)
+        {
+            strQuantity = @"1";
+        }
+        
+        
+        //take away
+        NSString *strTakeAway = @"";
+        if(orderTaking.takeAway)
+        {
+            strTakeAway = @"ใส่ห่อ";
+        }
+        
+        [dicItem setValue:strQuantity forKey:@"quantity"];
+        [dicItem setValue:strTakeAway forKey:@"takeAway"];
+        [dicItem setValue:menu.titleThai forKey:@"menu"];
+        [dicItem setValue:removeTypeNote forKey:@"removeTypeNote"];
+        [dicItem setValue:addTypeNote forKey:@"addTypeNote"];
+        [dicItem setValue:@"" forKey:@"pro"];
+        [dicItem setValue:@"" forKey:@"totalPricePerItem"];
+        [items addObject:dicItem];
+        
+        sumQuantity += quantity;
+    }
+    if(printOrderKitchenByItem)
+    {
+        sumQuantity = 1;
+    }
+    NSString *strTotalQuantity = [Utility formatDecimal:sumQuantity withMinFraction:0 andMaxFraction:0];
+    
+    
+    
+    //create html invoice
+    InvoiceComposer *invoiceComposer = [[InvoiceComposer alloc]init];
+    NSString *invoiceHtml = [invoiceComposer renderKitchenBillWithRestaurantName:restaurantName customerType:customerType waiterName:waiterName menuType:strMenuType sequenceNo:sequenceNo sendToKitchenTime:sendToKitchenTime totalQuantity:strTotalQuantity items:items];
+    
+    
+    
+    
+    UIWebView *webView = _webViewList[orderNo];
+    webView.tag = orderNo;
+    [webView loadHTMLString:invoiceHtml baseURL:NULL];
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)aWebView
+{
+    if(receiptKitchenBill)
+    {
+        _countingPrint++;
+        NSString *strFileName = [NSString stringWithFormat:@"kitchenBill%ld.pdf",aWebView.tag];
+        NSString *pdfFileName = [self createPDFfromUIView:aWebView saveToDocumentsWithFileName:strFileName];
+        
+        
+        
+        
+        //convert pdf to uiimage
+        NSURL *pdfUrl = [NSURL fileURLWithPath:pdfFileName];
+        UIImage *pdfImagePrint = [self pdfToImage:pdfUrl];
+        UIImageWriteToSavedPhotosAlbum(pdfImagePrint, nil, nil, nil);
+        
+        
+        NSLog(@"path: %@",pdfFileName);
+        //        //TEST
+        //        [self removeOverlayViews];
+        //        return;
+        
+        
+        NSString *printBill = [Setting getSettingValueWithKeyName:@"printBill"];
+        if(![printBill integerValue])
+        {
+            if(_countingPrint == _countPrint)
+            {
+                //                [self hideStatus];
+                [self removeOverlayViews];
+                [self reloadTableView];
+                //                [self loadViewProcess];
+                //            [self performSegueWithIdentifier:@"segUnwindToCustomerTable" sender:self];
+            }
+        }
+        else
+        {
+            //print process
+            NSString *portName = [_printBillWithPortName valueForKey:[NSString stringWithFormat:@"%ld",(long)aWebView.tag]];
+            [self doPrintProcess:pdfImagePrint portName:portName];
+        }
+    }
+}
+
+-(void)doPrintProcessInCustomView:(UIImage *)image portName:(NSString *)portName
+{
+    NSData *commands = nil;
+    
+    ISCBBuilder *builder = [StarIoExt createCommandBuilder:[AppDelegate getEmulation]];
+    
+    [builder beginDocument];
+    
+    [builder appendBitmap:image diffusion:NO];
+    
+    [builder appendCutPaper:SCBCutPaperActionPartialCutWithFeed];
+    
+    [builder endDocument];
+    
+    commands = [builder.commands copy];
+    
+    
+    //    NSString *portName     = [AppDelegate getPortName];
+    NSString *portSettings = [AppDelegate getPortSettings];
+    
+    [Communication sendCommands:commands portName:portName portSettings:portSettings timeout:10000 completionHandler:^(BOOL result, NSString *title, NSString *message)
+     {     // 10000mS!!!
+         if(![message isEqualToString:@"พิมพ์สำเร็จ"])
+         {
+             UIAlertController* alert = [UIAlertController alertControllerWithTitle:title
+                                                                            message:message
+                                                                     preferredStyle:UIAlertControllerStyleAlert];
+             
+             UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                                                   handler:^(UIAlertAction * action)
+                                             {
+                                                 if(_countingPrint == _countPrint)
+                                                 {
+                                                     [self hideStatus];
+                                                     [self removeOverlayViews];
+                                                     //                                                     [self loadViewProcess];
+                                                     //                                                     [self performSegueWithIdentifier:@"segUnwindToCustomerTable" sender:self];
+                                                 }
+                                             }];
+             
+             [alert addAction:defaultAction];
+             [self presentViewController:alert animated:YES completion:nil];
+         }
+         else
+         {
+             if(_countingPrint == _countPrint)
+             {
+                 [self hideStatus];
+                 [self removeOverlayViews];
+                 [self reloadTableView];
+                 
+                 //update receipt status
+                 //                 [self loadViewProcess];
+                 //                 [self performSegueWithIdentifier:@"segUnwindToCustomerTable" sender:self];
+             }
+         }
+     }];
+}
+
+-(BOOL)checkPrinterStatus
+{
+    [self loadingOverlayView];
+    BOOL result = NO;
+    SMPort *port = nil;
+    
+    
+    NSArray *_printerCodeList = @[@"Kitchen",@"Kitchen2",@"Drinks",@"Cashier"];
+    for(int i=0; i<[_printerCodeList count]; i++)
+    {
+        Printer *printer = [Printer getPrinterWithCode:_printerCodeList[i]];
+        NSString *strPortName = printer.portName;
+        if([Utility isStringEmpty:strPortName])
+        {
+            //            [_printerStatusList addObject:@""];
+            printer.printerStatus = 0;
+            continue;
+        }
+        
+        //check status
+        @try
+        {
+            while (YES)
+            {
+                //                port = [SMPort getPort:[AppDelegate getPortName] :[AppDelegate getPortSettings] :10000];     // 10000mS!!!
+                port = [SMPort getPort:strPortName :[AppDelegate getPortSettings] :10000];     // 10000mS!!!
+                if (port == nil)
+                {
+                    printer.printerStatus = 0;
+                    break;
+                }
+                
+                StarPrinterStatus_2 printerStatus;
+                
+                [port getParsedStatus:&printerStatus :2];
+                
+                if (printerStatus.offline == SM_TRUE) {
+                    [_statusCellArray addObject:@[@"Online", @"Offline", [UIColor redColor]]];
+                    //                    [_printerStatusList addObject:@""];
+                    printer.printerStatus = 0;
+                }
+                else {
+                    [_statusCellArray addObject:@[@"Online", @"Online",  [UIColor blueColor]]];
+                    //                    [_printerStatusList addObject:@"Online"];
+                    printer.printerStatus = 1;
+                }
+                
+                if (printerStatus.offline == SM_TRUE) {
+                    [_firmwareInfoCellArray addObject:@[@"Unable to get F/W info. from an error.", @"", [UIColor redColor]]];
+                    
+                    result = YES;
+                    break;
+                }
+                else {
+                    NSDictionary *firmwareInformation = [port getFirmwareInformation];
+                    
+                    if (firmwareInformation == nil) {
+                        break;
+                    }
+                    
+                    [_firmwareInfoCellArray addObject:@[@"Model Name",       [firmwareInformation objectForKey:@"ModelName"],       [UIColor blueColor]]];
+                    
+                    [_firmwareInfoCellArray addObject:@[@"Firmware Version", [firmwareInformation objectForKey:@"FirmwareVersion"], [UIColor blueColor]]];
+                    
+                    result = YES;
+                    break;
+                }
+            }
+        }
+        @catch (PortException *exc) {
+        }
+        @finally {
+            if (port != nil) {
+                [SMPort releasePort:port];
+                
+                port = nil;
+            }
+        }
+    }
+    
+    
+    if (result == NO)
+    {
+        
+        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Fail to Open Port"
+                                                                       message:@""
+                                                                preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                                              handler:^(UIAlertAction * action)
+                                        {
+                                            
+                                        }];
+        
+        [alert addAction:defaultAction];
+        [self presentViewController:alert animated:YES completion:nil];
+        
+    }
+    
+    [self removeOverlayViews];
+    return result;
+}
+//\\\\\print kitchen bill-----------------------------
+
+
+-(void)reloadTableView
+{
+    
 }
 @end
 

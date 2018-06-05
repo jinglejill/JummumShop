@@ -23,7 +23,21 @@
 @interface AppDelegate (){
     HomeModel *_homeModel;
 }
+//printer part*******
+@property (nonatomic, copy) NSString *portName;
+@property (nonatomic, copy) NSString *portSettings;
+@property (nonatomic, copy) NSString *modelName;
+@property (nonatomic, copy) NSString *macAddress;
 
+@property (nonatomic) StarIoExtEmulation emulation;
+@property (nonatomic) BOOL               cashDrawerOpenActiveHigh;
+@property (nonatomic) NSInteger          allReceiptsSettings;
+@property (nonatomic) NSInteger          selectedIndex;
+@property (nonatomic) LanguageIndex      selectedLanguage;
+@property (nonatomic) PaperSizeIndex     selectedPaperSize;
+
+- (void)loadParam;
+//*******
 @end
 
 extern BOOL globalRotateFromSeg;
@@ -72,6 +86,13 @@ void myExceptionHandler(NSException *exception)
 //    strTrimText = [strTrimText substringWithRange:needleRange];
 //    NSLog(@"test trim string: %@",strTrimText);
     
+    //printer part*******
+    [self loadParam];
+    
+    _selectedIndex     = 0;
+    _selectedLanguage  = LanguageIndexEnglish;
+    _selectedPaperSize = PaperSizeIndexThreeInch;
+    //*******
     
     UIBarButtonItem *barButtonAppearance = [UIBarButtonItem appearance];
     [barButtonAppearance setBackgroundImage:[self imageWithColor:[UIColor clearColor]] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault]; // Change to your colour
@@ -115,7 +136,7 @@ void myExceptionHandler(NSException *exception)
     }
     
     
-    [[NSUserDefaults standardUserDefaults] setValue:@"JUMMUM2" forKey:BRANCH];
+//    [[NSUserDefaults standardUserDefaults] setValue:@"JUMMUM2" forKey:BRANCH];
     
     
     
@@ -720,4 +741,186 @@ void myExceptionHandler(NSException *exception)
     } );
 }
 
+//printer part******
+- (void)loadParam {
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    
+    [userDefaults registerDefaults:[NSDictionary dictionaryWithObject:@""                           forKey:@"portName"]];
+    [userDefaults registerDefaults:[NSDictionary dictionaryWithObject:@""                           forKey:@"portSettings"]];
+    [userDefaults registerDefaults:[NSDictionary dictionaryWithObject:@""                           forKey:@"modelName"]];
+    [userDefaults registerDefaults:[NSDictionary dictionaryWithObject:@""                           forKey:@"macAddress"]];
+    [userDefaults registerDefaults:[NSDictionary dictionaryWithObject:@(StarIoExtEmulationStarPRNT) forKey:@"emulation"]];
+    [userDefaults registerDefaults:[NSDictionary dictionaryWithObject:@YES                          forKey:@"cashDrawerOpenActiveHigh"]];
+    [userDefaults registerDefaults:[NSDictionary dictionaryWithObject:@0x00000007                   forKey:@"allReceiptsSettings"]];
+    
+    _portName                 = [userDefaults stringForKey :@"portName"];
+    _portSettings             = [userDefaults stringForKey :@"portSettings"];
+    _modelName                = [userDefaults stringForKey :@"modelName"];
+    _macAddress               = [userDefaults stringForKey :@"macAddress"];
+    _emulation                = [userDefaults integerForKey:@"emulation"];
+    _cashDrawerOpenActiveHigh = [userDefaults boolForKey   :@"cashDrawerOpenActiveHigh"];
+    _allReceiptsSettings      = [userDefaults integerForKey:@"allReceiptsSettings"];
+}
+
++ (NSString *)getPortName {
+    AppDelegate *delegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
+    
+    return delegate.portName;
+}
+
++ (void)setPortName:(NSString *)portName {
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    
+    AppDelegate *delegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
+    
+    delegate.portName = portName;
+    
+    [userDefaults setObject:delegate.portName forKey:@"portName"];
+    
+    [userDefaults synchronize];
+}
+
++ (NSString*)getPortSettings {
+    AppDelegate *delegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
+    
+    return delegate.portSettings;
+}
+
++ (void)setPortSettings:(NSString *)portSettings {
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    
+    AppDelegate *delegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
+    
+    delegate.portSettings = portSettings;
+    
+    [userDefaults setObject :delegate.portSettings forKey:@"portSettings"];
+    
+    [userDefaults synchronize];
+}
+
++ (NSString *)getModelName {
+    AppDelegate *delegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
+    
+    return delegate.modelName;
+}
+
++ (void)setModelName:(NSString *)modelName {
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    
+    AppDelegate *delegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
+    
+    delegate.modelName = modelName;
+    
+    [userDefaults setObject:delegate.modelName forKey:@"modelName"];
+    
+    [userDefaults synchronize];
+}
+
++ (NSString *)getMacAddress {
+    AppDelegate *delegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
+    
+    return delegate.macAddress;
+}
+
++ (void)setMacAddress:(NSString *)macAddress {
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    
+    AppDelegate *delegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
+    
+    delegate.macAddress = macAddress;
+    
+    [userDefaults setObject:delegate.macAddress forKey:@"macAddress"];
+    
+    [userDefaults synchronize];
+}
+
++ (StarIoExtEmulation)getEmulation {
+    AppDelegate *delegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
+    
+    return delegate.emulation;
+}
+
++ (void)setEmulation:(StarIoExtEmulation)emulation {
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    
+    AppDelegate *delegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
+    
+    delegate.emulation = emulation;
+    
+    [userDefaults setInteger:delegate.emulation forKey:@"emulation"];
+    
+    [userDefaults synchronize];
+}
+
++ (BOOL)getCashDrawerOpenActiveHigh {
+    AppDelegate *delegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
+    
+    return delegate.cashDrawerOpenActiveHigh;
+}
+
++ (void)setCashDrawerOpenActiveHigh:(BOOL)activeHigh {
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    
+    AppDelegate *delegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
+    
+    delegate.cashDrawerOpenActiveHigh = activeHigh;
+    
+    [userDefaults setInteger:delegate.cashDrawerOpenActiveHigh forKey:@"cashDrawerOpenActiveHigh"];
+    
+    [userDefaults synchronize];
+}
+
++ (NSInteger)getAllReceiptsSettings {
+    AppDelegate *delegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
+    
+    return delegate.allReceiptsSettings;
+}
+
++ (void)setAllReceiptsSettings:(NSInteger)allReceiptsSettings {
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    
+    AppDelegate *delegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
+    
+    delegate.allReceiptsSettings = allReceiptsSettings;
+    
+    [userDefaults setInteger:delegate.allReceiptsSettings forKey:@"allReceiptsSettings"];
+    
+    [userDefaults synchronize];
+}
+
++ (NSInteger)getSelectedIndex {
+    AppDelegate *delegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
+    
+    return delegate.selectedIndex;
+}
+
++ (void)setSelectedIndex:(NSInteger)index {
+    AppDelegate *delegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
+    
+    delegate.selectedIndex = index;
+}
+
++ (LanguageIndex)getSelectedLanguage {
+    AppDelegate *delegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
+    
+    return delegate.selectedLanguage;
+}
+
++ (void)setSelectedLanguage:(LanguageIndex)index {
+    AppDelegate *delegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
+    
+    delegate.selectedLanguage = index;
+}
+
++ (PaperSizeIndex)getSelectedPaperSize {
+    AppDelegate *delegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
+    
+    return delegate.selectedPaperSize;
+}
+
++ (void)setSelectedPaperSize:(PaperSizeIndex)index {
+    AppDelegate *delegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
+    
+    delegate.selectedPaperSize = index;
+}
 @end

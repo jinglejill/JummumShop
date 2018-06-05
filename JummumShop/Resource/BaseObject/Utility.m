@@ -178,9 +178,6 @@ extern NSString *globalModifiedUser;
         case urlPushSyncUpdateByDeviceToken:
             url = @"/JMM/JUMMUM2/JMMPushSyncUpdateByDeviceToken.php";
             break;
-        case urlDeviceInsert:
-            url = @"/JMM/JUMMUM2/FFDDeviceInsert.php";
-            break;
         case urlPushSyncUpdateTimeSynced:
             url = @"/JMM/JUMMUM2/JMMPushSyncUpdateTimeSynced.php";
             break;
@@ -272,7 +269,7 @@ extern NSString *globalModifiedUser;
             url = @"/JMM/JUMMUM2/FacebookCommentInsertList.php";
             break;
         case urlUserAccountValidate:
-            url = @"/JMM/JUMMUM2/JMMUserAccountValidate.php";
+            url = @"/JMM/JUMMUMSHOP/JMSUserAccountValidate.php";
             break;
         case urlUserAccountGet:
             url = @"/JMM/JUMMUM2/JMMUserAccountGet.php";
@@ -281,10 +278,10 @@ extern NSString *globalModifiedUser;
             url = @"/JMM/JUMMUM2/JMMUserAccountInsert.php";
             break;
         case urlTermsOfService:
-            url = @"/JMM/JUMMUM2/JMMTermsOfService.html";
+            url = @"/JMM/JUMMUMSHOP/HtmlTermsOfService.html";
             break;
         case urlUserAccountForgotPasswordInsert:
-            url = @"/JMM/JUMMUM2/JMMUserAccountForgotPasswordInsert.php";
+            url = @"/JMM/JUMMUMSHOP/JMSUserAccountForgotPasswordInsert.php";
             break;
         case urlRewardPointInsert:
             url = @"/JMM/JUMMUM2/JMMRewardPointInsert.php";
@@ -454,9 +451,15 @@ extern NSString *globalModifiedUser;
         case urlReceiptUpdate:
             url = @"/JMM/JUMMUM2/JMMReceiptUpdate.php";
             break;
-//        case urlTestPasswordInsertList:
-//            url = @"/JMM/JUMMUM2/JMMTestPasswordInsertList.php";
-//            break;
+        case urlCredentialsDbGet:
+            url = @"/JMM/JUMMUMSHOP/JMSCredentialsDbGet.php";
+            break;
+        case urlCredentialsValidate:
+            url = @"/JMM/JUMMUMSHOP/JMSCredentialsValidate.php";
+            break;
+        case urlDeviceInsert:
+            url = @"/JMM/JUMMUMSHOP/JMSDeviceInsert.php";
+            break;
         default:
             break;
     }
@@ -938,8 +941,8 @@ extern NSString *globalModifiedUser;
 
 + (NSString *)getMasterClassName:(NSInteger)i
 {
-    NSArray *arrMasterClass = @[@"Branch",@"CustomerTable",@"Setting"];
-    
+//    NSArray *arrMasterClass = @[@"Branch",@"CustomerTable",@"Setting"];
+    NSArray *arrMasterClass = @[@"Setting",@"CustomerTable",@"MenuType",@"Menu",@"NoteType",@"Note",@"Receipt",@"OrderTaking",@"OrderNote"];
     
     return arrMasterClass[i];
 }
@@ -1782,6 +1785,15 @@ extern NSString *globalModifiedUser;
     return [NSString stringWithFormat:@"XXXX XXXX XXXX %@",last4Digit];
 }
 
++ (void)setBranchID:(NSInteger)branchID
+{
+    [[NSUserDefaults standardUserDefaults] setInteger:branchID forKey:@"branchID"];
+}
+
++ (NSInteger) branchID
+{
+    return [[NSUserDefaults standardUserDefaults] integerForKey:@"branchID"];
+}
 @end
 
 

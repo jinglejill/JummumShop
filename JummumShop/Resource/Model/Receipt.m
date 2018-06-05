@@ -547,4 +547,44 @@
     }
     return 0;
 }
+
++(Receipt *)getReceipt:(NSInteger)receiptID branchID:(NSInteger)branchID
+{
+    NSMutableArray *dataList = [SharedReceipt sharedReceipt].receiptList;
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"_receiptID = %ld and _branchID = %ld",receiptID,branchID];
+    NSArray *filterArray = [dataList filteredArrayUsingPredicate:predicate];
+    if([filterArray count] > 0)
+    {
+        return filterArray[0];
+    }
+    return nil;
+}
+
++(NSMutableArray *)getReceiptListWithStatus:(NSInteger)status branchID:(NSInteger)branchID
+{
+    NSMutableArray *dataList = [SharedReceipt sharedReceipt].receiptList;
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"_status = %ld and _branchID = %ld",status,branchID];
+    NSArray *filterArray = [dataList filteredArrayUsingPredicate:predicate];
+    
+    return [filterArray mutableCopy];
+}
+
++(void)updateStatus:(Receipt *)receipt
+{
+    Receipt *selectedReceipt = [self getReceipt:receipt.receiptID branchID:receipt.branchID];
+    selectedReceipt.status = receipt.status;
+    selectedReceipt.statusRoute = receipt.statusRoute;
+}
+
++(NSMutableArray *)sortListDesc:(NSMutableArray *)receiptList
+{
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"_receiptDate" ascending:NO];
+    NSSortDescriptor *sortDescriptor2 = [[NSSortDescriptor alloc] initWithKey:@"_receiptID" ascending:NO];
+    NSArray *sortDescriptors = [NSArray arrayWithObjects:sortDescriptor,sortDescriptor2, nil];
+    NSArray *sortArray = [receiptList sortedArrayUsingDescriptors:sortDescriptors];
+    
+    
+    return [sortArray mutableCopy];
+}
+
 @end

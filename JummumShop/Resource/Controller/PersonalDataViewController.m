@@ -73,27 +73,33 @@ static NSString * const reuseIdentifierLabelLabel = @"CustomTableViewCellLabelLa
         {
             UserAccount *userAccount = [UserAccount getCurrentUserAccount];
             cell.lblText.text = @"อีเมลล์";
+            cell.lblText.textColor = cSystem1;
             [cell.lblText sizeToFit];
             cell.lblTextWidthConstant.constant = cell.lblText.frame.size.width;
             cell.lblValue.text = userAccount.email;
+            cell.lblValue.textColor = cSystem4;
         }
             break;
         case 1:
         {
             UserAccount *userAccount = [UserAccount getCurrentUserAccount];
             cell.lblText.text = @"ชื่อ";
+            cell.lblText.textColor = cSystem1;
             [cell.lblText sizeToFit];
             cell.lblTextWidthConstant.constant = cell.lblText.frame.size.width;
             cell.lblValue.text = userAccount.fullName;
+            cell.lblValue.textColor = cSystem4;
         }
             break;
         case 2:
         {
             UserAccount *userAccount = [UserAccount getCurrentUserAccount];
             cell.lblText.text = @"วันเกิด";
+            cell.lblText.textColor = cSystem1;
             [cell.lblText sizeToFit];
             cell.lblTextWidthConstant.constant = cell.lblText.frame.size.width;
             cell.lblValue.text = [Utility dateToString:userAccount.birthDate toFormat:@"d MMM yyyy"];
+            cell.lblValue.textColor = cSystem4;
         }
             break;
         

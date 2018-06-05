@@ -340,4 +340,53 @@
 {
     return [SharedOrderNote sharedOrderNote].orderNoteList;
 }
+
++(NSString *)getNoteNameListInTextWithOrderTakingID:(NSInteger)orderTakingID noteType:(NSInteger)noteType branchID:(NSInteger)branchID
+{
+    int i=0;
+    NSString *strNote = @"";
+    NSMutableArray *noteList = [OrderNote getNoteListWithOrderTakingID:orderTakingID noteType:noteType branchID:branchID];
+    if([noteList count] > 0)
+    {
+        for(Note *item in noteList)
+        {
+            if(i == [noteList count]-1)
+            {
+                strNote = [NSString stringWithFormat:@"%@%@",strNote,item.name];
+            }
+            else
+            {
+                strNote = [NSString stringWithFormat:@"%@%@,",strNote,item.name];
+            }
+            i++;
+        }
+    }
+    return strNote;
+}
+
++(NSMutableArray *)getNoteListWithOrderTakingID:(NSInteger)orderTakingID noteType:(NSInteger)noteType branchID:(NSInteger)branchID
+{
+    NSMutableArray *dataList = [SharedOrderNote sharedOrderNote].orderNoteList;
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"_orderTakingID = %ld and _branchID = %ld",orderTakingID,branchID];
+    NSArray *filterArray = [dataList filteredArrayUsingPredicate:predicate];
+    
+    
+    NSMutableArray *noteList = [[NSMutableArray alloc]init];
+    for(OrderNote *item in filterArray)
+    {
+        Note *note = [Note getNote:item.noteID];
+        if(note.type == noteType)
+        {
+            [noteList addObject:note];
+        }
+    }
+    
+    
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"_orderNo" ascending:YES];
+    NSArray *sortDescriptors = [NSArray arrayWithObjects:sortDescriptor, nil];
+    NSArray *sortArray = [noteList sortedArrayUsingDescriptors:sortDescriptors];
+    
+    
+    return [sortArray mutableCopy];
+}
 @end

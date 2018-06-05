@@ -66,7 +66,7 @@
     // Do any additional setup after loading the view.
     
     
-    [self webViewLoadUrl:[Utility url:urlTermsOfService]];
+    [self webViewLoadUrl:[Utility appendRandomParam:[Utility url:urlTermsOfService]]];
     [self addWebView:webViewContainer];
 }
 

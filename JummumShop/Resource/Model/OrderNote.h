@@ -17,6 +17,9 @@
 @property (nonatomic) NSInteger replaceSelf;
 @property (nonatomic) NSInteger idInserted;
 
+
+@property (nonatomic) NSInteger branchID;
+
 -(OrderNote *)initWithOrderTakingID:(NSInteger)orderTakingID noteID:(NSInteger)noteID;
 +(NSInteger)getNextID;
 +(void)addObject:(OrderNote *)orderNote;
@@ -36,5 +39,6 @@
 +(NSMutableArray *)getOrderNoteListWithOrderTakingList:(NSMutableArray *)orderTakingList;
 +(void)removeAllObjects;
 +(NSMutableArray *)getOrderNoteList;
-
++(NSString *)getNoteNameListInTextWithOrderTakingID:(NSInteger)orderTakingID noteType:(NSInteger)noteType branchID:(NSInteger)branchID;
++(NSMutableArray *)getNoteListWithOrderTakingID:(NSInteger)orderTakingID noteType:(NSInteger)noteType branchID:(NSInteger)branchID;
 @end

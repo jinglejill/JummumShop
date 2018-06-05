@@ -875,4 +875,13 @@
     NSMutableArray *dataList = [SharedOrderTaking sharedOrderTaking].orderTakingList;
     [dataList removeAllObjects];
 }
+
++(NSMutableArray *)getOrderTakingListWithReceiptID:(NSInteger)receiptID branchID:(NSInteger)branchID
+{
+    NSMutableArray *dataList = [SharedOrderTaking sharedOrderTaking].orderTakingList;
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"_receiptID = %ld and _branchID = %ld",receiptID,branchID];
+    NSArray *filterArray = [dataList filteredArrayUsingPredicate:predicate];
+    
+    return [filterArray mutableCopy];
+}
 @end

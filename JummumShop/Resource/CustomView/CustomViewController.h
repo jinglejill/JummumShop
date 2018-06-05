@@ -21,6 +21,8 @@
 @property (nonatomic,retain) UIImageView *removedNotiView;
 @property (nonatomic,retain) UILabel *lblAlertMsg;
 @property (nonatomic,retain) UILabel *lblWaiting;
+@property (nonatomic) NSInteger receiptKitchenBill;
+@property (nonatomic,retain) HomeModel *homeModelPrintKitchenBill;
 
 
 -(void)setCurrentVc;
@@ -65,4 +67,6 @@
 -(UIImage *)combineImage:(UIImage *)image1 image2:(UIImage *)image2;
 -(UIImage *)imageFromView:(UIView *)view;
 -(NSAttributedString *)setAttributedString:(NSString *)title text:(NSString *)text;
+-(void)printReceiptKitchenBill:(NSMutableArray *)receiptList;
+-(void)doPrintProcess:(UIImage *)image portName:(NSString *)portName;
 @end
