@@ -109,6 +109,7 @@ static NSString * const reuseIdentifierLabelLabel = @"CustomTableViewCellLabelLa
     }
     else
     {
+        tableView.backgroundView = nil;
         return 1;
     }
 }

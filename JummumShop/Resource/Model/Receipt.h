@@ -80,5 +80,7 @@
 +(Receipt *)getReceipt:(NSInteger)receiptID branchID:(NSInteger)branchID;
 +(NSMutableArray *)getReceiptListWithStatus:(NSInteger)status branchID:(NSInteger)branchID;
 +(void)updateStatus:(Receipt *)receipt;
-+(NSMutableArray *)sortListDesc:(NSMutableArray *)receiptList;
+//+(NSMutableArray *)sortListDesc:(NSMutableArray *)receiptList;
++(NSMutableArray *)sortListAsc:(NSMutableArray *)receiptList;
++(NSDate *)getMaxModifiedDateWithBranchID:(NSInteger)branchID;
 @end

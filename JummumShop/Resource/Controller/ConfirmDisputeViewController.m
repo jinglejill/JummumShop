@@ -22,6 +22,8 @@
 @synthesize vwAlert;
 @synthesize fromType;
 @synthesize receipt;
+@synthesize btnConfirm;
+@synthesize btnCancel;
 
 
 -(void)viewDidLayoutSubviews
@@ -29,6 +31,23 @@
     [super viewDidLayoutSubviews];
     lblDisputeMessageHeight.constant = lblDisputeMessage.frame.size.height;
     vwAlertHeight.constant = 80+38+38+44+lblDisputeMessage.frame.size.height;
+    [self setButtonDesign:btnConfirm];
+    [self setButtonDesign:btnCancel];
+    self.backgroundView.backgroundColor = [UIColor clearColor];
+    
+    
+    CGFloat red, green, blue, alpha;
+    UIColor *color = self.view.backgroundColor;
+    
+    [color getRed: &red
+            green: &green
+             blue: &blue
+            alpha: &alpha];
+    NSLog(@"red = %f. Green = %f. Blue = %f. Alpha = %f",
+          red,
+          green,
+          blue,
+          alpha);
 }
 
 - (void)viewDidLoad
@@ -48,14 +67,14 @@
         strMessageHeader = [Setting getSettingValueWithKeyName:@"MessageHeaderDispute"];
         strMessageSubTitle = [Setting getSettingValueWithKeyName:@"MessageSubTitleDispute"];
     }
-    UIFont *font = [UIFont boldSystemFontOfSize:22];
-    UIColor *color = [UIColor darkGrayColor];
+    UIFont *font = [UIFont fontWithName:@"Prompt-SemiBold" size:22];
+    UIColor *color = cSystem4;
     NSDictionary *attribute = @{NSForegroundColorAttributeName:color ,NSFontAttributeName: font};
     NSMutableAttributedString *attrStringHeader = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@\n\n",strMessageHeader] attributes:attribute];
     
     
-    UIFont *font2 = [UIFont systemFontOfSize:15];
-    UIColor *color2 = [UIColor darkGrayColor];
+    UIFont *font2 = [UIFont fontWithName:@"Prompt-Regular" size:15];
+    UIColor *color2 = cSystem4;
     NSDictionary *attribute2 = @{NSForegroundColorAttributeName:color2 ,NSFontAttributeName: font2};
     NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:strMessageSubTitle attributes:attribute2];
     

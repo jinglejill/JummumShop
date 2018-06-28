@@ -7,6 +7,7 @@
 //
 
 #import "CustomViewController.h"
+#import "CredentialsDb.h"
 #import <WebKit/WebKit.h>
 
 
@@ -17,6 +18,7 @@
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *btnAcceptWidthConstant;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *btnDeclineWidthConstant;
 @property (nonatomic) NSString *username;
+@property (strong, nonatomic) CredentialsDb *credentialsDb;
 - (IBAction)goBack:(id)sender;
 - (IBAction)acceptTos:(id)sender;
 - (IBAction)declineTos:(id)sender;

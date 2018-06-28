@@ -120,14 +120,14 @@ static NSString * const reuseIdentifierHeaderFooterOkCancel = @"CustomTableViewH
     tbvData.delegate = self;
     tbvData.dataSource = self;
     tbvData.separatorColor = [UIColor clearColor];
-    tbvData.backgroundColor = [UIColor groupTableViewBackgroundColor];
+    tbvData.backgroundColor = [UIColor whiteColor];
     _dispute = [[Dispute alloc]init];
     
     
     
     tbvAction.delegate = self;
     tbvAction.dataSource = self;
-    tbvAction.backgroundColor = [UIColor groupTableViewBackgroundColor];
+    tbvAction.backgroundColor = [UIColor whiteColor];
     tbvAction.scrollEnabled = NO;
     
     {
@@ -156,6 +156,16 @@ static NSString * const reuseIdentifierHeaderFooterOkCancel = @"CustomTableViewH
         lblTitle.text = @"Open dispute";
         [self.homeModel downloadItems:dbDisputeReasonList withData:@(2)];
     }
+    else if(fromType == 3)
+    {
+        lblTitle.text = @"Claim & Refund";
+        [self.homeModel downloadItems:dbDisputeReasonList withData:@(3)];
+    }
+    else if(fromType == 4)
+    {
+        lblTitle.text = @"Claim & Refund";
+        [self.homeModel downloadItems:dbDisputeReasonList withData:@(4)];
+    }
   
     
     
@@ -177,14 +187,22 @@ static NSString * const reuseIdentifierHeaderFooterOkCancel = @"CustomTableViewH
     
     if([tableView isEqual:tbvData])
     {
-        if(fromType == 1)
+        if(fromType == 1 || fromType == 3)
         {
             return 3;
         }
-        else if(fromType == 2)
+        else if(fromType == 2 || fromType == 4)
         {
             return 5;
         }
+//        else if(fromType == 3)
+//        {
+//            return 3;
+//        }
+//        else if(fromType == 4)
+//        {
+//            return 5;
+//        }
     }
     else
     {
@@ -200,7 +218,7 @@ static NSString * const reuseIdentifierHeaderFooterOkCancel = @"CustomTableViewH
     
     if([tableView isEqual:tbvData])
     {
-        if(fromType == 1)
+        if(fromType == 1 || fromType == 3)
         {
             if(item == 0)
             {
@@ -208,12 +226,12 @@ static NSString * const reuseIdentifierHeaderFooterOkCancel = @"CustomTableViewH
                 if (!cell) {
                     cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
                 }
-                cell.backgroundColor = [UIColor groupTableViewBackgroundColor];
+                cell.backgroundColor = [UIColor whiteColor];
                 
                 
                 cell.textLabel.text = @"กรุณากรอกรายละเอียดด้านล่างนี้";
-                cell.textLabel.font = [UIFont systemFontOfSize:15];
-                cell.textLabel.textColor = [UIColor lightGrayColor];
+                cell.textLabel.font = [UIFont fontWithName:@"Prompt-Regular" size:15];
+                cell.textLabel.textColor = cSystem4;;
                 
                 
                 return cell;
@@ -228,14 +246,14 @@ static NSString * const reuseIdentifierHeaderFooterOkCancel = @"CustomTableViewH
                 
                 
                 
-                UIFont *font = [UIFont systemFontOfSize:15];
-                UIColor *color = mRed;
+                UIFont *font = [UIFont fontWithName:@"Prompt-Regular" size:15];
+                UIColor *color = cSystem2;
                 NSDictionary *attribute = @{NSForegroundColorAttributeName:color ,NSFontAttributeName: font};
                 NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:@"* " attributes:attribute];
                 
                 
-                UIFont *font2 = [UIFont systemFontOfSize:15];
-                UIColor *color2 = [UIColor darkGrayColor];
+                UIFont *font2 = [UIFont fontWithName:@"Prompt-Regular" size:15];
+                UIColor *color2 = cSystem4;
                 NSDictionary *attribute2 = @{NSForegroundColorAttributeName:color2 ,NSFontAttributeName: font2};
                 NSMutableAttributedString *attrString2 = [[NSMutableAttributedString alloc] initWithString:strTitle attributes:attribute2];
                 
@@ -268,14 +286,14 @@ static NSString * const reuseIdentifierHeaderFooterOkCancel = @"CustomTableViewH
                 
                 
                 
-                UIFont *font = [UIFont systemFontOfSize:15];
-                UIColor *color = mRed;
+                UIFont *font = [UIFont fontWithName:@"Prompt-Regular" size:15];
+                UIColor *color = cSystem2;
                 NSDictionary *attribute = @{NSForegroundColorAttributeName:color ,NSFontAttributeName: font};
                 NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:@"* " attributes:attribute];
                 
                 
-                UIFont *font2 = [UIFont systemFontOfSize:15];
-                UIColor *color2 = [UIColor darkGrayColor];
+                UIFont *font2 = [UIFont fontWithName:@"Prompt-Regular" size:15];
+                UIColor *color2 = cSystem4;
                 NSDictionary *attribute2 = @{NSForegroundColorAttributeName:color2 ,NSFontAttributeName: font2};
                 NSMutableAttributedString *attrString2 = [[NSMutableAttributedString alloc] initWithString:strTitle attributes:attribute2];
                 
@@ -287,6 +305,7 @@ static NSString * const reuseIdentifierHeaderFooterOkCancel = @"CustomTableViewH
                 
                 cell.txtValue.tag = 4;
                 cell.txtValue.delegate = self;
+                cell.txtValue.placeholder = @"xxx-xxx-xxx";
                 cell.txtValue.text = _dispute.phoneNo;
                 cell.txtValue.keyboardType = UIKeyboardTypePhonePad;
                 cell.lblRemark.text = strRemark;
@@ -296,7 +315,7 @@ static NSString * const reuseIdentifierHeaderFooterOkCancel = @"CustomTableViewH
                 return cell;
             }
         }
-        else if(fromType == 2)
+        else if(fromType == 2 || fromType == 4)
         {
             if(item == 0)
             {
@@ -304,12 +323,12 @@ static NSString * const reuseIdentifierHeaderFooterOkCancel = @"CustomTableViewH
                 if (!cell) {
                     cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
                 }
-                cell.backgroundColor = [UIColor groupTableViewBackgroundColor];
+                cell.backgroundColor = [UIColor whiteColor];
                 
                 
                 cell.textLabel.text = @"กรุณากรอกรายละเอียดด้านล่างนี้";
-                cell.textLabel.font = [UIFont systemFontOfSize:15];
-                cell.textLabel.textColor = [UIColor lightGrayColor];
+                cell.textLabel.font = [UIFont fontWithName:@"Prompt-Regular" size:15];
+                cell.textLabel.textColor = mPlaceHolder;
                 
                 
                 return cell;
@@ -324,14 +343,14 @@ static NSString * const reuseIdentifierHeaderFooterOkCancel = @"CustomTableViewH
                 
                 
                 
-                UIFont *font = [UIFont systemFontOfSize:15];
-                UIColor *color = mRed;
+                UIFont *font = [UIFont fontWithName:@"Prompt-Regular" size:15];
+                UIColor *color = cSystem2;
                 NSDictionary *attribute = @{NSForegroundColorAttributeName:color ,NSFontAttributeName: font};
                 NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:@"* " attributes:attribute];
                 
                 
-                UIFont *font2 = [UIFont systemFontOfSize:15];
-                UIColor *color2 = [UIColor darkGrayColor];
+                UIFont *font2 = [UIFont fontWithName:@"Prompt-Regular" size:15];
+                UIColor *color2 = cSystem4;
                 NSDictionary *attribute2 = @{NSForegroundColorAttributeName:color2 ,NSFontAttributeName: font2};
                 NSMutableAttributedString *attrString2 = [[NSMutableAttributedString alloc] initWithString:strTitle attributes:attribute2];
                 
@@ -365,14 +384,14 @@ static NSString * const reuseIdentifierHeaderFooterOkCancel = @"CustomTableViewH
                 
                 
                 
-                UIFont *font = [UIFont systemFontOfSize:15];
-                UIColor *color = mRed;
+                UIFont *font = [UIFont fontWithName:@"Prompt-Regular" size:15];
+                UIColor *color = cSystem2;
                 NSDictionary *attribute = @{NSForegroundColorAttributeName:color ,NSFontAttributeName: font};
                 NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:@"* " attributes:attribute];
                 
                 
-                UIFont *font2 = [UIFont systemFontOfSize:15];
-                UIColor *color2 = [UIColor darkGrayColor];
+                UIFont *font2 = [UIFont fontWithName:@"Prompt-Regular" size:15];
+                UIColor *color2 = cSystem4;
                 NSDictionary *attribute2 = @{NSForegroundColorAttributeName:color2 ,NSFontAttributeName: font2};
                 NSMutableAttributedString *attrString2 = [[NSMutableAttributedString alloc] initWithString:strTitle attributes:attribute2];
                 
@@ -408,14 +427,14 @@ static NSString * const reuseIdentifierHeaderFooterOkCancel = @"CustomTableViewH
                 
                 
                 
-                UIFont *font = [UIFont systemFontOfSize:15];
-                UIColor *color = mRed;
+                UIFont *font = [UIFont fontWithName:@"Prompt-Regular" size:15];
+                UIColor *color = cSystem2;
                 NSDictionary *attribute = @{NSForegroundColorAttributeName:color ,NSFontAttributeName: font};
                 NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:@"* " attributes:attribute];
                 
                 
-                UIFont *font2 = [UIFont systemFontOfSize:15];
-                UIColor *color2 = [UIColor darkGrayColor];
+                UIFont *font2 = [UIFont fontWithName:@"Prompt-Regular" size:15];
+                UIColor *color2 = cSystem4;
                 NSDictionary *attribute2 = @{NSForegroundColorAttributeName:color2 ,NSFontAttributeName: font2};
                 NSMutableAttributedString *attrString2 = [[NSMutableAttributedString alloc] initWithString:strTitle attributes:attribute2];
                 
@@ -459,14 +478,14 @@ static NSString * const reuseIdentifierHeaderFooterOkCancel = @"CustomTableViewH
                 
                 
                 
-                UIFont *font = [UIFont systemFontOfSize:15];
-                UIColor *color = mRed;
+                UIFont *font = [UIFont fontWithName:@"Prompt-Regular" size:15];
+                UIColor *color = cSystem2;
                 NSDictionary *attribute = @{NSForegroundColorAttributeName:color ,NSFontAttributeName: font};
                 NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:@"* " attributes:attribute];
                 
                 
-                UIFont *font2 = [UIFont systemFontOfSize:15];
-                UIColor *color2 = [UIColor darkGrayColor];
+                UIFont *font2 = [UIFont fontWithName:@"Prompt-Regular" size:15];
+                UIColor *color2 = cSystem4;
                 NSDictionary *attribute2 = @{NSForegroundColorAttributeName:color2 ,NSFontAttributeName: font2};
                 NSMutableAttributedString *attrString2 = [[NSMutableAttributedString alloc] initWithString:strTitle attributes:attribute2];
                 
@@ -478,6 +497,7 @@ static NSString * const reuseIdentifierHeaderFooterOkCancel = @"CustomTableViewH
                 
                 cell.txtValue.tag = item;
                 cell.txtValue.delegate = self;
+                cell.txtValue.placeholder = @"xxx-xxx-xxxx";
                 cell.txtValue.text = _dispute.phoneNo;
                 cell.txtValue.keyboardType = UIKeyboardTypePhonePad;
                 cell.lblRemark.text = strRemark;
@@ -499,7 +519,7 @@ static NSString * const reuseIdentifierHeaderFooterOkCancel = @"CustomTableViewH
     NSInteger item = indexPath.item;
     if([tableView isEqual:tbvData])
     {
-        if(fromType == 1)
+        if(fromType == 1 || fromType == 3)
         {
             if(item == 0)
             {
@@ -511,7 +531,7 @@ static NSString * const reuseIdentifierHeaderFooterOkCancel = @"CustomTableViewH
             }
             else if(item == 2)
             {
-                CustomTableViewCellLabelText *cell = [tbvData cellForRowAtIndexPath:indexPath];
+                CustomTableViewCellLabelText *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifierLabelText];
                 NSString *strRemark = @"กรุณาใส่เบอร์โทรติดต่อกลับ เพื่อเจ้าหน้าที่จะโทรสอบถามข้อมูลเพิ่มเติมสำหรับการโอนเงินของท่านคืน";
                 
                 
@@ -520,7 +540,7 @@ static NSString * const reuseIdentifierHeaderFooterOkCancel = @"CustomTableViewH
                 return 122-16+cell.lblRemark.frame.size.height-8;
             }
         }
-        else if(fromType == 2)
+        else if(fromType == 2 || fromType == 4)
         {
             if(item == 0)
             {
@@ -575,7 +595,8 @@ static NSString * const reuseIdentifierHeaderFooterOkCancel = @"CustomTableViewH
         
         [footerView.btnOk addTarget:self action:@selector(submit:) forControlEvents:UIControlEventTouchUpInside];
         [footerView.btnCancel addTarget:self action:@selector(cancel:) forControlEvents:UIControlEventTouchUpInside];
-        
+        [self setButtonDesign:footerView.btnOk];
+        [self setButtonDesign:footerView.btnCancel];
         
         
         return footerView;
@@ -588,7 +609,7 @@ static NSString * const reuseIdentifierHeaderFooterOkCancel = @"CustomTableViewH
 {
     if([tableView isEqual:tbvAction])
     {
-        return 8+44+8+44;
+        return 8+30+8+30;
     }
     return 0;
     
@@ -615,16 +636,30 @@ static NSString * const reuseIdentifierHeaderFooterOkCancel = @"CustomTableViewH
         [self removeOverlayViews];
         NSMutableArray *receiptList = items[0];
         Receipt *downloadReceipt = receiptList[0];
-        if(downloadReceipt.status == 5 || downloadReceipt.status == 6)
+        if(fromType == 3 && downloadReceipt.status == 2)
+        {
+            [self submit];
+        }
+        else if(fromType == 4 && (downloadReceipt.status == 5 || downloadReceipt.status == 6))
+        {
+            [self submit];
+        }
+//        else if(downloadReceipt.status == 5 || downloadReceipt.status == 6)
+//        {
+//            receipt.status = downloadReceipt.status;
+//            receipt.statusRoute = downloadReceipt.statusRoute;
+////            NSString *strMessage = downloadReceipt.status == 5?@"ร้านค้ากำลังปรุงอาหารให้คุณอยู่ค่ะ โปรดรอสักครู่นะคะ":@"อาหารได้ส่งถึงคุณแล้วค่ะ";
+//            NSString *strMessage = downloadReceipt.status == 5?@"ร้านค้ากำลังปรุงอาหารอยู่ค่ะ":@"อาหารได้ส่งถึงลูกค้าแล้วค่ะ";
+//            [self showAlert:@"" message:strMessage method:@selector(goBack:)];
+//        }
+        else
         {
             receipt.status = downloadReceipt.status;
             receipt.statusRoute = downloadReceipt.statusRoute;
-            NSString *strMessage = downloadReceipt.status == 5?@"ร้านค้ากำลังปรุงอาหารให้คุณอยู่ค่ะ โปรดรอสักครู่นะคะ":@"อาหารได้ส่งถึงคุณแล้วค่ะ";
-            [self showAlert:@"" message:strMessage method:@selector(goBack:)];            
-        }
-        else
-        {
-            [self submit];
+            receipt.modifiedUser = downloadReceipt.modifiedUser;
+            receipt.modifiedDate = downloadReceipt.modifiedDate;
+            NSString *strMessage = @"สถานะบิลนี้มีการเปลี่ยนแปลง กรุณาตรวจสอบอีกครั้งก่อนทำรายการ";
+            [self showAlert:@"" message:strMessage method:@selector(goBack:)];
         }
     }
 }
@@ -696,7 +731,7 @@ static NSString * const reuseIdentifierHeaderFooterOkCancel = @"CustomTableViewH
 
 -(void)submit:(id)sender
 {
-    if(fromType == 1)
+    if(fromType == 1 || fromType == 3)
     {
         self.homeModel = [[HomeModel alloc]init];
         self.homeModel.delegate = self;
@@ -705,7 +740,7 @@ static NSString * const reuseIdentifierHeaderFooterOkCancel = @"CustomTableViewH
         [self loadingOverlayView];
         [self.homeModel downloadItems:dbReceipt withData:receipt];
     }
-    else
+    else if(fromType == 2 || fromType == 4)
     {
         [self submit];
     }
@@ -728,8 +763,8 @@ static NSString * const reuseIdentifierHeaderFooterOkCancel = @"CustomTableViewH
     _dispute.modifiedUser = [Utility modifiedUser];
     _dispute.modifiedDate = [Utility currentDateTime];
     
-    Branch *branch = [Branch getBranch:receipt.branchID];
-    [self.homeModel insertItems:dbDispute withData:@[_dispute,branch] actionScreen:@"insert dispute"];
+//    Branch *branch = [Branch getBranch:receipt.branchID];
+    [self.homeModel insertItems:dbDispute withData:@[_dispute,@(receipt.branchID)] actionScreen:@"insert dispute"];
 }
 
 -(void)cancel:(id)sender
@@ -737,14 +772,24 @@ static NSString * const reuseIdentifierHeaderFooterOkCancel = @"CustomTableViewH
     [self performSegueWithIdentifier:@"segUnwindToReceiptSummary" sender:self];
 }
 
--(void)itemsInserted
+-(void)itemsInsertedWithReturnData:(NSArray *)items
 {
     [self removeOverlayViews];
     
-    
-    receipt.status = 8;
-    [self showAlert:@"" message:@"คำร้องขอเงินคืนได้ถูกส่งไปแล้ว กรุณารอการยืนยันจากร้านค้า" method:@selector(unwindToReceiptSummary)];
+    NSMutableArray *receiptList = items[0];
+    Receipt *receipt = receiptList[0];
+    [Receipt updateStatus:receipt];
+    [self showAlert:@"" message:@"ส่งคำร้องขอเงินคืนสำเร็จ" method:@selector(unwindToCustomerKitchen)];
 }
+
+//-(void)itemsInserted
+//{
+//    [self removeOverlayViews];
+//
+//
+//    receipt.status = 8;
+//    [self showAlert:@"" message:@"ส่งคำร้องขอเงินคืนสำเร็จ" method:@selector(unwindToReceiptSummary)];
+//}
 
 -(BOOL)validate
 {
@@ -820,9 +865,14 @@ static NSString * const reuseIdentifierHeaderFooterOkCancel = @"CustomTableViewH
     
     return YES;
 }
+//
+//-(void)unwindToReceiptSummary
+//{
+//    [self performSegueWithIdentifier:@"segUnwindToReceiptSummary" sender:self];
+//}
 
--(void)unwindToReceiptSummary
+-(void)unwindToCustomerKitchen
 {
-    [self performSegueWithIdentifier:@"segUnwindToReceiptSummary" sender:self];
+    [self performSegueWithIdentifier:@"segUnwindToCustomerKitchen" sender:self];
 }
 @end

@@ -55,6 +55,7 @@ static NSString * const reuseIdentifierImageLabelRemove = @"CustomTableViewCellI
         _creditCardList = [_creditCardList mutableCopy];
         if(_creditCardList && [_creditCardList count] > 0)
         {
+            tableView.backgroundView = nil;
             return 1;
         }
     }

@@ -7,6 +7,8 @@
 //
 
 #import "TermsOfServiceViewController.h"
+#import "MainTabBarController.h"
+
 
 @interface TermsOfServiceViewController ()
 {
@@ -21,6 +23,7 @@
 @synthesize btnAcceptWidthConstant;
 @synthesize btnDeclineWidthConstant;
 @synthesize username;
+@synthesize credentialsDb;
 
 
 -(void)viewDidLayoutSubviews
@@ -94,4 +97,14 @@
 {
     [self performSegueWithIdentifier:@"segUnwindToLogIn" sender:self];
 }
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if([segue.identifier isEqualToString:@"segQrCodeScanTable"])
+    {
+        MainTabBarController *vc = segue.destinationViewController;
+        vc.credentialsDb = credentialsDb;
+    }
+}
+
 @end

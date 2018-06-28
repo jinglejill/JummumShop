@@ -383,6 +383,7 @@
             Receipt *receipt = filterArray[0];
             receipt.status = item.status;
             receipt.statusRoute = item.statusRoute;
+            receipt.modifiedDate = item.modifiedDate;
         }
     }
 }
@@ -574,12 +575,25 @@
     Receipt *selectedReceipt = [self getReceipt:receipt.receiptID branchID:receipt.branchID];
     selectedReceipt.status = receipt.status;
     selectedReceipt.statusRoute = receipt.statusRoute;
+    selectedReceipt.modifiedUser = receipt.modifiedUser;
+    selectedReceipt.modifiedDate = receipt.modifiedDate;    
 }
+//
+//+(NSMutableArray *)sortListDesc:(NSMutableArray *)receiptList
+//{
+//    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"_receiptDate" ascending:NO];
+//    NSSortDescriptor *sortDescriptor2 = [[NSSortDescriptor alloc] initWithKey:@"_receiptID" ascending:NO];
+//    NSArray *sortDescriptors = [NSArray arrayWithObjects:sortDescriptor,sortDescriptor2, nil];
+//    NSArray *sortArray = [receiptList sortedArrayUsingDescriptors:sortDescriptors];
+//    
+//    
+//    return [sortArray mutableCopy];
+//}
 
-+(NSMutableArray *)sortListDesc:(NSMutableArray *)receiptList
++(NSMutableArray *)sortListAsc:(NSMutableArray *)receiptList
 {
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"_receiptDate" ascending:NO];
-    NSSortDescriptor *sortDescriptor2 = [[NSSortDescriptor alloc] initWithKey:@"_receiptID" ascending:NO];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"_receiptDate" ascending:YES];
+    NSSortDescriptor *sortDescriptor2 = [[NSSortDescriptor alloc] initWithKey:@"_receiptID" ascending:YES];
     NSArray *sortDescriptors = [NSArray arrayWithObjects:sortDescriptor,sortDescriptor2, nil];
     NSArray *sortArray = [receiptList sortedArrayUsingDescriptors:sortDescriptors];
     
@@ -587,4 +601,25 @@
     return [sortArray mutableCopy];
 }
 
++(NSDate *)getMaxModifiedDateWithBranchID:(NSInteger)branchID
+{
+    NSMutableArray *dataList = [SharedReceipt sharedReceipt].receiptList;
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"_branchID = %ld",branchID];
+    NSArray *filterArray = [dataList filteredArrayUsingPredicate:predicate];
+    
+    
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"_modifiedDate" ascending:NO];
+    NSArray *sortDescriptors = [NSArray arrayWithObjects:sortDescriptor, nil];
+    NSArray *sortArray = [filterArray sortedArrayUsingDescriptors:sortDescriptors];
+    
+    if([sortArray count] > 0)
+    {
+        Receipt *receipt = sortArray[0];
+        return receipt.modifiedDate;
+    }
+    else
+    {
+        return [Utility stringToDate:@"2018-01-01 00:00:00" fromFormat:@"yyyy-MM-dd HH:mm:ss"];
+    }    
+}
 @end

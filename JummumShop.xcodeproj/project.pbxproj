@@ -10,6 +10,25 @@
 		072E08ECBEB7BE7F846009DA /* libPods-JummumShop.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BBAA38109C3523745AB9DB7 /* libPods-JummumShop.a */; };
 		5B319D53C4069379878A6EE7 /* libPods-JummumShopTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C6EA2A59802FF4370F3B3A45 /* libPods-JummumShopTests.a */; };
 		7741E33918FB1B75ED12E720 /* libPods-JummumShopUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C6C0B623B4EECFC7C8F7CBDF /* libPods-JummumShopUITests.a */; };
+		EF13B61320CFB302008CF35C /* Prompt-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EF13B60120CFB2CA008CF35C /* Prompt-ExtraLightItalic.ttf */; };
+		EF13B61420CFB302008CF35C /* Prompt-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EF13B60220CFB2CE008CF35C /* Prompt-Medium.ttf */; };
+		EF13B61520CFB302008CF35C /* Prompt-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EF13B60320CFB2D1008CF35C /* Prompt-Black.ttf */; };
+		EF13B61620CFB302008CF35C /* Prompt-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EF13B60420CFB2D4008CF35C /* Prompt-SemiBold.ttf */; };
+		EF13B61720CFB302008CF35C /* Prompt-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EF13B60520CFB2D7008CF35C /* Prompt-Regular.ttf */; };
+		EF13B61820CFB302008CF35C /* Prompt-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EF13B60620CFB2DA008CF35C /* Prompt-Italic.ttf */; };
+		EF13B61920CFB302008CF35C /* Prompt-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EF13B60720CFB2DD008CF35C /* Prompt-Thin.ttf */; };
+		EF13B61A20CFB302008CF35C /* Prompt-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EF13B60820CFB2E3008CF35C /* Prompt-BoldItalic.ttf */; };
+		EF13B61B20CFB302008CF35C /* Prompt-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EF13B60920CFB2E6008CF35C /* Prompt-SemiBoldItalic.ttf */; };
+		EF13B61C20CFB302008CF35C /* Prompt-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EF13B60A20CFB2E9008CF35C /* Prompt-Light.ttf */; };
+		EF13B61D20CFB302008CF35C /* Prompt-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EF13B60B20CFB2EC008CF35C /* Prompt-ExtraBold.ttf */; };
+		EF13B61E20CFB302008CF35C /* Prompt-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EF13B60C20CFB2EC008CF35C /* Prompt-MediumItalic.ttf */; };
+		EF13B61F20CFB302008CF35C /* Prompt-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EF13B60D20CFB2EF008CF35C /* Prompt-Bold.ttf */; };
+		EF13B62020CFB302008CF35C /* Prompt-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EF13B60E20CFB2F2008CF35C /* Prompt-ExtraLight.ttf */; };
+		EF13B62120CFB302008CF35C /* Prompt-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EF13B60F20CFB2F5008CF35C /* Prompt-LightItalic.ttf */; };
+		EF13B62220CFB302008CF35C /* Prompt-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EF13B61020CFB2F9008CF35C /* Prompt-ExtraBoldItalic.ttf */; };
+		EF13B62320CFB302008CF35C /* Prompt-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EF13B61120CFB2FC008CF35C /* Prompt-ThinItalic.ttf */; };
+		EF13B62420CFB302008CF35C /* Prompt-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EF13B61220CFB2FF008CF35C /* Prompt-BlackItalic.ttf */; };
+		EFB615DB20C7285F005A92F6 /* badge.png in Resources */ = {isa = PBXBuildFile; fileRef = EFB615DA20C7285E005A92F6 /* badge.png */; };
 		EFB872FE20C218BF0011AF78 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB872FD20C218BF0011AF78 /* ViewController.m */; };
 		EFB8730320C218C00011AF78 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EFB8730220C218C00011AF78 /* Assets.xcassets */; };
 		EFB8730620C218C00011AF78 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EFB8730420C218C00011AF78 /* LaunchScreen.storyboard */; };
@@ -376,6 +395,9 @@
 		EFB8812B20C6F43C0011AF78 /* CustomTableViewCellProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB8812920C6F43C0011AF78 /* CustomTableViewCellProfile.m */; };
 		EFB8812C20C6F43C0011AF78 /* CustomTableViewCellProfile.xib in Resources */ = {isa = PBXBuildFile; fileRef = EFB8812A20C6F43C0011AF78 /* CustomTableViewCellProfile.xib */; };
 		EFB8812E20C6F61F0011AF78 /* profilePic.png in Resources */ = {isa = PBXBuildFile; fileRef = EFB8812D20C6F61F0011AF78 /* profilePic.png */; };
+		EFB8813120C710120011AF78 /* MainTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB8812F20C710120011AF78 /* MainTabBarController.m */; };
+		EFD9BA2A20E1A10E00A0A874 /* jummumChef_lightGray.png in Resources */ = {isa = PBXBuildFile; fileRef = EFD9BA2920E1A10D00A0A874 /* jummumChef_lightGray.png */; };
+		EFD9BA7420E25F3300A0A874 /* ConfirmDispute2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD9BA7320E25F3300A0A874 /* ConfirmDispute2ViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -405,6 +427,26 @@
 		C6EA2A59802FF4370F3B3A45 /* libPods-JummumShopTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-JummumShopTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DEA6E2877BD5ADDF8367F315 /* Pods-JummumShop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JummumShop.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JummumShop/Pods-JummumShop.debug.xcconfig"; sourceTree = "<group>"; };
 		EEE66AAA4E360DB8D8368ED3 /* Pods-JummumShopTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JummumShopTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JummumShopTests/Pods-JummumShopTests.debug.xcconfig"; sourceTree = "<group>"; };
+		EF13B60120CFB2CA008CF35C /* Prompt-ExtraLightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Prompt-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
+		EF13B60220CFB2CE008CF35C /* Prompt-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Prompt-Medium.ttf"; sourceTree = "<group>"; };
+		EF13B60320CFB2D1008CF35C /* Prompt-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Prompt-Black.ttf"; sourceTree = "<group>"; };
+		EF13B60420CFB2D4008CF35C /* Prompt-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Prompt-SemiBold.ttf"; sourceTree = "<group>"; };
+		EF13B60520CFB2D7008CF35C /* Prompt-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Prompt-Regular.ttf"; sourceTree = "<group>"; };
+		EF13B60620CFB2DA008CF35C /* Prompt-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Prompt-Italic.ttf"; sourceTree = "<group>"; };
+		EF13B60720CFB2DD008CF35C /* Prompt-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Prompt-Thin.ttf"; sourceTree = "<group>"; };
+		EF13B60820CFB2E3008CF35C /* Prompt-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Prompt-BoldItalic.ttf"; sourceTree = "<group>"; };
+		EF13B60920CFB2E6008CF35C /* Prompt-SemiBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Prompt-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
+		EF13B60A20CFB2E9008CF35C /* Prompt-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Prompt-Light.ttf"; sourceTree = "<group>"; };
+		EF13B60B20CFB2EC008CF35C /* Prompt-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Prompt-ExtraBold.ttf"; sourceTree = "<group>"; };
+		EF13B60C20CFB2EC008CF35C /* Prompt-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Prompt-MediumItalic.ttf"; sourceTree = "<group>"; };
+		EF13B60D20CFB2EF008CF35C /* Prompt-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Prompt-Bold.ttf"; sourceTree = "<group>"; };
+		EF13B60E20CFB2F2008CF35C /* Prompt-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Prompt-ExtraLight.ttf"; sourceTree = "<group>"; };
+		EF13B60F20CFB2F5008CF35C /* Prompt-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Prompt-LightItalic.ttf"; sourceTree = "<group>"; };
+		EF13B61020CFB2F9008CF35C /* Prompt-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Prompt-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
+		EF13B61120CFB2FC008CF35C /* Prompt-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Prompt-ThinItalic.ttf"; sourceTree = "<group>"; };
+		EF13B61220CFB2FF008CF35C /* Prompt-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Prompt-BlackItalic.ttf"; sourceTree = "<group>"; };
+		EFB615DA20C7285E005A92F6 /* badge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = badge.png; sourceTree = "<group>"; };
+		EFB615DC20C782F3005A92F6 /* JummumShop.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = JummumShop.entitlements; sourceTree = "<group>"; };
 		EFB872F620C218BF0011AF78 /* JummumShop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JummumShop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFB872FC20C218BF0011AF78 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		EFB872FD20C218BF0011AF78 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
@@ -973,6 +1015,11 @@
 		EFB8812920C6F43C0011AF78 /* CustomTableViewCellProfile.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomTableViewCellProfile.m; sourceTree = "<group>"; };
 		EFB8812A20C6F43C0011AF78 /* CustomTableViewCellProfile.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomTableViewCellProfile.xib; sourceTree = "<group>"; };
 		EFB8812D20C6F61F0011AF78 /* profilePic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profilePic.png; sourceTree = "<group>"; };
+		EFB8812F20C710120011AF78 /* MainTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTabBarController.m; sourceTree = "<group>"; };
+		EFB8813020C710120011AF78 /* MainTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainTabBarController.h; sourceTree = "<group>"; };
+		EFD9BA2920E1A10D00A0A874 /* jummumChef_lightGray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = jummumChef_lightGray.png; sourceTree = "<group>"; };
+		EFD9BA7220E25F3300A0A874 /* ConfirmDispute2ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConfirmDispute2ViewController.h; sourceTree = "<group>"; };
+		EFD9BA7320E25F3300A0A874 /* ConfirmDispute2ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConfirmDispute2ViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1057,6 +1104,7 @@
 		EFB872F820C218BF0011AF78 /* JummumShop */ = {
 			isa = PBXGroup;
 			children = (
+				EFB615DC20C782F3005A92F6 /* JummumShop.entitlements */,
 				EFB8796620C386ED0011AF78 /* Resource */,
 				EFB872FC20C218BF0011AF78 /* ViewController.h */,
 				EFB872FD20C218BF0011AF78 /* ViewController.m */,
@@ -1172,6 +1220,8 @@
 		EFB8799C20C386ED0011AF78 /* Image */ = {
 			isa = PBXGroup;
 			children = (
+				EFD9BA2920E1A10D00A0A874 /* jummumChef_lightGray.png */,
+				EFB615DA20C7285E005A92F6 /* badge.png */,
 				EFB8812D20C6F61F0011AF78 /* profilePic.png */,
 				EFB880C420C56A270011AF78 /* list.png */,
 				EFB87CC320C3ECF00011AF78 /* jummumLogoCrop.png */,
@@ -1260,6 +1310,8 @@
 		EFB879EE20C386ED0011AF78 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				EFB8813020C710120011AF78 /* MainTabBarController.h */,
+				EFB8812F20C710120011AF78 /* MainTabBarController.m */,
 				EFB880C620C5B1550011AF78 /* BranchSelectViewController.h */,
 				EFB880C720C5B1550011AF78 /* BranchSelectViewController.m */,
 				EFB87ED620C472450011AF78 /* CustomerKitchenViewController.h */,
@@ -1320,6 +1372,8 @@
 				EFB87A0F20C386ED0011AF78 /* TermsOfServiceViewController.m */,
 				EFB879FF20C386ED0011AF78 /* TosAndPrivacyPolicyViewController.h */,
 				EFB87A1920C386ED0011AF78 /* TosAndPrivacyPolicyViewController.m */,
+				EFD9BA7220E25F3300A0A874 /* ConfirmDispute2ViewController.h */,
+				EFD9BA7320E25F3300A0A874 /* ConfirmDispute2ViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1602,42 +1656,60 @@
 		EFB87B1120C386ED0011AF78 /* font */ = {
 			isa = PBXGroup;
 			children = (
-				EFB87B1220C386ED0011AF78 /* Kanit-ExtraLight.ttf */,
-				EFB87B1320C386ED0011AF78 /* Kanit-ThinItalic.ttf */,
-				EFB87B1420C386ED0011AF78 /* Kanit-Bold.otf */,
-				EFB87B1520C386ED0011AF78 /* Kanit-BoldItalic.ttf */,
-				EFB87B1620C386ED0011AF78 /* Kanit-MediumItalic.otf */,
-				EFB87B1720C386ED0011AF78 /* Kanit-SemiBold.ttf */,
-				EFB87B1820C386ED0011AF78 /* Kanit-Thin.otf */,
-				EFB87B1920C386ED0011AF78 /* Kanit-Black.ttf */,
-				EFB87B1A20C386ED0011AF78 /* Kanit-Regular.ttf */,
-				EFB87B1B20C386ED0011AF78 /* Kanit-ExtraBoldItalic.otf */,
-				EFB87B1C20C386ED0011AF78 /* Kanit-Italic.ttf */,
-				EFB87B1D20C386ED0011AF78 /* Kanit-ExtraBold.otf */,
-				EFB87B1E20C386ED0011AF78 /* Kanit-SemiBold.otf */,
-				EFB87B1F20C386ED0011AF78 /* Kanit-MediumItalic.ttf */,
+				EF13B60320CFB2D1008CF35C /* Prompt-Black.ttf */,
+				EF13B61220CFB2FF008CF35C /* Prompt-BlackItalic.ttf */,
+				EF13B60D20CFB2EF008CF35C /* Prompt-Bold.ttf */,
+				EF13B60820CFB2E3008CF35C /* Prompt-BoldItalic.ttf */,
+				EF13B60B20CFB2EC008CF35C /* Prompt-ExtraBold.ttf */,
+				EF13B61020CFB2F9008CF35C /* Prompt-ExtraBoldItalic.ttf */,
+				EF13B60E20CFB2F2008CF35C /* Prompt-ExtraLight.ttf */,
+				EF13B60120CFB2CA008CF35C /* Prompt-ExtraLightItalic.ttf */,
+				EF13B60620CFB2DA008CF35C /* Prompt-Italic.ttf */,
+				EF13B60A20CFB2E9008CF35C /* Prompt-Light.ttf */,
+				EF13B60F20CFB2F5008CF35C /* Prompt-LightItalic.ttf */,
+				EF13B60220CFB2CE008CF35C /* Prompt-Medium.ttf */,
+				EF13B60C20CFB2EC008CF35C /* Prompt-MediumItalic.ttf */,
+				EF13B60520CFB2D7008CF35C /* Prompt-Regular.ttf */,
+				EF13B60420CFB2D4008CF35C /* Prompt-SemiBold.ttf */,
+				EF13B60920CFB2E6008CF35C /* Prompt-SemiBoldItalic.ttf */,
+				EF13B60720CFB2DD008CF35C /* Prompt-Thin.ttf */,
+				EF13B61120CFB2FC008CF35C /* Prompt-ThinItalic.ttf */,
 				EFB87B2020C386ED0011AF78 /* Kanit-Black.otf */,
-				EFB87B2120C386ED0011AF78 /* Kanit-Thin.ttf */,
-				EFB87B2220C386ED0011AF78 /* Kanit-Italic.otf */,
-				EFB87B2320C386ED0011AF78 /* Kanit-Regular.otf */,
-				EFB87B2420C386ED0011AF78 /* Kanit-ExtraBoldItalic.ttf */,
-				EFB87B2520C386ED0011AF78 /* Kanit-ExtraBold.ttf */,
-				EFB87B2620C386ED0011AF78 /* Kanit-ExtraLight.otf */,
-				EFB87B2720C386ED0011AF78 /* Kanit-ThinItalic.otf */,
-				EFB87B2820C386ED0011AF78 /* Kanit-BoldItalic.otf */,
-				EFB87B2920C386ED0011AF78 /* Kanit-Bold.ttf */,
-				EFB87B2A20C386ED0011AF78 /* Kanit-SemiBoldItalic.ttf */,
-				EFB87B2B20C386ED0011AF78 /* Kanit-Medium.otf */,
-				EFB87B2C20C386ED0011AF78 /* Kanit-Light.otf */,
-				EFB87B2D20C386ED0011AF78 /* Kanit-BlackItalic.ttf */,
-				EFB87B2E20C386ED0011AF78 /* Kanit-LightItalic.otf */,
-				EFB87B2F20C386ED0011AF78 /* Kanit-ExtraLightItalic.otf */,
-				EFB87B3020C386ED0011AF78 /* Kanit-Light.ttf */,
+				EFB87B1920C386ED0011AF78 /* Kanit-Black.ttf */,
 				EFB87B3120C386ED0011AF78 /* Kanit-BlackItalic.otf */,
-				EFB87B3220C386ED0011AF78 /* Kanit-LightItalic.ttf */,
+				EFB87B2D20C386ED0011AF78 /* Kanit-BlackItalic.ttf */,
+				EFB87B1420C386ED0011AF78 /* Kanit-Bold.otf */,
+				EFB87B2920C386ED0011AF78 /* Kanit-Bold.ttf */,
+				EFB87B2820C386ED0011AF78 /* Kanit-BoldItalic.otf */,
+				EFB87B1520C386ED0011AF78 /* Kanit-BoldItalic.ttf */,
+				EFB87B1D20C386ED0011AF78 /* Kanit-ExtraBold.otf */,
+				EFB87B2520C386ED0011AF78 /* Kanit-ExtraBold.ttf */,
+				EFB87B1B20C386ED0011AF78 /* Kanit-ExtraBoldItalic.otf */,
+				EFB87B2420C386ED0011AF78 /* Kanit-ExtraBoldItalic.ttf */,
+				EFB87B2620C386ED0011AF78 /* Kanit-ExtraLight.otf */,
+				EFB87B1220C386ED0011AF78 /* Kanit-ExtraLight.ttf */,
+				EFB87B2F20C386ED0011AF78 /* Kanit-ExtraLightItalic.otf */,
 				EFB87B3320C386ED0011AF78 /* Kanit-ExtraLightItalic.ttf */,
+				EFB87B2220C386ED0011AF78 /* Kanit-Italic.otf */,
+				EFB87B1C20C386ED0011AF78 /* Kanit-Italic.ttf */,
+				EFB87B2C20C386ED0011AF78 /* Kanit-Light.otf */,
+				EFB87B3020C386ED0011AF78 /* Kanit-Light.ttf */,
+				EFB87B2E20C386ED0011AF78 /* Kanit-LightItalic.otf */,
+				EFB87B3220C386ED0011AF78 /* Kanit-LightItalic.ttf */,
+				EFB87B2B20C386ED0011AF78 /* Kanit-Medium.otf */,
 				EFB87B3420C386ED0011AF78 /* Kanit-Medium.ttf */,
+				EFB87B1620C386ED0011AF78 /* Kanit-MediumItalic.otf */,
+				EFB87B1F20C386ED0011AF78 /* Kanit-MediumItalic.ttf */,
+				EFB87B2320C386ED0011AF78 /* Kanit-Regular.otf */,
+				EFB87B1A20C386ED0011AF78 /* Kanit-Regular.ttf */,
+				EFB87B1E20C386ED0011AF78 /* Kanit-SemiBold.otf */,
+				EFB87B1720C386ED0011AF78 /* Kanit-SemiBold.ttf */,
 				EFB87B3520C386ED0011AF78 /* Kanit-SemiBoldItalic.otf */,
+				EFB87B2A20C386ED0011AF78 /* Kanit-SemiBoldItalic.ttf */,
+				EFB87B1820C386ED0011AF78 /* Kanit-Thin.otf */,
+				EFB87B2120C386ED0011AF78 /* Kanit-Thin.ttf */,
+				EFB87B2720C386ED0011AF78 /* Kanit-ThinItalic.otf */,
+				EFB87B1320C386ED0011AF78 /* Kanit-ThinItalic.ttf */,
 			);
 			path = font;
 			sourceTree = "<group>";
@@ -1844,6 +1916,11 @@
 				TargetAttributes = {
 					EFB872F520C218BF0011AF78 = {
 						CreatedOnToolsVersion = 9.4;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					EFB8730D20C218C00011AF78 = {
 						CreatedOnToolsVersion = 9.4;
@@ -1889,6 +1966,7 @@
 				EFB87C8020C386EE0011AF78 /* Kanit-Regular.ttf in Resources */,
 				EFB87C9920C386EE0011AF78 /* Kanit-ExtraLightItalic.ttf in Resources */,
 				EFB87C9B20C386EE0011AF78 /* Kanit-SemiBoldItalic.otf in Resources */,
+				EF13B62120CFB302008CF35C /* Prompt-LightItalic.ttf in Resources */,
 				EFB87B8720C386ED0011AF78 /* takeAway2.png in Resources */,
 				EFB87C9720C386EE0011AF78 /* Kanit-BlackItalic.otf in Resources */,
 				EFB8812C20C6F43C0011AF78 /* CustomTableViewCellProfile.xib in Resources */,
@@ -1925,10 +2003,13 @@
 				EFB87BC020C386EE0011AF78 /* removed.png in Resources */,
 				EFB87BB420C386EE0011AF78 /* basket.png in Resources */,
 				EFB87BBE20C386EE0011AF78 /* gift.png in Resources */,
+				EF13B61720CFB302008CF35C /* Prompt-Regular.ttf in Resources */,
+				EF13B62220CFB302008CF35C /* Prompt-ExtraBoldItalic.ttf in Resources */,
 				EFB87BAF20C386EE0011AF78 /* Icon-60@2x.png in Resources */,
 				EFB8812E20C6F61F0011AF78 /* profilePic.png in Resources */,
 				EFB87BB820C386EE0011AF78 /* added.png in Resources */,
 				EFB87C8B20C386EE0011AF78 /* Kanit-ExtraBold.ttf in Resources */,
+				EFD9BA2A20E1A10E00A0A874 /* jummumChef_lightGray.png in Resources */,
 				EFB87BCF20C386EE0011AF78 /* paste light color.png in Resources */,
 				EFB87C8D20C386EE0011AF78 /* Kanit-ThinItalic.otf in Resources */,
 				EFB87C7620C386EE0011AF78 /* CustomTableViewHeaderLabel.xib in Resources */,
@@ -1942,8 +2023,10 @@
 				EFB87BB220C386EE0011AF78 /* check copy.png in Resources */,
 				EFB87C7B20C386EE0011AF78 /* Kanit-BoldItalic.ttf in Resources */,
 				EFB87C5B20C386EE0011AF78 /* CustomTableViewCellQuantity.xib in Resources */,
+				EF13B61920CFB302008CF35C /* Prompt-Thin.ttf in Resources */,
 				EFB87C4120C386EE0011AF78 /* CustomTableViewCellCreditCard.xib in Resources */,
 				EFB87C3B20C386EE0011AF78 /* CustomCollectionViewCellNote.xib in Resources */,
+				EF13B61A20CFB302008CF35C /* Prompt-BoldItalic.ttf in Resources */,
 				EFB87C5620C386EE0011AF78 /* CustomTableViewCellTotal.xib in Resources */,
 				EFB87C6320C386EE0011AF78 /* CustomTableViewHeaderFooterOkCancel.xib in Resources */,
 				EFB87B9A20C386ED0011AF78 /* Icon-iPadPro@2x.png in Resources */,
@@ -1953,6 +2036,7 @@
 				EFB87BCA20C386EE0011AF78 /* security_code_back-512.png in Resources */,
 				EFB87B9B20C386ED0011AF78 /* home_icon.png in Resources */,
 				EFB8803120C4781E0011AF78 /* LaunchScreen.strings in Resources */,
+				EF13B61420CFB302008CF35C /* Prompt-Medium.ttf in Resources */,
 				EFB87C9820C386EE0011AF78 /* Kanit-LightItalic.ttf in Resources */,
 				EFB87BAB20C386EE0011AF78 /* triangle.png in Resources */,
 				EFB87C7E20C386EE0011AF78 /* Kanit-Thin.otf in Resources */,
@@ -1966,9 +2050,12 @@
 				EFB87B8A20C386ED0011AF78 /* added copy.png in Resources */,
 				EFB87C8220C386EE0011AF78 /* Kanit-Italic.ttf in Resources */,
 				EFB87B9C20C386ED0011AF78 /* Icon-76.png in Resources */,
+				EFB615DB20C7285F005A92F6 /* badge.png in Resources */,
 				EFB87BAD20C386EE0011AF78 /* Icon-Spotlight-40@2x.png in Resources */,
 				EFB87BCD20C386EE0011AF78 /* removed copy.png in Resources */,
+				EF13B61C20CFB302008CF35C /* Prompt-Light.ttf in Resources */,
 				EFB87B8C20C386ED0011AF78 /* Icon.png in Resources */,
+				EF13B61320CFB302008CF35C /* Prompt-ExtraLightItalic.ttf in Resources */,
 				EFB87C9020C386EE0011AF78 /* Kanit-SemiBoldItalic.ttf in Resources */,
 				EFB87C8620C386EE0011AF78 /* Kanit-Black.otf in Resources */,
 				EFB87BD120C386EE0011AF78 /* uncheck.png in Resources */,
@@ -1983,14 +2070,18 @@
 				EFB87C5420C386EE0011AF78 /* CustomTableViewCellPromoThumbNail.xib in Resources */,
 				EFB87CC820C3ECF00011AF78 /* jummumLogoCrop.png in Resources */,
 				EFB87C8920C386EE0011AF78 /* Kanit-Regular.otf in Resources */,
+				EF13B61820CFB302008CF35C /* Prompt-Italic.ttf in Resources */,
 				EFB87C9420C386EE0011AF78 /* Kanit-LightItalic.otf in Resources */,
 				EFB87CBF20C389290011AF78 /* Icon-1024.png in Resources */,
 				EFB87BC620C386EE0011AF78 /* checkbox.png in Resources */,
 				EFB87C9520C386EE0011AF78 /* Kanit-ExtraLightItalic.otf in Resources */,
+				EF13B62420CFB302008CF35C /* Prompt-BlackItalic.ttf in Resources */,
 				EFB87BC920C386EE0011AF78 /* collapse all.png in Resources */,
 				EFB87C9320C386EE0011AF78 /* Kanit-BlackItalic.ttf in Resources */,
 				EFB87C8F20C386EE0011AF78 /* Kanit-Bold.ttf in Resources */,
+				EF13B61D20CFB302008CF35C /* Prompt-ExtraBold.ttf in Resources */,
 				EFB87C4420C386EE0011AF78 /* CustomTableViewCellLabelText.xib in Resources */,
+				EF13B61520CFB302008CF35C /* Prompt-Black.ttf in Resources */,
 				EFB87B8820C386ED0011AF78 /* me.png in Resources */,
 				EFB87BC420C386EE0011AF78 /* jcb.png in Resources */,
 				EFB87BA120C386ED0011AF78 /* logOut.png in Resources */,
@@ -1998,6 +2089,7 @@
 				EFB87B8D20C386ED0011AF78 /* Icon-76@2x.png in Resources */,
 				EFB87B9020C386ED0011AF78 /* privacyPolicy.png in Resources */,
 				EFB87CC520C3ECF00011AF78 /* jummumLogoWithType.png in Resources */,
+				EF13B62020CFB302008CF35C /* Prompt-ExtraLight.ttf in Resources */,
 				EFB87C8E20C386EE0011AF78 /* Kanit-BoldItalic.otf in Resources */,
 				EFB87BC120C386EE0011AF78 /* delete.png in Resources */,
 				EFB87BAA20C386EE0011AF78 /* Icon-72@2x.png in Resources */,
@@ -2011,6 +2103,7 @@
 				EFB87BA220C386ED0011AF78 /* basket copy.png in Resources */,
 				EFB87C7A20C386EE0011AF78 /* Kanit-Bold.otf in Resources */,
 				EFB87BA420C386EE0011AF78 /* party.png in Resources */,
+				EF13B61B20CFB302008CF35C /* Prompt-SemiBoldItalic.ttf in Resources */,
 				EFB87C4F20C386EE0011AF78 /* CustomTableViewCellSearchBar.xib in Resources */,
 				EFB87BCE20C386EE0011AF78 /* masterCard.png in Resources */,
 				EFB87B8B20C386ED0011AF78 /* personalData.png in Resources */,
@@ -2018,10 +2111,13 @@
 				EFB87C6020C386EE0011AF78 /* CustomViewVoucher.xib in Resources */,
 				EFB87C8520C386EE0011AF78 /* Kanit-MediumItalic.ttf in Resources */,
 				EFB87B9E20C386ED0011AF78 /* termsOfService.png in Resources */,
+				EF13B61F20CFB302008CF35C /* Prompt-Bold.ttf in Resources */,
 				EFB87C5520C386EE0011AF78 /* CustomTableViewCellLabelTextView.xib in Resources */,
 				EFB87BD520C386EE0011AF78 /* iTunesArtwork@2x in Resources */,
+				EF13B62320CFB302008CF35C /* Prompt-ThinItalic.ttf in Resources */,
 				EFB87C4620C386EE0011AF78 /* CustomTableViewCellImageLabelRemove.xib in Resources */,
 				EFB87BD420C386EE0011AF78 /* copy light color.png in Resources */,
+				EF13B61620CFB302008CF35C /* Prompt-SemiBold.ttf in Resources */,
 				EFB87BA320C386ED0011AF78 /* creditCard.png in Resources */,
 				EFB87B9920C386ED0011AF78 /* remove light color.png in Resources */,
 				EFB87C8320C386EE0011AF78 /* Kanit-ExtraBold.otf in Resources */,
@@ -2038,6 +2134,7 @@
 				EFB87C8C20C386EE0011AF78 /* Kanit-ExtraLight.otf in Resources */,
 				EFB87C6620C386EE0011AF78 /* CustomTableViewCellLabel.xib in Resources */,
 				EFB87BCC20C386EE0011AF78 /* expand2.png in Resources */,
+				EF13B61E20CFB302008CF35C /* Prompt-MediumItalic.ttf in Resources */,
 				EFB87B9D20C386ED0011AF78 /* Icon-60.png in Resources */,
 				EFB87B9320C386ED0011AF78 /* expand.png in Resources */,
 			);
@@ -2206,6 +2303,7 @@
 				EFB87C0C20C386EE0011AF78 /* SharedCurrentOrderTaking.m in Sources */,
 				EFB87C5020C386EE0011AF78 /* CustomTableViewCellImageTextButtonHalf.m in Sources */,
 				EFB8805620C4781E0011AF78 /* CashDrawerFunctions.m in Sources */,
+				EFB8813120C710120011AF78 /* MainTabBarController.m in Sources */,
 				EFB87C0020C386EE0011AF78 /* Menu.m in Sources */,
 				EFB87C1A20C386EE0011AF78 /* Dispute.m in Sources */,
 				EFB87C3720C386EE0011AF78 /* CustomTableViewHeaderFooterButton.m in Sources */,
@@ -2215,6 +2313,7 @@
 				EFB8803620C4781E0011AF78 /* DeviceStatusViewController.m in Sources */,
 				EFB87C4C20C386EE0011AF78 /* CustomTableViewCellPromoThumbNail.m in Sources */,
 				EFB87C2A20C386EE0011AF78 /* PushSync.m in Sources */,
+				EFD9BA7420E25F3300A0A874 /* ConfirmDispute2ViewController.m in Sources */,
 				EFB87C2820C386EE0011AF78 /* PromoCode.m in Sources */,
 				EFB87C0120C386EE0011AF78 /* SharedReceipt.m in Sources */,
 				EFB8806220C4781E0011AF78 /* DisplayCommunication.m in Sources */,
@@ -2437,7 +2536,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -2491,7 +2590,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 3.0;
@@ -2505,6 +2604,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_CODE_COVERAGE = NO;
+				CODE_SIGN_ENTITLEMENTS = JummumShop/JummumShop.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DF8AZLDC5D;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2535,6 +2635,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_CODE_COVERAGE = NO;
+				CODE_SIGN_ENTITLEMENTS = JummumShop/JummumShop.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DF8AZLDC5D;
 				FRAMEWORK_SEARCH_PATHS = (

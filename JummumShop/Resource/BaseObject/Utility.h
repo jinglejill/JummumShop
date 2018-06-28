@@ -39,10 +39,12 @@
 #define mButtonText     [UIColor colorWithRed:21/255.0 green:126/255.0 blue:251/255.0 alpha:1]
 #define mSelectionStyleGray     [UIColor colorWithRed:217/255.0 green:217/255.0 blue:217/255.0 alpha:1]
 #define mPlaceHolder     [UIColor colorWithRed:199/255.0 green:199/255.0 blue:205/255.0 alpha:1]
-#define cSystem1     [UIColor colorWithRed:236/255.0 green:62/255.0 blue:72/255.0 alpha:1]
-#define cSystem2     [UIColor colorWithRed:107/255.0 green:213/255.0 blue:194/255.0 alpha:1]
+#define cSystem2     [UIColor colorWithRed:236/255.0 green:62/255.0 blue:72/255.0 alpha:1]
+#define cSystem1     [UIColor colorWithRed:107/255.0 green:213/255.0 blue:194/255.0 alpha:1]
 #define cSystem3     [UIColor colorWithRed:0/255.0 green:95/255.0 blue:77/255.0 alpha:1]
 #define cSystem4     [UIColor colorWithRed:77/255.0 green:78/255.0 blue:78/255.0 alpha:1]
+#define cSystem4_10     [UIColor colorWithRed:235/255.0 green:235/255.0 blue:235/255.0 alpha:1]
+
 #define UIColorFromRGB(rgbValue) \
 [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 \
 green:((float)((rgbValue & 0x00FF00) >>  8))/255.0 \
@@ -159,10 +161,12 @@ enum enumDB
     dbDisputeList,
     dbReceiptWithModifiedDate,
     dbJummumReceipt,
+    dbJummumReceiptPrint,
     dbReceiptPrintList,
     dbPrinter,
     dbCredentialsDb,
-    dbCredentials
+    dbCredentials,
+    dbJummumReceiptUpdate
 
 
     
@@ -270,7 +274,10 @@ enum enumUrl
     urlDisputeDeleteList,
     urlDisputeGetList,
     urlCredentialsDbGet,
-    urlCredentialsValidate
+    urlCredentialsValidate,
+    urlJummumReceiptGetList,
+    urlJummumReceiptUpdate,
+    urlReceiptPrintInsertList
 //    ,
 //    urlTestPasswordInsertList
     
@@ -328,8 +335,6 @@ enum enumUrl
 + (NSString *)modifiedUser;
 + (NSString *)modifiedVC;
 + (void)setModifiedUser:(NSString *)modifiedUser;
-//+ (BOOL) finishLoadSharedData;
-//+ (void) setFinishLoadSharedData:(BOOL)finish;
 + (NSData *)dataFromHexString:(NSString *)string;
 + (NSString *)makeFirstLetterLowerCase:(NSString *)text;
 + (NSString *)makeFirstLetterUpperCase:(NSString *)text;
@@ -393,5 +398,6 @@ enum enumUrl
 +(NSString *)hideCreditCardNo:(NSString *)creditCardNo;
 + (void)setBranchID:(NSInteger)branchID;
 + (NSInteger) branchID;
++ (void)addObjectIfNotDuplicate:(NSObject *)object;
 @end
 

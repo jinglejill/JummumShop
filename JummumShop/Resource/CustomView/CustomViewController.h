@@ -12,7 +12,7 @@
 #import <MessageUI/MFMailComposeViewController.h>
 
 
-@interface CustomViewController : UIViewController<HomeModelProtocol,MFMailComposeViewControllerDelegate,UITextFieldDelegate>
+@interface CustomViewController : UIViewController<HomeModelProtocol,MFMailComposeViewControllerDelegate,UITextFieldDelegate,UIWebViewDelegate>
 @property (nonatomic,retain) HomeModel *homeModel;
 @property (nonatomic,retain) UIActivityIndicatorView *indicator;
 @property (nonatomic,retain) UIView *overlayView;
@@ -23,7 +23,7 @@
 @property (nonatomic,retain) UILabel *lblWaiting;
 @property (nonatomic) NSInteger receiptKitchenBill;
 @property (nonatomic,retain) HomeModel *homeModelPrintKitchenBill;
-
+@property (nonatomic,retain) UIView *backgroundView;
 
 -(void)setCurrentVc;
 -(void) blinkAddedNotiView;

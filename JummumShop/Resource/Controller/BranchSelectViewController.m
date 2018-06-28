@@ -80,6 +80,9 @@
     }
     
     [self.view addSubview:progressBar];
+    [self setButtonDesign:btnOk];
+    
+    
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self.view action:@selector(endEditing:)];
     [self.view addGestureRecognizer:tapGesture];
 }
@@ -125,6 +128,23 @@
     }
     
     return strText;
+}
+
+- (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view
+{
+    NSString *strText = @"";
+    if([txtBranch isFirstResponder])
+    {
+        CredentialsDb *credentialsDb = credentialsDbList[row];
+        strText = credentialsDb.name;
+    }
+    
+    UILabel *label = [[UILabel alloc]init];
+    label.text = strText;
+    label.font = [UIFont fontWithName:@"Prompt-Regular" size:15.0f];
+    
+    
+    return label;
 }
 
 // tell the picker the width of each row for a given component
@@ -193,20 +213,11 @@
         return;
     }
 
-//    {
-//        PushSync *pushSync = [[PushSync alloc]init];
-//        pushSync.deviceToken = [Utility deviceToken];
-//        [self.homeModelPushSyncUpdateByDevice updateItems:dbPushSyncUpdateByDeviceToken withData:pushSync actionScreen:@"update synced time by device token"];
-//    }
-
-
 
     [Utility itemsDownloaded:items];
     [self removeOverlayViews];//อาจ มีการเรียกจากหน้า customViewController
 
 
-
-//    [Utility setFinishLoadSharedData:YES];
     [self performSegueWithIdentifier:@"segSignIn" sender:self];
 }
 

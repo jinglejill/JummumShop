@@ -40,7 +40,7 @@
     
     //print kitchen
     NSMutableArray *_webViewList;
-    UIView *_backgroundView;
+    
     NSMutableArray *_arrOfHtmlContentList;
     NSInteger _countPrint;
     NSInteger _countingPrint;
@@ -66,6 +66,7 @@ CGFloat animatedDistance;
 @synthesize lblWaiting;
 @synthesize receiptKitchenBill;
 @synthesize homeModelPrintKitchenBill;
+@synthesize backgroundView;
 
 
 -(void)setCurrentVc
@@ -79,6 +80,7 @@ CGFloat animatedDistance;
     [super viewWillAppear:animated];
     
     
+    [self setCurrentVc];
     [self.tabBarController.tabBar setHidden:NO];
     [self.tabBarController.tabBar setFrame:CGRectMake(0, self.view.frame.size.height-50, self.view.frame.size.width, 50)];
 }
@@ -88,8 +90,11 @@ CGFloat animatedDistance;
     [super loadView];
     
     
+//    [self setCurrentVc];
     homeModel = [[HomeModel alloc]init];
     homeModel.delegate = self;
+    homeModelPrintKitchenBill = [[HomeModel alloc]init];
+    homeModelPrintKitchenBill.delegate = self;
     
     
     {
@@ -127,12 +132,22 @@ CGFloat animatedDistance;
     
     
     _lblStatus = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 250, 150)];
+    
+    
+    
+    //print kitchen
+    backgroundView = [[UIView alloc]initWithFrame:self.view.frame];
+    backgroundView.backgroundColor = [UIColor whiteColor];
+    [self.view insertSubview:backgroundView atIndex:0];
+    _webViewList = [[NSMutableArray alloc]init];
+    NSLog(@"alloc _webViewList");
 }
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     
-    
+
     // Do any additional setup after loading the view.
     [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
     [[NSNotificationCenter defaultCenter]
@@ -1247,14 +1262,16 @@ CGFloat animatedDistance;
     {
         text = @"";
     }
-    UIFont *font = [UIFont boldSystemFontOfSize:15];
-    UIColor *color = [UIColor darkGrayColor];
+
+    UIFont *font = [UIFont fontWithName:@"Prompt-SemiBold" size:14.0f];
+    UIColor *color = cSystem4;
     NSDictionary *attribute = @{NSForegroundColorAttributeName:color ,NSFontAttributeName: font};
     NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:title attributes:attribute];
     
     
-    UIFont *font2 = [UIFont systemFontOfSize:15];
-    UIColor *color2 = [UIColor darkGrayColor];
+
+    UIFont *font2 = [UIFont fontWithName:@"Prompt-Regular" size:14.0f];
+    UIColor *color2 = cSystem4;
     NSDictionary *attribute2 = @{NSForegroundColorAttributeName:color2 ,NSFontAttributeName: font2};
     NSMutableAttributedString *attrString2 = [[NSMutableAttributedString alloc] initWithString:text attributes:attribute2];
     
@@ -1269,10 +1286,11 @@ CGFloat animatedDistance;
 -(void)printReceiptKitchenBill:(NSMutableArray *)receiptList
 {
     //print customer kitchen ต่างจาก print kitchen FFD 2 จุด คือ 1.print ทีเดียวหลายโต๊ะ 2.ordertaking จาก jummum จะเป็น order ละ 1 รายการ(FFD จะตามจำนวนรายการที่สั่งพร้อมกัน)
-    //    if(![self checkPrinterStatus])
-    //    {
-    //        return;
-    //    }
+    NSString *printBill = [Setting getSettingValueWithKeyName:@"printBill"];
+    if([printBill integerValue] && ![self checkPrinterStatus])
+    {
+        return;
+    }
     
     receiptKitchenBill = 1;
     NSMutableArray *receiptPrintList = [[NSMutableArray alloc]init];
@@ -1579,6 +1597,7 @@ CGFloat animatedDistance;
                                                  {
                                                      [self hideStatus];
                                                      [self removeOverlayViews];
+                                                     [self reloadTableView];
                                                      //                                                     [self loadViewProcess];
                                                      //                                                     [self performSegueWithIdentifier:@"segUnwindToCustomerTable" sender:self];
                                                  }

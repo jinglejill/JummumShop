@@ -40,7 +40,7 @@
     BOOL _lastItemReachedDelivery;
     BOOL _lastItemReachedOthers;
     
-    NSMutableArray *_webViewList;
+//    NSMutableArray *_webViewList;
     UIView *_backgroundView;
     NSMutableArray *_arrOfHtmlContentList;
     NSInteger _countPrint;
@@ -55,6 +55,7 @@
     NSIndexPath *_indexPathDelivery;
     NSIndexPath *_indexPathAction;
     NSIndexPath *_indexPathOthers;
+    NSInteger _lastSegConPrintStatus;
     
     
     NSMutableArray *_statusCellArray;
@@ -64,6 +65,7 @@
     NSInteger _selectedReceiptID;
     Receipt *_selectedReceipt;
     HomeModel *_homeModelDelivered;
+    
 }
 @end
 
@@ -76,24 +78,48 @@ static NSString * const reuseIdentifierLabelLabel = @"CustomTableViewCellLabelLa
 
 
 @synthesize btnAction;
-@synthesize btnSelect;
-@synthesize btnBack;
+
 @synthesize tbvData;
 @synthesize credentialsDb;
 @synthesize segConPrintStatus;
+@synthesize imgBadge;
+@synthesize imgBadgeTrailing;
+@synthesize imgBadgeNew;
+@synthesize imgBadgeProcessing;
+@synthesize imgBadgeLeading;
+@synthesize imgBadgeProcessingLeading;
+@synthesize btnSelect;
+@synthesize btnBack;
 @synthesize imgPrinterStaus;
-@synthesize btnBadge;
 
 
 -(IBAction)unwindToCustomerKitchen:(UIStoryboardSegue *)segue
 {
-    [self setReceiptList];
-    [tbvData reloadData];
+    [self reloadTableView];
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    
+    NSDate *maxReceiptModifiedDate = [Receipt getMaxModifiedDateWithBranchID:credentialsDb.branchID];    
+    self.homeModel = [[HomeModel alloc]init];
+    self.homeModel.delegate = self;
+    [self.homeModel downloadItems:dbReceiptMaxModifiedDate withData:@[credentialsDb, maxReceiptModifiedDate]];
 }
 
 -(void)viewDidLayoutSubviews
 {
     [super viewDidLayoutSubviews];
+    float segConWidthPerItem = (self.view.frame.size.width-2*16)/5;
+    imgBadgeTrailing.constant = segConWidthPerItem+16;
+    imgBadgeLeading.constant = (segConWidthPerItem*3+16)-imgBadgeTrailing.constant-25;
+    imgBadgeProcessingLeading.constant = (segConWidthPerItem*4+16)-imgBadgeTrailing.constant-imgBadgeLeading.constant-2*25;
+    
+    UIFont *font = [UIFont fontWithName:@"Prompt-Regular" size:12.0f];
+    NSDictionary *attributes = [NSDictionary dictionaryWithObject:font forKey:NSFontAttributeName];
+    [segConPrintStatus setTitleTextAttributes:attributes forState:UIControlStateNormal];
 }
 
 -(void)loadView
@@ -113,12 +139,13 @@ static NSString * const reuseIdentifierLabelLabel = @"CustomTableViewCellLabelLa
     }
     
     
-    [self loadViewProcess];
+    [self reloadTableView];
+//    [self loadViewProcess];
 }
 
 -(void)loadViewProcess
 {
-    [self setReceiptList];
+//    [self reloadTableView];
     [tbvData reloadData];
     [tbvData layoutIfNeeded];
     if(segConPrintStatus.selectedSegmentIndex == 0)
@@ -126,7 +153,10 @@ static NSString * const reuseIdentifierLabelLabel = @"CustomTableViewCellLabelLa
         [UIView animateWithDuration:.25 animations:^{
             if(_indexPathNew)
             {
-                [tbvData scrollToRowAtIndexPath:_indexPathNew atScrollPosition:UITableViewScrollPositionTop animated:YES];
+                if(_indexPathNew.row < [_receiptList count])
+                {
+                    [tbvData scrollToRowAtIndexPath:_indexPathNew atScrollPosition:UITableViewScrollPositionTop animated:YES];
+                }
             }
         }];
     }
@@ -135,16 +165,22 @@ static NSString * const reuseIdentifierLabelLabel = @"CustomTableViewCellLabelLa
         [UIView animateWithDuration:.25 animations:^{
             if(_indexPathPrinted)
             {
-                [tbvData scrollToRowAtIndexPath:_indexPathPrinted atScrollPosition:UITableViewScrollPositionTop animated:YES];
+                if(_indexPathPrinted.row < [_receiptList count])
+                {
+                    [tbvData scrollToRowAtIndexPath:_indexPathPrinted atScrollPosition:UITableViewScrollPositionTop animated:YES];
+                }
             }
         }];
     }
     else if(segConPrintStatus.selectedSegmentIndex == 2)
     {
         [UIView animateWithDuration:.25 animations:^{
-            if(_indexPathPrinted)
+            if(_indexPathDelivery)
             {
-                [tbvData scrollToRowAtIndexPath:_indexPathPrinted atScrollPosition:UITableViewScrollPositionTop animated:YES];
+                if(_indexPathDelivery.row < [_receiptList count])
+                {
+                    [tbvData scrollToRowAtIndexPath:_indexPathDelivery atScrollPosition:UITableViewScrollPositionTop animated:YES];
+                }
             }
         }];
     }
@@ -152,9 +188,12 @@ static NSString * const reuseIdentifierLabelLabel = @"CustomTableViewCellLabelLa
     {
         //if there is receipt with status = 7,8,11 ให้ขึ้น badge
         [UIView animateWithDuration:.25 animations:^{
-            if(_indexPathPrinted)
+            if(_indexPathAction)
             {
-                [tbvData scrollToRowAtIndexPath:_indexPathPrinted atScrollPosition:UITableViewScrollPositionTop animated:YES];
+                if(_indexPathAction.row < [_receiptList count])
+                {
+                    [tbvData scrollToRowAtIndexPath:_indexPathAction atScrollPosition:UITableViewScrollPositionTop animated:YES];
+                }
             }
         }];
     }
@@ -162,22 +201,37 @@ static NSString * const reuseIdentifierLabelLabel = @"CustomTableViewCellLabelLa
     {
         //status 9,10
         [UIView animateWithDuration:.25 animations:^{
-            if(_indexPathPrinted)
+            if(_indexPathOthers)
             {
-                [tbvData scrollToRowAtIndexPath:_indexPathPrinted atScrollPosition:UITableViewScrollPositionTop animated:YES];
+                if(_indexPathOthers.row < [_receiptList count])
+                {
+                    [tbvData scrollToRowAtIndexPath:_indexPathOthers atScrollPosition:UITableViewScrollPositionTop animated:YES];
+                }
             }
         }];
     }
     
     //badge
     {
-        
         NSMutableArray *receiptActionList = [Receipt getReceiptListWithStatus:7 branchID:credentialsDb.branchID];
-        [receiptActionList addObjectsFromArray:[Receipt getReceiptListWithStatus:8 branchID:credentialsDb.branchID]];
-        [receiptActionList addObjectsFromArray:[Receipt getReceiptListWithStatus:11 branchID:credentialsDb.branchID]];
-        btnBadge.hidden = [receiptActionList count]==0;
+        [receiptActionList addObjectsFromArray:[Receipt getReceiptListWithStatus:8 branchID:credentialsDb.branchID]];        
+        [receiptActionList addObjectsFromArray:[Receipt getReceiptListWithStatus:13 branchID:credentialsDb.branchID]];
+        imgBadge.hidden = [receiptActionList count]==0;
     }
     
+    
+    //badge new
+    {
+        NSMutableArray *receiptActionList = [Receipt getReceiptListWithStatus:2 branchID:credentialsDb.branchID];
+        imgBadgeNew.hidden = [receiptActionList count]==0;
+    }
+    
+    
+    //badge processing
+    {
+        NSMutableArray *receiptActionList = [Receipt getReceiptListWithStatus:5 branchID:credentialsDb.branchID];
+        imgBadgeProcessing.hidden = [receiptActionList count]==0;
+    }
 }
 
 -(void)setReceiptList
@@ -185,21 +239,17 @@ static NSString * const reuseIdentifierLabelLabel = @"CustomTableViewCellLabelLa
     if(segConPrintStatus.selectedSegmentIndex == 0)
     {
         _receiptList = [Receipt getReceiptListWithStatus:2 branchID:credentialsDb.branchID];
-        //dont forget to uncomment
-//        _receiptList = [Receipt sortList:_receiptList];
-        _receiptList = [Receipt sortListDesc:_receiptList];
+        _receiptList = [Receipt sortListAsc:_receiptList];
     }
     else if(segConPrintStatus.selectedSegmentIndex == 1)
     {
         _receiptList = [Receipt getReceiptListWithStatus:5 branchID:credentialsDb.branchID];
-        //dont forget to uncomment
-        //        _receiptList = [Receipt sortList:_receiptList];
-        _receiptList = [Receipt sortListDesc:_receiptList];
+        _receiptList = [Receipt sortListAsc:_receiptList];
     }
     else if(segConPrintStatus.selectedSegmentIndex == 2)
     {
         _receiptList = [Receipt getReceiptListWithStatus:6 branchID:credentialsDb.branchID];
-        _receiptList = [Receipt sortListDesc:_receiptList];
+        _receiptList = [Receipt sortList:_receiptList];
     }
     else if(segConPrintStatus.selectedSegmentIndex == 3)
     {
@@ -208,16 +258,14 @@ static NSString * const reuseIdentifierLabelLabel = @"CustomTableViewCellLabelLa
         [_receiptList addObjectsFromArray:[Receipt getReceiptListWithStatus:11 branchID:credentialsDb.branchID]];
         [_receiptList addObjectsFromArray:[Receipt getReceiptListWithStatus:12 branchID:credentialsDb.branchID]];
         [_receiptList addObjectsFromArray:[Receipt getReceiptListWithStatus:13 branchID:credentialsDb.branchID]];
-        //dont forget to uncomment
-        //        _receiptList = [Receipt sortList:_receiptList];
-        _receiptList = [Receipt sortListDesc:_receiptList];
+        _receiptList = [Receipt sortListAsc:_receiptList];
     }
     else if(segConPrintStatus.selectedSegmentIndex == 4)
     {
         _receiptList = [Receipt getReceiptListWithStatus:9 branchID:credentialsDb.branchID];
         [_receiptList addObjectsFromArray:[Receipt getReceiptListWithStatus:10 branchID:credentialsDb.branchID]];
         [_receiptList addObjectsFromArray:[Receipt getReceiptListWithStatus:14 branchID:credentialsDb.branchID]];
-        _receiptList = [Receipt sortListDesc:_receiptList];
+        _receiptList = [Receipt sortList:_receiptList];
     }
 }
 
@@ -244,14 +292,19 @@ static NSString * const reuseIdentifierLabelLabel = @"CustomTableViewCellLabelLa
         if([_receiptList count] == 0)
         {
             UILabel *noDataLabel         = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, tableView.bounds.size.height)];
-            noDataLabel.text             = @"คุณไม่มีประวัติการสั่งอาหาร";
+            noDataLabel.text             = @"ไม่มีข้อมูล";
             noDataLabel.textColor        = [UIColor darkGrayColor];
             noDataLabel.textAlignment    = NSTextAlignmentCenter;
             tableView.backgroundView = noDataLabel;
             tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
             return 0;
         }
-        return [_receiptList count];
+        else
+        {
+            tableView.backgroundView = nil;
+            return [_receiptList count];
+        }
+        
     }
     else
     {
@@ -293,7 +346,7 @@ static NSString * const reuseIdentifierLabelLabel = @"CustomTableViewCellLabelLa
         cell.lblReceiptNo.text = [NSString stringWithFormat:@"Order no. #%@", receipt.receiptNoID];
         cell.lblReceiptDate.text = [Utility dateToString:receipt.receiptDate toFormat:@"d MMM yy HH:mm"];
         cell.lblBranchName.text = [NSString stringWithFormat:@"Table: %@",customerTable.tableName];
-        cell.lblBranchName.textColor = mGreen;
+        cell.lblBranchName.textColor = cSystem1;
         
         
         
@@ -311,6 +364,7 @@ static NSString * const reuseIdentifierLabelLabel = @"CustomTableViewCellLabelLa
         }
         
         
+        cell.tbvOrderDetail.separatorColor = [UIColor clearColor];
         cell.tbvOrderDetail.delegate = self;
         cell.tbvOrderDetail.dataSource = self;
         cell.tbvOrderDetail.tag = receipt.receiptID;
@@ -323,6 +377,7 @@ static NSString * const reuseIdentifierLabelLabel = @"CustomTableViewCellLabelLa
             [cell.btnOrderItAgain setTitle:@"Print" forState:UIControlStateNormal];
             [cell.btnOrderItAgain removeTarget:nil action:NULL forControlEvents:UIControlEventAllEvents];
             [cell.btnOrderItAgain addTarget:self action:@selector(printIndividualReceipt:) forControlEvents:UIControlEventTouchUpInside];
+            [self setButtonDesign:cell.btnOrderItAgain];
         }
         else if(segConPrintStatus.selectedSegmentIndex == 1)
         {
@@ -330,6 +385,7 @@ static NSString * const reuseIdentifierLabelLabel = @"CustomTableViewCellLabelLa
             [cell.btnOrderItAgain setTitle:@"Delivered" forState:UIControlStateNormal];
             [cell.btnOrderItAgain removeTarget:nil action:NULL forControlEvents:UIControlEventAllEvents];
             [cell.btnOrderItAgain addTarget:self action:@selector(changeToDeliveredStatus:) forControlEvents:UIControlEventTouchUpInside];
+            [self setButtonDesign:cell.btnOrderItAgain];
         }
         else
         {
@@ -385,7 +441,7 @@ static NSString * const reuseIdentifierLabelLabel = @"CustomTableViewCellLabelLa
             //menu
             if(orderTaking.takeAway)
             {
-                UIFont *font = [UIFont systemFontOfSize:15];
+                UIFont *font = [UIFont fontWithName:@"Prompt-Regular" size:15.0f];
                 NSDictionary *attribute = @{NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle), NSFontAttributeName: font};
                 NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:@"ใส่ห่อ"
                                                                                                attributes:attribute];
@@ -418,12 +474,14 @@ static NSString * const reuseIdentifierLabelLabel = @"CustomTableViewCellLabelLa
             NSString *strAddTypeNote = [OrderNote getNoteNameListInTextWithOrderTakingID:orderTaking.orderTakingID noteType:1 branchID:credentialsDb.branchID];
             if(![Utility isStringEmpty:strRemoveTypeNote])
             {
-                UIFont *font = [UIFont systemFontOfSize:11];
+//                UIFont *font = [UIFont systemFontOfSize:13];
+                UIFont *font = [UIFont fontWithName:@"Prompt-Regular" size:13.0f];
                 NSDictionary *attribute = @{NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle),NSFontAttributeName: font};
                 attrStringRemove = [[NSMutableAttributedString alloc] initWithString:@"ไม่ใส่" attributes:attribute];
                 
                 
-                UIFont *font2 = [UIFont systemFontOfSize:11];
+//                UIFont *font2 = [UIFont systemFontOfSize:13];
+                UIFont *font2 = [UIFont fontWithName:@"Prompt-Regular" size:13.0f];
                 NSDictionary *attribute2 = @{NSFontAttributeName: font2};
                 NSMutableAttributedString *attrString2 = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@" %@",strRemoveTypeNote] attributes:attribute2];
                 
@@ -432,12 +490,14 @@ static NSString * const reuseIdentifierLabelLabel = @"CustomTableViewCellLabelLa
             }
             if(![Utility isStringEmpty:strAddTypeNote])
             {
-                UIFont *font = [UIFont systemFontOfSize:11];
+//                UIFont *font = [UIFont systemFontOfSize:11];
+                UIFont *font = [UIFont fontWithName:@"Prompt-Regular" size:13.0f];
                 NSDictionary *attribute = @{NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle),NSFontAttributeName: font};
                 attrStringAdd = [[NSMutableAttributedString alloc] initWithString:@"เพิ่ม" attributes:attribute];
                 
                 
-                UIFont *font2 = [UIFont systemFontOfSize:11];
+//                UIFont *font2 = [UIFont systemFontOfSize:11];
+                UIFont *font2 = [UIFont fontWithName:@"Prompt-Regular" size:13.0f];
                 NSDictionary *attribute2 = @{NSFontAttributeName: font2};
                 NSMutableAttributedString *attrString2 = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@" %@",strAddTypeNote] attributes:attribute2];
                 
@@ -512,8 +572,11 @@ static NSString * const reuseIdentifierLabelLabel = @"CustomTableViewCellLabelLa
             NSString *strTotalAmount = [Utility formatDecimal:receipt.cashAmount+receipt.transferAmount+receipt.creditCardAmount withMinFraction:2 andMaxFraction:2];
             strTotalAmount = [Utility addPrefixBahtSymbol:strTotalAmount];
             cell.lblAmount.text = strTotalAmount;
+            cell.lblAmount.textColor = cSystem1;
+            cell.lblAmount.font = [UIFont fontWithName:@"Prompt-SemiBold" size:15.0f];
             cell.lblTitle.text = @"รวมทั้งหมด";
-            cell.lblTitle.textColor = mGreen;
+            cell.lblTitle.textColor = cSystem4;
+            cell.lblTitle.font = [UIFont fontWithName:@"Prompt-SemiBold" size:15.0f];
             cell.lblTitleTop.constant = 8;
             
             
@@ -526,19 +589,24 @@ static NSString * const reuseIdentifierLabelLabel = @"CustomTableViewCellLabelLa
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             
             
+            cell.separatorInset = UIEdgeInsetsMake(0.f, cell.bounds.size.width, 0.f, 0.f);
+            
+            
             Receipt *receipt = [Receipt getReceipt:receiptID branchID:credentialsDb.branchID];
             NSString *strStatus = [Receipt getStrStatus:receipt];
-            UIColor *color = [Receipt getStatusColor:receipt];
+            UIColor *color = cSystem2;//[Receipt getStatusColor:receipt];
             
             
             
-            UIFont *font = [UIFont systemFontOfSize:14];
+
+            UIFont *font = [UIFont fontWithName:@"Prompt-SemiBold" size:14.0f];
             NSDictionary *attribute = @{NSForegroundColorAttributeName:color ,NSFontAttributeName: font};
             NSMutableAttributedString *attrStringStatus = [[NSMutableAttributedString alloc] initWithString:strStatus attributes:attribute];
             
             
-            UIFont *font2 = [UIFont systemFontOfSize:14];
-            UIColor *color2 = [UIColor darkGrayColor];
+
+            UIFont *font2 = [UIFont fontWithName:@"Prompt-Regular" size:14.0f];
+            UIColor *color2 = cSystem4;
             NSDictionary *attribute2 = @{NSForegroundColorAttributeName:color2 ,NSFontAttributeName: font2};
             NSMutableAttributedString *attrStringStatusLabel = [[NSMutableAttributedString alloc] initWithString:@"Status: " attributes:attribute2];
             
@@ -590,12 +658,14 @@ static NSString * const reuseIdentifierLabelLabel = @"CustomTableViewCellLabelLa
             NSString *strAddTypeNote = [OrderNote getNoteNameListInTextWithOrderTakingID:orderTaking.orderTakingID noteType:1 branchID:credentialsDb.branchID];
             if(![Utility isStringEmpty:strRemoveTypeNote])
             {
-                UIFont *font = [UIFont systemFontOfSize:11];
+//                UIFont *font = [UIFont systemFontOfSize:11];
+                UIFont *font = [UIFont fontWithName:@"Prompt-Regular" size:13.0f];
                 NSDictionary *attribute = @{NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle),NSFontAttributeName: font};
                 attrStringRemove = [[NSMutableAttributedString alloc] initWithString:@"ไม่ใส่" attributes:attribute];
                 
                 
-                UIFont *font2 = [UIFont systemFontOfSize:11];
+//                UIFont *font2 = [UIFont systemFontOfSize:11];
+                UIFont *font2 = [UIFont fontWithName:@"Prompt-Regular" size:13.0f];
                 NSDictionary *attribute2 = @{NSFontAttributeName: font2};
                 NSMutableAttributedString *attrString2 = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@" %@",strRemoveTypeNote] attributes:attribute2];
                 
@@ -604,12 +674,14 @@ static NSString * const reuseIdentifierLabelLabel = @"CustomTableViewCellLabelLa
             }
             if(![Utility isStringEmpty:strAddTypeNote])
             {
-                UIFont *font = [UIFont systemFontOfSize:11];
+//                UIFont *font = [UIFont systemFontOfSize:11];
+                UIFont *font = [UIFont fontWithName:@"Prompt-Regular" size:13.0f];
                 NSDictionary *attribute = @{NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle),NSFontAttributeName: font};
                 attrStringAdd = [[NSMutableAttributedString alloc] initWithString:@"เพิ่ม" attributes:attribute];
                 
                 
-                UIFont *font2 = [UIFont systemFontOfSize:11];
+//                UIFont *font2 = [UIFont systemFontOfSize:11];
+                UIFont *font2 = [UIFont fontWithName:@"Prompt-Regular" size:13.0f];
                 NSDictionary *attribute2 = @{NSFontAttributeName: font2};
                 NSMutableAttributedString *attrString2 = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@" %@",strAddTypeNote] attributes:attribute2];
                 
@@ -640,10 +712,10 @@ static NSString * const reuseIdentifierLabelLabel = @"CustomTableViewCellLabelLa
             
             
             
-            UIFont *fontMenuName = [UIFont systemFontOfSize:14.0];
-            UIFont *fontNote = [UIFont systemFontOfSize:11.0];
-            
-            
+//            UIFont *fontMenuName = [UIFont systemFontOfSize:14.0];
+//            UIFont *fontNote = [UIFont systemFontOfSize:11.0];
+            UIFont *fontMenuName = [UIFont fontWithName:@"Prompt-Regular" size:15.0f];
+            UIFont *fontNote = [UIFont fontWithName:@"Prompt-Regular" size:13.0f];
             
             CGSize menuNameLabelSize = [self suggestedSizeWithFont:fontMenuName size:CGSizeMake(tbvData.frame.size.width - 75-28-2*16-2*8, CGFLOAT_MAX) lineBreakMode:NSLineBreakByWordWrapping forString:strMenuName];//153 from storyboard
             CGSize noteLabelSize = [self suggestedSizeWithFont:fontNote size:CGSizeMake(tbvData.frame.size.width - 75-28-2*16-2*8, CGFLOAT_MAX) lineBreakMode:NSLineBreakByWordWrapping forString:[strAllNote string]];
@@ -678,7 +750,8 @@ static NSString * const reuseIdentifierLabelLabel = @"CustomTableViewCellLabelLa
             //menu
             if(orderTaking.takeAway)
             {
-                UIFont *font = [UIFont systemFontOfSize:15];
+//                UIFont *font = [UIFont systemFontOfSize:15];
+                UIFont *font = [UIFont fontWithName:@"Prompt-Regular" size:15.0f];
                 NSDictionary *attribute = @{NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle), NSFontAttributeName: font};
                 NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:@"ใส่ห่อ"
                                                                                                attributes:attribute];
@@ -707,12 +780,14 @@ static NSString * const reuseIdentifierLabelLabel = @"CustomTableViewCellLabelLa
             NSString *strAddTypeNote = [OrderNote getNoteNameListInTextWithOrderTakingID:orderTaking.orderTakingID noteType:1 branchID:credentialsDb.branchID];
             if(![Utility isStringEmpty:strRemoveTypeNote])
             {
-                UIFont *font = [UIFont systemFontOfSize:11];
+//                UIFont *font = [UIFont systemFontOfSize:11];
+                UIFont *font = [UIFont fontWithName:@"Prompt-Regular" size:13.0f];
                 NSDictionary *attribute = @{NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle),NSFontAttributeName: font};
                 attrStringRemove = [[NSMutableAttributedString alloc] initWithString:@"ไม่ใส่" attributes:attribute];
                 
                 
-                UIFont *font2 = [UIFont systemFontOfSize:11];
+//                UIFont *font2 = [UIFont systemFontOfSize:11];
+                UIFont *font2 = [UIFont fontWithName:@"Prompt-Regular" size:13.0f];
                 NSDictionary *attribute2 = @{NSFontAttributeName: font2};
                 NSMutableAttributedString *attrString2 = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@" %@",strRemoveTypeNote] attributes:attribute2];
                 
@@ -721,12 +796,14 @@ static NSString * const reuseIdentifierLabelLabel = @"CustomTableViewCellLabelLa
             }
             if(![Utility isStringEmpty:strAddTypeNote])
             {
-                UIFont *font = [UIFont systemFontOfSize:11];
+//                UIFont *font = [UIFont systemFontOfSize:11];
+                UIFont *font = [UIFont fontWithName:@"Prompt-Regular" size:13.0f];
                 NSDictionary *attribute = @{NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle),NSFontAttributeName: font};
                 attrStringAdd = [[NSMutableAttributedString alloc] initWithString:@"เพิ่ม" attributes:attribute];
                 
                 
-                UIFont *font2 = [UIFont systemFontOfSize:11];
+//                UIFont *font2 = [UIFont systemFontOfSize:11];
+                UIFont *font2 = [UIFont fontWithName:@"Prompt-Regular" size:13.0f];
                 NSDictionary *attribute2 = @{NSFontAttributeName: font2};
                 NSMutableAttributedString *attrString2 = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@" %@",strAddTypeNote] attributes:attribute2];
                 
@@ -789,7 +866,6 @@ static NSString * const reuseIdentifierLabelLabel = @"CustomTableViewCellLabelLa
 {
     if(![tableView isEqual:tbvData])
     {
-        
         _selectedReceiptID = tableView.tag;
         _selectedReceipt = [Receipt getReceipt:_selectedReceiptID];
         [tableView reloadData];
@@ -800,33 +876,53 @@ static NSString * const reuseIdentifierLabelLabel = @"CustomTableViewCellLabelLa
         dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
             [self performSegueWithIdentifier:@"segOrderDetail" sender:self];
         });
-        
     }
 }
 
 -(void)itemsDownloaded:(NSArray *)items
 {
-    if([[items[0] mutableCopy] count]==0)
+    if(self.homeModel.propCurrentDB == dbReceiptSummary)
     {
-        if(segConPrintStatus.selectedSegmentIndex == 2)
+        if([[items[0] mutableCopy] count]==0)
         {
-            _lastItemReachedDelivery = YES;
+            if(segConPrintStatus.selectedSegmentIndex == 2)
+            {
+                _lastItemReachedDelivery = YES;
+            }
+            else
+            {
+                _lastItemReachedOthers = YES;
+            }
+            [tbvData reloadData];
         }
         else
         {
-            _lastItemReachedOthers = YES;
+            [Receipt addList:[items[0] mutableCopy]];
+            [OrderTaking addList:[items[1] mutableCopy]];
+            [OrderNote addList:[items[2] mutableCopy]];
+            [ReceiptPrint addList:[items[3] mutableCopy]];
+            
+            
+            [self reloadTableView];
         }
-        [tbvData reloadData];
     }
-    else
+    else if(self.homeModel.propCurrentDB == dbReceiptMaxModifiedDate)
     {
-        [Receipt addList:[items[0] mutableCopy]];
-        [OrderTaking addList:[items[1] mutableCopy]];
-        [OrderNote addList:[items[2] mutableCopy]];
-        [ReceiptPrint addList:[items[3] mutableCopy]];
+        NSMutableArray *receiptList = items[0];
+        [Receipt updateStatusList:receiptList];
         
-        [self setReceiptList];
-        [tbvData reloadData];
+        
+        
+        for(NSArray *itemList in items)
+        {
+            for(NSObject *object in itemList)
+            {
+                [Utility addObjectIfNotDuplicate:object];
+            }
+        }
+        
+        
+        [self reloadTableView];
     }
 }
 
@@ -868,36 +964,40 @@ static NSString * const reuseIdentifierLabelLabel = @"CustomTableViewCellLabelLa
     
 
     [_homeModelDelivered updateItems:dbJummumReceipt withData:receipt actionScreen:@"update JMM receipt"];
+    [self reloadTableView];
 }
 
 - (IBAction)printStatusChanged:(id)sender
 {
-    if(segConPrintStatus.selectedSegmentIndex == 0)
-    {
-        _indexPathPrinted = tbvData.indexPathsForVisibleRows.firstObject;
-        NSLog(@"printed : save indexPath => %ld,%ld",_indexPathPrinted.section,_indexPathPrinted.item);
-    }
-    else if(segConPrintStatus.selectedSegmentIndex == 1)
+    
+    if(_lastSegConPrintStatus == 0)
     {
         _indexPathNew = tbvData.indexPathsForVisibleRows.firstObject;
         NSLog(@"new : save indexPath => %ld,%ld",_indexPathNew.section,_indexPathNew.item);
     }
-    else if(segConPrintStatus.selectedSegmentIndex == 2)
+    else if(_lastSegConPrintStatus == 1)
+    {
+        _indexPathPrinted = tbvData.indexPathsForVisibleRows.firstObject;
+        NSLog(@"printed : save indexPath => %ld,%ld",_indexPathPrinted.section,_indexPathPrinted.item);
+    }
+    else if(_lastSegConPrintStatus == 2)
     {
         _indexPathDelivery = tbvData.indexPathsForVisibleRows.firstObject;
-        NSLog(@"new : save indexPath => %ld,%ld",_indexPathNew.section,_indexPathNew.item);
+        NSLog(@"delivery : save indexPath => %ld,%ld",_indexPathDelivery.section,_indexPathDelivery.item);
     }
-    else if(segConPrintStatus.selectedSegmentIndex == 3)
+    else if(_lastSegConPrintStatus == 3)
     {
         _indexPathAction = tbvData.indexPathsForVisibleRows.firstObject;
-        NSLog(@"new : save indexPath => %ld,%ld",_indexPathNew.section,_indexPathNew.item);
+        NSLog(@"action : save indexPath => %ld,%ld",_indexPathAction.section,_indexPathAction.item);
     }
-    else if(segConPrintStatus.selectedSegmentIndex == 4)
+    else if(_lastSegConPrintStatus == 4)
     {
         _indexPathOthers = tbvData.indexPathsForVisibleRows.firstObject;
-        NSLog(@"new : save indexPath => %ld,%ld",_indexPathNew.section,_indexPathNew.item);
+        NSLog(@"others : save indexPath => %ld,%ld",_indexPathOthers.section,_indexPathOthers.item);
     }
-    [self loadViewProcess];
+    [self reloadTableView];
+//    [self loadViewProcess];
+    _lastSegConPrintStatus = segConPrintStatus.selectedSegmentIndex;
 }
 
 -(void)checkPrinterStatus
@@ -1017,12 +1117,16 @@ static NSString * const reuseIdentifierLabelLabel = @"CustomTableViewCellLabelLa
 -(void)reloadTableView
 {
     [self setReceiptList];
-    [tbvData reloadData];
+    [self loadViewProcess];
+//    [tbvData reloadData];
 }
 
 -(void)itemsUpdated
 {
-    [self setReceiptList];
-    [tbvData reloadData];
+//    if(_homeModelDelivered.propCurrentDBUpdate == dbJummumReceipt)
+//    {
+//        [self reloadTableView];
+//    }
 }
+
 @end

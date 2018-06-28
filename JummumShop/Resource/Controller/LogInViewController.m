@@ -8,6 +8,8 @@
 
 #import "LogInViewController.h"
 #import "TermsOfServiceViewController.h"
+#import "CustomerKitchenViewController.h"
+#import "MainTabBarController.h"
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 
@@ -34,6 +36,7 @@
 @synthesize txtPassword;
 @synthesize btnRememberMe;
 @synthesize btnLogIn;
+@synthesize credentialsDb;
 
 
 - (IBAction)rememberMe:(id)sender
@@ -41,11 +44,11 @@
     _rememberMe = !_rememberMe;
     if(_rememberMe)
     {
-        [btnRememberMe setTitle:@"■ จำฉันไว้ในระบบ" forState:UIControlStateNormal];
+        [btnRememberMe setTitle:@"◼︎ จำฉันไว้ในระบบ" forState:UIControlStateNormal];
     }
     else
     {
-        [btnRememberMe setTitle:@"□ จำฉันไว้ในระบบ" forState:UIControlStateNormal];
+        [btnRememberMe setTitle:@"◻︎ จำฉันไว้ในระบบ" forState:UIControlStateNormal];
     }
 }
 
@@ -94,7 +97,7 @@
     }
     if([[NSUserDefaults standardUserDefaults] integerForKey:@"rememberMe"])
     {
-        [btnRememberMe setTitle:@"■ จำฉันไว้ในระบบ" forState:UIControlStateNormal];
+        [btnRememberMe setTitle:@"◼︎ จำฉันไว้ในระบบ" forState:UIControlStateNormal];
         _rememberMe = YES;
         
         
@@ -104,7 +107,7 @@
     }
     else
     {
-        [btnRememberMe setTitle:@"□ จำฉันไว้ในระบบ" forState:UIControlStateNormal];
+        [btnRememberMe setTitle:@"◻︎ จำฉันไว้ในระบบ" forState:UIControlStateNormal];
         _rememberMe = NO;
     }
 }
@@ -118,7 +121,7 @@
     [self setButtonDesign:btnLogIn];
     if([[NSUserDefaults standardUserDefaults] integerForKey:@"rememberMe"])
     {
-        [btnRememberMe setTitle:@"■ จำฉันไว้ในระบบ" forState:UIControlStateNormal];
+        [btnRememberMe setTitle:@"◼︎ จำฉันไว้ในระบบ" forState:UIControlStateNormal];
         _rememberMe = YES;
         
         
@@ -128,7 +131,7 @@
     }
     else
     {
-        [btnRememberMe setTitle:@"□ จำฉันไว้ในระบบ" forState:UIControlStateNormal];
+        [btnRememberMe setTitle:@"◻︎ จำฉันไว้ในระบบ" forState:UIControlStateNormal];
         _rememberMe = NO;
     }
     
@@ -275,7 +278,7 @@
                         [self performSegueWithIdentifier:@"segTermsOfService" sender:self];
                     }
                     else
-                    {
+                    {                        
                         [self performSegueWithIdentifier:@"segCustomerKitchen" sender:self];
                     }
                 }
@@ -286,28 +289,28 @@
             }
         }
     }
-    else if(self.homeModel.propCurrentDBInsert == dbLogInUserAccount)
-    {
-        //insert useraccount,receipt,ordertaking,ordernote,menu to sharedObject
-        NSMutableArray *userAccountList = items[0];
-        [UserAccount setCurrentUserAccount:userAccountList[0]];
-        [Utility addToSharedDataList:items];
-        
-        
-        
-        //show terms of service
-        NSDictionary *dicTosAgree = [[NSUserDefaults standardUserDefaults] valueForKey:@"tosAgree"];
-        NSString *username = [[FBSDKAccessToken currentAccessToken] userID];
-        NSNumber *tosAgree = [dicTosAgree objectForKey:username];
-        if(tosAgree)
-        {
-            [self performSegueWithIdentifier:@"segQrCodeScanTable" sender:self];
-        }
-        else
-        {
-            [self performSegueWithIdentifier:@"segTermsOfService" sender:self];
-        }
-    }
+//    else if(self.homeModel.propCurrentDBInsert == dbLogInUserAccount)
+//    {
+//        //insert useraccount,receipt,ordertaking,ordernote,menu to sharedObject
+//        NSMutableArray *userAccountList = items[0];
+//        [UserAccount setCurrentUserAccount:userAccountList[0]];
+//        [Utility addToSharedDataList:items];
+//
+//
+//
+//        //show terms of service
+//        NSDictionary *dicTosAgree = [[NSUserDefaults standardUserDefaults] valueForKey:@"tosAgree"];
+//        NSString *username = [[FBSDKAccessToken currentAccessToken] userID];
+//        NSNumber *tosAgree = [dicTosAgree objectForKey:username];
+//        if(tosAgree)
+//        {
+//            [self performSegueWithIdentifier:@"segQrCodeScanTable" sender:self];
+//        }
+//        else
+//        {
+//            [self performSegueWithIdentifier:@"segTermsOfService" sender:self];
+//        }
+//    }
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -315,6 +318,7 @@
     if([[segue identifier] isEqualToString:@"segTermsOfService"])
     {
         TermsOfServiceViewController *vc = segue.destinationViewController;
+        vc.credentialsDb = credentialsDb;
         if(_faceBookLogIn)
         {
             vc.username = [[FBSDKAccessToken currentAccessToken] userID];
@@ -323,6 +327,11 @@
         {
             vc.username = txtEmail.text;
         }
+    }
+    else if([segue.identifier isEqualToString:@"segCustomerKitchen"])
+    {
+        MainTabBarController *vc = segue.destinationViewController;
+        vc.credentialsDb = credentialsDb;
     }
 }
 

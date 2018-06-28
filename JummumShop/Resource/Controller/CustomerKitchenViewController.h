@@ -11,23 +11,34 @@
 
 
 @interface CustomerKitchenViewController : CustomViewController<UITableViewDataSource,UITableViewDelegate,UIWebViewDelegate>
-- (IBAction)goBack:(id)sender;
 - (IBAction)doAction:(id)sender;
-- (IBAction)selectList:(id)sender;
 @property (strong, nonatomic) IBOutlet UIButton *btnAction;
-@property (strong, nonatomic) IBOutlet UIButton *btnBack;
+
 @property (strong, nonatomic) IBOutlet UITableView *tbvData;
 @property (strong, nonatomic) CredentialsDb *credentialsDb;
 @property (strong, nonatomic) IBOutlet UISegmentedControl *segConPrintStatus;
-@property (strong, nonatomic) IBOutlet UIButton *btnConnectPrinter;
-@property (strong, nonatomic) IBOutlet UIImageView *imgPrinterStaus;
-@property (strong, nonatomic) IBOutlet UIButton *btnBadge;
-@property (strong, nonatomic) IBOutlet UIButton *btnSelect;
+@property (strong, nonatomic) IBOutlet UIImageView *imgBadge;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *imgBadgeTrailing;
+@property (strong, nonatomic) IBOutlet UIImageView *imgBadgeNew;
+@property (strong, nonatomic) IBOutlet UIImageView *imgBadgeProcessing;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *imgBadgeLeading;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *imgBadgeProcessingLeading;
 
 
 -(IBAction)unwindToCustomerKitchen:(UIStoryboardSegue *)segue;
 - (IBAction)printStatusChanged:(id)sender;
-- (IBAction)connectPrinter:(id)sender;
 -(void)setReceiptList;
+-(void)reloadTableView;
+
+
+
+//- (IBAction)selectList:(id)sender;
+//- (IBAction)goBack:(id)sender;
+@property (strong, nonatomic) IBOutlet UIButton *btnBack;
+@property (strong, nonatomic) IBOutlet UIButton *btnSelect;
+@property (strong, nonatomic) IBOutlet UIButton *btnConnectPrinter;
+@property (strong, nonatomic) IBOutlet UIImageView *imgPrinterStaus;
+
+//- (IBAction)connectPrinter:(id)sender;
 
 @end

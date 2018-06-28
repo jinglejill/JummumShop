@@ -28,6 +28,8 @@
 #import "UserRewardRedemptionUsed.h"
 #import "DisputeReason.h"
 #import "Dispute.h"
+#import "CredentialsDb.h"
+#import "ReceiptPrint.h"
 //#import "TestPassword.h"
 
 
@@ -152,7 +154,6 @@
             arrClassName = @[@"RewardPoint",@"PromoCode",@"RewardRedemption"];
         }
         break;
-        case dbReceiptMaxModifiedDate:
         case dbReceipt:
         {
             arrClassName = @[@"Receipt"];
@@ -178,6 +179,13 @@
             arrClassName = @[@"CredentialsDb"];
         }
             break;
+        case dbJummumReceipt:
+        case dbJummumReceiptUpdate:
+        case dbReceiptMaxModifiedDate:
+        {
+            arrClassName = @[@"Receipt",@"OrderTaking",@"OrderNote",@"Dispute"];
+        }
+            break;        
         default:
             break;
     }
@@ -421,11 +429,14 @@
         case dbReceiptSummary:
         {
             NSArray *dataList = (NSArray *)data;
-            Receipt *receipt = (Receipt *)dataList[0];
-            UserAccount *userAccount = dataList[1];
+            Receipt *receipt = dataList[0];
+            CredentialsDb *credentialDb = dataList[1];
+            NSString *strReceiptDate = [Utility dateToString:receipt.receiptDate toFormat:@"yyyy-MM-dd HH:mm:ss"];
             
-            noteDataString = [NSString stringWithFormat:@"receiptDate=%@&receiptID=%ld&userAccountID=%ld",receipt.receiptDate,receipt.receiptID,userAccount.userAccountID];
+            
+            noteDataString = [NSString stringWithFormat:@"receiptDate=%@&receiptID=%ld&branchID=%ld&status=%ld",strReceiptDate,receipt.receiptID,credentialDb.branchID,receipt.status];
             url = [NSURL URLWithString:[Utility appendRandomParam:[Utility url:urlReceiptSummaryGetList]]];
+            
         }
             break;
         case dbPromotion:
@@ -494,9 +505,9 @@
         case dbReceiptMaxModifiedDate:
         {
             NSArray *dataList = (NSArray *)data;
-            UserAccount *userAccount = dataList[0];
+            CredentialsDb *credentialsDb = dataList[0];
             NSDate *maxReceiptModifiedDate = dataList[1];
-            noteDataString = [NSString stringWithFormat:@"memberID=%ld&modifiedDate=%@",userAccount.userAccountID,maxReceiptModifiedDate];
+            noteDataString = [NSString stringWithFormat:@"branchID=%ld&modifiedDate=%@",credentialsDb.branchID,maxReceiptModifiedDate];
             url = [NSURL URLWithString:[Utility appendRandomParam:[Utility url:urlReceiptMaxModifiedDateGetList]]];
         }
             break;
@@ -536,6 +547,16 @@
             noteDataString = [NSString stringWithFormat:@"username=%@",username];
             url = [NSURL URLWithString:[Utility appendRandomParam:[Utility url:urlCredentialsDbGet]]];
             
+        }
+            break;
+        case dbJummumReceipt:
+        case dbJummumReceiptPrint:
+        case dbJummumReceiptUpdate:
+        {
+            NSNumber *receiptID = (NSNumber *)data;
+            
+            noteDataString = [NSString stringWithFormat:@"receiptID=%ld&branchID=%ld",[receiptID integerValue],[Utility branchID]];
+            url = [NSURL URLWithString:[Utility appendRandomParam:[Utility url:urlJummumReceiptGetList]]];
         }
             break;
         default:
@@ -871,9 +892,9 @@
         {
             NSArray *dataList = (NSArray *)data;
             Dispute *dispute = dataList[0];
-            Branch *branch = dataList[1];
+            NSNumber *branchID = dataList[1];
             noteDataString = [Utility getNoteDataString:dispute];
-            noteDataString = [NSString stringWithFormat:@"%@&branchID=%ld",noteDataString,branch.branchID];
+            noteDataString = [NSString stringWithFormat:@"%@&branchID=%ld",noteDataString,[branchID integerValue]];
             url = [NSURL URLWithString:[Utility url:urlDisputeInsert]];
         }
             break;
@@ -896,6 +917,21 @@
         {
             noteDataString = [Utility getNoteDataString:data];
             url = [NSURL URLWithString:[Utility url:urlCredentialsValidate]];
+        }
+            break;
+        case dbReceiptPrintList:
+        {
+            NSMutableArray *receiptPrintList = (NSMutableArray *)data;
+            NSInteger countReceiptPrint = 0;
+            
+            noteDataString = [NSString stringWithFormat:@"countReceiptPrint=%ld",[receiptPrintList count]];
+            for(ReceiptPrint *item in receiptPrintList)
+            {
+                noteDataString = [NSString stringWithFormat:@"%@&%@",noteDataString,[Utility getNoteDataString:item withRunningNo:countReceiptPrint]];
+                countReceiptPrint++;
+            }
+            
+            url = [NSURL URLWithString:[Utility url:urlReceiptPrintInsertList]];
         }
             break;
         default:
@@ -973,6 +1009,10 @@
                             else if([strTableName isEqualToString:@"RewardPoint"])
                             {
                                 arrClassName = @[@"PromoCode"];
+                            }
+                            else if([strTableName isEqualToString:@"Receipt"])
+                            {
+                                arrClassName = @[@"Receipt"];
                             }
                             
                             NSArray *items = [Utility jsonToArray:dataJson arrClassName:arrClassName];
@@ -1271,6 +1311,12 @@
             url = [NSURL URLWithString:[Utility url:urlReceiptUpdate]];
         }
         break;
+        case dbJummumReceipt:
+        {
+            noteDataString = [Utility getNoteDataString:data];
+            url = [NSURL URLWithString:[Utility url:urlJummumReceiptUpdate]];
+        }
+            break;
         default:
             break;
     }

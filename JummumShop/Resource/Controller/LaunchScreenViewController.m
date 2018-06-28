@@ -321,7 +321,7 @@
         
         
         if([_credentialsDbList count]==1)
-        {
+        {        
             _credentialsDb = _credentialsDbList[0];
             [Utility setBranchID:_credentialsDb.branchID];
             [[NSUserDefaults standardUserDefaults] setValue:[[NSUserDefaults standardUserDefaults] stringForKey:USERNAME] forKey:BRANCH];
