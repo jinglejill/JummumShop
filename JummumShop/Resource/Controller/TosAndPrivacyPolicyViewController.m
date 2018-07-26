@@ -7,6 +7,8 @@
 //
 
 #import "TosAndPrivacyPolicyViewController.h"
+#import "Setting.h"
+
 
 @interface TosAndPrivacyPolicyViewController ()
 @property (strong, nonatomic) WKWebView *webView;
@@ -16,7 +18,19 @@
 @synthesize webViewContainer;
 @synthesize lblNavTitle;
 @synthesize pageType;
+@synthesize topViewHeight;
+@synthesize bottomViewHeight;
 
+
+-(void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+    UIWindow *window = UIApplication.sharedApplication.keyWindow;
+    bottomViewHeight.constant = window.safeAreaInsets.bottom;
+    
+    float topPadding = window.safeAreaInsets.top;
+    topViewHeight.constant = topPadding == 0?20:topPadding;
+}
 
 -(instancetype)initWithCoder:(NSCoder *)aDecoder
 {
@@ -63,14 +77,11 @@
     
     if(pageType == 1)
     {
-        lblNavTitle.text = @"ข้อกำหนดและเงื่อนไขของ Jummum";
+        NSString *title = [Setting getValue:@"094t" example:@"ข้อกำหนดและเงื่อนไขของ Jummum shop"];
+        lblNavTitle.text = title;
         [self webViewLoadUrl:[Utility url:urlTermsOfService]];
     }
-    else
-    {
-        lblNavTitle.text = @"นโยบายความเป็นส่วนตัว";
-        [self webViewLoadUrl:[Utility url:urlPrivacyPolicy]];
-    }
+
     
     [self addWebView:webViewContainer];
 }

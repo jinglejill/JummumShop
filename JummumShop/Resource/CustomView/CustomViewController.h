@@ -21,9 +21,16 @@
 @property (nonatomic,retain) UIImageView *removedNotiView;
 @property (nonatomic,retain) UILabel *lblAlertMsg;
 @property (nonatomic,retain) UILabel *lblWaiting;
-@property (nonatomic) NSInteger receiptKitchenBill;
 @property (nonatomic,retain) HomeModel *homeModelPrintKitchenBill;
 @property (nonatomic,retain) UIView *backgroundView;
+@property (nonatomic) NSInteger receiptKitchenBill;
+@property (nonatomic) BOOL newOrderComing;
+@property (nonatomic) BOOL issueComing;
+@property (nonatomic) BOOL processingComing;
+@property (nonatomic) BOOL deliveredComing;
+@property (nonatomic) BOOL clearComing;
+@property (nonatomic,retain) UIToolbar *toolBar;
+
 
 -(void)setCurrentVc;
 -(void) blinkAddedNotiView;
@@ -40,8 +47,6 @@
 -(void)alertMsg:(NSString *)msg;
 -(void) showAlert:(NSString *)title message:(NSString *)message;
 -(void) showAlert:(NSString *)title message:(NSString *)message method:(SEL)method;
--(void)vibrateAndCallPushSync;
--(void)showAlertAndCallPushSync:(NSString *)title message:(NSString *)message;
 -(void) showAlert:(NSString *)title message:(NSString *)message firstResponder:(UIView *)view;
 -(void)loadViewProcess;
 -(void)setShadow:(UIView *)view;
@@ -69,4 +74,5 @@
 -(NSAttributedString *)setAttributedString:(NSString *)title text:(NSString *)text;
 -(void)printReceiptKitchenBill:(NSMutableArray *)receiptList;
 -(void)doPrintProcess:(UIImage *)image portName:(NSString *)portName;
+-(void)dismissKeyboard;
 @end

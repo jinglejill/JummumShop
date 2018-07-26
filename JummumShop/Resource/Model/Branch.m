@@ -14,7 +14,7 @@
 
 @implementation Branch
 
--(Branch *)initWithDbName:(NSString *)dbName mainBranchID:(NSInteger)mainBranchID branchNo:(NSString *)branchNo name:(NSString *)name street:(NSString *)street district:(NSString *)district province:(NSString *)province postCode:(NSString *)postCode subDistrictID:(NSInteger)subDistrictID districtID:(NSInteger)districtID provinceID:(NSInteger)provinceID zipCodeID:(NSInteger)zipCodeID country:(NSString *)country map:(NSString *)map phoneNo:(NSString *)phoneNo tableNum:(NSInteger)tableNum customerNumMax:(NSInteger)customerNumMax employeePermanentNum:(NSInteger)employeePermanentNum status:(NSInteger)status takeAwayFee:(NSInteger)takeAwayFee serviceChargePercent:(float)serviceChargePercent percentVat:(float)percentVat priceIncludeVat:(NSInteger)priceIncludeVat customerApp:(NSInteger)customerApp imageUrl:(NSString *)imageUrl startDate:(NSDate *)startDate remark:(NSString *)remark deviceTokenReceiveOrder:(NSString *)deviceTokenReceiveOrder
+-(Branch *)initWithDbName:(NSString *)dbName mainBranchID:(NSInteger)mainBranchID branchNo:(NSString *)branchNo name:(NSString *)name street:(NSString *)street district:(NSString *)district province:(NSString *)province postCode:(NSString *)postCode subDistrictID:(NSInteger)subDistrictID districtID:(NSInteger)districtID provinceID:(NSInteger)provinceID zipCodeID:(NSInteger)zipCodeID country:(NSString *)country map:(NSString *)map phoneNo:(NSString *)phoneNo tableNum:(NSInteger)tableNum customerNumMax:(NSInteger)customerNumMax employeePermanentNum:(NSInteger)employeePermanentNum status:(NSInteger)status takeAwayFee:(NSInteger)takeAwayFee serviceChargePercent:(float)serviceChargePercent percentVat:(float)percentVat priceIncludeVat:(NSInteger)priceIncludeVat customerApp:(NSInteger)customerApp imageUrl:(NSString *)imageUrl startDate:(NSDate *)startDate remark:(NSString *)remark deviceTokenReceiveOrder:(NSString *)deviceTokenReceiveOrder urlNoti:(NSString *)urlNoti alarmShop:(NSInteger)alarmShop ledStatus:(NSInteger)ledStatus
 {
     self = [super init];
     if(self)
@@ -48,6 +48,9 @@
         self.startDate = startDate;
         self.remark = remark;
         self.deviceTokenReceiveOrder = deviceTokenReceiveOrder;
+        self.urlNoti = urlNoti;
+        self.alarmShop = alarmShop;
+        self.ledStatus = ledStatus;
         self.modifiedUser = [Utility modifiedUser];
         self.modifiedDate = [Utility currentDateTime];
     }
@@ -155,6 +158,9 @@
         [copy setStartDate:self.startDate];
         [copy setRemark:self.remark];
         [copy setDeviceTokenReceiveOrder:self.deviceTokenReceiveOrder];
+        [copy setUrlNoti:self.urlNoti];
+        ((Branch *)copy).alarmShop = self.alarmShop;
+        ((Branch *)copy).ledStatus = self.ledStatus;
         [copy setModifiedUser:[Utility modifiedUser]];
         [copy setModifiedDate:[Utility currentDateTime]];
         ((Branch *)copy).replaceSelf = self.replaceSelf;
@@ -195,6 +201,9 @@
        && [self.startDate isEqual:editingBranch.startDate]
        && [self.remark isEqualToString:editingBranch.remark]
        && [self.deviceTokenReceiveOrder isEqualToString:editingBranch.deviceTokenReceiveOrder]
+       && [self.urlNoti isEqualToString:editingBranch.urlNoti]
+       && self.alarmShop == editingBranch.alarmShop
+       && self.ledStatus == editingBranch.ledStatus
        )
     {
         return NO;
@@ -233,6 +242,9 @@
     toBranch.startDate = fromBranch.startDate;
     toBranch.remark = fromBranch.remark;
     toBranch.deviceTokenReceiveOrder = fromBranch.deviceTokenReceiveOrder;
+    toBranch.urlNoti = fromBranch.urlNoti;
+    toBranch.alarmShop = fromBranch.alarmShop;
+    toBranch.ledStatus = fromBranch.ledStatus;
     toBranch.modifiedUser = [Utility modifiedUser];
     toBranch.modifiedDate = [Utility currentDateTime];
     

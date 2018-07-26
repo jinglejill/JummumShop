@@ -11,8 +11,8 @@
 
 
 @interface CustomerKitchenViewController : CustomViewController<UITableViewDataSource,UITableViewDelegate,UIWebViewDelegate>
-- (IBAction)doAction:(id)sender;
-@property (strong, nonatomic) IBOutlet UIButton *btnAction;
+
+
 
 @property (strong, nonatomic) IBOutlet UITableView *tbvData;
 @property (strong, nonatomic) CredentialsDb *credentialsDb;
@@ -23,12 +23,21 @@
 @property (strong, nonatomic) IBOutlet UIImageView *imgBadgeProcessing;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *imgBadgeLeading;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *imgBadgeProcessingLeading;
+@property (strong, nonatomic) IBOutlet UILabel *lblNavTitle;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *topViewHeight;
 
 
 -(IBAction)unwindToCustomerKitchen:(UIStoryboardSegue *)segue;
+//- (IBAction)doAction:(id)sender;
 - (IBAction)printStatusChanged:(id)sender;
 -(void)setReceiptList;
 -(void)reloadTableView;
+-(void)reloadTableViewNewOrderTab;
+-(void)reloadTableViewIssueTab;
+-(void)reloadTableViewProcessingTab;
+-(void)reloadTableViewDeliveredTab;
+-(void)reloadTableViewClearTab;
+- (IBAction)refresh:(id)sender;
 
 
 

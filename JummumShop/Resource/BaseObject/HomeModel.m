@@ -180,12 +180,29 @@
         }
             break;
         case dbJummumReceipt:
-        case dbJummumReceiptUpdate:
+//        case dbJummumReceiptUpdate:
         case dbReceiptMaxModifiedDate:
+        case dbJummumReceiptTapNotification:
+        case dbJummumReceiptTapNotificationIssue:
         {
             arrClassName = @[@"Receipt",@"OrderTaking",@"OrderNote",@"Dispute"];
         }
-            break;        
+            break;
+        case dbBranch:
+        {
+            arrClassName = @[@"Branch"];
+        }
+            break;
+        case dbOpeningTimeText:
+        {
+            arrClassName = @[@"Message"];
+        }
+            break;
+        case dbSetting:
+        {
+            arrClassName = @[@"Setting"];
+        }
+            break;
         default:
             break;
     }
@@ -251,7 +268,14 @@
             // Ready to notify delegate that data is ready and pass back items
             if (self.delegate)
             {
-                [self.delegate itemsDownloaded:arrItem];
+                if(propCurrentDB == dbJummumReceipt || propCurrentDB == dbJummumReceiptTapNotification || propCurrentDB == dbJummumReceiptTapNotificationIssue || propCurrentDB == dbCredentialsDb || propCurrentDB == dbOpeningTimeText || propCurrentDB == dbSetting)
+                {
+                    [self.delegate itemsDownloaded:arrItem manager:self];
+                }
+                else
+                {
+                    [self.delegate itemsDownloaded:arrItem];
+                }
             }
         }
     }
@@ -336,7 +360,8 @@
     // Ready to notify delegate that data is ready and pass back items
     if (self.delegate)
     {
-        [self.delegate itemsDownloaded:arrItem];
+        [self.delegate itemsDownloaded:arrItem manager:self];
+//        [self.delegate itemsDownloaded:arrItem];
     }
 }
 - (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask didReceiveResponse:(NSURLResponse *)response completionHandler:(void (^)(NSURLSessionResponseDisposition disposition))completionHandler {
@@ -373,12 +398,17 @@
         {
             url = [NSURL URLWithString:[Utility appendRandomParam:[Utility url:urlMasterGet]]];
         }
-        break;
+            break;
         case dbMasterWithProgressBar:
         {
             url = [NSURL URLWithString:[Utility appendRandomParam:[Utility url:urlMasterGet]]];
         }
-        break;
+            break;
+        case dbOpeningTimeText:
+        {
+            url = [NSURL URLWithString:[Utility appendRandomParam:[Utility url:urlOpeningTimeTextGet]]];
+        }
+            break;
         default:
         break;
     }
@@ -550,13 +580,30 @@
         }
             break;
         case dbJummumReceipt:
-        case dbJummumReceiptPrint:
-        case dbJummumReceiptUpdate:
+//        case dbJummumReceiptPrint:
+//        case dbJummumReceiptUpdate:
+        case dbJummumReceiptTapNotification:
+        case dbJummumReceiptTapNotificationIssue:
         {
             NSNumber *receiptID = (NSNumber *)data;
             
             noteDataString = [NSString stringWithFormat:@"receiptID=%ld&branchID=%ld",[receiptID integerValue],[Utility branchID]];
             url = [NSURL URLWithString:[Utility appendRandomParam:[Utility url:urlJummumReceiptGetList]]];
+        }
+            break;
+        case dbBranch:
+        {
+            NSString *dbName = (NSString *)data;
+            noteDataString = [NSString stringWithFormat:@"dbName=%@",dbName];
+            url = [NSURL URLWithString:[Utility appendRandomParam:[Utility url:urlBranchGet]]];
+        }
+        break;
+        case dbSetting:
+        {
+            NSNumber *settingID = (NSNumber *)data;
+            
+            noteDataString = [NSString stringWithFormat:@"settingID=%ld",[settingID integerValue]];
+            url = [NSURL URLWithString:[Utility appendRandomParam:[Utility url:urlSettingGet]]];
         }
             break;
         default:
@@ -898,6 +945,16 @@
             url = [NSURL URLWithString:[Utility url:urlDisputeInsert]];
         }
             break;
+        case dbDisputeCancel:
+        {
+            NSArray *dataList = (NSArray *)data;
+            Dispute *dispute = dataList[0];
+            NSNumber *branchID = dataList[1];
+            noteDataString = [Utility getNoteDataString:dispute];
+            noteDataString = [NSString stringWithFormat:@"%@&branchID=%ld",noteDataString,[branchID integerValue]];
+            url = [NSURL URLWithString:[Utility url:urlDisputeCancelInsert]];
+        }
+            break;
         case dbDisputeList:
         {
             NSMutableArray *disputeList = (NSMutableArray *)data;
@@ -973,7 +1030,6 @@
                     NSString *strReturnID = json[@"returnID"];
                     NSArray *dataJson = json[@"dataJson"];
                     NSString *strTableName = json[@"tableName"];
-//                    NSString *action = json[@"action"];
                     if([status isEqual:@"1"])
                     {
                         NSLog(@"insert success");
@@ -1012,7 +1068,7 @@
                             }
                             else if([strTableName isEqualToString:@"Receipt"])
                             {
-                                arrClassName = @[@"Receipt"];
+                                arrClassName = @[@"Receipt",@"Dispute"];
                             }
                             
                             NSArray *items = [Utility jsonToArray:dataJson arrClassName:arrClassName];
@@ -1023,7 +1079,18 @@
                         }
                         else
                         {
-                            [self.delegate itemsInserted];
+                            if(self.delegate)
+                            {
+                                if(propCurrentDBInsert == dbCredentials || propCurrentDBInsert == dbDevice)
+                                {
+                                    NSMutableArray *dataList = [[NSMutableArray alloc]init];
+                                    [self.delegate itemsInsertedWithManager:self items:dataList];
+                                }
+                                else
+                                {
+                                    [self.delegate itemsInserted];
+                                }
+                            }
                         }
                     }
                     else if([status isEqual:@"2"])
@@ -1031,10 +1098,26 @@
                         //alertMsg
                         if(self.delegate)
                         {
-                            NSString *msg = json[@"msg"];
-                            [self.delegate alertMsg:msg];
+                            if(propCurrentDBInsert == dbCredentials)
+                            {
+                                NSString *msg = json[@"msg"];
+                                NSMutableArray *dataList = [[NSMutableArray alloc]init];
+                                NSMutableArray *messgeList = [[NSMutableArray alloc]init];
+                                Message *message = [[Message alloc]init];
+                                message.text = msg;
+                                [messgeList addObject:message];
+                                [dataList addObject:messgeList];
+                                [self.delegate itemsInsertedWithManager:self items:dataList];
+                                NSLog(@"msg: %@", msg);
+                            }
+                            else
+                            {
+                                NSString *msg = json[@"msg"];
+                                [self.delegate alertMsg:msg];
+                                NSLog(@"msg: %@", msg);
+                            }
+                            
                             NSLog(@"status: %@", status);
-                            NSLog(@"msg: %@", msg);
                         }                                        
                     }
                     else
@@ -1317,6 +1400,22 @@
             url = [NSURL URLWithString:[Utility url:urlJummumReceiptUpdate]];
         }
             break;
+        case dbJummumReceiptSendToKitchen:
+        case dbJummumReceiptDelivered:
+        {
+            NSArray *dataList =  (NSArray *)data;
+            Receipt *receipt = dataList[0];
+            NSDate *maxModifiedDate = dataList[1];
+            noteDataString = [Utility getNoteDataString:receipt];
+            noteDataString = [NSString stringWithFormat:@"%@&maxModifiedDate=%@",noteDataString,maxModifiedDate];
+            url = [NSURL URLWithString:[Utility url:urlJummumReceiptSendToKitchen]];
+        }
+        break;
+        case dbSetting:
+        {
+            noteDataString = [Utility getNoteDataString:data];
+            url = [NSURL URLWithString:[Utility url:urlSettingUpdate]];
+        }
         default:
             break;
     }
@@ -1350,13 +1449,51 @@
                                   JSONObjectWithData:dataRaw
                                   options:kNilOptions error:&error];
             NSString *status = json[@"status"];
+            NSArray *dataJson = json[@"dataJson"];
+            NSString *strTableName = json[@"tableName"];
             
             if([status isEqual:@"1"])
             {
                 NSLog(@"update success");
-                if (self.delegate)
+                if(strTableName)
                 {
-                    [self.delegate itemsUpdated];
+                    NSArray *arrClassName;
+                    if([strTableName isEqualToString:@"ReceiptSendToKitchen"])
+                    {
+                        arrClassName = @[@"Message",@"Receipt",@"Receipt"];
+                    }
+                    else if([strTableName isEqualToString:@"Receipt"])
+                    {
+                        arrClassName = @[@"Receipt"];
+                    }
+                    else if([strTableName isEqualToString:@"Setting"])
+                    {
+                        arrClassName = @[@"Setting"];
+                    }
+                    
+                    NSArray *items = [Utility jsonToArray:dataJson arrClassName:arrClassName];
+                    if(self.delegate)
+                    {
+                        [self.delegate itemsUpdatedWithManager:self items:items];
+                    }
+                }
+                else
+                {
+                    if(propCurrentDBUpdate == dbAlarmUpdate || propCurrentDBUpdate == dbAlarm)
+                    {
+                        if(self.delegate)
+                        {
+                            [self.delegate itemsUpdatedWithManager:self];
+                        }
+                    }
+                    else
+                    {
+                        if(self.delegate)
+                        {
+                            [self.delegate itemsUpdated];
+                        }
+                    }
+                    
                 }
             }
             else if([status isEqual:@"2"])
@@ -1374,7 +1511,7 @@
                 NSLog(@"%@", status);
                 if (self.delegate)
                 {
-                    //                    [self.delegate itemsFail];
+                    [self.delegate itemsFail];
                 }
             }
         }
@@ -1655,7 +1792,7 @@
                 NSLog(@"%@", status);
                 if (self.delegate)
                 {
-                    //                    [self.delegate itemsFail];
+                    [self.delegate itemsFail];
                 }
             }
         }
@@ -1792,7 +1929,7 @@
                 NSLog(@"%@", status);
                 if (self.delegate)
                 {
-                    //                    [self.delegate itemsFail];
+                    [self.delegate itemsFail];
                 }
             }
         }

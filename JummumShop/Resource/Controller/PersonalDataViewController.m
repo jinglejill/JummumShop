@@ -9,6 +9,8 @@
 #import "PersonalDataViewController.h"
 #import "CustomTableViewCellLabelLabel.h"
 #import "UserAccount.h"
+#import "CredentialsDb.h"
+#import "Setting.h"
 
 
 @interface PersonalDataViewController ()
@@ -21,14 +23,29 @@
 static NSString * const reuseIdentifierLabelLabel = @"CustomTableViewCellLabelLabel";
 
 
+@synthesize lblNavTitle;
 @synthesize tbvData;
+@synthesize topViewHeight;
+@synthesize bottomViewHeight;
 
+
+-(void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+    UIWindow *window = UIApplication.sharedApplication.keyWindow;
+    bottomViewHeight.constant = window.safeAreaInsets.bottom;
+    
+    float topPadding = window.safeAreaInsets.top;
+    topViewHeight.constant = topPadding == 0?20:topPadding;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
     
+    NSString *title = [Setting getValue:@"089t" example:@"ข้อมูลส่วนตัว"];
+    lblNavTitle.text = title;
     tbvData.dataSource = self;
     tbvData.delegate = self;
     
@@ -71,8 +88,20 @@ static NSString * const reuseIdentifierLabelLabel = @"CustomTableViewCellLabelLa
     {
         case 0:
         {
+            NSString *message = [Setting getValue:@"090m" example:@"ชื่อร้าน"];
+            cell.lblText.text = message;
+            cell.lblText.textColor = cSystem1;
+            [cell.lblText sizeToFit];
+            cell.lblTextWidthConstant.constant = cell.lblText.frame.size.width;
+            cell.lblValue.text = [CredentialsDb getCurrentCredentialsDb].name;
+            cell.lblValue.textColor = cSystem4;
+        }
+            break;
+        case 1:
+        {
+            NSString *message = [Setting getValue:@"091m" example:@"อีเมล"];
             UserAccount *userAccount = [UserAccount getCurrentUserAccount];
-            cell.lblText.text = @"อีเมลล์";
+            cell.lblText.text = message;
             cell.lblText.textColor = cSystem1;
             [cell.lblText sizeToFit];
             cell.lblTextWidthConstant.constant = cell.lblText.frame.size.width;
@@ -80,25 +109,15 @@ static NSString * const reuseIdentifierLabelLabel = @"CustomTableViewCellLabelLa
             cell.lblValue.textColor = cSystem4;
         }
             break;
-        case 1:
+        case 2:
         {
+            NSString *message = [Setting getValue:@"092m" example:@"ชื่อ"];
             UserAccount *userAccount = [UserAccount getCurrentUserAccount];
-            cell.lblText.text = @"ชื่อ";
+            cell.lblText.text = message;
             cell.lblText.textColor = cSystem1;
             [cell.lblText sizeToFit];
             cell.lblTextWidthConstant.constant = cell.lblText.frame.size.width;
             cell.lblValue.text = userAccount.fullName;
-            cell.lblValue.textColor = cSystem4;
-        }
-            break;
-        case 2:
-        {
-            UserAccount *userAccount = [UserAccount getCurrentUserAccount];
-            cell.lblText.text = @"วันเกิด";
-            cell.lblText.textColor = cSystem1;
-            [cell.lblText sizeToFit];
-            cell.lblTextWidthConstant.constant = cell.lblText.frame.size.width;
-            cell.lblValue.text = [Utility dateToString:userAccount.birthDate toFormat:@"d MMM yyyy"];
             cell.lblValue.textColor = cSystem4;
         }
             break;

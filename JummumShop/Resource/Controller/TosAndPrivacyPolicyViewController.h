@@ -11,10 +11,12 @@
 
 
 @interface TosAndPrivacyPolicyViewController : CustomViewController
-@property (strong, nonatomic) IBOutlet UIView *webViewContainer;
 @property (strong, nonatomic) IBOutlet UILabel *lblNavTitle;
+@property (strong, nonatomic) IBOutlet UIView *webViewContainer;
 @property (nonatomic) NSInteger pageType;
 - (IBAction)goBack:(id)sender;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *webViewContainerTrailing;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *webViewContainerBottom;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *topViewHeight;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *bottomViewHeight;
 @end

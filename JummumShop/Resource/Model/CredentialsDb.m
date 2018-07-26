@@ -7,6 +7,7 @@
 //
 
 #import "CredentialsDb.h"
+#import "SharedCurrentCredentialsDb.h"
 #import "Utility.h"
 
 
@@ -42,5 +43,14 @@
     return i;
 }
 
++(void)setCurrentCredentialsDb:(CredentialsDb *)credentialsDb
+{
+    [SharedCurrentCredentialsDb sharedCurrentCredentialsDb].credentialsDb = credentialsDb;
+}
 
++(CredentialsDb *)getCurrentCredentialsDb
+{
+    CredentialsDb *credentialsDb = [SharedCurrentCredentialsDb sharedCurrentCredentialsDb].credentialsDb;
+    return credentialsDb;
+}
 @end

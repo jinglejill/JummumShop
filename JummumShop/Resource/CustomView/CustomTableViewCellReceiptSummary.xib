@@ -33,11 +33,11 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ร้าน MAMARIN" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8KU-CG-XN7">
-                    <rect key="frame" x="16" y="65" width="98.5" height="18"/>
+                    <rect key="frame" x="16" y="65" width="100" height="18"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="18" id="lOz-aL-0u1"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="Prompt-Regular" family="Prompt" pointSize="15"/>
+                    <fontDescription key="fontDescription" name="Prompt-SemiBold" family="Prompt" pointSize="15"/>
                     <color key="textColor" red="0.3921568627" green="0.86274509799999999" blue="0.7843137255" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -68,15 +68,20 @@
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
                 </button>
+                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="ExE-pH-eZV">
+                    <rect key="frame" x="294" y="34" width="20" height="20"/>
+                </activityIndicatorView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="ExE-pH-eZV" firstAttribute="centerX" secondItem="pRB-X6-wwb" secondAttribute="centerX" id="1bb-c2-q7b"/>
                 <constraint firstItem="8KU-CG-XN7" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="A42-10-HTF"/>
                 <constraint firstItem="pRB-X6-wwb" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="9" id="C74-jo-Wxa"/>
                 <constraint firstItem="LrP-pm-5NA" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="CgO-Bc-SEf"/>
                 <constraint firstItem="rtg-O7-PPv" firstAttribute="leading" secondItem="fNP-Kq-HeX" secondAttribute="trailing" constant="8" id="NNc-Q3-T8R"/>
                 <constraint firstItem="LrP-pm-5NA" firstAttribute="top" secondItem="8KU-CG-XN7" secondAttribute="bottom" constant="8" id="PaV-PG-VR8"/>
                 <constraint firstItem="fNP-Kq-HeX" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="RQe-tv-R4F"/>
+                <constraint firstItem="ExE-pH-eZV" firstAttribute="centerY" secondItem="pRB-X6-wwb" secondAttribute="centerY" id="bZ4-us-j4F"/>
                 <constraint firstItem="8KU-CG-XN7" firstAttribute="top" secondItem="fNP-Kq-HeX" secondAttribute="bottom" constant="12" id="cc7-5y-Css"/>
                 <constraint firstItem="rtg-O7-PPv" firstAttribute="centerY" secondItem="8KU-CG-XN7" secondAttribute="centerY" id="lZr-KU-IbB"/>
                 <constraint firstItem="LrP-pm-5NA" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="m5g-RL-lyf"/>
@@ -88,6 +93,7 @@
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
                 <outlet property="btnOrderItAgain" destination="pRB-X6-wwb" id="6t8-n6-ZdK"/>
+                <outlet property="indicator" destination="ExE-pH-eZV" id="nux-2x-2QP"/>
                 <outlet property="lblBranchName" destination="8KU-CG-XN7" id="5No-db-lvk"/>
                 <outlet property="lblReceiptDate" destination="rtg-O7-PPv" id="BEx-3Z-b7O"/>
                 <outlet property="lblReceiptNo" destination="fNP-Kq-HeX" id="oaq-VJ-EJq"/>

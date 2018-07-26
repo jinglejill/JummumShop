@@ -38,12 +38,17 @@
 @property (retain, nonatomic) NSDate * startDate;
 @property (retain, nonatomic) NSString * remark;
 @property (retain, nonatomic) NSString * deviceTokenReceiveOrder;
+@property (retain, nonatomic) NSString * urlNoti;
+@property (nonatomic) NSInteger alarmShop;
+@property (nonatomic) NSInteger ledStatus;
 @property (retain, nonatomic) NSString * modifiedUser;
 @property (retain, nonatomic) NSDate * modifiedDate;
 @property (nonatomic) NSInteger replaceSelf;
 @property (nonatomic) NSInteger idInserted;
 
--(Branch *)initWithDbName:(NSString *)dbName mainBranchID:(NSInteger)mainBranchID branchNo:(NSString *)branchNo name:(NSString *)name street:(NSString *)street district:(NSString *)district province:(NSString *)province postCode:(NSString *)postCode subDistrictID:(NSInteger)subDistrictID districtID:(NSInteger)districtID provinceID:(NSInteger)provinceID zipCodeID:(NSInteger)zipCodeID country:(NSString *)country map:(NSString *)map phoneNo:(NSString *)phoneNo tableNum:(NSInteger)tableNum customerNumMax:(NSInteger)customerNumMax employeePermanentNum:(NSInteger)employeePermanentNum status:(NSInteger)status takeAwayFee:(NSInteger)takeAwayFee serviceChargePercent:(float)serviceChargePercent percentVat:(float)percentVat priceIncludeVat:(NSInteger)priceIncludeVat customerApp:(NSInteger)customerApp imageUrl:(NSString *)imageUrl startDate:(NSDate *)startDate remark:(NSString *)remark deviceTokenReceiveOrder:(NSString *)deviceTokenReceiveOrder;
+-(Branch *)initWithDbName:(NSString *)dbName mainBranchID:(NSInteger)mainBranchID branchNo:(NSString *)branchNo name:(NSString *)name street:(NSString *)street district:(NSString *)district province:(NSString *)province postCode:(NSString *)postCode subDistrictID:(NSInteger)subDistrictID districtID:(NSInteger)districtID provinceID:(NSInteger)provinceID zipCodeID:(NSInteger)zipCodeID country:(NSString *)country map:(NSString *)map phoneNo:(NSString *)phoneNo tableNum:(NSInteger)tableNum customerNumMax:(NSInteger)customerNumMax employeePermanentNum:(NSInteger)employeePermanentNum status:(NSInteger)status takeAwayFee:(NSInteger)takeAwayFee serviceChargePercent:(float)serviceChargePercent percentVat:(float)percentVat priceIncludeVat:(NSInteger)priceIncludeVat customerApp:(NSInteger)customerApp imageUrl:(NSString *)imageUrl startDate:(NSDate *)startDate remark:(NSString *)remark deviceTokenReceiveOrder:(NSString *)deviceTokenReceiveOrder urlNoti:(NSString *)urlNoti alarmShop:(NSInteger)alarmShop ledStatus:(NSInteger)ledStatus;
+
+
 +(NSInteger)getNextID;
 +(void)addObject:(Branch *)branch;
 +(void)removeObject:(Branch *)branch;

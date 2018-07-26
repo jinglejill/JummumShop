@@ -8,6 +8,7 @@
 
 #import "TermsOfServiceViewController.h"
 #import "MainTabBarController.h"
+#import "Setting.h"
 
 
 @interface TermsOfServiceViewController ()
@@ -24,14 +25,26 @@
 @synthesize btnDeclineWidthConstant;
 @synthesize username;
 @synthesize credentialsDb;
+@synthesize topViewHeight;
+@synthesize bottomButtonHeight;
+@synthesize lblNavTitle;
 
 
 -(void)viewDidLayoutSubviews
 {
     [super viewDidLayoutSubviews];
+    UIWindow *window = UIApplication.sharedApplication.keyWindow;
+    bottomButtonHeight.constant = window.safeAreaInsets.bottom;
+    
+    float topPadding = window.safeAreaInsets.top;
+    topViewHeight.constant = topPadding == 0?20:topPadding;
+    
+    
+    
     btnAcceptWidthConstant.constant = ceilf(self.view.frame.size.width/2.0);
     btnDeclineWidthConstant.constant = ceilf(self.view.frame.size.width/2.0);
 }
+
 
 -(instancetype)initWithCoder:(NSCoder *)aDecoder
 {
@@ -67,6 +80,11 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    
+    NSString *title = [Setting getValue:@"093t" example:@"ข้อกำหนดและเงื่อนไขของ JUMMUM Shop"];
+    lblNavTitle.text = title;
+    
     
     
     [self webViewLoadUrl:[Utility appendRandomParam:[Utility url:urlTermsOfService]]];

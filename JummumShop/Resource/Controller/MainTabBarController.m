@@ -27,9 +27,7 @@
     
     
     [[UITabBarItem appearance] setTitleTextAttributes:@{NSFontAttributeName: [UIFont fontWithName:@"Prompt-Regular" size:11.0f]} forState:UIControlStateNormal];
-    
-    //, UITextAttributeTextColor : [UIColor greenColor]
-//    [[UITabBarItem appearance] setTitleTextAttributes:@{NSFontAttributeName: [UIFont fontWithName:@"Prompt-Regular" size:11.0f], image : [UIColor greenColor]} forState:UIControlStateNormal];
+
 }
 
 - (void)didReceiveMemoryWarning {

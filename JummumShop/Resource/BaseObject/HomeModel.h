@@ -14,9 +14,13 @@
 
 @optional
 - (void)itemsDownloaded:(NSArray *)items;
+- (void)itemsDownloaded:(NSArray *)items manager:(NSObject *)objHomeModel;
 - (void)applicationExpired;
 - (void)itemsInserted;
+- (void)itemsInsertedWithManager:(NSObject *)objHomeModel items:(NSArray *)items;
 - (void)itemsUpdated;
+- (void)itemsUpdatedWithManager:(NSObject *)objHomeModel;
+- (void)itemsUpdatedWithManager:(NSObject *)objHomeModel items:(NSArray *)items;
 - (void)itemsUpdated:(NSString *)alert;
 - (void)itemsSynced:(NSArray *)items;
 - (void)itemsDeleted;

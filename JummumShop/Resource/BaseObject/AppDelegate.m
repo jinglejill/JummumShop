@@ -10,6 +10,10 @@
 #import "LogInViewController.h"
 #import "CustomerKitchenViewController.h"
 #import "OrderDetailViewController.h"
+#import "TosAndPrivacyPolicyViewController.h"
+#import "PersonalDataViewController.h"
+#import "MeViewController.h"
+#import "OpeningTimeViewController.h"
 #import "HomeModel.h"
 #import "Utility.h"
 #import "PushSync.h"
@@ -167,23 +171,6 @@ void myExceptionHandler(NSException *exception)
                      NSLog( @"SUGGESTIONS: %@ - %@", error.localizedRecoveryOptions, error.localizedRecoverySuggestion );
                  }
              }];
-            
-            
-            UNNotificationAction *notificationAction1 = [UNNotificationAction actionWithIdentifier:@"Print"
-                                                                                             title:@"Print"
-                                                                                           options:UNNotificationActionOptionForeground];
-            UNNotificationAction *notificationAction2 = [UNNotificationAction actionWithIdentifier:@"View"
-                                                                                             title:@"View"
-                                                                                           options:UNNotificationActionOptionForeground];
-            UNNotificationCategory *notificationCategory = [UNNotificationCategory categoryWithIdentifier:@"Print"                                                                                                     actions:@[notificationAction1,notificationAction2] intentIdentifiers:@[] options:UNNotificationCategoryOptionNone];
-
-
-            // Register the notification categories.
-            UNUserNotificationCenter* center2 = [UNUserNotificationCenter currentNotificationCenter];
-            center2.delegate = self;
-            [center2 setNotificationCategories:[NSSet setWithObjects:notificationCategory,nil]];
-            
-        
         }
         else
         {
@@ -193,12 +180,6 @@ void myExceptionHandler(NSException *exception)
             [application registerForRemoteNotifications];
             [[UIApplication sharedApplication] registerForRemoteNotifications];
         }
-        
-        
-        
-        
-        
-
     }
     
     
@@ -248,20 +229,25 @@ void myExceptionHandler(NSException *exception)
     NSLog(@"notification is delivered to a foreground app: %@", userInfo);
     
     
+    
     NSDictionary *myAps = [userInfo objectForKey:@"aps"];
     NSString *categoryIdentifier = [myAps objectForKey:@"category"];
-    if([categoryIdentifier isEqualToString:@"cancelOrder"])
+    if([categoryIdentifier isEqualToString:@"cancelOrder"] || [categoryIdentifier isEqualToString:@"printKitchenBill"] || [categoryIdentifier isEqualToString:@"reminder"] || [categoryIdentifier isEqualToString:@"processing"] || [categoryIdentifier isEqualToString:@"delivered"] || [categoryIdentifier isEqualToString:@"clear"])
     {
         NSNumber *receiptID = [myAps objectForKey:@"receiptID"];
         _homeModel = [[HomeModel alloc]init];
         _homeModel.delegate = self;
-        [_homeModel downloadItems:dbJummumReceiptUpdate withData:receiptID];
-    }
-    else if([categoryIdentifier isEqualToString:@"printKitchenBill"])
-    {
-        NSNumber *receiptID = [myAps objectForKey:@"receiptID"];
         [_homeModel downloadItems:dbJummumReceipt withData:receiptID];
     }
+    else if([categoryIdentifier isEqualToString:@"openingTime"])
+    {
+        NSNumber *settingID = [myAps objectForKey:@"receiptID"];
+        _homeModel = [[HomeModel alloc]init];
+        _homeModel.delegate = self;
+        [_homeModel downloadItems:dbSetting withData:settingID];
+    }
+    
+    
 }
 
 
@@ -273,30 +259,43 @@ void myExceptionHandler(NSException *exception)
     NSDictionary *userInfo = response.notification.request.content.userInfo;
     NSDictionary *myAps = [userInfo objectForKey:@"aps"];
     NSString *categoryIdentifier = [myAps objectForKey:@"category"];
-    if([categoryIdentifier isEqualToString:@"printKitchenBill"])
-    {
-        if([response.actionIdentifier isEqualToString:@"Print"])
-        {
-            NSNumber *receiptID = [myAps objectForKey:@"receiptID"];
-            _homeModel = [[HomeModel alloc]init];
-            _homeModel.delegate = self;
-            [_homeModel downloadItems:dbJummumReceiptPrint withData:receiptID];
-            return;
-        }
-    }
-    
-    if([categoryIdentifier isEqualToString:@"cancelOrder"])//for all update receipt status when cancel or dispute order
+    if([categoryIdentifier isEqualToString:@"cancelOrder"])
     {
         NSNumber *receiptID = [myAps objectForKey:@"receiptID"];
         _homeModel = [[HomeModel alloc]init];
         _homeModel.delegate = self;
-        [_homeModel downloadItems:dbJummumReceiptUpdate withData:receiptID];
+        [_homeModel downloadItems:dbJummumReceiptTapNotificationIssue withData:receiptID];
     }
-    else if([categoryIdentifier isEqualToString:@"printKitchenBill"])//for after paid for order
+    else if([categoryIdentifier isEqualToString:@"printKitchenBill"] || [categoryIdentifier isEqualToString:@"reminder"])
     {
         NSNumber *receiptID = [myAps objectForKey:@"receiptID"];
-        [_homeModel downloadItems:dbJummumReceipt withData:receiptID];
+        _homeModel = [[HomeModel alloc]init];
+        _homeModel.delegate = self;
+        [_homeModel downloadItems:dbJummumReceiptTapNotification withData:receiptID];
     }
+    else if([categoryIdentifier isEqualToString:@"processing"])
+    {
+        NSNumber *receiptID = [myAps objectForKey:@"receiptID"];
+        _homeModel = [[HomeModel alloc]init];
+        _homeModel.delegate = self;
+        [_homeModel downloadItems:dbJummumReceiptTapNotificationProcessing withData:receiptID];
+    }
+    else if([categoryIdentifier isEqualToString:@"delivered"])
+    {
+        NSNumber *receiptID = [myAps objectForKey:@"receiptID"];
+        _homeModel = [[HomeModel alloc]init];
+        _homeModel.delegate = self;
+        [_homeModel downloadItems:dbJummumReceiptTapNotificationDelivered withData:receiptID];
+    }
+    else if([categoryIdentifier isEqualToString:@"clear"])
+    {
+        NSNumber *receiptID = [myAps objectForKey:@"receiptID"];
+        _homeModel = [[HomeModel alloc]init];
+        _homeModel.delegate = self;
+        [_homeModel downloadItems:dbJummumReceiptTapNotificationClear withData:receiptID];
+    }
+    
+    
 }
 
 - (void)application:(UIApplication *)app didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
@@ -317,67 +316,59 @@ void myExceptionHandler(NSException *exception)
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
 {
-    if(application.applicationState == UIApplicationStateInactive) {
-        
-        NSLog(@"Inactive");
-        
-        //Show the view with the content of the push
-        
-        completionHandler(UIBackgroundFetchResultNewData);
-        
-    } else if (application.applicationState == UIApplicationStateBackground) {
-        
-        NSLog(@"Background");
-        
-        //Refresh the local model
-        
-        completionHandler(UIBackgroundFetchResultNewData);
-        
-
-        NSLog(@"Received notification: %@", userInfo);
-        
-        
-        
-        
+    
+//    if (application.applicationState == UIApplicationStateBackground)
+    
+    NSDictionary *myAps = [userInfo objectForKey:@"aps"];
+    NSString *categoryIdentifier = [myAps objectForKey:@"category"];
+    if([categoryIdentifier isEqualToString:@"cancelOrder"] || [categoryIdentifier isEqualToString:@"printKitchenBill"] || [categoryIdentifier isEqualToString:@"reminder"] || [categoryIdentifier isEqualToString:@"processing"] || [categoryIdentifier isEqualToString:@"delivered"] || [categoryIdentifier isEqualToString:@"clear"])
+    {
         NSDictionary *myAps = [userInfo objectForKey:@"aps"];
-        NSString *categoryIdentifier = [myAps objectForKey:@"category"];
-        if([categoryIdentifier isEqualToString:@"cancelOrder"])//for all update receipt status when cancel or dispute order
-        {
-            NSNumber *receiptID = [myAps objectForKey:@"receiptID"];
-            _homeModel = [[HomeModel alloc]init];
-            _homeModel.delegate = self;
-            [_homeModel downloadItems:dbJummumReceiptUpdate withData:receiptID];
-        }
-        else if([categoryIdentifier isEqualToString:@"printKitchenBill"])//for after paid for order
-        {
-            NSNumber *receiptID = [myAps objectForKey:@"receiptID"];
-            [_homeModel downloadItems:dbJummumReceipt withData:receiptID];
-        }
-        
-    } else {
-        
-        NSLog(@"Active");
-        
-        //Show an in-app banner
-        
+        NSNumber *receiptID = [myAps objectForKey:@"receiptID"];
+        _homeModel = [[HomeModel alloc]init];
+        _homeModel.delegate = self;
+        [_homeModel downloadItems:dbJummumReceipt withData:receiptID];
         completionHandler(UIBackgroundFetchResultNewData);
-        
-        
-        NSDictionary *myAps = [userInfo objectForKey:@"aps"];
-        NSString *categoryIdentifier = [myAps objectForKey:@"category"];
-        if([categoryIdentifier isEqualToString:@"cancelOrder"])//for all update receipt status when cancel or dispute order
-        {
-            NSNumber *receiptID = [myAps objectForKey:@"receiptID"];
-            _homeModel = [[HomeModel alloc]init];
-            _homeModel.delegate = self;
-            [_homeModel downloadItems:dbJummumReceiptUpdate withData:receiptID];
-        }
-        else if([categoryIdentifier isEqualToString:@"printKitchenBill"])//for after paid for order
-        {
-            NSNumber *receiptID = [myAps objectForKey:@"receiptID"];
-            [_homeModel downloadItems:dbJummumReceipt withData:receiptID];
-        }
     }
+    else if([categoryIdentifier isEqualToString:@"openingTime"])
+    {
+        NSNumber *settingID = [myAps objectForKey:@"receiptID"];
+        _homeModel = [[HomeModel alloc]init];
+        _homeModel.delegate = self;
+        [_homeModel downloadItems:dbSetting withData:settingID];
+    }
+    
+    
+    
+    
+//    if(application.applicationState == UIApplicationStateInactive)
+//    {
+//
+//        NSLog(@"Inactive");
+//
+//        //Show the view with the content of the push
+//
+//        completionHandler(UIBackgroundFetchResultNewData);
+//
+//    }
+//    else if (application.applicationState == UIApplicationStateBackground)
+//    {
+//
+//        NSLog(@"Background");
+//
+//        //Refresh the local model
+//
+//        completionHandler(UIBackgroundFetchResultNewData);
+//    }
+//    else
+//    {
+//
+//        NSLog(@"Active");
+//
+//        //Show an in-app banner
+//
+//        completionHandler(UIBackgroundFetchResultNewData);
+//    }
 }
 
 - (void)itemsUpdated
@@ -420,139 +411,363 @@ void myExceptionHandler(NSException *exception)
     [[NSUserDefaults standardUserDefaults]synchronize];
 }
 
--(void)itemsDownloaded:(NSArray *)items
+-(void)itemsDownloaded:(NSArray *)items manager:(NSObject *)objHomeModel
 {
-    if(_homeModel.propCurrentDB == dbMaster)
+    HomeModel *homeModel = (HomeModel *)objHomeModel;
+    if(homeModel.propCurrentDB == dbJummumReceipt)
     {
-        [Utility itemsDownloaded:items];
+        [Utility updateSharedObject:items];
+        
+        
+        //Get current vc
+        CustomViewController *currentVc;
+        CustomViewController *parentViewController = (CustomViewController *)[[[UIApplication sharedApplication] delegate] window].rootViewController;
+        
+        while (parentViewController.presentedViewController != nil && ![parentViewController.presentedViewController isKindOfClass:[UIAlertController class]])
         {
-            SEL s = NSSelectorFromString(@"loadViewProcess");
-            [self.vc performSelector:s];
+            parentViewController = (CustomViewController *)parentViewController.presentedViewController;
         }
+        if([parentViewController isKindOfClass:[UITabBarController class]])
         {
-            SEL s = NSSelectorFromString(@"removeOverlayViews");
-            [self.vc performSelector:s];
+            currentVc = ((UITabBarController *)parentViewController).selectedViewController;
         }
-    }
-    else if(_homeModel.propCurrentDB == dbJummumReceipt)
-    {
-        for(NSArray *itemList in items)
+        else
         {
-            for(NSObject *object in itemList)
-            {
-                [Utility addObjectIfNotDuplicate:object];
-            }
+            currentVc = parentViewController;
         }
         
-    
-        if([self.vc isKindOfClass:[CustomerKitchenViewController class]])
+        
+        
+        if([currentVc isKindOfClass:[CustomerKitchenViewController class]])
         {
-            CustomerKitchenViewController *vc = (CustomerKitchenViewController *)self.vc;
+            CustomerKitchenViewController *vc = (CustomerKitchenViewController *)currentVc;
             [vc reloadTableView];
         }
-        else if([self.vc isKindOfClass:[OrderDetailViewController class]])
+        else if([currentVc isKindOfClass:[OrderDetailViewController class]])
         {
-            OrderDetailViewController *vc = (OrderDetailViewController *)self.vc;
-            [vc.tbvData reloadData];
-        }
-    }
-    else if(_homeModel.propCurrentDB == dbJummumReceiptPrint)
-    {
-        for(NSArray *itemList in items)
-        {
-            for(NSObject *object in itemList)
-            {
-                [Utility addObjectIfNotDuplicate:object];
-            }
-        }
-        
-        
-        Receipt *receipt = items[0][0];
-        if([self.vc isKindOfClass:[CustomerKitchenViewController class]])
-        {
-            CustomerKitchenViewController *vc = (CustomerKitchenViewController *)self.vc;
+            OrderDetailViewController *vc = (OrderDetailViewController *)currentVc;
             [vc reloadTableView];
-            
-            
-            //************Print kitchen bill
-            NSMutableArray *receiptListPrint = [[NSMutableArray alloc]init];
-            [receiptListPrint addObject:receipt];
-            [vc printReceiptKitchenBill:receiptListPrint];
-            //************
-        }
-        else if([self.vc isKindOfClass:[OrderDetailViewController class]])
-        {
-            OrderDetailViewController *vc = (OrderDetailViewController *)self.vc;
-            [vc.tbvData reloadData];
         }
     }
-    else if(_homeModel.propCurrentDB == dbJummumReceiptUpdate)
+    else if(homeModel.propCurrentDB == dbJummumReceiptTapNotification)
     {
-        NSMutableArray *receiptList = items[0];
-        NSMutableArray *disputeList = items[3];
-        if([disputeList count] > 0)
+        [Utility updateSharedObject:items];
+        
+        
+        
+        //Get current vc
+        CustomViewController *currentVc;
+        CustomViewController *parentViewController = (CustomViewController *)[[[UIApplication sharedApplication] delegate] window].rootViewController;
+        
+        while (parentViewController.presentedViewController != nil && ![parentViewController.presentedViewController isKindOfClass:[UIAlertController class]])
         {
-            NSMutableArray *dataList = [[NSMutableArray alloc]init];
-            [dataList addObject:disputeList];
-            [Utility addToSharedDataList:dataList];
+            parentViewController = (CustomViewController *)parentViewController.presentedViewController;
         }
-        if([receiptList count] > 0)
+        if([parentViewController isKindOfClass:[UITabBarController class]])
         {
-            Receipt *receipt = receiptList[0];
-            [Receipt updateStatus:receipt];
-            
-            
-            if([self.vc isMemberOfClass:[CustomerKitchenViewController class]])
-            {
-                CustomerKitchenViewController *vc = (CustomerKitchenViewController *)self.vc;
-                [vc reloadTableView];
-            }
-            else if([self.vc isMemberOfClass:[OrderDetailViewController class]])
-            {
-                OrderDetailViewController *vc = (OrderDetailViewController *)self.vc;
-                [vc.tbvData reloadData];
-            }
+            currentVc = ((UITabBarController *)parentViewController).selectedViewController;
+        }
+        else
+        {
+            currentVc = parentViewController;
         }
         
+        
+        
+        if([currentVc isKindOfClass:[CustomerKitchenViewController class]])
+        {
+            CustomerKitchenViewController *vc = (CustomerKitchenViewController *)currentVc;
+            [vc reloadTableViewNewOrderTab];
+        }
+        else if([currentVc isKindOfClass:[OrderDetailViewController class]] || [currentVc isKindOfClass:[PersonalDataViewController class]] || [currentVc isKindOfClass:[TosAndPrivacyPolicyViewController class]])
+        {
+            CustomViewController *vc = (CustomViewController *)currentVc;
+            vc.newOrderComing = 1;
+            [vc performSegueWithIdentifier:@"segUnwindToCustomerKitchen" sender:self];
+        }
+        else if([currentVc isKindOfClass:[MeViewController class]])
+        {
+            MeViewController *vc = (MeViewController *)currentVc;
+            [vc.tabBarController setSelectedIndex:0];
+            CustomerKitchenViewController *customerKitchenVc = vc.tabBarController.selectedViewController;
+            [customerKitchenVc reloadTableViewNewOrderTab];
+        }
+    }
+    else if(homeModel.propCurrentDB == dbJummumReceiptTapNotificationIssue)
+    {
+        [Utility updateSharedObject:items];
+        
+        
+        //Get current vc
+        CustomViewController *currentVc;
+        CustomViewController *parentViewController = (CustomViewController *)[[[UIApplication sharedApplication] delegate] window].rootViewController;
+        
+        while (parentViewController.presentedViewController != nil && ![parentViewController.presentedViewController isKindOfClass:[UIAlertController class]])
+        {
+            parentViewController = (CustomViewController *)parentViewController.presentedViewController;
+        }
+        if([parentViewController isKindOfClass:[UITabBarController class]])
+        {
+            currentVc = ((UITabBarController *)parentViewController).selectedViewController;
+        }
+        else
+        {
+            currentVc = parentViewController;
+        }
+        
+        
+        
+        if([currentVc isKindOfClass:[CustomerKitchenViewController class]])
+        {
+            CustomerKitchenViewController *vc = (CustomerKitchenViewController *)currentVc;
+            [vc reloadTableViewIssueTab];
+        }
+        else if([currentVc isKindOfClass:[OrderDetailViewController class]] || [currentVc isKindOfClass:[PersonalDataViewController class]] || [currentVc isKindOfClass:[TosAndPrivacyPolicyViewController class]])
+        {
+            CustomViewController *vc = (CustomViewController *)currentVc;
+            vc.issueComing = 1;
+            [vc performSegueWithIdentifier:@"segUnwindToCustomerKitchen" sender:self];
+        }
+        else if([currentVc isKindOfClass:[MeViewController class]])
+        {
+            MeViewController *vc = (MeViewController *)currentVc;
+            [vc.tabBarController setSelectedIndex:0];
+            CustomerKitchenViewController *customerKitchenVc = vc.tabBarController.selectedViewController;
+            [customerKitchenVc reloadTableViewIssueTab];
+        }
+    }
+    else if(homeModel.propCurrentDB == dbJummumReceiptTapNotificationProcessing)
+    {
+        [Utility updateSharedObject:items];
+        
+        
+        //Get current vc
+        CustomViewController *currentVc;
+        CustomViewController *parentViewController = (CustomViewController *)[[[UIApplication sharedApplication] delegate] window].rootViewController;
+        
+        while (parentViewController.presentedViewController != nil && ![parentViewController.presentedViewController isKindOfClass:[UIAlertController class]])
+        {
+            parentViewController = (CustomViewController *)parentViewController.presentedViewController;
+        }
+        if([parentViewController isKindOfClass:[UITabBarController class]])
+        {
+            currentVc = ((UITabBarController *)parentViewController).selectedViewController;
+        }
+        else
+        {
+            currentVc = parentViewController;
+        }
+        
+        
+        
+        if([currentVc isKindOfClass:[CustomerKitchenViewController class]])
+        {
+            CustomerKitchenViewController *vc = (CustomerKitchenViewController *)currentVc;
+            [vc reloadTableViewProcessingTab];
+        }
+        else if([currentVc isKindOfClass:[OrderDetailViewController class]] || [currentVc isKindOfClass:[PersonalDataViewController class]] || [currentVc isKindOfClass:[TosAndPrivacyPolicyViewController class]])
+        {
+            CustomViewController *vc = (CustomViewController *)currentVc;
+            vc.issueComing = 1;
+            [vc performSegueWithIdentifier:@"segUnwindToCustomerKitchen" sender:self];
+        }
+        else if([currentVc isKindOfClass:[MeViewController class]])
+        {
+            MeViewController *vc = (MeViewController *)currentVc;
+            [vc.tabBarController setSelectedIndex:0];
+            CustomerKitchenViewController *customerKitchenVc = vc.tabBarController.selectedViewController;
+            [customerKitchenVc reloadTableViewProcessingTab];
+        }
+    }
+    else if(homeModel.propCurrentDB == dbJummumReceiptTapNotificationDelivered)
+    {
+        [Utility updateSharedObject:items];
+        
+        
+        //Get current vc
+        CustomViewController *currentVc;
+        CustomViewController *parentViewController = (CustomViewController *)[[[UIApplication sharedApplication] delegate] window].rootViewController;
+        
+        while (parentViewController.presentedViewController != nil && ![parentViewController.presentedViewController isKindOfClass:[UIAlertController class]])
+        {
+            parentViewController = (CustomViewController *)parentViewController.presentedViewController;
+        }
+        if([parentViewController isKindOfClass:[UITabBarController class]])
+        {
+            currentVc = ((UITabBarController *)parentViewController).selectedViewController;
+        }
+        else
+        {
+            currentVc = parentViewController;
+        }
+        
+        
+        
+        if([currentVc isKindOfClass:[CustomerKitchenViewController class]])
+        {
+            CustomerKitchenViewController *vc = (CustomerKitchenViewController *)currentVc;
+            [vc reloadTableViewDeliveredTab];
+        }
+        else if([currentVc isKindOfClass:[OrderDetailViewController class]] || [currentVc isKindOfClass:[PersonalDataViewController class]] || [currentVc isKindOfClass:[TosAndPrivacyPolicyViewController class]])
+        {
+            CustomViewController *vc = (CustomViewController *)currentVc;
+            vc.issueComing = 1;
+            [vc performSegueWithIdentifier:@"segUnwindToCustomerKitchen" sender:self];
+        }
+        else if([currentVc isKindOfClass:[MeViewController class]])
+        {
+            MeViewController *vc = (MeViewController *)currentVc;
+            [vc.tabBarController setSelectedIndex:0];
+            CustomerKitchenViewController *customerKitchenVc = vc.tabBarController.selectedViewController;
+            [customerKitchenVc reloadTableViewDeliveredTab];
+        }
+    }
+    else if(homeModel.propCurrentDB == dbJummumReceiptTapNotificationClear)
+    {
+        [Utility updateSharedObject:items];
+        
+        
+        //Get current vc
+        CustomViewController *currentVc;
+        CustomViewController *parentViewController = (CustomViewController *)[[[UIApplication sharedApplication] delegate] window].rootViewController;
+        
+        while (parentViewController.presentedViewController != nil && ![parentViewController.presentedViewController isKindOfClass:[UIAlertController class]])
+        {
+            parentViewController = (CustomViewController *)parentViewController.presentedViewController;
+        }
+        if([parentViewController isKindOfClass:[UITabBarController class]])
+        {
+            currentVc = ((UITabBarController *)parentViewController).selectedViewController;
+        }
+        else
+        {
+            currentVc = parentViewController;
+        }
+        
+        
+        if([currentVc isKindOfClass:[CustomerKitchenViewController class]])
+        {
+            CustomerKitchenViewController *vc = (CustomerKitchenViewController *)currentVc;
+            [vc reloadTableViewClearTab];
+        }
+        else if([currentVc isKindOfClass:[OrderDetailViewController class]] || [currentVc isKindOfClass:[PersonalDataViewController class]] || [currentVc isKindOfClass:[TosAndPrivacyPolicyViewController class]])
+        {
+            CustomViewController *vc = (CustomViewController *)currentVc;
+            vc.issueComing = 1;
+            [vc performSegueWithIdentifier:@"segUnwindToCustomerKitchen" sender:self];
+        }
+        else if([currentVc isKindOfClass:[MeViewController class]])
+        {
+            MeViewController *vc = (MeViewController *)currentVc;
+            [vc.tabBarController setSelectedIndex:0];
+            CustomerKitchenViewController *customerKitchenVc = vc.tabBarController.selectedViewController;
+            [customerKitchenVc reloadTableViewClearTab];
+        }
+    }
+    else if(homeModel.propCurrentDB == dbSetting)
+    {
+        [Utility updateSharedObject:items];
+        
+        
+        //Get current vc
+        CustomViewController *currentVc;
+        CustomViewController *parentViewController = (CustomViewController *)[[[UIApplication sharedApplication] delegate] window].rootViewController;
+        
+        while (parentViewController.presentedViewController != nil && ![parentViewController.presentedViewController isKindOfClass:[UIAlertController class]])
+        {
+            parentViewController = (CustomViewController *)parentViewController.presentedViewController;
+        }
+        if([parentViewController isKindOfClass:[UITabBarController class]])
+        {
+            currentVc = ((UITabBarController *)parentViewController).selectedViewController;
+        }
+        else
+        {
+            currentVc = parentViewController;
+        }
+        
+        
+        
+        if([currentVc isKindOfClass:[OpeningTimeViewController class]])
+        {
+            OpeningTimeViewController *vc = (OpeningTimeViewController *)currentVc;
+            [vc reloadTableView];
+        }        
     }
 }
 
 - (void)itemsFail
 {
-    UIAlertController* alert = [UIAlertController alertControllerWithTitle:[Utility getConnectionLostTitle]
-                                                                   message:[Utility getConnectionLostMessage]
+    UIAlertController* alert = [UIAlertController alertControllerWithTitle:[Utility getErrorOccurTitle]
+                                                                   message:[Utility getErrorOccurMessage]
                                                             preferredStyle:UIAlertControllerStyleAlert];
     
     UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
                                                           handler:^(UIAlertAction * action)
                                     {
-                                        SEL s = NSSelectorFromString(@"loadingOverlayView");
-                                        [self.vc performSelector:s];
-                                        [_homeModel downloadItems:dbMaster];
+                                        [self alertMsg:@"database transaction fail"];
                                     }];
     
     [alert addAction:defaultAction];
-    dispatch_async(dispatch_get_main_queue(),^ {
-        [self.vc presentViewController:alert animated:YES completion:nil];
-    });
+    
+    
+    
+    //Get current vc
+    CustomViewController *currentVc;
+    CustomViewController *parentViewController = (CustomViewController *)[[[UIApplication sharedApplication] delegate] window].rootViewController;
+    
+    while (parentViewController.presentedViewController != nil && ![parentViewController.presentedViewController isKindOfClass:[UIAlertController class]])
+    {
+        parentViewController = (CustomViewController *)parentViewController.presentedViewController;
+    }
+    if([parentViewController isKindOfClass:[UITabBarController class]])
+    {
+        currentVc = ((UITabBarController *)parentViewController).selectedViewController;
+    }
+    else
+    {
+        currentVc = parentViewController;
+    }
+    
+    
+    //present alertController
+    [currentVc removeOverlayViews];
+    [currentVc presentViewController:alert animated:YES completion:nil];
 }
 
 - (void) connectionFail
 {
-    UIAlertController* alert = [UIAlertController alertControllerWithTitle:[Utility subjectNoConnection]
-                                                                   message:[Utility detailNoConnection]
-                                                            preferredStyle:UIAlertControllerStyleAlert];
+    //เอา font มาใส่
+    NSString *title = [Utility subjectNoConnection];
+    NSString *message = [Utility detailNoConnection];
     
-    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
-                                                          handler:^(UIAlertAction * action) {
-                                                              //                                                              exit(0);
-                                                          }];
     
-    [alert addAction:defaultAction];
-    dispatch_async(dispatch_get_main_queue(),^ {
-        [self.vc presentViewController:alert animated:YES completion:nil];
-    } );
+    
+    //Get current vc
+    CustomViewController *currentVc;
+    CustomViewController *parentViewController = (CustomViewController *)[[[UIApplication sharedApplication] delegate] window].rootViewController;
+    
+    
+    
+    while (parentViewController.presentedViewController != nil && ![parentViewController.presentedViewController isKindOfClass:[UIAlertController class]])
+    {
+        parentViewController = (CustomViewController *)parentViewController.presentedViewController;
+    }
+    if([parentViewController isKindOfClass:[UITabBarController class]])
+    {
+        currentVc = ((UITabBarController *)parentViewController).selectedViewController;
+    }
+    else
+    {
+        currentVc = parentViewController;
+    }
+    
+    
+    //present alertController
+    [currentVc removeOverlayViews];
+    [currentVc showAlert:title message:message];
 }
+
 
 //printer part******
 - (void)loadParam {

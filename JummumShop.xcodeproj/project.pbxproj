@@ -10,6 +10,8 @@
 		072E08ECBEB7BE7F846009DA /* libPods-JummumShop.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BBAA38109C3523745AB9DB7 /* libPods-JummumShop.a */; };
 		5B319D53C4069379878A6EE7 /* libPods-JummumShopTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C6EA2A59802FF4370F3B3A45 /* libPods-JummumShopTests.a */; };
 		7741E33918FB1B75ED12E720 /* libPods-JummumShopUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C6C0B623B4EECFC7C8F7CBDF /* libPods-JummumShopUITests.a */; };
+		EF06DCE021059BB5003E8408 /* OpeningTimeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF06DCDF21059BB5003E8408 /* OpeningTimeViewController.m */; };
+		EF06DCE22105BE5B003E8408 /* selfService.png in Resources */ = {isa = PBXBuildFile; fileRef = EF06DCE12105BE5B003E8408 /* selfService.png */; };
 		EF13B61320CFB302008CF35C /* Prompt-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EF13B60120CFB2CA008CF35C /* Prompt-ExtraLightItalic.ttf */; };
 		EF13B61420CFB302008CF35C /* Prompt-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EF13B60220CFB2CE008CF35C /* Prompt-Medium.ttf */; };
 		EF13B61520CFB302008CF35C /* Prompt-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EF13B60320CFB2D1008CF35C /* Prompt-Black.ttf */; };
@@ -28,6 +30,13 @@
 		EF13B62220CFB302008CF35C /* Prompt-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EF13B61020CFB2F9008CF35C /* Prompt-ExtraBoldItalic.ttf */; };
 		EF13B62320CFB302008CF35C /* Prompt-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EF13B61120CFB2FC008CF35C /* Prompt-ThinItalic.ttf */; };
 		EF13B62420CFB302008CF35C /* Prompt-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EF13B61220CFB2FF008CF35C /* Prompt-BlackItalic.ttf */; };
+		EF14A69E20E4950B006AF428 /* Icon-20.png in Resources */ = {isa = PBXBuildFile; fileRef = EF14A69D20E4950B006AF428 /* Icon-20.png */; };
+		EF14A6A120E52E89006AF428 /* refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = EF14A6A020E52E88006AF428 /* refresh.png */; };
+		EF14A6A420E532D2006AF428 /* turnLightOn.png in Resources */ = {isa = PBXBuildFile; fileRef = EF14A6A220E532D2006AF428 /* turnLightOn.png */; };
+		EF14A6A520E532D2006AF428 /* turnLightOff.png in Resources */ = {isa = PBXBuildFile; fileRef = EF14A6A320E532D2006AF428 /* turnLightOff.png */; };
+		EF648B062103874800C8A87E /* SharedCurrentCredentialsDb.m in Sources */ = {isa = PBXBuildFile; fileRef = EF648B052103874800C8A87E /* SharedCurrentCredentialsDb.m */; };
+		EF648B0C210443EA00C8A87E /* CustomTableViewCellLabelRemark.m in Sources */ = {isa = PBXBuildFile; fileRef = EF648B0A210443EA00C8A87E /* CustomTableViewCellLabelRemark.m */; };
+		EF648B0D210443EA00C8A87E /* CustomTableViewCellLabelRemark.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF648B0B210443EA00C8A87E /* CustomTableViewCellLabelRemark.xib */; };
 		EFB615DB20C7285F005A92F6 /* badge.png in Resources */ = {isa = PBXBuildFile; fileRef = EFB615DA20C7285E005A92F6 /* badge.png */; };
 		EFB872FE20C218BF0011AF78 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB872FD20C218BF0011AF78 /* ViewController.m */; };
 		EFB8730320C218C00011AF78 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EFB8730220C218C00011AF78 /* Assets.xcassets */; };
@@ -131,28 +140,19 @@
 		EFB87BD920C386EE0011AF78 /* HotDealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB879F120C386ED0011AF78 /* HotDealViewController.m */; };
 		EFB87BDA20C386EE0011AF78 /* LaunchScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB879F320C386ED0011AF78 /* LaunchScreenViewController.m */; };
 		EFB87BDB20C386EE0011AF78 /* MyRewardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB879F520C386ED0011AF78 /* MyRewardViewController.m */; };
-		EFB87BDC20C386EE0011AF78 /* ReceiptSummaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB879F820C386ED0011AF78 /* ReceiptSummaryViewController.m */; };
 		EFB87BDD20C386EE0011AF78 /* OrderDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB879FB20C386ED0011AF78 /* OrderDetailViewController.m */; };
-		EFB87BDE20C386EE0011AF78 /* CreditCardAndOrderSummaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB879FC20C386ED0011AF78 /* CreditCardAndOrderSummaryViewController.m */; };
 		EFB87BDF20C386EE0011AF78 /* LogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB879FE20C386ED0011AF78 /* LogInViewController.m */; };
 		EFB87BE020C386EE0011AF78 /* SelectPaymentMethodViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB87A0020C386ED0011AF78 /* SelectPaymentMethodViewController.m */; };
 		EFB87BE120C386EE0011AF78 /* RewardRedemptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB87A0120C386ED0011AF78 /* RewardRedemptionViewController.m */; };
-		EFB87BE220C386EE0011AF78 /* QRCodeScanTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB87A0220C386ED0011AF78 /* QRCodeScanTableViewController.m */; };
-		EFB87BE320C386EE0011AF78 /* BranchSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB87A0420C386ED0011AF78 /* BranchSearchViewController.m */; };
 		EFB87BE420C386EE0011AF78 /* PersonalDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB87A0520C386ED0011AF78 /* PersonalDataViewController.m */; };
 		EFB87BE520C386EE0011AF78 /* DisputeFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB87A0820C386ED0011AF78 /* DisputeFormViewController.m */; };
-		EFB87BE620C386EE0011AF78 /* LogOutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB87A0B20C386ED0011AF78 /* LogOutViewController.m */; };
 		EFB87BE720C386EE0011AF78 /* RewardDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB87A0D20C386ED0011AF78 /* RewardDetailViewController.m */; };
 		EFB87BE820C386EE0011AF78 /* TermsOfServiceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB87A0F20C386ED0011AF78 /* TermsOfServiceViewController.m */; };
-		EFB87BE920C386EE0011AF78 /* BasketViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB87A1220C386ED0011AF78 /* BasketViewController.m */; };
 		EFB87BEA20C386EE0011AF78 /* MeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB87A1320C386ED0011AF78 /* MeViewController.m */; };
 		EFB87BEB20C386EE0011AF78 /* SaveToCameraRollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB87A1520C386ED0011AF78 /* SaveToCameraRollViewController.m */; };
 		EFB87BEC20C386EE0011AF78 /* TosAndPrivacyPolicyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB87A1920C386ED0011AF78 /* TosAndPrivacyPolicyViewController.m */; };
 		EFB87BED20C386EE0011AF78 /* RegisterNowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB87A1B20C386ED0011AF78 /* RegisterNowViewController.m */; };
 		EFB87BEE20C386EE0011AF78 /* RewardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB87A1E20C386ED0011AF78 /* RewardViewController.m */; };
-		EFB87BEF20C386EE0011AF78 /* CustomerTableSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB87A1F20C386ED0011AF78 /* CustomerTableSearchViewController.m */; };
-		EFB87BF020C386EE0011AF78 /* MenuSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB87A2020C386ED0011AF78 /* MenuSelectionViewController.m */; };
-		EFB87BF120C386EE0011AF78 /* NoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB87A2220C386ED0011AF78 /* NoteViewController.m */; };
 		EFB87BF220C386EE0011AF78 /* CreditCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB87A2320C386ED0011AF78 /* CreditCardViewController.m */; };
 		EFB87BF320C386EE0011AF78 /* ConfirmDisputeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB87A2620C386ED0011AF78 /* ConfirmDisputeViewController.m */; };
 		EFB87BF420C386EE0011AF78 /* beep.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = EFB87A2820C386ED0011AF78 /* beep.mp3 */; };
@@ -398,6 +398,11 @@
 		EFB8813120C710120011AF78 /* MainTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB8812F20C710120011AF78 /* MainTabBarController.m */; };
 		EFD9BA2A20E1A10E00A0A874 /* jummumChef_lightGray.png in Resources */ = {isa = PBXBuildFile; fileRef = EFD9BA2920E1A10D00A0A874 /* jummumChef_lightGray.png */; };
 		EFD9BA7420E25F3300A0A874 /* ConfirmDispute2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD9BA7320E25F3300A0A874 /* ConfirmDispute2ViewController.m */; };
+		EFE55DCE2109F21900B16504 /* jummumOMLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = EFE55DCD2109F21800B16504 /* jummumOMLogo.png */; };
+		EFE55DD02109F38A00B16504 /* jummumTypeOMWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = EFE55DCF2109F38900B16504 /* jummumTypeOMWhite.png */; };
+		EFF44F4820F9B3EE00D07770 /* CustomTableViewCellLabelSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = EFF44F4620F9B3EE00D07770 /* CustomTableViewCellLabelSwitch.m */; };
+		EFF44F4920F9B3EE00D07770 /* CustomTableViewCellLabelSwitch.xib in Resources */ = {isa = PBXBuildFile; fileRef = EFF44F4720F9B3EE00D07770 /* CustomTableViewCellLabelSwitch.xib */; };
+		EFF44F4B20F9BC0B00D07770 /* alarm.png in Resources */ = {isa = PBXBuildFile; fileRef = EFF44F4A20F9BC0B00D07770 /* alarm.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -427,6 +432,9 @@
 		C6EA2A59802FF4370F3B3A45 /* libPods-JummumShopTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-JummumShopTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DEA6E2877BD5ADDF8367F315 /* Pods-JummumShop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JummumShop.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JummumShop/Pods-JummumShop.debug.xcconfig"; sourceTree = "<group>"; };
 		EEE66AAA4E360DB8D8368ED3 /* Pods-JummumShopTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JummumShopTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JummumShopTests/Pods-JummumShopTests.debug.xcconfig"; sourceTree = "<group>"; };
+		EF06DCDE21059BB5003E8408 /* OpeningTimeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OpeningTimeViewController.h; sourceTree = "<group>"; };
+		EF06DCDF21059BB5003E8408 /* OpeningTimeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OpeningTimeViewController.m; sourceTree = "<group>"; };
+		EF06DCE12105BE5B003E8408 /* selfService.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = selfService.png; sourceTree = "<group>"; };
 		EF13B60120CFB2CA008CF35C /* Prompt-ExtraLightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Prompt-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
 		EF13B60220CFB2CE008CF35C /* Prompt-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Prompt-Medium.ttf"; sourceTree = "<group>"; };
 		EF13B60320CFB2D1008CF35C /* Prompt-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Prompt-Black.ttf"; sourceTree = "<group>"; };
@@ -445,6 +453,15 @@
 		EF13B61020CFB2F9008CF35C /* Prompt-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Prompt-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
 		EF13B61120CFB2FC008CF35C /* Prompt-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Prompt-ThinItalic.ttf"; sourceTree = "<group>"; };
 		EF13B61220CFB2FF008CF35C /* Prompt-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Prompt-BlackItalic.ttf"; sourceTree = "<group>"; };
+		EF14A69D20E4950B006AF428 /* Icon-20.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-20.png"; sourceTree = "<group>"; };
+		EF14A6A020E52E88006AF428 /* refresh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = refresh.png; sourceTree = "<group>"; };
+		EF14A6A220E532D2006AF428 /* turnLightOn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = turnLightOn.png; sourceTree = "<group>"; };
+		EF14A6A320E532D2006AF428 /* turnLightOff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = turnLightOff.png; sourceTree = "<group>"; };
+		EF648B042103874800C8A87E /* SharedCurrentCredentialsDb.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SharedCurrentCredentialsDb.h; sourceTree = "<group>"; };
+		EF648B052103874800C8A87E /* SharedCurrentCredentialsDb.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SharedCurrentCredentialsDb.m; sourceTree = "<group>"; };
+		EF648B09210443EA00C8A87E /* CustomTableViewCellLabelRemark.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomTableViewCellLabelRemark.h; sourceTree = "<group>"; };
+		EF648B0A210443EA00C8A87E /* CustomTableViewCellLabelRemark.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomTableViewCellLabelRemark.m; sourceTree = "<group>"; };
+		EF648B0B210443EA00C8A87E /* CustomTableViewCellLabelRemark.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomTableViewCellLabelRemark.xib; sourceTree = "<group>"; };
 		EFB615DA20C7285E005A92F6 /* badge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = badge.png; sourceTree = "<group>"; };
 		EFB615DC20C782F3005A92F6 /* JummumShop.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = JummumShop.entitlements; sourceTree = "<group>"; };
 		EFB872F620C218BF0011AF78 /* JummumShop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JummumShop.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -562,61 +579,43 @@
 		EFB879EB20C386ED0011AF78 /* iTunesArtwork@2x */ = {isa = PBXFileReference; lastKnownFileType = file; path = "iTunesArtwork@2x"; sourceTree = "<group>"; };
 		EFB879EC20C386ED0011AF78 /* copy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = copy.png; sourceTree = "<group>"; };
 		EFB879ED20C386ED0011AF78 /* expand all.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "expand all.png"; sourceTree = "<group>"; };
-		EFB879EF20C386ED0011AF78 /* BasketViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasketViewController.h; sourceTree = "<group>"; };
 		EFB879F020C386ED0011AF78 /* ForgotPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgotPasswordViewController.m; sourceTree = "<group>"; };
 		EFB879F120C386ED0011AF78 /* HotDealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HotDealViewController.m; sourceTree = "<group>"; };
 		EFB879F220C386ED0011AF78 /* TermsOfServiceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TermsOfServiceViewController.h; sourceTree = "<group>"; };
 		EFB879F320C386ED0011AF78 /* LaunchScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LaunchScreenViewController.m; sourceTree = "<group>"; };
 		EFB879F420C386ED0011AF78 /* RewardDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RewardDetailViewController.h; sourceTree = "<group>"; };
 		EFB879F520C386ED0011AF78 /* MyRewardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyRewardViewController.m; sourceTree = "<group>"; };
-		EFB879F620C386ED0011AF78 /* LogOutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogOutViewController.h; sourceTree = "<group>"; };
 		EFB879F720C386ED0011AF78 /* SaveToCameraRollViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SaveToCameraRollViewController.h; sourceTree = "<group>"; };
-		EFB879F820C386ED0011AF78 /* ReceiptSummaryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReceiptSummaryViewController.m; sourceTree = "<group>"; };
 		EFB879F920C386ED0011AF78 /* MeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeViewController.h; sourceTree = "<group>"; };
 		EFB879FA20C386ED0011AF78 /* RewardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RewardViewController.h; sourceTree = "<group>"; };
 		EFB879FB20C386ED0011AF78 /* OrderDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderDetailViewController.m; sourceTree = "<group>"; };
-		EFB879FC20C386ED0011AF78 /* CreditCardAndOrderSummaryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreditCardAndOrderSummaryViewController.m; sourceTree = "<group>"; };
 		EFB879FD20C386ED0011AF78 /* RegisterNowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterNowViewController.h; sourceTree = "<group>"; };
 		EFB879FE20C386ED0011AF78 /* LogInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogInViewController.m; sourceTree = "<group>"; };
 		EFB879FF20C386ED0011AF78 /* TosAndPrivacyPolicyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TosAndPrivacyPolicyViewController.h; sourceTree = "<group>"; };
 		EFB87A0020C386ED0011AF78 /* SelectPaymentMethodViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectPaymentMethodViewController.m; sourceTree = "<group>"; };
 		EFB87A0120C386ED0011AF78 /* RewardRedemptionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RewardRedemptionViewController.m; sourceTree = "<group>"; };
-		EFB87A0220C386ED0011AF78 /* QRCodeScanTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRCodeScanTableViewController.m; sourceTree = "<group>"; };
 		EFB87A0320C386ED0011AF78 /* ConfirmDisputeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfirmDisputeViewController.h; sourceTree = "<group>"; };
-		EFB87A0420C386ED0011AF78 /* BranchSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BranchSearchViewController.m; sourceTree = "<group>"; };
 		EFB87A0520C386ED0011AF78 /* PersonalDataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalDataViewController.m; sourceTree = "<group>"; };
 		EFB87A0620C386ED0011AF78 /* CreditCardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreditCardViewController.h; sourceTree = "<group>"; };
-		EFB87A0720C386ED0011AF78 /* NoteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteViewController.h; sourceTree = "<group>"; };
 		EFB87A0820C386ED0011AF78 /* DisputeFormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DisputeFormViewController.m; sourceTree = "<group>"; };
-		EFB87A0920C386ED0011AF78 /* MenuSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuSelectionViewController.h; sourceTree = "<group>"; };
-		EFB87A0A20C386ED0011AF78 /* CustomerTableSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomerTableSearchViewController.h; sourceTree = "<group>"; };
-		EFB87A0B20C386ED0011AF78 /* LogOutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogOutViewController.m; sourceTree = "<group>"; };
 		EFB87A0C20C386ED0011AF78 /* MyRewardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyRewardViewController.h; sourceTree = "<group>"; };
 		EFB87A0D20C386ED0011AF78 /* RewardDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RewardDetailViewController.m; sourceTree = "<group>"; };
 		EFB87A0E20C386ED0011AF78 /* LaunchScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaunchScreenViewController.h; sourceTree = "<group>"; };
 		EFB87A0F20C386ED0011AF78 /* TermsOfServiceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TermsOfServiceViewController.m; sourceTree = "<group>"; };
 		EFB87A1020C386ED0011AF78 /* HotDealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HotDealViewController.h; sourceTree = "<group>"; };
 		EFB87A1120C386ED0011AF78 /* ForgotPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgotPasswordViewController.h; sourceTree = "<group>"; };
-		EFB87A1220C386ED0011AF78 /* BasketViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasketViewController.m; sourceTree = "<group>"; };
 		EFB87A1320C386ED0011AF78 /* MeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeViewController.m; sourceTree = "<group>"; };
-		EFB87A1420C386ED0011AF78 /* ReceiptSummaryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReceiptSummaryViewController.h; sourceTree = "<group>"; };
 		EFB87A1520C386ED0011AF78 /* SaveToCameraRollViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SaveToCameraRollViewController.m; sourceTree = "<group>"; };
 		EFB87A1620C386ED0011AF78 /* RewardRedemptionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RewardRedemptionViewController.h; sourceTree = "<group>"; };
-		EFB87A1720C386ED0011AF78 /* QRCodeScanTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRCodeScanTableViewController.h; sourceTree = "<group>"; };
 		EFB87A1820C386ED0011AF78 /* SelectPaymentMethodViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectPaymentMethodViewController.h; sourceTree = "<group>"; };
 		EFB87A1920C386ED0011AF78 /* TosAndPrivacyPolicyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TosAndPrivacyPolicyViewController.m; sourceTree = "<group>"; };
 		EFB87A1A20C386ED0011AF78 /* LogInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogInViewController.h; sourceTree = "<group>"; };
 		EFB87A1B20C386ED0011AF78 /* RegisterNowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterNowViewController.m; sourceTree = "<group>"; };
-		EFB87A1C20C386ED0011AF78 /* CreditCardAndOrderSummaryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreditCardAndOrderSummaryViewController.h; sourceTree = "<group>"; };
 		EFB87A1D20C386ED0011AF78 /* OrderDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderDetailViewController.h; sourceTree = "<group>"; };
 		EFB87A1E20C386ED0011AF78 /* RewardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RewardViewController.m; sourceTree = "<group>"; };
-		EFB87A1F20C386ED0011AF78 /* CustomerTableSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomerTableSearchViewController.m; sourceTree = "<group>"; };
-		EFB87A2020C386ED0011AF78 /* MenuSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuSelectionViewController.m; sourceTree = "<group>"; };
 		EFB87A2120C386ED0011AF78 /* DisputeFormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DisputeFormViewController.h; sourceTree = "<group>"; };
-		EFB87A2220C386ED0011AF78 /* NoteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteViewController.m; sourceTree = "<group>"; };
 		EFB87A2320C386ED0011AF78 /* CreditCardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreditCardViewController.m; sourceTree = "<group>"; };
 		EFB87A2420C386ED0011AF78 /* PersonalDataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalDataViewController.h; sourceTree = "<group>"; };
-		EFB87A2520C386ED0011AF78 /* BranchSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BranchSearchViewController.h; sourceTree = "<group>"; };
 		EFB87A2620C386ED0011AF78 /* ConfirmDisputeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfirmDisputeViewController.m; sourceTree = "<group>"; };
 		EFB87A2820C386ED0011AF78 /* beep.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = beep.mp3; sourceTree = "<group>"; };
 		EFB87A2A20C386ED0011AF78 /* Pic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Pic.m; sourceTree = "<group>"; };
@@ -1020,6 +1019,12 @@
 		EFD9BA2920E1A10D00A0A874 /* jummumChef_lightGray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = jummumChef_lightGray.png; sourceTree = "<group>"; };
 		EFD9BA7220E25F3300A0A874 /* ConfirmDispute2ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConfirmDispute2ViewController.h; sourceTree = "<group>"; };
 		EFD9BA7320E25F3300A0A874 /* ConfirmDispute2ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConfirmDispute2ViewController.m; sourceTree = "<group>"; };
+		EFE55DCD2109F21800B16504 /* jummumOMLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = jummumOMLogo.png; sourceTree = "<group>"; };
+		EFE55DCF2109F38900B16504 /* jummumTypeOMWhite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = jummumTypeOMWhite.png; sourceTree = "<group>"; };
+		EFF44F4520F9B3EE00D07770 /* CustomTableViewCellLabelSwitch.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomTableViewCellLabelSwitch.h; sourceTree = "<group>"; };
+		EFF44F4620F9B3EE00D07770 /* CustomTableViewCellLabelSwitch.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomTableViewCellLabelSwitch.m; sourceTree = "<group>"; };
+		EFF44F4720F9B3EE00D07770 /* CustomTableViewCellLabelSwitch.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomTableViewCellLabelSwitch.xib; sourceTree = "<group>"; };
+		EFF44F4A20F9BC0B00D07770 /* alarm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = alarm.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1220,6 +1225,14 @@
 		EFB8799C20C386ED0011AF78 /* Image */ = {
 			isa = PBXGroup;
 			children = (
+				EFE55DCF2109F38900B16504 /* jummumTypeOMWhite.png */,
+				EFE55DCD2109F21800B16504 /* jummumOMLogo.png */,
+				EF06DCE12105BE5B003E8408 /* selfService.png */,
+				EFF44F4A20F9BC0B00D07770 /* alarm.png */,
+				EF14A6A320E532D2006AF428 /* turnLightOff.png */,
+				EF14A6A220E532D2006AF428 /* turnLightOn.png */,
+				EF14A6A020E52E88006AF428 /* refresh.png */,
+				EF14A69D20E4950B006AF428 /* Icon-20.png */,
 				EFD9BA2920E1A10D00A0A874 /* jummumChef_lightGray.png */,
 				EFB615DA20C7285E005A92F6 /* badge.png */,
 				EFB8812D20C6F61F0011AF78 /* profilePic.png */,
@@ -1310,24 +1323,16 @@
 		EFB879EE20C386ED0011AF78 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				EFB8813020C710120011AF78 /* MainTabBarController.h */,
-				EFB8812F20C710120011AF78 /* MainTabBarController.m */,
 				EFB880C620C5B1550011AF78 /* BranchSelectViewController.h */,
 				EFB880C720C5B1550011AF78 /* BranchSelectViewController.m */,
-				EFB87ED620C472450011AF78 /* CustomerKitchenViewController.h */,
-				EFB87ED520C472440011AF78 /* CustomerKitchenViewController.m */,
-				EFB879EF20C386ED0011AF78 /* BasketViewController.h */,
-				EFB87A1220C386ED0011AF78 /* BasketViewController.m */,
-				EFB87A2520C386ED0011AF78 /* BranchSearchViewController.h */,
-				EFB87A0420C386ED0011AF78 /* BranchSearchViewController.m */,
+				EFD9BA7220E25F3300A0A874 /* ConfirmDispute2ViewController.h */,
+				EFD9BA7320E25F3300A0A874 /* ConfirmDispute2ViewController.m */,
 				EFB87A0320C386ED0011AF78 /* ConfirmDisputeViewController.h */,
 				EFB87A2620C386ED0011AF78 /* ConfirmDisputeViewController.m */,
-				EFB87A1C20C386ED0011AF78 /* CreditCardAndOrderSummaryViewController.h */,
-				EFB879FC20C386ED0011AF78 /* CreditCardAndOrderSummaryViewController.m */,
 				EFB87A0620C386ED0011AF78 /* CreditCardViewController.h */,
 				EFB87A2320C386ED0011AF78 /* CreditCardViewController.m */,
-				EFB87A0A20C386ED0011AF78 /* CustomerTableSearchViewController.h */,
-				EFB87A1F20C386ED0011AF78 /* CustomerTableSearchViewController.m */,
+				EFB87ED620C472450011AF78 /* CustomerKitchenViewController.h */,
+				EFB87ED520C472440011AF78 /* CustomerKitchenViewController.m */,
 				EFB87A2120C386ED0011AF78 /* DisputeFormViewController.h */,
 				EFB87A0820C386ED0011AF78 /* DisputeFormViewController.m */,
 				EFB87A1120C386ED0011AF78 /* ForgotPasswordViewController.h */,
@@ -1338,24 +1343,16 @@
 				EFB879F320C386ED0011AF78 /* LaunchScreenViewController.m */,
 				EFB87A1A20C386ED0011AF78 /* LogInViewController.h */,
 				EFB879FE20C386ED0011AF78 /* LogInViewController.m */,
-				EFB879F620C386ED0011AF78 /* LogOutViewController.h */,
-				EFB87A0B20C386ED0011AF78 /* LogOutViewController.m */,
-				EFB87A0920C386ED0011AF78 /* MenuSelectionViewController.h */,
-				EFB87A2020C386ED0011AF78 /* MenuSelectionViewController.m */,
+				EFB8813020C710120011AF78 /* MainTabBarController.h */,
+				EFB8812F20C710120011AF78 /* MainTabBarController.m */,
 				EFB879F920C386ED0011AF78 /* MeViewController.h */,
 				EFB87A1320C386ED0011AF78 /* MeViewController.m */,
 				EFB87A0C20C386ED0011AF78 /* MyRewardViewController.h */,
 				EFB879F520C386ED0011AF78 /* MyRewardViewController.m */,
-				EFB87A0720C386ED0011AF78 /* NoteViewController.h */,
-				EFB87A2220C386ED0011AF78 /* NoteViewController.m */,
 				EFB87A1D20C386ED0011AF78 /* OrderDetailViewController.h */,
 				EFB879FB20C386ED0011AF78 /* OrderDetailViewController.m */,
 				EFB87A2420C386ED0011AF78 /* PersonalDataViewController.h */,
 				EFB87A0520C386ED0011AF78 /* PersonalDataViewController.m */,
-				EFB87A1720C386ED0011AF78 /* QRCodeScanTableViewController.h */,
-				EFB87A0220C386ED0011AF78 /* QRCodeScanTableViewController.m */,
-				EFB87A1420C386ED0011AF78 /* ReceiptSummaryViewController.h */,
-				EFB879F820C386ED0011AF78 /* ReceiptSummaryViewController.m */,
 				EFB879FD20C386ED0011AF78 /* RegisterNowViewController.h */,
 				EFB87A1B20C386ED0011AF78 /* RegisterNowViewController.m */,
 				EFB879F420C386ED0011AF78 /* RewardDetailViewController.h */,
@@ -1372,8 +1369,8 @@
 				EFB87A0F20C386ED0011AF78 /* TermsOfServiceViewController.m */,
 				EFB879FF20C386ED0011AF78 /* TosAndPrivacyPolicyViewController.h */,
 				EFB87A1920C386ED0011AF78 /* TosAndPrivacyPolicyViewController.m */,
-				EFD9BA7220E25F3300A0A874 /* ConfirmDispute2ViewController.h */,
-				EFD9BA7320E25F3300A0A874 /* ConfirmDispute2ViewController.m */,
+				EF06DCDE21059BB5003E8408 /* OpeningTimeViewController.h */,
+				EF06DCDF21059BB5003E8408 /* OpeningTimeViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1389,32 +1386,18 @@
 		EFB87A2920C386ED0011AF78 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				EFB8811E20C6220E0011AF78 /* Device.h */,
-				EFB8811D20C6220E0011AF78 /* Device.m */,
-				EFB8811B20C621180011AF78 /* Credentials.h */,
-				EFB8811A20C621180011AF78 /* Credentials.m */,
-				EFB8806B20C47FE90011AF78 /* SharedOrderKitchen.h */,
-				EFB8806920C47FE90011AF78 /* SharedOrderKitchen.m */,
-				EFB8806A20C47FE90011AF78 /* SharedPrinter.h */,
-				EFB8806720C47FE80011AF78 /* SharedPrinter.m */,
-				EFB8806620C47FE80011AF78 /* SharedReceiptPrint.h */,
-				EFB8806820C47FE80011AF78 /* SharedReceiptPrint.m */,
-				EFB87FBD20C477B10011AF78 /* InvoiceComposer.h */,
-				EFB87FBE20C477B20011AF78 /* InvoiceComposer.m */,
-				EFB87EE120C4769D0011AF78 /* ReceiptPrint.h */,
-				EFB87EE220C4769E0011AF78 /* ReceiptPrint.m */,
-				EFB87EDF20C4766D0011AF78 /* Printer.h */,
-				EFB87EDE20C4766D0011AF78 /* Printer.m */,
-				EFB87EDB20C4763F0011AF78 /* OrderKitchen.h */,
-				EFB87EDC20C4763F0011AF78 /* OrderKitchen.m */,
-				EFB87ED820C475BD0011AF78 /* CredentialsDb.h */,
-				EFB87ED920C475BE0011AF78 /* CredentialsDb.m */,
 				EFB87A4320C386ED0011AF78 /* Branch.h */,
 				EFB87A7820C386ED0011AF78 /* Branch.m */,
+				EFB8811B20C621180011AF78 /* Credentials.h */,
+				EFB8811A20C621180011AF78 /* Credentials.m */,
+				EFB87ED820C475BD0011AF78 /* CredentialsDb.h */,
+				EFB87ED920C475BE0011AF78 /* CredentialsDb.m */,
 				EFB87A6720C386ED0011AF78 /* CreditCard.h */,
 				EFB87A9E20C386ED0011AF78 /* CreditCard.m */,
 				EFB87A3F20C386ED0011AF78 /* CustomerTable.h */,
 				EFB87A7C20C386ED0011AF78 /* CustomerTable.m */,
+				EFB8811E20C6220E0011AF78 /* Device.h */,
+				EFB8811D20C6220E0011AF78 /* Device.m */,
 				EFB87A9D20C386ED0011AF78 /* Dispute.h */,
 				EFB87A6620C386ED0011AF78 /* Dispute.m */,
 				EFB87A5120C386ED0011AF78 /* DisputeReason.h */,
@@ -1423,6 +1406,8 @@
 				EFB87A2D20C386ED0011AF78 /* FacebookComment.m */,
 				EFB87A8820C386ED0011AF78 /* HotDeal.h */,
 				EFB87A5420C386ED0011AF78 /* HotDeal.m */,
+				EFB87FBD20C477B10011AF78 /* InvoiceComposer.h */,
+				EFB87FBE20C477B20011AF78 /* InvoiceComposer.m */,
 				EFB87AAA20C386ED0011AF78 /* LogIn.h */,
 				EFB87A5D20C386ED0011AF78 /* LogIn.m */,
 				EFB87A7D20C386ED0011AF78 /* Menu.h */,
@@ -1439,12 +1424,16 @@
 				EFB87A6120C386ED0011AF78 /* Note.m */,
 				EFB87AA720C386ED0011AF78 /* NoteType.h */,
 				EFB87A5A20C386ED0011AF78 /* NoteType.m */,
+				EFB87EDB20C4763F0011AF78 /* OrderKitchen.h */,
+				EFB87EDC20C4763F0011AF78 /* OrderKitchen.m */,
 				EFB87A9520C386ED0011AF78 /* OrderNote.h */,
 				EFB87A4A20C386ED0011AF78 /* OrderNote.m */,
 				EFB87A3320C386ED0011AF78 /* OrderTaking.h */,
 				EFB87A6D20C386ED0011AF78 /* OrderTaking.m */,
 				EFB87A7620C386ED0011AF78 /* Pic.h */,
 				EFB87A2A20C386ED0011AF78 /* Pic.m */,
+				EFB87EDF20C4766D0011AF78 /* Printer.h */,
+				EFB87EDE20C4766D0011AF78 /* Printer.m */,
 				EFB87A3920C386ED0011AF78 /* PromoCode.h */,
 				EFB87A8220C386ED0011AF78 /* PromoCode.m */,
 				EFB87A6B20C386ED0011AF78 /* Promotion.h */,
@@ -1455,6 +1444,8 @@
 				EFB87A8420C386ED0011AF78 /* PushSync.m */,
 				EFB87A7220C386ED0011AF78 /* Receipt.h */,
 				EFB87A2E20C386ED0011AF78 /* Receipt.m */,
+				EFB87EE120C4769D0011AF78 /* ReceiptPrint.h */,
+				EFB87EE220C4769E0011AF78 /* ReceiptPrint.m */,
 				EFB87A5920C386ED0011AF78 /* RewardPoint.h */,
 				EFB87AAB20C386ED0011AF78 /* RewardPoint.m */,
 				EFB87A6320C386ED0011AF78 /* RewardRedemption.h */,
@@ -1491,12 +1482,16 @@
 				EFB87A4520C386ED0011AF78 /* SharedNote.m */,
 				EFB87A3420C386ED0011AF78 /* SharedNoteType.h */,
 				EFB87A6C20C386ED0011AF78 /* SharedNoteType.m */,
+				EFB8806B20C47FE90011AF78 /* SharedOrderKitchen.h */,
+				EFB8806920C47FE90011AF78 /* SharedOrderKitchen.m */,
 				EFB87AA920C386ED0011AF78 /* SharedOrderNote.h */,
 				EFB87A5B20C386ED0011AF78 /* SharedOrderNote.m */,
 				EFB87A8B20C386ED0011AF78 /* SharedOrderTaking.h */,
 				EFB87A5320C386ED0011AF78 /* SharedOrderTaking.m */,
 				EFB87A3120C386ED0011AF78 /* SharedPic.h */,
 				EFB87A6F20C386ED0011AF78 /* SharedPic.m */,
+				EFB8806A20C47FE90011AF78 /* SharedPrinter.h */,
+				EFB8806720C47FE80011AF78 /* SharedPrinter.m */,
 				EFB87A2B20C386ED0011AF78 /* SharedPromoCode.h */,
 				EFB87A7520C386ED0011AF78 /* SharedPromoCode.m */,
 				EFB87A4D20C386ED0011AF78 /* SharedPromotion.h */,
@@ -1507,6 +1502,8 @@
 				EFB87A5620C386ED0011AF78 /* SharedPushSync.m */,
 				EFB87A7F20C386ED0011AF78 /* SharedReceipt.h */,
 				EFB87A3E20C386ED0011AF78 /* SharedReceipt.m */,
+				EFB8806620C47FE80011AF78 /* SharedReceiptPrint.h */,
+				EFB8806820C47FE80011AF78 /* SharedReceiptPrint.m */,
 				EFB87A8620C386ED0011AF78 /* SharedRewardPoint.h */,
 				EFB87A3620C386ED0011AF78 /* SharedRewardPoint.m */,
 				EFB87A9C20C386ED0011AF78 /* SharedRewardRedemption.h */,
@@ -1541,6 +1538,8 @@
 				EFB87A6020C386ED0011AF78 /* UserPromotionUsed.m */,
 				EFB87A7420C386ED0011AF78 /* UserRewardRedemptionUsed.h */,
 				EFB87A2C20C386ED0011AF78 /* UserRewardRedemptionUsed.m */,
+				EF648B042103874800C8A87E /* SharedCurrentCredentialsDb.h */,
+				EF648B052103874800C8A87E /* SharedCurrentCredentialsDb.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1575,6 +1574,9 @@
 				EFB87AB820C386ED0011AF78 /* CustomTableViewCellLabel.h */,
 				EFB87AF620C386ED0011AF78 /* CustomTableViewCellLabel.m */,
 				EFB87AF220C386ED0011AF78 /* CustomTableViewCellLabel.xib */,
+				EF648B09210443EA00C8A87E /* CustomTableViewCellLabelRemark.h */,
+				EF648B0A210443EA00C8A87E /* CustomTableViewCellLabelRemark.m */,
+				EF648B0B210443EA00C8A87E /* CustomTableViewCellLabelRemark.xib */,
 				EFB87AC320C386ED0011AF78 /* CustomTableViewCellLabelLabel.h */,
 				EFB87AF020C386ED0011AF78 /* CustomTableViewCellLabelLabel.m */,
 				EFB87AF820C386ED0011AF78 /* CustomTableViewCellLabelLabel.xib */,
@@ -1587,9 +1589,6 @@
 				EFB87AC920C386ED0011AF78 /* CustomTableViewCellMenu.h */,
 				EFB87B0520C386ED0011AF78 /* CustomTableViewCellMenu.m */,
 				EFB87AB320C386ED0011AF78 /* CustomTableViewCellMenu.xib */,
-				EFB8812820C6F43C0011AF78 /* CustomTableViewCellProfile.h */,
-				EFB8812920C6F43C0011AF78 /* CustomTableViewCellProfile.m */,
-				EFB8812A20C6F43C0011AF78 /* CustomTableViewCellProfile.xib */,
 				EFB87AB720C386ED0011AF78 /* CustomTableViewCellNote.h */,
 				EFB87AE220C386ED0011AF78 /* CustomTableViewCellNote.m */,
 				EFB87AF720C386ED0011AF78 /* CustomTableViewCellNote.xib */,
@@ -1599,6 +1598,9 @@
 				EFB87AB620C386ED0011AF78 /* CustomTableViewCellOrderSummary.h */,
 				EFB87AE420C386ED0011AF78 /* CustomTableViewCellOrderSummary.m */,
 				EFB87AE520C386ED0011AF78 /* CustomTableViewCellOrderSummary.xib */,
+				EFB8812820C6F43C0011AF78 /* CustomTableViewCellProfile.h */,
+				EFB8812920C6F43C0011AF78 /* CustomTableViewCellProfile.m */,
+				EFB8812A20C6F43C0011AF78 /* CustomTableViewCellProfile.xib */,
 				EFB87ACD20C386ED0011AF78 /* CustomTableViewCellPromoBanner.h */,
 				EFB87B0220C386ED0011AF78 /* CustomTableViewCellPromoBanner.m */,
 				EFB87ABF20C386ED0011AF78 /* CustomTableViewCellPromoBanner.xib */,
@@ -1649,6 +1651,9 @@
 				EFB87AB520C386ED0011AF78 /* CustomViewVoucher.h */,
 				EFB87AE620C386ED0011AF78 /* CustomViewVoucher.m */,
 				EFB87AE820C386ED0011AF78 /* CustomViewVoucher.xib */,
+				EFF44F4520F9B3EE00D07770 /* CustomTableViewCellLabelSwitch.h */,
+				EFF44F4620F9B3EE00D07770 /* CustomTableViewCellLabelSwitch.m */,
+				EFF44F4720F9B3EE00D07770 /* CustomTableViewCellLabelSwitch.xib */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -1856,6 +1861,7 @@
 				34CCCCD54F3C53B03BB6B9EC /* [CP] Check Pods Manifest.lock */,
 				EFB872F220C218BF0011AF78 /* Sources */,
 				EFB872F320C218BF0011AF78 /* Frameworks */,
+				EF14A69F20E49735006AF428 /* ShellScript */,
 				EFB872F420C218BF0011AF78 /* Resources */,
 			);
 			buildRules = (
@@ -1965,6 +1971,7 @@
 				EFB87BB120C386EE0011AF78 /* Icon@2x.png in Resources */,
 				EFB87C8020C386EE0011AF78 /* Kanit-Regular.ttf in Resources */,
 				EFB87C9920C386EE0011AF78 /* Kanit-ExtraLightItalic.ttf in Resources */,
+				EF648B0D210443EA00C8A87E /* CustomTableViewCellLabelRemark.xib in Resources */,
 				EFB87C9B20C386EE0011AF78 /* Kanit-SemiBoldItalic.otf in Resources */,
 				EF13B62120CFB302008CF35C /* Prompt-LightItalic.ttf in Resources */,
 				EFB87B8720C386ED0011AF78 /* takeAway2.png in Resources */,
@@ -1975,9 +1982,11 @@
 				EFB87BA520C386EE0011AF78 /* visa.png in Resources */,
 				EFB87C9120C386EE0011AF78 /* Kanit-Medium.otf in Resources */,
 				EFB87C6D20C386EE0011AF78 /* CustomTableViewHeaderButton.xib in Resources */,
+				EFF44F4920F9B3EE00D07770 /* CustomTableViewCellLabelSwitch.xib in Resources */,
 				EFB87CC920C3ECF00011AF78 /* jummumTypeWhite.png in Resources */,
 				EFB87C7720C386EE0011AF78 /* CustomTableViewCellRedemption.xib in Resources */,
 				EFB87C8820C386EE0011AF78 /* Kanit-Italic.otf in Resources */,
+				EF06DCE22105BE5B003E8408 /* selfService.png in Resources */,
 				EFB87BA620C386EE0011AF78 /* Icon-Spotlight-40.png in Resources */,
 				EFB87B9120C386ED0011AF78 /* collapse.png in Resources */,
 				EFB87C9620C386EE0011AF78 /* Kanit-Light.ttf in Resources */,
@@ -2001,6 +2010,7 @@
 				EFB87C6220C386EE0011AF78 /* CustomTableViewCellReceiptSummary.xib in Resources */,
 				EFB87BA720C386EE0011AF78 /* uncheckbox.png in Resources */,
 				EFB87BC020C386EE0011AF78 /* removed.png in Resources */,
+				EFE55DCE2109F21900B16504 /* jummumOMLogo.png in Resources */,
 				EFB87BB420C386EE0011AF78 /* basket.png in Resources */,
 				EFB87BBE20C386EE0011AF78 /* gift.png in Resources */,
 				EF13B61720CFB302008CF35C /* Prompt-Regular.ttf in Resources */,
@@ -2010,6 +2020,7 @@
 				EFB87BB820C386EE0011AF78 /* added.png in Resources */,
 				EFB87C8B20C386EE0011AF78 /* Kanit-ExtraBold.ttf in Resources */,
 				EFD9BA2A20E1A10E00A0A874 /* jummumChef_lightGray.png in Resources */,
+				EF14A6A420E532D2006AF428 /* turnLightOn.png in Resources */,
 				EFB87BCF20C386EE0011AF78 /* paste light color.png in Resources */,
 				EFB87C8D20C386EE0011AF78 /* Kanit-ThinItalic.otf in Resources */,
 				EFB87C7620C386EE0011AF78 /* CustomTableViewHeaderLabel.xib in Resources */,
@@ -2028,8 +2039,10 @@
 				EFB87C3B20C386EE0011AF78 /* CustomCollectionViewCellNote.xib in Resources */,
 				EF13B61A20CFB302008CF35C /* Prompt-BoldItalic.ttf in Resources */,
 				EFB87C5620C386EE0011AF78 /* CustomTableViewCellTotal.xib in Resources */,
+				EFE55DD02109F38A00B16504 /* jummumTypeOMWhite.png in Resources */,
 				EFB87C6320C386EE0011AF78 /* CustomTableViewHeaderFooterOkCancel.xib in Resources */,
 				EFB87B9A20C386ED0011AF78 /* Icon-iPadPro@2x.png in Resources */,
+				EFF44F4B20F9BC0B00D07770 /* alarm.png in Resources */,
 				EFB87C5920C386EE0011AF78 /* CustomTableViewCellVoucherCode.xib in Resources */,
 				EFB87B6820C386ED0011AF78 /* Property List.plist in Resources */,
 				EFB87BB520C386EE0011AF78 /* takeAwayGrayOut.png in Resources */,
@@ -2059,6 +2072,7 @@
 				EFB87C9020C386EE0011AF78 /* Kanit-SemiBoldItalic.ttf in Resources */,
 				EFB87C8620C386EE0011AF78 /* Kanit-Black.otf in Resources */,
 				EFB87BD120C386EE0011AF78 /* uncheck.png in Resources */,
+				EF14A69E20E4950B006AF428 /* Icon-20.png in Resources */,
 				EFB87B9820C386ED0011AF78 /* Icon-Spotlight-40@3x.png in Resources */,
 				EFB87C6E20C386EE0011AF78 /* CustomTableViewCellImageText.xib in Resources */,
 				EFB87BBD20C386EE0011AF78 /* remove.png in Resources */,
@@ -2088,6 +2102,7 @@
 				EFB87BB620C386EE0011AF78 /* history.jpg in Resources */,
 				EFB87B8D20C386ED0011AF78 /* Icon-76@2x.png in Resources */,
 				EFB87B9020C386ED0011AF78 /* privacyPolicy.png in Resources */,
+				EF14A6A520E532D2006AF428 /* turnLightOff.png in Resources */,
 				EFB87CC520C3ECF00011AF78 /* jummumLogoWithType.png in Resources */,
 				EF13B62020CFB302008CF35C /* Prompt-ExtraLight.ttf in Resources */,
 				EFB87C8E20C386EE0011AF78 /* Kanit-BoldItalic.otf in Resources */,
@@ -2127,6 +2142,7 @@
 				EFB87C8A20C386EE0011AF78 /* Kanit-ExtraBoldItalic.ttf in Resources */,
 				EFB87BBA20C386EE0011AF78 /* check2.png in Resources */,
 				EFB87C5D20C386EE0011AF78 /* CustomTableViewCellOrderSummary.xib in Resources */,
+				EF14A6A120E52E89006AF428 /* refresh.png in Resources */,
 				EFB87BAC20C386EE0011AF78 /* collapse2.png in Resources */,
 				EFB87C3C20C386EE0011AF78 /* CustomTableViewCellReward.xib in Resources */,
 				EFB87BF420C386EE0011AF78 /* beep.mp3 in Resources */,
@@ -2211,6 +2227,19 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		EF14A69F20E49735006AF428 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "buildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"$INFOPLIST_FILE\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"$INFOPLIST_FILE\"\nproductVersion=$(/usr/libexec/PlistBuddy -c \"Print CFBundleShortVersionString\" \"$INFOPLIST_FILE\")\n/usr/libexec/PlistBuddy -c \"Set :CFBundleShortVersionString $productVersion\" \"$INFOPLIST_FILE\"\n";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -2228,9 +2257,7 @@
 				EFB8804820C4781E0011AF78 /* GermanReceiptsImpl.m in Sources */,
 				EFB8804320C4781E0011AF78 /* RussianReceiptsImpl.m in Sources */,
 				EFB87C1620C386EE0011AF78 /* Note.m in Sources */,
-				EFB87BEF20C386EE0011AF78 /* CustomerTableSearchViewController.m in Sources */,
 				EFB8804120C4781E0011AF78 /* SpanishReceiptsImpl.m in Sources */,
-				EFB87BDE20C386EE0011AF78 /* CreditCardAndOrderSummaryViewController.m in Sources */,
 				EFB8806C20C47FE90011AF78 /* SharedPrinter.m in Sources */,
 				EFB8805B20C4781E0011AF78 /* CombinationViewController.m in Sources */,
 				EFB87C6720C386EE0011AF78 /* CustomTableViewCellRewardDetail.m in Sources */,
@@ -2242,7 +2269,6 @@
 				EFB87FBF20C477B20011AF78 /* InvoiceComposer.m in Sources */,
 				EFB8805420C4781E0011AF78 /* DisplayFunctions.m in Sources */,
 				EFB87BFF20C386EE0011AF78 /* SharedUserRewardRedemptionUsed.m in Sources */,
-				EFB87BF020C386EE0011AF78 /* MenuSelectionViewController.m in Sources */,
 				EFB8804620C4781E0011AF78 /* JapaneseReceiptsImpl.m in Sources */,
 				EFB87C2C20C386EE0011AF78 /* DisputeReason.m in Sources */,
 				EFB87C5720C386EE0011AF78 /* CustomTableViewCellLabelTextView.m in Sources */,
@@ -2251,7 +2277,6 @@
 				EFB87C5E20C386EE0011AF78 /* CustomViewVoucher.m in Sources */,
 				EFB87BE420C386EE0011AF78 /* PersonalDataViewController.m in Sources */,
 				EFB87BF220C386EE0011AF78 /* CreditCardViewController.m in Sources */,
-				EFB87BE920C386EE0011AF78 /* BasketViewController.m in Sources */,
 				EFB87C2720C386EE0011AF78 /* CustomerTable.m in Sources */,
 				EFB87BE720C386EE0011AF78 /* RewardDetailViewController.m in Sources */,
 				EFB87C0F20C386EE0011AF78 /* NoteType.m in Sources */,
@@ -2265,7 +2290,6 @@
 				EFB8805D20C4781E0011AF78 /* CombinationExtViewController.m in Sources */,
 				EFB8806E20C47FE90011AF78 /* SharedOrderKitchen.m in Sources */,
 				EFB87B8620C386ED0011AF78 /* KeychainWrapper.m in Sources */,
-				EFB87BE320C386EE0011AF78 /* BranchSearchViewController.m in Sources */,
 				EFB8804720C4781E0011AF78 /* TraditionalChineseReceiptsImpl.m in Sources */,
 				EFB87BEC20C386EE0011AF78 /* TosAndPrivacyPolicyViewController.m in Sources */,
 				EFB87C0820C386EE0011AF78 /* Shop.m in Sources */,
@@ -2275,15 +2299,16 @@
 				EFB87BE020C386EE0011AF78 /* SelectPaymentMethodViewController.m in Sources */,
 				EFB87EDA20C475BE0011AF78 /* CredentialsDb.m in Sources */,
 				EFB87C3320C386EE0011AF78 /* CreditCard.m in Sources */,
+				EF648B0C210443EA00C8A87E /* CustomTableViewCellLabelRemark.m in Sources */,
 				EFB87C0A20C386EE0011AF78 /* SharedOrderTaking.m in Sources */,
 				EFB87B7820C386ED0011AF78 /* Globals.swift in Sources */,
 				EFB87BFB20C386EE0011AF78 /* MenuType.m in Sources */,
 				EFB87B6B20C386ED0011AF78 /* OmiseTokenRequest.swift in Sources */,
 				EFB87C5120C386EE0011AF78 /* CustomTableViewCellDisputeDetail.m in Sources */,
+				EFF44F4820F9B3EE00D07770 /* CustomTableViewCellLabelSwitch.m in Sources */,
 				EFB8804B20C4781E0011AF78 /* MainViewController.m in Sources */,
 				EFB87C1320C386EE0011AF78 /* SharedCurrentMenu.m in Sources */,
 				EFB87C0D20C386EE0011AF78 /* SharedPushSync.m in Sources */,
-				EFB87BF120C386EE0011AF78 /* NoteViewController.m in Sources */,
 				EFB87B6620C386ED0011AF78 /* HomeModel.m in Sources */,
 				EFB87C6520C386EE0011AF78 /* CustomTableViewCellLabelLabel.m in Sources */,
 				EFB87C1520C386EE0011AF78 /* UserPromotionUsed.m in Sources */,
@@ -2380,26 +2405,25 @@
 				EFB8803A20C4781E0011AF78 /* DisplayExtViewController.m in Sources */,
 				EFB87C2420C386EE0011AF78 /* SharedCurrentUserAccount.m in Sources */,
 				EFB87BF820C386EE0011AF78 /* Receipt.m in Sources */,
+				EF06DCE021059BB5003E8408 /* OpeningTimeViewController.m in Sources */,
 				EFB87BEE20C386EE0011AF78 /* RewardViewController.m in Sources */,
 				EFB87C5F20C386EE0011AF78 /* CustomTableViewCellRedemption.m in Sources */,
 				EFB87C0220C386EE0011AF78 /* SharedUserPromotionUsed.m in Sources */,
 				EFB87C1020C386EE0011AF78 /* SharedOrderNote.m in Sources */,
 				EFB8806120C4781E0011AF78 /* Communication.m in Sources */,
-				EFB87BDC20C386EE0011AF78 /* ReceiptSummaryViewController.m in Sources */,
 				EFB87C7420C386EE0011AF78 /* CustomTableViewCellImageLabelRemove.m in Sources */,
 				EFB87C1720C386EE0011AF78 /* SharedLogIn.m in Sources */,
 				EFB87EE320C4769E0011AF78 /* ReceiptPrint.m in Sources */,
-				EFB87BE620C386EE0011AF78 /* LogOutViewController.m in Sources */,
 				EFB87C0B20C386EE0011AF78 /* HotDeal.m in Sources */,
 				EFB87BE120C386EE0011AF78 /* RewardRedemptionViewController.m in Sources */,
 				EFB8803320C4781E0011AF78 /* ScaleExtViewController.m in Sources */,
 				EFB87BF720C386EE0011AF78 /* FacebookComment.m in Sources */,
-				EFB87BE220C386EE0011AF78 /* QRCodeScanTableViewController.m in Sources */,
 				EFB8811C20C621180011AF78 /* Credentials.m in Sources */,
 				EFB8803920C4781E0011AF78 /* ScaleViewController.m in Sources */,
 				EFB87C3420C386EE0011AF78 /* RewardRedemption.m in Sources */,
 				EFB87C1420C386EE0011AF78 /* MenuPic.m in Sources */,
 				EFB87C4D20C386EE0011AF78 /* CustomTableViewCellText.m in Sources */,
+				EF648B062103874800C8A87E /* SharedCurrentCredentialsDb.m in Sources */,
 				EFB87C5C20C386EE0011AF78 /* CustomTableViewCellOrderSummary.m in Sources */,
 				EFB87C7220C386EE0011AF78 /* CustomTableViewCellButton.m in Sources */,
 				EFB87B7620C386ED0011AF78 /* OmiseJsonParser.swift in Sources */,
@@ -2622,7 +2646,7 @@
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/FBSDKCoreKit\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/FBSDKLoginKit\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.appxelent.JummumShop;
+				PRODUCT_BUNDLE_IDENTIFIER = com.JummumCo.JummumShop;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2654,7 +2678,7 @@
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/FBSDKLoginKit\"",
 					"$(PROJECT_DIR)/JummumShop/Resource/Lib",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.appxelent.JummumShop;
+				PRODUCT_BUNDLE_IDENTIFIER = com.JummumCo.JummumShop;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

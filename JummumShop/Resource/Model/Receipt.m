@@ -9,11 +9,12 @@
 #import "Receipt.h"
 #import "SharedReceipt.h"
 #import "Utility.h"
+#import "Setting.h"
 
 
 @implementation Receipt
 
--(Receipt *)initWithBranchID:(NSInteger)branchID customerTableID:(NSInteger)customerTableID memberID:(NSInteger)memberID servingPerson:(NSInteger)servingPerson customerType:(NSInteger)customerType openTableDate:(NSDate *)openTableDate cashAmount:(float)cashAmount cashReceive:(float)cashReceive creditCardType:(NSInteger)creditCardType creditCardNo:(NSString *)creditCardNo creditCardAmount:(float)creditCardAmount transferDate:(NSDate *)transferDate transferAmount:(float)transferAmount remark:(NSString *)remark discountType:(NSInteger)discountType discountAmount:(float)discountAmount discountValue:(float)discountValue discountReason:(NSString *)discountReason serviceChargePercent:(float)serviceChargePercent serviceChargeValue:(float)serviceChargeValue priceIncludeVat:(NSInteger)priceIncludeVat vatPercent:(float)vatPercent vatValue:(float)vatValue status:(NSInteger)status statusRoute:(NSString *)statusRoute receiptNoID:(NSString *)receiptNoID receiptNoTaxID:(NSString *)receiptNoTaxID receiptDate:(NSDate *)receiptDate mergeReceiptID:(NSInteger)mergeReceiptID
+-(Receipt *)initWithBranchID:(NSInteger)branchID customerTableID:(NSInteger)customerTableID memberID:(NSInteger)memberID servingPerson:(NSInteger)servingPerson customerType:(NSInteger)customerType openTableDate:(NSDate *)openTableDate cashAmount:(float)cashAmount cashReceive:(float)cashReceive creditCardType:(NSInteger)creditCardType creditCardNo:(NSString *)creditCardNo creditCardAmount:(float)creditCardAmount transferDate:(NSDate *)transferDate transferAmount:(float)transferAmount remark:(NSString *)remark discountType:(NSInteger)discountType discountAmount:(float)discountAmount discountValue:(float)discountValue discountReason:(NSString *)discountReason serviceChargePercent:(float)serviceChargePercent serviceChargeValue:(float)serviceChargeValue priceIncludeVat:(NSInteger)priceIncludeVat vatPercent:(float)vatPercent vatValue:(float)vatValue status:(NSInteger)status statusRoute:(NSString *)statusRoute receiptNoID:(NSString *)receiptNoID receiptNoTaxID:(NSString *)receiptNoTaxID receiptDate:(NSDate *)receiptDate sendToKitchenDate:(NSDate *)sendToKitchenDate deliveredDate:(NSDate *)deliveredDate mergeReceiptID:(NSInteger)mergeReceiptID
 {
     self = [super init];
     if(self)
@@ -47,6 +48,8 @@
         self.receiptNoID = receiptNoID;
         self.receiptNoTaxID = receiptNoTaxID;
         self.receiptDate = receiptDate;
+        self.sendToKitchenDate = sendToKitchenDate;
+        self.deliveredDate = deliveredDate;
         self.mergeReceiptID = mergeReceiptID;
         self.modifiedUser = [Utility modifiedUser];
         self.modifiedDate = [Utility currentDateTime];
@@ -155,6 +158,8 @@
         [copy setReceiptNoID:self.receiptNoID];
         [copy setReceiptNoTaxID:self.receiptNoTaxID];
         [copy setReceiptDate:self.receiptDate];
+        [copy setSendToKitchenDate:self.sendToKitchenDate];
+        [copy setDeliveredDate:self.deliveredDate];
         ((Receipt *)copy).mergeReceiptID = self.mergeReceiptID;
         [copy setModifiedUser:[Utility modifiedUser]];
         [copy setModifiedDate:[Utility currentDateTime]];
@@ -196,6 +201,8 @@
        && [self.receiptNoID isEqualToString:editingReceipt.receiptNoID]
        && [self.receiptNoTaxID isEqualToString:editingReceipt.receiptNoTaxID]
        && [self.receiptDate isEqual:editingReceipt.receiptDate]
+       && [self.sendToKitchenDate isEqual:editingReceipt.sendToKitchenDate]
+       && [self.deliveredDate isEqual:editingReceipt.deliveredDate]
        && self.mergeReceiptID == editingReceipt.mergeReceiptID
        )
     {
@@ -235,6 +242,8 @@
     toReceipt.receiptNoID = fromReceipt.receiptNoID;
     toReceipt.receiptNoTaxID = fromReceipt.receiptNoTaxID;
     toReceipt.receiptDate = fromReceipt.receiptDate;
+    toReceipt.sendToKitchenDate = fromReceipt.sendToKitchenDate;
+    toReceipt.deliveredDate = fromReceipt.deliveredDate;
     toReceipt.mergeReceiptID = fromReceipt.mergeReceiptID;
     toReceipt.modifiedUser = [Utility modifiedUser];
     toReceipt.modifiedDate = [Utility currentDateTime];
@@ -371,22 +380,22 @@
     return nil;
 }
 
-+(void)updateStatusList:(NSMutableArray *)receiptList
-{
-    NSMutableArray *dataList = [SharedReceipt sharedReceipt].receiptList;
-    for(Receipt *item in receiptList)
-    {
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"_receiptID = %ld",item.receiptID];
-        NSArray *filterArray = [dataList filteredArrayUsingPredicate:predicate];
-        if([filterArray count]>0)
-        {
-            Receipt *receipt = filterArray[0];
-            receipt.status = item.status;
-            receipt.statusRoute = item.statusRoute;
-            receipt.modifiedDate = item.modifiedDate;
-        }
-    }
-}
+//+(void)updateStatusList:(NSMutableArray *)receiptList
+//{
+//    NSMutableArray *dataList = [SharedReceipt sharedReceipt].receiptList;
+//    for(Receipt *item in receiptList)
+//    {
+//        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"_receiptID = %ld",item.receiptID];
+//        NSArray *filterArray = [dataList filteredArrayUsingPredicate:predicate];
+//        if([filterArray count]>0)
+//        {
+//            Receipt *receipt = filterArray[0];
+//            receipt.status = item.status;
+//            receipt.statusRoute = item.statusRoute;
+//            receipt.modifiedDate = item.modifiedDate;
+//        }
+//    }
+//}
 
 +(NSMutableArray *)getReceiptList
 {
@@ -411,57 +420,68 @@
     {
         case 2:
         {
-            strStatus = @"Order sent";
+            NSString *message = [Setting getValue:@"034m" example:@"ลูกค้าสั่ง"];
+            strStatus = message;
         }
             break;
         case 5:
         {
-            strStatus = @"Processing..";
+            NSString *message = [Setting getValue:@"035m" example:@"กำลังทำ"];
+            strStatus = message;
         }
             break;
         case 6:
         {
-            strStatus = @"Delivered";
+            NSString *message = [Setting getValue:@"036m" example:@"เสิร์ฟแล้ว"];
+            strStatus = message;
         }
             break;
         case 7:
         {
-            strStatus = @"Pending cancel";
+            NSString *message = [Setting getValue:@"037m" example:@"Pending cancel"];
+            strStatus = message;
         }
             break;
         case 8:
         {
-            strStatus = @"Order dispute in process";
+            NSString *message = [Setting getValue:@"038m" example:@"Order dispute in process"];
+            strStatus = message;
         }
             break;
         case 9:
         {
-            strStatus = @"Order cancelled";
+            NSString *message = [Setting getValue:@"039m" example:@"Order cancelled"];
+            strStatus = message;
         }
             break;
         case 10:
         {
-            strStatus = @"Order dispute finished";
+            NSString *message = [Setting getValue:@"040m" example:@"Order dispute finished"];
+            strStatus = message;
         }
             break;
         case 11:
         {
-            strStatus = @"Negotiate";
+            NSString *message = [Setting getValue:@"041m" example:@"Negotiate"];
+            strStatus = message;
         }
             break;
         case 12:
         {
-            strStatus = @"Review dispute";
+            NSString *message = [Setting getValue:@"042m" example:@"Review dispute"];
+            strStatus = message;
         }
             break;
         case 13:
         {
-            strStatus = @"Review dispute in process";
+            NSString *message = [Setting getValue:@"043m" example:@"Review dispute in process"];
+            strStatus = message;
         }
         break;
         case 14:
         {
-            strStatus = @"Order dispute finished";
+            NSString *message = [Setting getValue:@"044m" example:@"Order dispute finished"];
+            strStatus = message;
         }
         break;
         default:
@@ -621,5 +641,14 @@
     {
         return [Utility stringToDate:@"2018-01-01 00:00:00" fromFormat:@"yyyy-MM-dd HH:mm:ss"];
     }    
+}
+
++(Receipt *)updateStatusAndIndicator:(Receipt *)receipt
+{
+    Receipt *sharedReceipt = [Receipt getReceipt:receipt.receiptID];
+    sharedReceipt.toBeProcessing = 0;
+//    sharedReceipt.status = receipt.status;
+    
+    return sharedReceipt;
 }
 @end

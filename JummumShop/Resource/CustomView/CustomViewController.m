@@ -67,6 +67,7 @@ CGFloat animatedDistance;
 @synthesize receiptKitchenBill;
 @synthesize homeModelPrintKitchenBill;
 @synthesize backgroundView;
+@synthesize toolBar;
 
 
 -(void)setCurrentVc
@@ -154,6 +155,16 @@ CGFloat animatedDistance;
      addObserver:self selector:@selector(orientationChanged:)
      name:UIDeviceOrientationDidChangeNotification
      object:[UIDevice currentDevice]];
+    
+    
+    
+    //toolbar
+    toolBar=[[UIToolbar alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 44)];
+    [toolBar setTintColor:cSystem4_10];
+    UIBarButtonItem *doneBtn=[[UIBarButtonItem alloc]initWithTitle:@"Done" style:UIBarButtonItemStylePlain target:self action:@selector(dismissKeyboard)];
+    doneBtn.tintColor = cSystem1;
+    UIBarButtonItem *space=[[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    [toolBar setItems:[NSArray arrayWithObjects:space,doneBtn, nil]];
 
 }
 
@@ -249,7 +260,8 @@ CGFloat animatedDistance;
 //    indicator.layer.zPosition = 1;
     
     
-    lblWaiting.text = @"Processing...";
+    NSString *message = [Setting getValue:@"100m" example:@"Processing..."];
+    lblWaiting.text = message;
     lblWaiting.backgroundColor = [UIColor clearColor];
     lblWaiting.textColor = [UIColor whiteColor];
     lblWaiting.textAlignment = NSTextAlignmentCenter;
@@ -330,46 +342,20 @@ CGFloat animatedDistance;
 
 - (void) connectionFail
 {
-    UIAlertController* alert = [UIAlertController alertControllerWithTitle:[Utility subjectNoConnection]
-                                                                   message:[Utility detailNoConnection]
-                                                            preferredStyle:UIAlertControllerStyleAlert];
-    
-    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
-                                                          handler:^(UIAlertAction * action)
-                                                            {
-//                                                                if(![indicator isAnimating])
-//                                                                {
-//                                                                    [self loadingOverlayView];
-//                                                                }
-//                                                                [homeModel downloadItems:dbMaster];
-                                                            }];
-    
-    [alert addAction:defaultAction];
-    dispatch_async(dispatch_get_main_queue(),^ {
-        [self presentViewController:alert animated:YES completion:nil];
-    } );
+    [self removeOverlayViews];
+    NSString *title = [Utility subjectNoConnection];
+    NSString *message = [Utility detailNoConnection];
+    [self showAlert:title message:message];
 }
 
 - (void)itemsFail
 {
-    UIAlertController* alert = [UIAlertController alertControllerWithTitle:[Utility getConnectionLostTitle]
-                                                                   message:[Utility getConnectionLostMessage]
-                                                            preferredStyle:UIAlertControllerStyleAlert];
-    
-    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
-                                                          handler:^(UIAlertAction * action) {
-//                                                              if(![indicator isAnimating])
-//                                                              {
-//                                                                  [self loadingOverlayView];
-//                                                              }
-//                                                              [homeModel downloadItems:dbMaster];
-                                                          }];
-    
-    [alert addAction:defaultAction];
-    dispatch_async(dispatch_get_main_queue(),^ {
-        [self presentViewController:alert animated:YES completion:nil];
-    } );
+    [self removeOverlayViews];
+    NSString *title = [Utility getErrorOccurTitle];
+    NSString *message = [Utility getErrorOccurMessage];
+    [self showAlert:title message:message];
 }
+
 
 - (void)itemsInserted
 {
@@ -385,33 +371,77 @@ CGFloat animatedDistance;
     [self showAlert:@"" message:msg];
 }
 
-- (void)syncItems
-{
-    PushSync *pushSync = [[PushSync alloc]init];
-    pushSync.deviceToken = [Utility deviceToken];
-    [homeModel syncItems:dbPushSync withData:pushSync];
-}
-
 - (void) showAlert:(NSString *)title message:(NSString *)message
 {
     UIAlertController* alert = [UIAlertController alertControllerWithTitle:title
-                                                                   message:message
-                                                            preferredStyle:UIAlertControllerStyleAlert];
+                                                                   message:message                                                            preferredStyle:UIAlertControllerStyleAlert];
+    
+    NSMutableAttributedString *attrStringTitle = [[NSMutableAttributedString alloc] initWithString:title];
+    [attrStringTitle addAttribute:NSFontAttributeName
+                            value:[UIFont fontWithName:@"Prompt-SemiBold" size:17]
+                            range:NSMakeRange(0, title.length)];
+    [attrStringTitle addAttribute:NSForegroundColorAttributeName
+                            value:cSystem4
+                            range:NSMakeRange(0, title.length)];
+    [alert setValue:attrStringTitle forKey:@"attributedTitle"];
+    
+    
+    NSMutableAttributedString *attrStringMsg = [[NSMutableAttributedString alloc] initWithString:message];
+    [attrStringMsg addAttribute:NSFontAttributeName
+                          value:[UIFont fontWithName:@"Prompt-Regular" size:15]
+                          range:NSMakeRange(0, message.length)];
+    [attrStringTitle addAttribute:NSForegroundColorAttributeName
+                            value:cSystem4
+                            range:NSMakeRange(0, title.length)];
+    [alert setValue:attrStringMsg forKey:@"attributedMessage"];
+    
+    
+    
     
     UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
                                                           handler:^(UIAlertAction * action)
-                                                            {
-                                                            }];
+                                    {
+                                    }];
     
     [alert addAction:defaultAction];
     [self presentViewController:alert animated:YES completion:nil];
+    
+    
+    UIFont *font = [UIFont fontWithName:@"Prompt-SemiBold" size:15];
+    UIColor *color = cSystem1;
+    NSDictionary *attribute = @{NSForegroundColorAttributeName:color ,NSFontAttributeName: font};
+    NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:@"OK" attributes:attribute];
+    
+    UILabel *label = [[defaultAction valueForKey:@"__representer"] valueForKey:@"label"];
+    label.attributedText = attrString;
 }
 
 - (void) showAlert:(NSString *)title message:(NSString *)message method:(SEL)method
 {
     UIAlertController* alert = [UIAlertController alertControllerWithTitle:title
-                                                                   message:message
-                                                            preferredStyle:UIAlertControllerStyleAlert];
+                                                                   message:message                                                            preferredStyle:UIAlertControllerStyleAlert];
+    
+    
+    NSMutableAttributedString *attrStringTitle = [[NSMutableAttributedString alloc] initWithString:title];
+    [attrStringTitle addAttribute:NSFontAttributeName
+                            value:[UIFont fontWithName:@"Prompt-SemiBold" size:17]
+                            range:NSMakeRange(0, title.length)];
+    [attrStringTitle addAttribute:NSForegroundColorAttributeName
+                            value:cSystem4
+                            range:NSMakeRange(0, title.length)];
+    [alert setValue:attrStringTitle forKey:@"attributedTitle"];
+    
+    
+    NSMutableAttributedString *attrStringMsg = [[NSMutableAttributedString alloc] initWithString:message];
+    [attrStringMsg addAttribute:NSFontAttributeName
+                          value:[UIFont fontWithName:@"Prompt-Regular" size:15]
+                          range:NSMakeRange(0, message.length)];
+    [attrStringTitle addAttribute:NSForegroundColorAttributeName
+                            value:cSystem4
+                            range:NSMakeRange(0, title.length)];
+    [alert setValue:attrStringMsg forKey:@"attributedMessage"];
+    
+    
     
     UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
                                                           handler:^(UIAlertAction * action)
@@ -421,41 +451,43 @@ CGFloat animatedDistance;
     
     [alert addAction:defaultAction];
     [self presentViewController:alert animated:YES completion:nil];
-}
-
-- (void)vibrateAndCallPushSync
-{
-    [self loadingOverlayView];
-    AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
     
     
-    [self syncItems];
-}
-
-- (void) showAlertAndCallPushSync:(NSString *)title message:(NSString *)message
-{
-    [self loadingOverlayView];
-    [self syncItems];
+    UIFont *font = [UIFont fontWithName:@"Prompt-SemiBold" size:15];
+    UIColor *color = cSystem1;
+    NSDictionary *attribute = @{NSForegroundColorAttributeName:color ,NSFontAttributeName: font};
+    NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:@"OK" attributes:attribute];
     
-    UIAlertController* alert = [UIAlertController alertControllerWithTitle:title
-                                                                   message:message
-                                                            preferredStyle:UIAlertControllerStyleAlert];
-    
-    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
-                                                          handler:^(UIAlertAction * action)
-                                    {
-                                        
-                                    }];
-    
-    [alert addAction:defaultAction];
-    [self presentViewController:alert animated:YES completion:nil];
+    UILabel *label = [[defaultAction valueForKey:@"__representer"] valueForKey:@"label"];
+    label.attributedText = attrString;
 }
 
 - (void) showAlert:(NSString *)title message:(NSString *)message firstResponder:(UIView *)view
 {
     UIAlertController* alert = [UIAlertController alertControllerWithTitle:title
-                                                                   message:message
-                                                            preferredStyle:UIAlertControllerStyleAlert];
+                                                                   message:message                                                            preferredStyle:UIAlertControllerStyleAlert];
+    
+    
+    NSMutableAttributedString *attrStringTitle = [[NSMutableAttributedString alloc] initWithString:title];
+    [attrStringTitle addAttribute:NSFontAttributeName
+                            value:[UIFont fontWithName:@"Prompt-SemiBold" size:17]
+                            range:NSMakeRange(0, title.length)];
+    [alert setValue:attrStringTitle forKey:@"attributedTitle"];
+    [attrStringTitle addAttribute:NSForegroundColorAttributeName
+                            value:cSystem4
+                            range:NSMakeRange(0, title.length)];
+    
+    
+    NSMutableAttributedString *attrStringMsg = [[NSMutableAttributedString alloc] initWithString:message];
+    [attrStringMsg addAttribute:NSFontAttributeName
+                          value:[UIFont fontWithName:@"Prompt-Regular" size:15]
+                          range:NSMakeRange(0, message.length)];
+    [attrStringTitle addAttribute:NSForegroundColorAttributeName
+                            value:cSystem4
+                            range:NSMakeRange(0, title.length)];
+    [alert setValue:attrStringMsg forKey:@"attributedMessage"];
+    
+    
     
     UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
                                                           handler:^(UIAlertAction * action)
@@ -465,306 +497,22 @@ CGFloat animatedDistance;
     
     [alert addAction:defaultAction];
     [self presentViewController:alert animated:YES completion:nil];
-}
-
-- (void)itemsSynced:(NSArray *)items
-{
-    if([items count] == 0)
-    {
-        [self removeOverlayViews];
-        return;
-    }
-    NSMutableArray *pushSyncList = [[NSMutableArray alloc]init];
     
     
+    UIFont *font = [UIFont fontWithName:@"Prompt-SemiBold" size:15];
+    UIColor *color = cSystem1;
+    NSDictionary *attribute = @{NSForegroundColorAttributeName:color ,NSFontAttributeName: font};
+    NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:@"OK" attributes:attribute];
     
-    //type == exit
-    for(int j=0; j<[items count]; j++)
-    {
-        NSDictionary *payload = items[j];
-        NSString *type = [payload objectForKey:@"type"];
-        NSString *strPushSyncID = [payload objectForKey:@"pushSyncID"];
-        
-        
-        if([type isEqualToString:@"exitApp"])
-        {
-            //เช็คว่าเคย sync pushsyncid นี้ไปแล้วยัง
-            if([PushSync alreadySynced:[strPushSyncID integerValue]])
-            {
-                continue;
-            }
-            else
-            {
-                //update shared ใช้ในกรณี เรียก homemodel > 1 อันต่อหนึ่ง click คำสั่ง ซึ่งทำให้เกิดการ เรียก function syncitems ตัวที่ 2 ก่อนเกิดการ update timesynced จึงทำให้เกิดการเบิ้ล sync
-                PushSync *pushSync = [[PushSync alloc]initWithPushSyncID:[strPushSyncID integerValue]];
-                [PushSync addObject:pushSync];
-                [pushSyncList addObject:pushSync];
-            }
-            
-            
-            UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"มีการปรับปรุงแอพ"
-                                                                           message:@"กรุณาเปิดแอพใหม่อีกครั้งเพื่อใช้งาน"
-                                                                    preferredStyle:UIAlertControllerStyleAlert];
-            
-            UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
-                                                                  handler:^(UIAlertAction * action)
-                                            {
-                                                exit(0);
-                                            }];
-            
-            [alert addAction:defaultAction];
-            [self presentViewController:alert animated:YES completion:nil];
-        }
-    }
-    
-    
-    
-    //type == alert
-    for(int j=0; j<[items count]; j++)
-    {
-        NSDictionary *payload = items[j];
-        NSString *type = [payload objectForKey:@"type"];
-        NSString *strPushSyncID = [payload objectForKey:@"pushSyncID"];
-        NSArray *data = [payload objectForKey:@"data"];
-        
-        
-        if([type isEqualToString:@"alert"])
-        {
-            //เช็คว่าเคย sync pushsyncid นี้ไปแล้วยัง
-            if([PushSync alreadySynced:[strPushSyncID integerValue]])
-            {
-                continue;
-            }
-            else
-            {
-                //update shared ใช้ในกรณี เรียก homemodel > 1 อันต่อหนึ่ง click คำสั่ง ซึ่งทำให้เกิดการ เรียก function syncitems ตัวที่ 2 ก่อนเกิดการ update timesynced จึงทำให้เกิดการเบิ้ล sync
-                PushSync *pushSync = [[PushSync alloc]initWithPushSyncID:[strPushSyncID integerValue]];
-                [PushSync addObject:pushSync];
-                [pushSyncList addObject:pushSync];
-            }
-            
-            
-            NSString *alertMsg = [NSString stringWithFormat:@"%@ is fail",(NSString *)data];
-            UIAlertController* alert = [UIAlertController alertControllerWithTitle:[Utility getSqlFailTitle]
-                                                                           message:alertMsg
-                                                                    preferredStyle:UIAlertControllerStyleAlert];
-            
-            UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
-                                                                  handler:^(UIAlertAction * action)
-                                            {
-                                                [self loadingOverlayView];
-                                                [homeModel downloadItems:dbMaster];
-                                            }];
-            
-            [alert addAction:defaultAction];
-            [self presentViewController:alert animated:YES completion:nil];
-        }
-    }
-    
-    
-    
-    //type == usernameconflict
-    for(int j=0; j<[items count]; j++)
-    {
-        NSDictionary *payload = items[j];
-        NSString *type = [payload objectForKey:@"type"];
-        NSString *strPushSyncID = [payload objectForKey:@"pushSyncID"];
-        NSArray *data = [payload objectForKey:@"data"];
-        
-        
-        if([type isEqualToString:@"usernameconflict"])
-        {
-            //เช็คว่าเคย sync pushsyncid นี้ไปแล้วยัง
-            if([PushSync alreadySynced:[strPushSyncID integerValue]])
-            {
-                continue;
-            }
-            else
-            {
-                //update shared ใช้ในกรณี เรียก homemodel > 1 อันต่อหนึ่ง click คำสั่ง ซึ่งทำให้เกิดการ เรียก function syncitems ตัวที่ 2 ก่อนเกิดการ update timesynced จึงทำให้เกิดการเบิ้ล sync
-                PushSync *pushSync = [[PushSync alloc]initWithPushSyncID:[strPushSyncID integerValue]];
-                [PushSync addObject:pushSync];
-                [pushSyncList addObject:pushSync];
-            }
-            
-
-            //you have login in another device และ unwind to หน้า sign in
-            if(![self isMemberOfClass:[LogInViewController class]])
-            {
-                UIAlertController* alert = [UIAlertController alertControllerWithTitle:@""
-                                                                               message:@"Username นี้กำลังถูกใช้เข้าระบบที่เครื่องอื่น"
-                                                                        preferredStyle:UIAlertControllerStyleAlert];
-                
-                UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
-                                                                      handler:^(UIAlertAction * action)
-                                                {
-                                                    
-                                                    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-                                                    LogInViewController *logInViewController = [storyboard instantiateViewControllerWithIdentifier:@"LogInViewController"];
-                                                    [UIApplication sharedApplication].keyWindow.rootViewController = logInViewController;
-                                                }];
-                
-                [alert addAction:defaultAction];
-                [self presentViewController:alert animated:YES completion:nil];
-            }
-        }
-    }
-    
-    
-    
-    
-    //type == currentUserAccount
-    for(int j=0; j<[items count]; j++)
-    {
-        NSDictionary *payload = items[j];
-        NSString *type = [payload objectForKey:@"type"];
-        NSString *strPushSyncID = [payload objectForKey:@"pushSyncID"];
-        NSArray *data = [payload objectForKey:@"data"];
-        
-        
-        if([type isEqualToString:@"currentUserAccount"])
-        {
-            //เช็คว่าเคย sync pushsyncid นี้ไปแล้วยัง
-            if([PushSync alreadySynced:[strPushSyncID integerValue]])
-            {
-                continue;
-            }
-            else
-            {
-                //update shared ใช้ในกรณี เรียก homemodel > 1 อันต่อหนึ่ง click คำสั่ง ซึ่งทำให้เกิดการ เรียก function syncitems ตัวที่ 2 ก่อนเกิดการ update timesynced จึงทำให้เกิดการเบิ้ล sync
-                PushSync *pushSync = [[PushSync alloc]initWithPushSyncID:[strPushSyncID integerValue]];
-                [PushSync addObject:pushSync];
-                [pushSyncList addObject:pushSync];
-            }
-            
-            
-            NSDictionary *jsonElement = data[0];
-            NSObject *object = [[NSClassFromString(@"UserAccount") alloc] init];
-            
-            unsigned int propertyCount = 0;
-            objc_property_t * properties = class_copyPropertyList([object class], &propertyCount);
-            
-            for (unsigned int i = 0; i < propertyCount; ++i)
-            {
-                objc_property_t property = properties[i];
-                const char * name = property_getName(property);
-                NSString *key = [NSString stringWithUTF8String:name];
-                
-                
-                NSString *dbColumnName = [Utility makeFirstLetterUpperCase:key];
-                if(!jsonElement[dbColumnName])
-                {
-                    continue;
-                }
-                
-                
-                if([Utility isDateColumn:dbColumnName])
-                {
-                    NSDate *date = [Utility stringToDate:jsonElement[dbColumnName] fromFormat:@"yyyy-MM-dd HH:mm:ss"];
-                    [object setValue:date forKey:key];
-                }
-                else
-                {
-                    [object setValue:jsonElement[dbColumnName] forKey:key];
-                }
-            }
-            
-            [UserAccount setCurrentUserAccount:(UserAccount *)object];            
-        }
-    }
-    
-    
-    
-    
-    for(int j=0; j<[items count]; j++)
-    {
-        NSDictionary *payload = items[j];
-        NSString *type = [payload objectForKey:@"type"];
-        NSString *action = [payload objectForKey:@"action"];
-        NSString *strPushSyncID = [payload objectForKey:@"pushSyncID"];
-        NSArray *data = [payload objectForKey:@"data"];
-        
-        
-        //เช็คว่าเคย sync pushsyncid นี้ไปแล้วยัง
-        if([PushSync alreadySynced:[strPushSyncID integerValue]])
-        {
-            continue;
-        }
-        else
-        {
-            //update shared ใช้ในกรณี เรียก homemodel > 1 อันต่อหนึ่ง click คำสั่ง ซึ่งทำให้เกิดการ เรียก function syncitems ตัวที่ 2 ก่อนเกิดการ update timesynced จึงทำให้เกิดการเบิ้ล sync
-            PushSync *pushSync = [[PushSync alloc]initWithPushSyncID:[strPushSyncID integerValue]];
-            [PushSync addObject:pushSync];
-            [pushSyncList addObject:pushSync];
-        }
-        
-        
-
-        if([data isKindOfClass:[NSArray class]])
-        {
-            [Utility itemsSynced:type action:action data:data];
-        }
-    }
-    
-    
-    //update pushsync ที่ sync แล้ว
-    if([pushSyncList count]>0)
-    {
-        [homeModel updateItems:dbPushSyncUpdateTimeSynced withData:pushSyncList actionScreen:@"Update synced time by id"];
-    }
-    
-    
-    //ให้ refresh ข้อมูลที่ Show ที่หน้านั้นหลังจาก sync ข้อมูลมาใหม่ //ใส่ทุกหน้าในนี้
-    NSMutableArray *arrAllType = [[NSMutableArray alloc]init];
-    for(int j=0; j<[items count]; j++)
-    {
-        NSDictionary *payload = items[j];
-        NSString *type = [payload objectForKey:@"type"];
-        [arrAllType addObject:type];
-    }
-    if([items count] > 0)
-    {
-        //ใส่ทุกหน้าในนี้
-        BOOL loadViewProcess = NO;
-        NSArray *arrReferenceTable;
-//        if([self isMemberOfClass:[OrderTakingViewController class]])
-//        {
-//            arrReferenceTable = @[@"MenuType",@"Menu",@"TableTaking",@"CustomerTable",@"OrderTaking",@"MenuTypeNote",@"OrderNote"];
-//            loadViewProcess = NO;
-//        }
-//        else if([self isMemberOfClass:[ReceiptViewController class]])
-//        {
-//            arrReferenceTable = @[@"OrderTaking",@"Menu",@"OrderNote",@"Member",@"Address",@"Receipt",@"Discount",@"Setting",@"UserAccount",@"RewardProgram",@"RewardPoint",@"ReceiptNo",@"ReceiptNoTax",@"ReceiptCustomerTable",@"TableTaking"];
-//            loadViewProcess = YES;
-//        }
-//        else if([self isMemberOfClass:[CustomerTableViewController class]])
-//        {
-//            arrReferenceTable = @[@"UserAccount",@"UserAccount",@"TableTaking",@"OrderTaking",@"UserTabMenu",@"Board"];
-//            loadViewProcess = YES;
-//        }
-        NSArray *resultArray = [Utility intersectArray1:arrAllType array2:arrReferenceTable];
-        if([resultArray count] > 0)
-        {
-            //                [self loadingOverlayView];
-            if(loadViewProcess)
-            {
-                [self loadViewProcess];
-            }
-//            [self removeOverlayViews];
-        }
-    }
-    [self removeOverlayViews];
+    UILabel *label = [[defaultAction valueForKey:@"__representer"] valueForKey:@"label"];
+    label.attributedText = attrString;
 }
 
 -(void)itemsDownloaded:(NSArray *)items
 {
     if(homeModel.propCurrentDB == dbMaster || homeModel.propCurrentDB == dbMasterWithProgressBar)
     {
-//        PushSync *pushSync = [[PushSync alloc]init];
-//        pushSync.deviceToken = [Utility deviceToken];
-//        [homeModel updateItems:dbPushSyncUpdateByDeviceToken withData:pushSync actionScreen:@"Update synced time by device token"];
-        
-        
+
         [Utility itemsDownloaded:items];
         [self removeOverlayViews];
         [self loadViewProcess];//call child process
@@ -793,11 +541,7 @@ CGFloat animatedDistance;
 -(void)setButtonDesign:(UIView *)view
 {
     UIButton *button = (UIButton *)view;
-//    button.backgroundColor = [UIColor groupTableViewBackgroundColor];
-//    [button setTitleColor:mBlueColor forState:UIControlStateNormal];
-//    [button setTitleColor:[UIColor grayColor] forState:UIControlStateDisabled];
     button.layer.cornerRadius = 14;
-    
 }
 
 -(void)setCornerAndShadow:(UIView *)view cornerRadius:(NSInteger)cornerRadius
@@ -914,10 +658,32 @@ CGFloat animatedDistance;
     
     if (!success)
     {
+        NSString *title = @"Error";
+        NSString *message = @"Unable to send attachment!";
+        UIAlertController* alert = [UIAlertController alertControllerWithTitle:title
+                                                                       message:message                                                                preferredStyle:UIAlertControllerStyleAlert];
         
-        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Error"
-                                                                       message:@"Unable to send attachment!"
-                                                                preferredStyle:UIAlertControllerStyleAlert];
+        
+        NSMutableAttributedString *attrStringTitle = [[NSMutableAttributedString alloc] initWithString:title];
+        [attrStringTitle addAttribute:NSFontAttributeName
+                                value:[UIFont fontWithName:@"Prompt-SemiBold" size:17]
+                                range:NSMakeRange(0, title.length)];
+        [alert setValue:attrStringTitle forKey:@"attributedTitle"];
+        [attrStringTitle addAttribute:NSForegroundColorAttributeName
+                                value:cSystem4
+                                range:NSMakeRange(0, title.length)];
+        
+        
+        NSMutableAttributedString *attrStringMsg = [[NSMutableAttributedString alloc] initWithString:message];
+        [attrStringMsg addAttribute:NSFontAttributeName
+                              value:[UIFont fontWithName:@"Prompt-Regular" size:15]
+                              range:NSMakeRange(0, message.length)];
+        [attrStringTitle addAttribute:NSForegroundColorAttributeName
+                                value:cSystem4
+                                range:NSMakeRange(0, title.length)];
+        [alert setValue:attrStringMsg forKey:@"attributedMessage"];
+        
+        
         
         UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
                                                               handler:^(UIAlertAction * action) {
@@ -926,6 +692,15 @@ CGFloat animatedDistance;
         
         [alert addAction:defaultAction];
         [self presentViewController:alert animated:YES completion:nil];
+        
+        
+        UIFont *font = [UIFont fontWithName:@"Prompt-SemiBold" size:15];
+        UIColor *color = cSystem1;
+        NSDictionary *attribute = @{NSForegroundColorAttributeName:color ,NSFontAttributeName: font};
+        NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:@"OK" attributes:attribute];
+        
+        UILabel *label = [[defaultAction valueForKey:@"__representer"] valueForKey:@"label"];
+        label.attributedText = attrString;
     }
 }
 
@@ -1557,7 +1332,7 @@ CGFloat animatedDistance;
         {
             //print process
             NSString *portName = [_printBillWithPortName valueForKey:[NSString stringWithFormat:@"%ld",(long)aWebView.tag]];
-            [self doPrintProcess:pdfImagePrint portName:portName];
+            [self doPrintProcessInCustomView:pdfImagePrint portName:portName];
         }
     }
 }
@@ -1587,8 +1362,28 @@ CGFloat animatedDistance;
          if(![message isEqualToString:@"พิมพ์สำเร็จ"])
          {
              UIAlertController* alert = [UIAlertController alertControllerWithTitle:title
-                                                                            message:message
-                                                                     preferredStyle:UIAlertControllerStyleAlert];
+                                                                            message:message                                                            preferredStyle:UIAlertControllerStyleAlert];
+             
+             
+             NSMutableAttributedString *attrStringTitle = [[NSMutableAttributedString alloc] initWithString:title];
+             [attrStringTitle addAttribute:NSFontAttributeName
+                                     value:[UIFont fontWithName:@"Prompt-SemiBold" size:17]
+                                     range:NSMakeRange(0, title.length)];
+             [attrStringTitle addAttribute:NSForegroundColorAttributeName
+                                     value:cSystem4
+                                     range:NSMakeRange(0, title.length)];
+             [alert setValue:attrStringTitle forKey:@"attributedTitle"];
+             
+             
+             NSMutableAttributedString *attrStringMsg = [[NSMutableAttributedString alloc] initWithString:message];
+             [attrStringMsg addAttribute:NSFontAttributeName
+                                   value:[UIFont fontWithName:@"Prompt-Regular" size:15]
+                                   range:NSMakeRange(0, message.length)];
+             [attrStringTitle addAttribute:NSForegroundColorAttributeName
+                                     value:cSystem4
+                                     range:NSMakeRange(0, title.length)];
+             [alert setValue:attrStringMsg forKey:@"attributedMessage"];
+             
              
              UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
                                                                    handler:^(UIAlertAction * action)
@@ -1598,13 +1393,19 @@ CGFloat animatedDistance;
                                                      [self hideStatus];
                                                      [self removeOverlayViews];
                                                      [self reloadTableView];
-                                                     //                                                     [self loadViewProcess];
-                                                     //                                                     [self performSegueWithIdentifier:@"segUnwindToCustomerTable" sender:self];
                                                  }
                                              }];
              
              [alert addAction:defaultAction];
              [self presentViewController:alert animated:YES completion:nil];
+             
+             UIFont *font = [UIFont fontWithName:@"Prompt-SemiBold" size:15];
+             UIColor *color = cSystem1;
+             NSDictionary *attribute = @{NSForegroundColorAttributeName:color ,NSFontAttributeName: font};
+             NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:@"OK" attributes:attribute];
+             
+             UILabel *label = [[defaultAction valueForKey:@"__representer"] valueForKey:@"label"];
+             label.attributedText = attrString;
          }
          else
          {
@@ -1614,9 +1415,7 @@ CGFloat animatedDistance;
                  [self removeOverlayViews];
                  [self reloadTableView];
                  
-                 //update receipt status
-                 //                 [self loadViewProcess];
-                 //                 [self performSegueWithIdentifier:@"segUnwindToCustomerTable" sender:self];
+                 
              }
          }
      }];
@@ -1705,20 +1504,47 @@ CGFloat animatedDistance;
     
     if (result == NO)
     {
+        NSString *title = @"Fail to Open Port";
+        NSString *message = @"";
+        UIAlertController* alert = [UIAlertController alertControllerWithTitle:title
+                                                                       message:message                                                            preferredStyle:UIAlertControllerStyleAlert];
         
-        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Fail to Open Port"
-                                                                       message:@""
-                                                                preferredStyle:UIAlertControllerStyleAlert];
+        
+        NSMutableAttributedString *attrStringTitle = [[NSMutableAttributedString alloc] initWithString:title];
+        [attrStringTitle addAttribute:NSFontAttributeName
+                                value:[UIFont fontWithName:@"Prompt-SemiBold" size:17]
+                                range:NSMakeRange(0, title.length)];
+        [attrStringTitle addAttribute:NSForegroundColorAttributeName
+                                value:cSystem4
+                                range:NSMakeRange(0, title.length)];
+        [alert setValue:attrStringTitle forKey:@"attributedTitle"];
+        
+        
+        NSMutableAttributedString *attrStringMsg = [[NSMutableAttributedString alloc] initWithString:message];
+        [attrStringMsg addAttribute:NSFontAttributeName
+                              value:[UIFont fontWithName:@"Prompt-Regular" size:15]
+                              range:NSMakeRange(0, message.length)];
+        [attrStringTitle addAttribute:NSForegroundColorAttributeName
+                                value:cSystem4
+                                range:NSMakeRange(0, title.length)];
+        [alert setValue:attrStringMsg forKey:@"attributedMessage"];
+        
         
         UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
                                                               handler:^(UIAlertAction * action)
                                         {
-                                            
                                         }];
         
         [alert addAction:defaultAction];
         [self presentViewController:alert animated:YES completion:nil];
         
+        UIFont *font = [UIFont fontWithName:@"Prompt-SemiBold" size:15];
+        UIColor *color = cSystem1;
+        NSDictionary *attribute = @{NSForegroundColorAttributeName:color ,NSFontAttributeName: font};
+        NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:@"OK" attributes:attribute];
+        
+        UILabel *label = [[defaultAction valueForKey:@"__representer"] valueForKey:@"label"];
+        label.attributedText = attrString;
     }
     
     [self removeOverlayViews];
@@ -1730,6 +1556,11 @@ CGFloat animatedDistance;
 -(void)reloadTableView
 {
     
+}
+
+-(void)dismissKeyboard
+{
+    [self.view endEditing:YES];
 }
 @end
 

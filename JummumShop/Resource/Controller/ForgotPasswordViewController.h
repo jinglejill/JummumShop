@@ -10,6 +10,9 @@
 
 @interface ForgotPasswordViewController : CustomViewController
 @property (strong, nonatomic) IBOutlet UITextField *txtEmail;
+@property (strong, nonatomic) IBOutlet UILabel *lblNavTitle;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *topViewHeight;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *bottomButtonHeight;
 - (IBAction)submit:(id)sender;
 - (IBAction)goBack:(id)sender;
 

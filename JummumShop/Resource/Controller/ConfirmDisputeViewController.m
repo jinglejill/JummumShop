@@ -24,6 +24,7 @@
 @synthesize receipt;
 @synthesize btnConfirm;
 @synthesize btnCancel;
+@synthesize credentialsDb;
 
 
 -(void)viewDidLayoutSubviews
@@ -59,14 +60,20 @@
     NSString *strMessageSubTitle;
     if(fromType == 1)
     {
-        strMessageHeader = [Setting getSettingValueWithKeyName:@"MessageHeaderCancel"];
-        strMessageSubTitle = [Setting getSettingValueWithKeyName:@"MessageSubTitleCancel"];
+        NSString *title = [Setting getValue:@"001t" example:@"Oop!"];
+        NSString *message = [Setting getValue:@"001m" example:@"คุณต้องการยกเลิก & คืนเงิน ใช่หรือไม่"];
+        strMessageHeader = title;
+        strMessageSubTitle = message;
     }
     else
     {
-        strMessageHeader = [Setting getSettingValueWithKeyName:@"MessageHeaderDispute"];
-        strMessageSubTitle = [Setting getSettingValueWithKeyName:@"MessageSubTitleDispute"];
+        NSString *title = [Setting getValue:@"002t" example:@"Oop!"];
+        NSString *message = [Setting getValue:@"003m" example:@"คุณต้องการส่งคำร้อง & คืนเงิน ใช่หรือไม่"];
+        strMessageHeader = title;
+        strMessageSubTitle = message;
     }
+    
+    
     UIFont *font = [UIFont fontWithName:@"Prompt-SemiBold" size:22];
     UIColor *color = cSystem4;
     NSDictionary *attribute = @{NSForegroundColorAttributeName:color ,NSFontAttributeName: font};
@@ -120,6 +127,7 @@
         DisputeFormViewController *vc = segue.destinationViewController;
         vc.fromType = fromType;
         vc.receipt = receipt;
+        vc.credentialsDb = credentialsDb;
     }
 }
 
@@ -134,7 +142,9 @@
         {
             receipt.status = downloadReceipt.status;
             receipt.statusRoute = downloadReceipt.statusRoute;
-            NSString *strMessage = downloadReceipt.status == 5?@"ร้านค้ากำลังปรุงอาหารให้คุณอยู่ค่ะ โปรดรอสักครู่นะคะ":@"อาหารได้ส่งถึงคุณแล้วค่ะ";
+            NSString *message = [Setting getValue:@"003m" example:@"บิลนี้ได้ส่งเข้าครัวเพื่อปรุงอาหารแล้วค่ะ โปรดรอสักครู่นะคะ"];
+            NSString *message2 = [Setting getValue:@"004m" example:@"อาหารถูกส่งให้ลูกค้าไปแล้วค่ะ"];
+            NSString *strMessage = downloadReceipt.status == 5?message:message2;
             [self showAlert:@"" message:strMessage method:@selector(noDispute:)];            
         }
         else

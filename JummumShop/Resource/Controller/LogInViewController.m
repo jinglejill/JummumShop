@@ -10,12 +10,14 @@
 #import "TermsOfServiceViewController.h"
 #import "CustomerKitchenViewController.h"
 #import "MainTabBarController.h"
+#import "MeViewController.h"
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 
 
 #import "LogIn.h"
 #import "UserAccount.h"
+#import "Setting.h"
 #import "Utility.h"
 #import "FacebookComment.h"
 
@@ -37,18 +39,50 @@
 @synthesize btnRememberMe;
 @synthesize btnLogIn;
 @synthesize credentialsDb;
+@synthesize imgVwValueHeight;
+@synthesize lblOrBottom;
+@synthesize imgVwLogoText;
+@synthesize lblLogInTop;
 
+
+-(void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+    imgVwValueHeight.constant = self.view.frame.size.width/375*255;
+    float bottom = imgVwValueHeight.constant+20+30+11;
+    lblOrBottom.constant = bottom;
+    
+    
+    UIWindow *window = UIApplication.sharedApplication.keyWindow;
+    float bottomPadding = window.safeAreaInsets.bottom;
+    float topPadding = window.safeAreaInsets.top;
+    _loginButton.center = self.view.center;
+    CGRect frame = _loginButton.frame;
+    frame.origin.y = self.view.frame.size.height - bottomPadding - bottom + 11;//frame.origin.y + 33;
+    _loginButton.frame = frame;
+    
+    
+    
+    lblLogInTop.constant = 7 + bottomPadding;
+    if(bottom+286+40>self.view.frame.size.height)
+    {
+        //hide jummum text
+        imgVwLogoText.hidden = YES;
+    }
+}
 
 - (IBAction)rememberMe:(id)sender
 {
     _rememberMe = !_rememberMe;
     if(_rememberMe)
     {
-        [btnRememberMe setTitle:@"◼︎ จำฉันไว้ในระบบ" forState:UIControlStateNormal];
+        NSString *message = [Setting getValue:@"056m" example:@"◼︎ จำฉันไว้ในระบบ"];
+        [btnRememberMe setTitle:message forState:UIControlStateNormal];
     }
     else
     {
-        [btnRememberMe setTitle:@"◻︎ จำฉันไว้ในระบบ" forState:UIControlStateNormal];
+        NSString *message = [Setting getValue:@"055m" example:@"◻︎ จำฉันไว้ในระบบ"];
+        [btnRememberMe setTitle:message forState:UIControlStateNormal];
     }
 }
 
@@ -87,6 +121,18 @@
     {        
         [FBSDKAccessToken setCurrentAccessToken:nil];
     }
+    else if([segue.sourceViewController isMemberOfClass:[MeViewController class]])
+    {
+        NSString *message = [Setting getValue:@"055m" example:@"◻︎ จำฉันไว้ในระบบ"];
+        [btnRememberMe setTitle:message forState:UIControlStateNormal];
+        _rememberMe = NO;
+        
+        
+        txtEmail.text = [[NSUserDefaults standardUserDefaults] valueForKey:@"rememberEmail"];
+        txtPassword.text = [[NSUserDefaults standardUserDefaults] valueForKey:@"rememberPassword"];
+    }
+    
+    
     if (![FBSDKAccessToken currentAccessToken])
     {
         _faceBookLogIn = NO;
@@ -94,21 +140,6 @@
     if(![[NSUserDefaults standardUserDefaults] integerForKey:@"logInSession"])
     {
         _appLogIn = NO;
-    }
-    if([[NSUserDefaults standardUserDefaults] integerForKey:@"rememberMe"])
-    {
-        [btnRememberMe setTitle:@"◼︎ จำฉันไว้ในระบบ" forState:UIControlStateNormal];
-        _rememberMe = YES;
-        
-        
-        txtEmail.text = [[NSUserDefaults standardUserDefaults] valueForKey:@"rememberEmail"];
-        txtPassword.text = [[NSUserDefaults standardUserDefaults] valueForKey:@"rememberPassword"];
-        
-    }
-    else
-    {
-        [btnRememberMe setTitle:@"◻︎ จำฉันไว้ในระบบ" forState:UIControlStateNormal];
-        _rememberMe = NO;
     }
 }
 
@@ -121,7 +152,8 @@
     [self setButtonDesign:btnLogIn];
     if([[NSUserDefaults standardUserDefaults] integerForKey:@"rememberMe"])
     {
-        [btnRememberMe setTitle:@"◼︎ จำฉันไว้ในระบบ" forState:UIControlStateNormal];
+        NSString *message = [Setting getValue:@"056m" example:@"◼︎ จำฉันไว้ในระบบ"];
+        [btnRememberMe setTitle:message forState:UIControlStateNormal];
         _rememberMe = YES;
         
         
@@ -131,7 +163,8 @@
     }
     else
     {
-        [btnRememberMe setTitle:@"◻︎ จำฉันไว้ในระบบ" forState:UIControlStateNormal];
+        NSString *message = [Setting getValue:@"055m" example:@"◻︎ จำฉันไว้ในระบบ"];
+        [btnRememberMe setTitle:message forState:UIControlStateNormal];
         _rememberMe = NO;
     }
     
@@ -148,28 +181,9 @@
     
     
     
-//    //facebook
-//    _loginButton = [[FBSDKLoginButton alloc] init];
-//    _loginButton.delegate = self;
-//    _loginButton.readPermissions = @[@"public_profile", @"email",@"user_friends",@"user_birthday",@"user_likes",];
-////    _loginButton.readPermissions = @[@"public_profile", @"email",@"user_friends",@"user_birthday",@"user_about_me",@"user_likes",@"user_work_history"];
-//    _loginButton.center = self.view.center;
-//    CGRect frame = _loginButton.frame;
-//    frame.origin.y = frame.origin.y + 33;
-//    _loginButton.frame = frame;
-//    
-//
-//    // Optional: Place the button in the center of your view.
-//    [self.view addSubview:_loginButton];
-//    if ([FBSDKAccessToken currentAccessToken])
-//    {
-//        // User is logged in, do work such as go to next view controller.
-//        _faceBookLogIn = YES;
-//    }
-//    else if([[NSUserDefaults standardUserDefaults] integerForKey:@"logInSession"])
-//    {
-//        _appLogIn = YES;
-//    }
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self.view action:@selector(endEditing:)];
+    [self.view addGestureRecognizer:tapGesture];
+    [tapGesture setCancelsTouchesInView:NO];
 }
 
 - (void)loginButton:(FBSDKLoginButton *)loginButton didCompleteWithResult:(FBSDKLoginManagerLoginResult *)result error:(NSError *)error
@@ -193,9 +207,6 @@
     [super viewWillAppear:animated];
     if (_faceBookLogIn)
     {
-        // User is logged in, do work such as go to next view controller.
-        //        [self performSegueWithIdentifier:@"segBranchSearch" sender:self];
-        
         [self insertUserLoginAndUserAccount];
     }
     else if(_appLogIn)
@@ -230,7 +241,8 @@
              }
              else
              {
-                 [self showAlert:@"" message:@"There is problem with facebook login, please try again"];
+                 NSString *message = [Setting getValue:@"057m" example:@"There is problem with facebook login, please try again"];
+                 [self showAlert:@"" message:message];
                  NSLog(@"test error: %@",error.description);
              }
          }];
@@ -245,7 +257,8 @@
     {
         if([items count] > 0 && [items[0] count] == 0)
         {
-            [self showAlert:@"" message:@"อีเมลล์/พาสเวิร์ด ไม่ถูกต้อง"];
+            NSString *message = [Setting getValue:@"058m" example:@"อีเมล/พาสเวิร์ด ไม่ถูกต้อง"];
+            [self showAlert:@"" message:message];
         }
         else
         {
@@ -289,28 +302,6 @@
             }
         }
     }
-//    else if(self.homeModel.propCurrentDBInsert == dbLogInUserAccount)
-//    {
-//        //insert useraccount,receipt,ordertaking,ordernote,menu to sharedObject
-//        NSMutableArray *userAccountList = items[0];
-//        [UserAccount setCurrentUserAccount:userAccountList[0]];
-//        [Utility addToSharedDataList:items];
-//
-//
-//
-//        //show terms of service
-//        NSDictionary *dicTosAgree = [[NSUserDefaults standardUserDefaults] valueForKey:@"tosAgree"];
-//        NSString *username = [[FBSDKAccessToken currentAccessToken] userID];
-//        NSNumber *tosAgree = [dicTosAgree objectForKey:username];
-//        if(tosAgree)
-//        {
-//            [self performSegueWithIdentifier:@"segQrCodeScanTable" sender:self];
-//        }
-//        else
-//        {
-//            [self performSegueWithIdentifier:@"segTermsOfService" sender:self];
-//        }
-//    }
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

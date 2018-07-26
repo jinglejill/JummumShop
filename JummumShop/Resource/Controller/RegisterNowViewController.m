@@ -140,7 +140,7 @@ static NSString * const reuseIdentifierText = @"CustomTableViewCellText";
         {
             cell.textValue.tag = 1;
             cell.textValue.delegate = self;
-            cell.textValue.placeholder = @"อีเมลล์";
+            cell.textValue.placeholder = @"อีเมล";
             cell.textValue.text = _userAccount.username;
         }
             break;
@@ -235,14 +235,14 @@ static NSString * const reuseIdentifierText = @"CustomTableViewCellText";
     if(![Utility validateEmailWithString:_userAccount.username])
     {
 //        _validate = NO;
-        [self showAlert:@"" message:@"กรุณาระบุอีเมลล์"];
+        [self showAlert:@"" message:@"กรุณาระบุอีเมล"];
         return;
     }
     
     
     if([items count] > 0 && [items[0] count]>0)
     {
-        [self showAlert:@"" message:@"อีเมลล์นี้ถูกใช้แล้ว"];
+        [self showAlert:@"" message:@"อีเมลนี้ถูกใช้แล้ว"];
         return;
     }
     

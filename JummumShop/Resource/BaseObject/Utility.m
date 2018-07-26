@@ -71,7 +71,7 @@ extern NSString *globalModifiedUser;
 
 + (BOOL)validateEmailWithString:(NSString*)email
 {
-    NSString *emailRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
+    NSString *emailRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}";
     NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
     return [emailTest evaluateWithObject:email];
 }
@@ -171,7 +171,7 @@ extern NSString *globalModifiedUser;
             url = @"/JMM/JUMMUM3/JMMPushSyncUpdateTimeSynced.php";
             break;
         case urlMasterGet:
-            url = @"/JMM/JUMMUMSHOP/JMSMasterGet.php";
+            url = @"/JMM/JUMMUMSHOP4/JMSMasterGet.php";
             break;
         case urlLogInInsert:
             url = @"/JMM/JUMMUM3/JMMLogInInsert.php";
@@ -180,7 +180,7 @@ extern NSString *globalModifiedUser;
             url = @"/JMM/JUMMUM3/JMMLogInUserAccountInsert.php";
             break;
         case urlWriteLog:
-            url = @"/JMM/JUMMUM3/JMMWriteLog.php";
+            url = @"/JMM/JUMMUMSHOP4/JMSWriteLog.php";
             break;
         case urlMenuInsert:
             url = @"/JMM/JUMMUM3/JMMMenuInsert.php";
@@ -249,7 +249,7 @@ extern NSString *globalModifiedUser;
             url = @"/JMM/JUMMUM3/JMMCustomerTableGetList.php";
             break;
         case urlReceiptSummaryGetList:
-            url = @"/JMM/JUMMUMSHOP/JMSReceiptSummaryGetList.php";
+            url = @"/JMM/JUMMUMSHOP4/JMSReceiptSummaryGetList.php";
             break;
         case urlPromotionGetList:
             url = @"/JMM/JUMMUM3/JMMPromotionGetList.php";
@@ -258,7 +258,7 @@ extern NSString *globalModifiedUser;
             url = @"/JMM/JUMMUM3/FacebookCommentInsertList.php";
             break;
         case urlUserAccountValidate:
-            url = @"/JMM/JUMMUMSHOP/JMSUserAccountValidate.php";
+            url = @"/JMM/JUMMUMSHOP4/JMSUserAccountValidate.php";
             break;
         case urlUserAccountGet:
             url = @"/JMM/JUMMUM3/JMMUserAccountGet.php";
@@ -267,10 +267,10 @@ extern NSString *globalModifiedUser;
             url = @"/JMM/JUMMUM3/JMMUserAccountInsert.php";
             break;
         case urlTermsOfService:
-            url = @"/JMM/JUMMUMSHOP/HtmlTermsOfService.html";
+            url = @"/JMM/JUMMUMSHOP4/HtmlTermsOfService.html";
             break;
         case urlUserAccountForgotPasswordInsert:
-            url = @"/JMM/JUMMUMSHOP/JMSUserAccountForgotPasswordInsert.php";
+            url = @"/JMM/JUMMUMSHOP4/JMSUserAccountForgotPasswordInsert.php";
             break;
         case urlRewardPointInsert:
             url = @"/JMM/JUMMUM3/JMMRewardPointInsert.php";
@@ -387,13 +387,13 @@ extern NSString *globalModifiedUser;
             url = @"/JMM/JUMMUM3/JMMUserRewardRedemptionUsedDeleteList.php";
             break;
         case urlReceiptMaxModifiedDateGetList:
-            url = @"/JMM/JUMMUMSHOP/JMSReceiptMaxModifiedDateGetList.php";
+            url = @"/JMM/JUMMUMSHOP4/JMSReceiptMaxModifiedDateGetList.php";
             break;
         case urlReceiptWithModifiedDateGet:
             url = @"/JMM/JUMMUM3/JMMReceiptWithModifiedDateGet.php";
             break;
         case urlReceiptGet:
-            url = @"/JMM/JUMMUMSHOP/JMSReceiptGet.php";
+            url = @"/JMM/JUMMUMSHOP4/JMSReceiptGet.php";
             break;
         case urlDisputeReasonInsert:
             url = @"/JMM/JUMMUM3/JMMDisputeReasonInsert.php";
@@ -414,10 +414,13 @@ extern NSString *globalModifiedUser;
             url = @"/JMM/JUMMUM3/JMMDisputeReasonDeleteList.php";
             break;
         case urlDisputeReasonGetList:
-            url = @"/JMM/JUMMUMSHOP/JMSDisputeReasonGetList.php";
+            url = @"/JMM/JUMMUMSHOP4/JMSDisputeReasonGetList.php";
             break;
         case urlDisputeInsert:
-            url = @"/JMM/JUMMUMSHOP/JMSDisputeInsert.php";
+            url = @"/JMM/JUMMUMSHOP4/JMSDisputeInsert.php";
+            break;
+        case urlDisputeCancelInsert:
+            url = @"/JMM/JUMMUMSHOP4/JMSDisputeCancelInsert.php";
             break;
         case urlDisputeUpdate:
             url = @"/JMM/JUMMUM3/JMMDisputeUpdate.php";
@@ -441,22 +444,34 @@ extern NSString *globalModifiedUser;
             url = @"/JMM/JUMMUM3/JMMReceiptUpdate.php";
             break;
         case urlCredentialsDbGet:
-            url = @"/JMM/JUMMUMSHOP/JMSCredentialsDbGet.php";
+            url = @"/JMM/JUMMUMSHOP4/JMSCredentialsDbGet.php";
             break;
         case urlCredentialsValidate:
-            url = @"/JMM/JUMMUMSHOP/JMSCredentialsValidate.php";
+            url = @"/JMM/JUMMUMSHOP4/JMSCredentialsValidate.php";
             break;
         case urlDeviceInsert:
-            url = @"/JMM/JUMMUMSHOP/JMSDeviceInsert.php";
+            url = @"/JMM/JUMMUMSHOP4/JMSDeviceInsert.php";
             break;
         case urlJummumReceiptGetList:
-            url = @"/JMM/JUMMUMSHOP/JMSJummumReceiptGetList.php";
+            url = @"/JMM/JUMMUMSHOP4/JMSJummumReceiptGetList.php";
             break;
         case urlJummumReceiptUpdate:
-            url = @"/JMM/JUMMUMSHOP/JMSJummumReceiptUpdate.php";
+            url = @"/JMM/JUMMUMSHOP4/JMSJummumReceiptUpdate.php";
             break;
-        case urlReceiptPrintInsertList:
-            url = @"/JMM/JUMMUMSHOP/JMSReceiptPrintInsertList.php";
+        case urlJummumReceiptSendToKitchen:
+            url = @"/JMM/JUMMUMSHOP4/JMSJummumReceiptSendToKitchen.php";
+            break;
+        case urlBranchGet:
+            url = @"/JMM/JUMMUMSHOP4/JMSBranchGet.php";
+            break;
+        case urlOpeningTimeTextGet:
+            url = @"/JMM/JUMMUMSHOP4/JMSOpeningTimeTextGet.php";
+            break;
+        case urlSettingUpdate:
+            url = @"/JMM/JUMMUMSHOP4/JMSSettingUpdate.php";
+            break;
+        case urlSettingGet:
+            url = @"/JMM/JUMMUMSHOP4/JMSSettingGet.php";
             break;
         default:
             break;
@@ -974,14 +989,18 @@ extern NSString *globalModifiedUser;
     return @"Please check recent transactions again";
 }
 
-+(NSString *)getConnectionLostTitle
++(NSString *)getErrorOccurTitle
 {
-    return @"Connection lost";
+//    return @"Connection lost";
+    return @"Error occured";
 }
-+(NSString *)getConnectionLostMessage
+
++(NSString *)getErrorOccurMessage
 {
-    return @"The network connection was lost";
+//    return @"The network connection was lost";
+    return @"Please try again. If error still exists, please contact Jummum support";
 }
+
 +(NSInteger)getNumberOfRowForExecuteSql
 {
     return 30;
@@ -1809,7 +1828,7 @@ extern NSString *globalModifiedUser;
     NSString *modifiedUser = [object valueForKey:@"modifiedUser"];
     
     
-//    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K = %ld and _modifiedUser = %@ and branchID = %ld",propertyNamePredicate,value,modifiedUser,[Utility branchID]];
+
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K = %ld and _modifiedUser = %@",propertyNamePredicate,value,modifiedUser];
     NSArray *filterArray = [dataList filteredArrayUsingPredicate:predicate];
     
@@ -1819,6 +1838,76 @@ extern NSString *globalModifiedUser;
         [dataList addObject:object];
     }
     
+}
+
++(void)updateSharedObject:(NSArray *)arrOfObjectList
+{
+    for(NSArray *itemList in arrOfObjectList)
+    {
+        for(NSObject *object in itemList)
+        {
+            [self addUpdateObject:object];
+        }
+    }
+}
+
++ (void)addUpdateObject:(NSObject *)object
+{
+    Class classDB = [object class];
+    NSString *className = NSStringFromClass(classDB);
+    Class class = NSClassFromString([NSString stringWithFormat:@"Shared%@",className]);
+    SEL selector = NSSelectorFromString([NSString stringWithFormat:@"shared%@",className]);
+    SEL selectorList = NSSelectorFromString([NSString stringWithFormat:@"%@List",[Utility makeFirstLetterLowerCase:className]]);
+    NSMutableArray *dataList = [[class performSelector:selector] performSelector:selectorList];
+    
+    
+    NSString *propertyName = [NSString stringWithFormat:@"%@ID",[Utility makeFirstLetterLowerCase:className]];
+    NSString *propertyNamePredicate = [NSString stringWithFormat:@"_%@",propertyName];
+    NSInteger value = [[object valueForKey:propertyName] integerValue];
+    
+    
+    NSArray *filterArray;
+    if ([object respondsToSelector:NSSelectorFromString(@"branchID")])
+    {
+        NSNumber *objBranchID = [object valueForKey:@"branchID"];
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K = %ld and branchID = %ld",propertyNamePredicate,value,[objBranchID integerValue]];
+        filterArray = [dataList filteredArrayUsingPredicate:predicate];
+    }
+    else
+    {
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K = %ld",propertyNamePredicate,value];
+        filterArray = [dataList filteredArrayUsingPredicate:predicate];
+    }
+    
+    
+    
+    if([filterArray count]==0)
+    {
+        [dataList addObject:object];
+    }
+    else
+    {
+        NSObject *filterObject = filterArray[0];
+        NSDate *dateObject = [object valueForKey:@"modifiedDate"];
+        NSDate *dateFilterObject = [filterObject valueForKey:@"modifiedDate"];
+        NSComparisonResult result = [dateFilterObject compare:dateObject];
+        if(result == NSOrderedAscending)
+        {
+            //update
+            unsigned int propertyCount = 0;
+            objc_property_t * properties = class_copyPropertyList([object class], &propertyCount);
+            
+            for (unsigned int i = 0; i < propertyCount; ++i)
+            {
+                objc_property_t property = properties[i];
+                const char * name = property_getName(property);
+                NSString *key = [NSString stringWithUTF8String:name];
+                
+                
+                [filterObject setValue:[object valueForKey:key] forKey:key];
+            }
+        }
+    }
 }
 @end
 

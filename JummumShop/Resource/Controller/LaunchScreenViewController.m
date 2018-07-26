@@ -12,6 +12,8 @@
 #import "CredentialsDb.h"
 #import "Credentials.h"
 #import "Device.h"
+#import "Message.h"
+#import "Setting.h"
 #import <sys/utsname.h>
 
 
@@ -24,70 +26,10 @@
 
 @implementation LaunchScreenViewController
 @synthesize progressBar;
+@synthesize lblTitle;
+@synthesize lblMessage;
+@synthesize imgVwLogoTop;
 
-
-//-(void)loadView
-//{
-//    [super loadView];
-//
-//    [self.homeModel downloadItems:dbMasterWithProgressBar];
-//}
-//
-//- (void)viewDidLoad
-//{
-//    [super viewDidLoad];
-//    // Do any additional setup after loading the view.
-//
-//    progressBar = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleDefault];
-//    {
-//        CGRect frame = progressBar.frame;
-//        frame.origin.y = self.view.frame.size.height-20;
-//        frame.size.width = self.view.frame.size.width - 40;
-//        frame.origin.x = 20;
-//        progressBar.frame = frame;
-//    }
-//
-//    [self.view addSubview:progressBar];
-//}
-//
-//- (void)downloadProgress:(float)percent
-//{
-//    progressBar.progress = percent;
-//}
-//
-//- (void)itemsDownloaded:(NSArray *)items
-//{
-//    if(self.homeModel.propCurrentDB == dbMasterWithProgressBar)
-//    {
-//        if([items count] == 0)
-//        {
-//            UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Warning"
-//                                                                           message:@"Memory fail"
-//                                                                    preferredStyle:UIAlertControllerStyleAlert];
-//
-//            UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
-//                                                                  handler:^(UIAlertAction * action)
-//                                            {
-//
-//                                            }];
-//
-//            [alert addAction:defaultAction];
-//            dispatch_async(dispatch_get_main_queue(),^ {
-//                [self presentViewController:alert animated:YES completion:nil];
-//            } );
-//            return;
-//        }
-//
-//
-//
-//        [Utility itemsDownloaded:items];
-//        [self removeOverlayViews];//อาจ มีการเรียกจากหน้า customViewController
-//
-//
-//
-//        [self performSegueWithIdentifier:@"segLogIn" sender:self];
-//    }
-//}
 
 //----------
 - (void)presentAlertViewForPassword
@@ -100,61 +42,34 @@
     if (hasPin)
     {
         //download branch
+        self.homeModel = [[HomeModel alloc]init];
+        self.homeModel.delegate = self;
         [self.homeModel downloadItems:dbCredentialsDb withData:[[NSUserDefaults standardUserDefaults] stringForKey:USERNAME]];
     }
     else
     {
-//        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Setup Credentials"
-//                                                                       message:@""
-//                                                                preferredStyle:UIAlertControllerStyleActionSheet];
-//
-//        [alert addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
-//            textField.placeholder = @"Name";
-//            textField.tag = kTextFieldName;
-//            textField.autocapitalizationType = UITextAutocapitalizationTypeWords;
-//        }];
-//
-//        [alert addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
-//            textField.placeholder = @"Password";
-//            textField.tag = kTextFieldPassword;
-//            textField.secureTextEntry = YES;
-//        }];
-//
-//        UIAlertAction* doneAction = [UIAlertAction actionWithTitle:@"Done" style:UIAlertActionStyleDefault
-//                                                              handler:^(UIAlertAction * action) {
-//                                                                 [self credentialsValidated];
-//                                                              }];
-//
-//        [alert addAction:doneAction];
-//
-//
-//        UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel
-//                                                              handler:^(UIAlertAction * action) {
-//                                                                  [self presentAlertViewForPassword];
-//                                                              }];
-//
-//        [alert addAction:cancelAction];
-//        [self presentViewController:alert animated:YES completion:nil];
+
         
-        
-        
-        
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Setup Credentials"
+        NSString *message = [Setting getValue:@"049m" example:@"Setup Credentials"];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:message
                                                         message:@""
                                                        delegate:self
                                               cancelButtonTitle:@"Cancel"
-                                              otherButtonTitles:@"Done", nil];
+                                              otherButtonTitles:@"OK", nil];
         // 6
+        NSString *message2 = [Setting getValue:@"050m" example:@"Name"];
+        NSString *message3 = [Setting getValue:@"051m" example:@"Password"];
         alert.delegate = self;
         [alert setAlertViewStyle:UIAlertViewStyleLoginAndPasswordInput];
         alert.tag = kAlertTypeSetup;
 
         UITextField *nameField = [alert textFieldAtIndex:0];
         nameField.autocapitalizationType = UITextAutocapitalizationTypeWords;
-        nameField.placeholder = @"Name"; // Replace the standard placeholder text with something more applicable
+        nameField.placeholder = message2; // Replace the standard placeholder text with something more applicable
         nameField.delegate = self;
         nameField.tag = kTextFieldName;
         UITextField *passwordField = [alert textFieldAtIndex:1]; // Capture the Password text field since there are 2 fields
+        passwordField.placeholder = message3;
         passwordField.delegate = self;
         passwordField.tag = kTextFieldPassword;
         [alert show];
@@ -214,77 +129,24 @@
     Credentials *credentials = [[Credentials alloc]init];
     credentials.username = name;
     credentials.password = password;
-//    _homeModel = [[HomeModel alloc]init];
-//    _homeModel.delegate = self;
+
+    self.homeModel = [[HomeModel alloc]init];
+    self.homeModel.delegate = self;
     [self.homeModel insertItems:dbCredentials withData:credentials actionScreen:@"Validate credential"];
 }
-
-//- (void)itemsUpdated:(NSString *)alertText//if error
-//{
-//    [self removeOverlayViews];
-//    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@""
-//                                                                   message:alertText
-//                                                            preferredStyle:UIAlertControllerStyleAlert];
-//
-//    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
-//                                                          handler:^(UIAlertAction * action)
-//                                    {
-//                                        [self presentAlertViewForPassword];
-//                                    }];
-//    [alert addAction:defaultAction];
-//    dispatch_async(dispatch_get_main_queue(),^ {
-//        [self presentViewController:alert animated:YES completion:nil];
-//    } );
-//}
-
-//-(void)viewDidLayoutSubviews
-//{
-//    [super viewDidLayoutSubviews];
-//
-//    CGRect frame = imgLogo.frame;
-//    frame.size.width = frame.size.height*imgLogo.image.size.width/imgLogo.image.size.height;
-//    imgLogo.frame = frame;
-//}
 
 - (void)loadView
 {
     [super loadView];
-//    NSLog(@"test screen size %f,%f",self.view.frame.size.width,self.view.frame.size.height);
-//    _homeModel = [[HomeModel alloc]init];
-//    _homeModel.delegate = self;
-//    NSLog(@"%@",[[NSUserDefaults standardUserDefaults] stringForKey:USERNAME]);//db
-//
-//    {
-//        overlayView = [[UIView alloc] initWithFrame:self.view.frame];
-//        overlayView.backgroundColor = [UIColor colorWithRed:256 green:256 blue:256 alpha:0];
-//
-//
-//        indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-//        indicator.frame = CGRectMake(self.view.bounds.size.width/2-indicator.frame.size.width/2,self.view.bounds.size.height/2-indicator.frame.size.height/2,indicator.frame.size.width,indicator.frame.size.height);
-//    }
-    
+
     [self presentAlertViewForPassword];
 }
-//
-//- (void)loadViewProcess
-//{
-//    [self presentAlertViewForPassword];
-//}
 
 - (void)applicationExpired
 {
-    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Warning"
-                                                                   message:@"Application is expired"
-                                                            preferredStyle:UIAlertControllerStyleAlert];
-    
-    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
-                                                          handler:^(UIAlertAction * action)
-                                    {
-                                        
-                                    }];
-    
-    [alert addAction:defaultAction];
-    [self presentViewController:alert animated:YES completion:nil];
+    NSString *title = [Setting getValue:@"052t" example:@"Warning"];
+    NSString *message = [Setting getValue:@"052m" example:@"Application is expired"];
+    [self showAlert:title message:message];
 }
 
 - (void)downloadProgress:(float)percent
@@ -292,14 +154,25 @@
     progressBar.progress = percent;
 }
 
--(void)itemsInserted
+-(void)itemsInsertedWithManager:(NSObject *)objHomeModel items:(NSArray *)items
 {
-    if(self.homeModel.propCurrentDBInsert == dbCredentials)
+    HomeModel *homeModel = (HomeModel *)objHomeModel;
+    if(homeModel.propCurrentDBInsert == dbCredentials)
     {
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:PIN_SAVED];
-        [self presentAlertViewForPassword];
+        [self removeOverlayViews];
+        if([items count] == 0)
+        {
+            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:PIN_SAVED];
+            [self presentAlertViewForPassword];
+        }
+        else
+        {
+            NSMutableArray *messageList = items[0];
+            Message *message = messageList[0];
+            [self showAlert:@"" message:message.text method:@selector(presentAlertViewForPassword)];            
+        }
     }
-    else if(self.homeModel.propCurrentDBInsert == dbDevice)
+    else if(homeModel.propCurrentDBInsert == dbDevice)
     {
         [self downloadData];
     }
@@ -307,14 +180,15 @@
 
 - (void)downloadData
 {
-//    _homeModel = [[HomeModel alloc]init];
-//    _homeModel.delegate = self;
+    self.homeModel = [[HomeModel alloc]init];
+    self.homeModel.delegate = self;
     [self.homeModel downloadItems:dbMasterWithProgressBar];
 }
 
-- (void)itemsDownloaded:(NSArray *)items
+- (void)itemsDownloaded:(NSArray *)items manager:(NSObject *)objHomeModel
 {
-    if(self.homeModel.propCurrentDB == dbCredentialsDb)
+    HomeModel *homeModel = (HomeModel *)objHomeModel;
+    if(homeModel.propCurrentDB == dbCredentialsDb)
     {
         [self removeOverlayViews];
         _credentialsDbList = items[0];
@@ -323,6 +197,7 @@
         if([_credentialsDbList count]==1)
         {        
             _credentialsDb = _credentialsDbList[0];
+            [CredentialsDb setCurrentCredentialsDb:_credentialsDb];
             [Utility setBranchID:_credentialsDb.branchID];
             [[NSUserDefaults standardUserDefaults] setValue:[[NSUserDefaults standardUserDefaults] stringForKey:USERNAME] forKey:BRANCH];
             [[NSUserDefaults standardUserDefaults] synchronize];
@@ -333,8 +208,11 @@
             Device *device = [[Device alloc]init];
             device.deviceToken = [Utility deviceToken];
             device.remark = [self deviceName];
-//            _homeModel = [[HomeModel alloc]init];
-//            _homeModel.delegate = self;
+            device.modifiedUser = [Utility deviceToken];
+            device.modifiedDate = [Utility currentDateTime];
+            
+            self.homeModel = [[HomeModel alloc]init];
+            self.homeModel.delegate = self;
             [self.homeModel insertItems:dbDevice withData:device actionScreen:@"Add device in branchSelect screen"];
             
         }
@@ -343,43 +221,20 @@
             [self performSegueWithIdentifier:@"segBranchSelect" sender:self];
         }
     }
-    else if(self.homeModel.propCurrentDB == dbMasterWithProgressBar)
+    else if(homeModel.propCurrentDB == dbMasterWithProgressBar)
     {
         if([items count] == 0)
         {
-            UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Warning"
-                                                                           message:@"Memory fail"
-                                                                    preferredStyle:UIAlertControllerStyleAlert];
-            
-            UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
-                                                                  handler:^(UIAlertAction * action)
-                                            {
-                                                
-                                            }];
-            
-            [alert addAction:defaultAction];
-            dispatch_async(dispatch_get_main_queue(),^ {
-                [self presentViewController:alert animated:YES completion:nil];
-            } );
+            NSString *title = [Setting getValue:@"053t" example:@"Warning"];
+            NSString *message = [Setting getValue:@"053m" example:@"Memory fail"];
+            [self showAlert:title message:message];
             return;
         }
         
-//        {
-//            PushSync *pushSync = [[PushSync alloc]init];
-//            pushSync.deviceToken = [Utility deviceToken];
-//            _homeModel = [[HomeModel alloc]init];
-//            _homeModel.delegate = self;
-//            [_homeModel updateItems:dbPushSyncUpdateByDeviceToken withData:pushSync actionScreen:@"update synced time by device token"];
-//        }
-        
+
         
         
         [Utility itemsDownloaded:items];
-//        [self removeOverlayViews];//อาจ มีการเรียกจากหน้า customViewController
-        
-        
-        
-//        [Utility setFinishLoadSharedData:YES];
         [self performSegueWithIdentifier:@"segLogIn" sender:self];
     }
 }
@@ -398,30 +253,19 @@
     }
 }
 
+-(void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+    
+    imgVwLogoTop.constant = (self.view.frame.size.height - (542-94))/2;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-//    progressBar = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleDefault];
-//
-//    {
-//        CGRect frame = progressBar.frame;
-//        frame.size.width = self.view.frame.size.width-200;
-//        progressBar.frame = frame;
-//    }
-//    progressBar.center = self.view.center;
-//
-//    {
-//        CGRect frame = progressBar.frame;
-//        frame.origin.y = self.view.frame.size.height-20;
-//        progressBar.frame = frame;
-//    }
-//
-//    [self.view addSubview:progressBar];
-    
-    
-    
+  
     progressBar = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleDefault];
     progressBar.trackTintColor = [UIColor whiteColor];
     progressBar.progressTintColor = cSystem2;
@@ -434,106 +278,16 @@
     }
 
     [self.view addSubview:progressBar];
+    
+    
+    
+    
+    
+    NSString *title = [Setting getValue:@"054t" example:@"Welcome"];
+    NSString *message = [Setting getValue:@"054m" example:@"Pay for your order, earn and track rewards, ckeck your balance and more, all from your mobile device"];
+    lblTitle.text = title;
+    lblMessage.text = message;
 }
-
-//-(void) loadingOverlayView
-//{
-//    [indicator startAnimating];
-//    indicator.layer.zPosition = 1;
-//    indicator.alpha = 1;
-//
-//
-//    // and just add them to navigationbar view
-//    [self.view addSubview:overlayView];
-//    [self.view addSubview:indicator];
-//}
-//
-//-(void) removeOverlayViews{
-//    UIView *view = overlayView;
-//
-//    [UIView animateWithDuration:0.5
-//                     animations:^{
-//                         view.alpha = 0.0;
-//                         indicator.alpha = 0;
-//                     }
-//                     completion:^(BOOL finished){
-//                         dispatch_async(dispatch_get_main_queue(),^ {
-//                             [view removeFromSuperview];
-//                             [indicator stopAnimating];
-//                             [indicator removeFromSuperview];
-//                         } );
-//                     }
-//     ];
-//}
-//
-//- (void) connectionFail
-//{
-//    UIAlertController* alert = [UIAlertController alertControllerWithTitle:[Utility subjectNoConnection]
-//                                                                   message:[Utility detailNoConnection]
-//                                                            preferredStyle:UIAlertControllerStyleAlert];
-//
-//    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
-//                                                          handler:^(UIAlertAction * action)
-//                                    {
-//                                        if(![indicator isAnimating])
-//                                        {
-//                                            [self loadingOverlayView];
-//                                        }
-//                                        _homeModel = [[HomeModel alloc]init];
-//                                        _homeModel.delegate = self;
-//                                        [_homeModel downloadItems:dbMaster];
-//                                    }];
-//
-//    [alert addAction:defaultAction];
-//    dispatch_async(dispatch_get_main_queue(),^ {
-//        [self presentViewController:alert animated:YES completion:nil];
-//    } );
-//}
-//
-//- (void)itemsFail
-//{
-//    UIAlertController* alert = [UIAlertController alertControllerWithTitle:[Utility getConnectionLostTitle]
-//                                                                   message:[Utility getConnectionLostMessage]
-//                                                            preferredStyle:UIAlertControllerStyleAlert];
-//
-//    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
-//                                                          handler:^(UIAlertAction * action) {
-//                                                              if(![indicator isAnimating])
-//                                                              {
-//                                                                  [self loadingOverlayView];
-//                                                              }
-//                                                              _homeModel = [[HomeModel alloc]init];
-//                                                              _homeModel.delegate = self;
-//                                                              [_homeModel downloadItems:dbMaster];
-//                                                          }];
-//
-//    [alert addAction:defaultAction];
-//    dispatch_async(dispatch_get_main_queue(),^ {
-//        [self presentViewController:alert animated:YES completion:nil];
-//    } );
-//}
-
-//- (void)alertMsg:(NSString *)msg
-//{
-//    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@""
-//                                                                   message:msg
-//                                                            preferredStyle:UIAlertControllerStyleAlert];
-//
-//    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
-//                                                          handler:^(UIAlertAction * action)
-//                                    {
-//                                        [self presentAlertViewForPassword];
-//                                    }];
-//
-//    [alert addAction:defaultAction];
-//    [self presentViewController:alert animated:YES completion:nil];
-//
-//}
-//
-//-(void)itemsUpdated
-//{
-//
-//}
 
 -(NSString*) deviceName
 {
@@ -550,4 +304,19 @@
     return [iOSDevices valueForKey:deviceModel];
 }
 //-------
+
+- (void) connectionFail
+{
+    NSString *title = [Utility subjectNoConnection];
+    NSString *message = [Utility detailNoConnection];
+    [self showAlert:title message:message method:@selector(tryDownloadAgain)];
+}
+
+-(void)tryDownloadAgain
+{
+    progressBar.progress = 0;
+    self.homeModel = [[HomeModel alloc]init];
+    self.homeModel.delegate = self;
+    [self.homeModel downloadItems:dbMasterWithProgressBar];
+}
 @end

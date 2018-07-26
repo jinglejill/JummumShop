@@ -22,4 +22,6 @@
 
 +(NSString *)getNameWithDbName:(NSString *)dbName credentialsDbList:(NSMutableArray *)credentialsDbList;
 +(NSInteger)getSelectedIndexWithDbName:(NSString *)dbName credentialsDbList:(NSMutableArray *)credentialsDbList;
++(void)setCurrentCredentialsDb:(CredentialsDb *)credentialsDb;
++(CredentialsDb *)getCurrentCredentialsDb;
 @end

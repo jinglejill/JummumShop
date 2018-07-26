@@ -156,17 +156,30 @@ enum enumDB
     dbUserRewardRedemptionUsed,
     dbUserRewardRedemptionUsedList,
     dbDisputeReason,
-    dbDisputeReasonList,
+    dbDisputeReasonList,    
     dbDispute,
+    dbDisputeCancel,
     dbDisputeList,
     dbReceiptWithModifiedDate,
     dbJummumReceipt,
     dbJummumReceiptPrint,
+    dbJummumReceiptSendToKitchen,
+    dbJummumReceiptDelivered,
+    dbJummumReceiptTapNotification,
+    dbJummumReceiptTapNotificationIssue,
+    dbJummumReceiptTapNotificationProcessing,
+    dbJummumReceiptTapNotificationDelivered,
+    dbJummumReceiptTapNotificationClear,
     dbReceiptPrintList,
     dbPrinter,
     dbCredentialsDb,
     dbCredentials,
-    dbJummumReceiptUpdate
+//    dbJummumReceiptUpdate,
+    dbAlarm,
+    dbAlarmUpdate,
+    dbBranch,
+    dbOpeningTimeText,
+    dbSetting
 
 
     
@@ -267,6 +280,7 @@ enum enumUrl
     urlDisputeReasonDeleteList,
     urlDisputeReasonGetList,
     urlDisputeInsert,
+    urlDisputeCancelInsert,
     urlDisputeUpdate,
     urlDisputeDelete,
     urlDisputeInsertList,
@@ -277,7 +291,14 @@ enum enumUrl
     urlCredentialsValidate,
     urlJummumReceiptGetList,
     urlJummumReceiptUpdate,
-    urlReceiptPrintInsertList
+    urlJummumReceiptSendToKitchen,
+    urlReceiptPrintInsertList,
+    urlAlarm,
+    urlAlarmUpdate,
+    urlBranchGet,
+    urlOpeningTimeTextGet,
+    urlSettingUpdate,
+    urlSettingGet
 //    ,
 //    urlTestPasswordInsertList
     
@@ -346,8 +367,8 @@ enum enumUrl
 + (BOOL)isNumeric:(NSString *)text;
 + (NSString *)getSqlFailTitle;
 + (NSString *)getSqlFailMessage;
-+ (NSString *)getConnectionLostTitle;
-+ (NSString *)getConnectionLostMessage;
++ (NSString *)getErrorOccurTitle;
++ (NSString *)getErrorOccurMessage;
 + (NSInteger)getNumberOfRowForExecuteSql;
 + (NSInteger)getScanTimeInterVal;
 + (NSInteger)getScanTimeInterValCaseBlur;
@@ -399,5 +420,6 @@ enum enumUrl
 + (void)setBranchID:(NSInteger)branchID;
 + (NSInteger) branchID;
 + (void)addObjectIfNotDuplicate:(NSObject *)object;
++(void)updateSharedObject:(NSArray *)arrOfObjectList;
 @end
 

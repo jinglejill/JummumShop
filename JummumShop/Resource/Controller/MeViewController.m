@@ -10,25 +10,30 @@
 #import "TosAndPrivacyPolicyViewController.h"
 #import "CustomTableViewCellImageText.h"
 #import "CustomTableViewCellProfile.h"
+#import "CustomTableViewCellLabelSwitch.h"
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import "Branch.h"
+#import "Setting.h"
 
 
 @interface MeViewController ()
 {
-    NSArray *_meList;
-    NSArray *_meImageList;
     NSArray *_aboutUsList;
     NSArray *_aboutUsImageList;
     NSInteger _pageType;
+    Branch *_branch;
 }
 @end
 
 @implementation MeViewController
 static NSString * const reuseIdentifierImageText = @"CustomTableViewCellImageText";
 static NSString * const reuseIdentifierProfile = @"CustomTableViewCellProfile";
+static NSString * const reuseIdentifierLabelSwitch = @"CustomTableViewCellLabelSwitch";
 
 
 @synthesize tbvMe;
+@synthesize topViewHeight;
+@synthesize tbvMeTop;
 
 
 -(IBAction)unwindToMe:(UIStoryboardSegue *)segue
@@ -36,14 +41,25 @@ static NSString * const reuseIdentifierProfile = @"CustomTableViewCellProfile";
 
 }
 
+-(void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+    UIWindow *window = UIApplication.sharedApplication.keyWindow;
+    
+    float topPadding = window.safeAreaInsets.top;
+    topViewHeight.constant = topPadding == 0?20:topPadding;
+//    tbvMe.layer.borderWidth = 1;
+}
+
 -(void)loadView
 {
     [super loadView];
-    
-    _meList = @[@"ประวัติการสั่งอาหาร",@"แต้มสะสม/แลกของรางวัล",@"บัตรเครดิต/เดบิต"];//,@"ข้อมูลส่วนตัว"
-    _meImageList = @[@"history.jpg",@"gift.png",@"creditCard.png"];//,@"personalData.png"
-    _aboutUsList = @[@"ข้อกำหนดและเงื่อนไข",@"นโยบายความเป็นส่วนตัว",@"Log out"];
-    _aboutUsImageList = @[@"termsOfService.png",@"privacyPolicy.png",@"logOut.png"];
+
+    NSString *message = [Setting getValue:@"059m" example:@"ข้อกำหนดและเงื่อนไข"];
+    NSString *message2 = [Setting getValue:@"060m" example:@"ตั้งค่าระบบการสั่งอาหารด้วยตนเอง"];
+    NSString *message3 = [Setting getValue:@"061m" example:@"Log out"];
+    _aboutUsList = @[message,message2,message3];
+    _aboutUsImageList = @[@"termsOfService.png",@"selfService.png",@"logOut.png"];
     tbvMe.delegate = self;
     tbvMe.dataSource = self;
     
@@ -62,13 +78,52 @@ static NSString * const reuseIdentifierProfile = @"CustomTableViewCellProfile";
         UINib *nib = [UINib nibWithNibName:reuseIdentifierProfile bundle:nil];
         [tbvMe registerNib:nib forCellReuseIdentifier:reuseIdentifierProfile];
     }
+    {
+        UINib *nib = [UINib nibWithNibName:reuseIdentifierLabelSwitch bundle:nil];
+        [tbvMe registerNib:nib forCellReuseIdentifier:reuseIdentifierLabelSwitch];
+    }
+    
+    
+    
+    //------
+    CustomTableViewCellProfile *cell = [tbvMe dequeueReusableCellWithIdentifier:reuseIdentifierProfile];
+    
+    
+    cell.imgValue.layer.cornerRadius = 35;
+    cell.imgValue.layer.masksToBounds = YES;
+    cell.imgValue.layer.borderWidth = 0;
+    UserAccount *userAccount = [UserAccount getCurrentUserAccount];
+    cell.lblEmail.text = userAccount.email;
+    
+    
+    UIWindow *window = UIApplication.sharedApplication.keyWindow;
+    float topPadding = window.safeAreaInsets.top;
+    CGRect frame = cell.frame;
+    frame.origin.x = 0;
+    frame.origin.y = topPadding == 0?20:topPadding;
+    frame.size.width = self.view.frame.size.width;
+    frame.size.height = 90;
+    cell.frame = frame;
+    [self.view addSubview:cell];
+    
+    
+    
+    [cell.singleTapGestureRecognizer addTarget:self action:@selector(handleSingleTap:)];
+    [cell.vwContent addGestureRecognizer:cell.singleTapGestureRecognizer];
+    cell.singleTapGestureRecognizer.numberOfTapsRequired = 1;
+    
+    
+    
+//    NSLog(@"test tbvData y,height: %f,%f",tbvMe.frame.origin.y,tbvMe.frame.size.height);
+//    NSLog(@"test tbvMeTop : %f",tbvMeTop.constant);
+//    tbvMeTop.constant = 66;
 }
 
 ///tableview section
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
     
-    return 3;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -76,18 +131,7 @@ static NSString * const reuseIdentifierProfile = @"CustomTableViewCellProfile";
     
     if([tableView isEqual:tbvMe])
     {
-        if(section == 0)
-        {
-            return 1;
-        }
-        else if (section == 1)
-        {
-            return [_meList count];
-        }
-        else
-        {
-            return [_aboutUsList count];
-        }
+        return [_aboutUsList count];
     }
     return 0;
 }
@@ -100,33 +144,19 @@ static NSString * const reuseIdentifierProfile = @"CustomTableViewCellProfile";
     
     if([tableView isEqual:tbvMe])
     {
-        
-        
-        
-        if(section == 0)
-        {
-            CustomTableViewCellProfile *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifierProfile];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-            
-            cell.imgValue.layer.cornerRadius = 35;
-            cell.imgValue.layer.masksToBounds = YES;
-            cell.imgValue.layer.borderWidth = 0;
-            
-            return cell;
-        }
-        else if (section == 1)
-        {
-            CustomTableViewCellImageText *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifierImageText];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            
-            
-            cell.imgVwIcon.image = [UIImage imageNamed:_meImageList[item]];
-            cell.lblText.text = _meList[item];
-            cell.lblText.textColor = cSystem4;
-            return cell;
-        }
-        else
+//        if(section == 0)
+//        {
+//            CustomTableViewCellProfile *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifierProfile];
+//            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//
+//
+//            cell.imgValue.layer.cornerRadius = 35;
+//            cell.imgValue.layer.masksToBounds = YES;
+//            cell.imgValue.layer.borderWidth = 0;
+//
+//            return cell;
+//        }
+//        else
         {
             CustomTableViewCellImageText *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifierImageText];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -136,7 +166,7 @@ static NSString * const reuseIdentifierProfile = @"CustomTableViewCellProfile";
             cell.lblText.text = _aboutUsList[item];
             cell.lblText.textColor = cSystem4;
             return cell;
-        }   
+        }
     }
     
     return nil;
@@ -146,11 +176,11 @@ static NSString * const reuseIdentifierProfile = @"CustomTableViewCellProfile";
 {
     if([tableView isEqual:tbvMe])
     {
-        if(indexPath.section == 0)
-        {
-            return 90;
-        }
-        else
+//        if(indexPath.section == 0)
+//        {
+//            return 90;
+//        }
+//        else
         {
             return 44;
         }
@@ -170,44 +200,14 @@ static NSString * const reuseIdentifierProfile = @"CustomTableViewCellProfile";
     
     if([tableView isEqual:tbvMe])
     {
-        if(indexPath.section == 0)
-        {
-            [self performSegueWithIdentifier:@"segPersonalData" sender:self];
-        }
-        else if(indexPath.section == 1)
-        {
-            switch (indexPath.item)
-            {
-                //                _meList = @[@"ประวัติการสั่งอาหาร",@"ข้อมูลส่วนตัว",@"แต้มสะสม",@"My Credit Cards"];
-                case 0:
-                {
-                    NSLog(@"did select receipt summary");
-                    dispatch_async(dispatch_get_main_queue(),^ {
-                        [self performSegueWithIdentifier:@"segReceiptSummary" sender:self];
-                    });
-                    
-                }
-                    break;
-                
-                case 1:
-                {
-                    [self performSegueWithIdentifier:@"segReward" sender:self];
-                }
-                    break;
-                case 2:
-                {
-                    [self performSegueWithIdentifier:@"segCreditCard" sender:self];
-                }
-                    break;
-                default:
-                    break;
-            }
-        }
-        else
+//        if(indexPath.section == 0)
+//        {
+//            [self performSegueWithIdentifier:@"segPersonalData" sender:self];
+//        }
+//        else
         {
             switch (indexPath.item)
             {
-                    //                _meList = @[@"ประวัติการสั่งอาหาร",@"ข้อมูลส่วนตัว",@"แต้มสะสม",@"My Credit Cards"];
                 case 0:
                 {
                     _pageType = 1;
@@ -215,17 +215,20 @@ static NSString * const reuseIdentifierProfile = @"CustomTableViewCellProfile";
                 }
                     break;
                 case 1:
-                {
-                    _pageType = 2;
-                    [self performSegueWithIdentifier:@"segTosAndPrivacyPolicy" sender:self];
+                {                    
+                    [self performSegueWithIdentifier:@"segOpeningTime" sender:self];
                 }
                     break;
                 case 2:
                 {
-                    [FBSDKAccessToken setCurrentAccessToken:nil];
                     [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:@"logInSession"];
-                    [self removeMemberData];
-                    [self showAlert:@"" message:@"ออกจากระบบสำเร็จ" method:@selector(unwindToLogIn)];
+                    [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:@"rememberMe"];
+                    [[NSUserDefaults standardUserDefaults] setValue:@"" forKey:@"rememberEmail"];
+                    [[NSUserDefaults standardUserDefaults] setValue:@"" forKey:@"rememberPassword"];
+                    
+                    
+                    NSString *message = [Setting getValue:@"062m" example:@"ออกจากระบบสำเร็จ"];
+                    [self showAlert:@"" message:message method:@selector(unwindToLogIn)];
                 }
                     break;
                 default:
@@ -238,7 +241,9 @@ static NSString * const reuseIdentifierProfile = @"CustomTableViewCellProfile";
 - (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     if (section == 0)
-        return CGFLOAT_MIN;
+    {
+        return 8;//CGFLOAT_MIN;
+    }
     return tableView.sectionHeaderHeight;
 }
 
@@ -254,5 +259,10 @@ static NSString * const reuseIdentifierProfile = @"CustomTableViewCellProfile";
 -(void)unwindToLogIn
 {
     [self performSegueWithIdentifier:@"segUnwindToLogIn" sender:self];
+}
+
+- (void)handleSingleTap:(UITapGestureRecognizer *)gestureRecognizer
+{
+    [self performSegueWithIdentifier:@"segPersonalData" sender:self];
 }
 @end
