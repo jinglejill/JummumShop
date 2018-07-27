@@ -955,7 +955,7 @@ extern NSString *globalModifiedUser;
 + (NSString *)getMasterClassName:(NSInteger)i
 {
 //    NSArray *arrMasterClass = @[@"Branch",@"CustomerTable",@"Setting"];
-    NSArray *arrMasterClass = @[@"Setting",@"Printer",@"CustomerTable",@"MenuType",@"Menu",@"NoteType",@"Note",@"Receipt",@"OrderTaking",@"OrderNote",@"Dispute",@"ReceiptPrint",@"DisputeReason"];
+    NSArray *arrMasterClass = @[@"Setting",@"CustomerTable",@"MenuType",@"Menu",@"NoteType",@"Note",@"Receipt",@"OrderTaking",@"OrderNote",@"Dispute",@"ReceiptPrint",@"DisputeReason"];
     
     return arrMasterClass[i];
 }

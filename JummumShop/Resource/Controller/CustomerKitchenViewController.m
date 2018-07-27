@@ -133,7 +133,7 @@ static NSString * const reuseHeaderViewIdentifier = @"CustomCollectionReusableVi
     }
     else if([segue.sourceViewController isKindOfClass:[DisputeFormViewController class]])
     {
-        [self reloadTableView];
+        [self reloadTableViewClearTab];
     }
 }
 
@@ -325,6 +325,10 @@ static NSString * const reuseHeaderViewIdentifier = @"CustomCollectionReusableVi
     {
         UINib *nib = [UINib nibWithNibName:reuseIdentifierReceiptSummary bundle:nil];
         [tbvData registerNib:nib forCellReuseIdentifier:reuseIdentifierReceiptSummary];
+    }
+    {
+        UINib *nib = [UINib nibWithNibName:reuseIdentifierLabelRemark bundle:nil];
+        [tbvData registerNib:nib forCellReuseIdentifier:reuseIdentifierLabelRemark];
     }
     
 }
@@ -817,7 +821,7 @@ static NSString * const reuseHeaderViewIdentifier = @"CustomCollectionReusableVi
         
         //remarkHeight
         CustomTableViewCellReceiptSummary *receiptSummaryCell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifierReceiptSummary];
-        CustomTableViewCellLabelRemark *cell = [receiptSummaryCell.tbvOrderDetail dequeueReusableCellWithIdentifier:reuseIdentifierLabelRemark];
+        CustomTableViewCellLabelRemark *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifierLabelRemark];
         if([Utility isStringEmpty:receipt.remark])
         {
             cell.lblText.attributedText = [self setAttributedString:@"" text:receipt.remark];

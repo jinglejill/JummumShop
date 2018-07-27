@@ -199,7 +199,7 @@
             _credentialsDb = _credentialsDbList[0];
             [CredentialsDb setCurrentCredentialsDb:_credentialsDb];
             [Utility setBranchID:_credentialsDb.branchID];
-            [[NSUserDefaults standardUserDefaults] setValue:[[NSUserDefaults standardUserDefaults] stringForKey:USERNAME] forKey:BRANCH];
+            [[NSUserDefaults standardUserDefaults] setValue:_credentialsDb.dbName forKey:BRANCH];
             [[NSUserDefaults standardUserDefaults] synchronize];
             
             

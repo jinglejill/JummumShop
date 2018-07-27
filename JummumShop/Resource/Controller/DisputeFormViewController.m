@@ -964,15 +964,15 @@ static NSString * const reuseIdentifierHeaderFooterOkCancel = @"CustomTableViewH
         [self showAlert:@"" message:strMessage method:@selector(goBack:)];
         [self removeOverlayViews];
     }
-    else if(downloadReceipt.status == 7)
+    else if(downloadReceipt.status == 9)
     {
-        NSString *message = [Setting getValue:@"032m" example:@"ส่งคำร้องยกเลิก เพื่อขอคืนเงินสำเร็จ"];
+        NSString *message = [Setting getValue:@"032m" example:@"ส่งคำสั่งยกเลิก & คืนเงินสำเร็จ"];
         [self showAlert:@"" message:message method:@selector(unwindToCustomerKitchen)];
         [self removeOverlayViews];
     }
     else if(downloadReceipt.status == 10)
     {
-        NSString *message = [Setting getValue:@"033m" example:@"ส่งคำร้องขอคืนเงินสำเร็จ"];
+        NSString *message = [Setting getValue:@"033m" example:@"ส่งคำร้อง & คืนเงินสำเร็จ"];
         [self showAlert:@"" message:message method:@selector(unwindToCustomerKitchen)];
         [self removeOverlayViews];
     }
