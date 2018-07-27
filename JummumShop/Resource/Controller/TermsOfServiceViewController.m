@@ -82,7 +82,7 @@
     // Do any additional setup after loading the view.
     
     
-    NSString *title = [Setting getValue:@"093t" example:@"ข้อกำหนดและเงื่อนไขของ JUMMUM Shop"];
+    NSString *title = [Setting getValue:@"093t" example:@"ข้อกำหนดและเงื่อนไขของ JUMMUM OM"];
     lblNavTitle.text = title;
     
     

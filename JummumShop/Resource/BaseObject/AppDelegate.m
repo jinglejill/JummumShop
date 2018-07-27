@@ -255,10 +255,12 @@ void myExceptionHandler(NSException *exception)
     
     //Called to let your app know which action was selected by the user for a given notification.
     
-    NSLog(@"Userinfo %@",response.notification.request.content.userInfo);
     NSDictionary *userInfo = response.notification.request.content.userInfo;
     NSDictionary *myAps = [userInfo objectForKey:@"aps"];
     NSString *categoryIdentifier = [myAps objectForKey:@"category"];
+    NSLog(@"action was selected by the user for a given notification: %@", userInfo);
+    
+    
     if([categoryIdentifier isEqualToString:@"cancelOrder"])
     {
         NSNumber *receiptID = [myAps objectForKey:@"receiptID"];
@@ -316,7 +318,7 @@ void myExceptionHandler(NSException *exception)
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
 {
-    
+    NSLog(@"didReceiveRemoteNotification: %@", userInfo);
 //    if (application.applicationState == UIApplicationStateBackground)
     
     NSDictionary *myAps = [userInfo objectForKey:@"aps"];
@@ -336,6 +338,7 @@ void myExceptionHandler(NSException *exception)
         _homeModel = [[HomeModel alloc]init];
         _homeModel.delegate = self;
         [_homeModel downloadItems:dbSetting withData:settingID];
+        completionHandler(UIBackgroundFetchResultNewData);
     }
     
     
@@ -396,9 +399,38 @@ void myExceptionHandler(NSException *exception)
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
 }
 
-- (void)applicationWillEnterForeground:(UIApplication *)application {
+- (void)applicationWillEnterForeground:(UIApplication *)application
+{
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    //Get current vc
+    CustomViewController *currentVc;
+    CustomViewController *parentViewController = (CustomViewController *)[[[UIApplication sharedApplication] delegate] window].rootViewController;
     
+    while (parentViewController.presentedViewController != nil && ![parentViewController.presentedViewController isKindOfClass:[UIAlertController class]])
+    {
+        parentViewController = (CustomViewController *)parentViewController.presentedViewController;
+    }
+    if([parentViewController isKindOfClass:[UITabBarController class]])
+    {
+        currentVc = ((UITabBarController *)parentViewController).selectedViewController;
+    }
+    else
+    {
+        currentVc = parentViewController;
+    }
+    
+    
+    
+    if([currentVc isKindOfClass:[CustomerKitchenViewController class]])
+    {
+        CustomerKitchenViewController *vc = (CustomerKitchenViewController *)currentVc;
+        [vc refresh:nil];
+    }
+    else if([currentVc isKindOfClass:[OrderDetailViewController class]])
+    {
+        OrderDetailViewController *vc = (OrderDetailViewController *)currentVc;
+        [vc refresh:nil];
+    }
 
 }
 

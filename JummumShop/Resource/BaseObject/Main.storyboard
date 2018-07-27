@@ -1316,7 +1316,7 @@
                                             <action selector="goBack:" destination="O1c-a3-Fip" eventType="touchUpInside" id="yZf-8F-GLx"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ข้อกำหนดและเงื่อนไขของ Jummum Shop" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ErA-rQ-g6w">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ข้อกำหนดและเงื่อนไขของ JUMMUM OM" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ErA-rQ-g6w">
                                         <rect key="frame" x="16" y="12" width="343" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="RTr-iP-dxv"/>
@@ -2599,7 +2599,7 @@
         <image name="white circle.png" width="128" height="128"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="DCf-pC-0Ih"/>
+        <segue reference="MDz-RH-tSw"/>
         <segue reference="1DE-ef-y4m"/>
         <segue reference="MmB-Bw-Sra"/>
         <segue reference="epr-rH-bTK"/>

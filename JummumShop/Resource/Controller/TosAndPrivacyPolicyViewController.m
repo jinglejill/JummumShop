@@ -77,7 +77,7 @@
     
     if(pageType == 1)
     {
-        NSString *title = [Setting getValue:@"094t" example:@"ข้อกำหนดและเงื่อนไขของ Jummum shop"];
+        NSString *title = [Setting getValue:@"094t" example:@"ข้อกำหนดและเงื่อนไขของ JUMMUM OM"];
         lblNavTitle.text = title;
         [self webViewLoadUrl:[Utility url:urlTermsOfService]];
     }
